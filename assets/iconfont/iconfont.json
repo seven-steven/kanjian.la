@@ -6,6 +6,13 @@
   "description": "看见导航",
   "glyphs": [
     {
+      "icon_id": "32305",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
       "icon_id": "1624982",
       "name": "icon_menu",
       "font_class": "menu",

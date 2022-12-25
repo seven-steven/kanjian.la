@@ -7,6 +7,8 @@
   --color-danger: #FF709F;
 
   --color-font: #000000;
+  --color-font-rgb: 0, 0, 0;
+  --color-font-opacity: 1;
 
   --border-radius: 1vw;
   --padding-common: 3vw;
