@@ -3,7 +3,7 @@
   --font-size-basic: 5vw;
 }
 
-body {
+html {
   font-size: var(--font-size-basic);
 }
 
@@ -13,7 +13,7 @@ body {
 
 .header {
   background-color: var(--color-primary);
-  height: calc(var(--padding-common) * 2 + 1rem);
+  height: calc(var(--padding-common) + 1rem);
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
@@ -27,6 +27,7 @@ body {
 .nav>ul {
   padding: 0 var(--padding-common);
   display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   background-color: var(--color-primary);
@@ -44,22 +45,33 @@ body {
   padding: 0 var(--padding-common);
 }
 
+.sub-group>h2 {
+  padding-top: var(--padding-common);
+  font-size: 4vw;
+}
+
+.sub-group>h2 .iconfont {
+  font-size: inherit;
+  margin-right: .5rem;
+}
+
 .web-item-container {
   display: flex;
   flex-wrap: wrap;
-  /* gap: var(--padding-common); */
   padding-bottom: var(--padding-common);
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .web-item {
-  width: calc(100vw - 2 * var(--padding-common));
+  width: calc(51.5vw - 2 * var(--padding-common));
   background-color: var(--color-info);
-  border-radius: 1rem;
+  /* border: .15rem solid var(--color-font); */
+  border-radius: var(--padding-common);
   padding: var(--padding-common);
   margin-top: var(--padding-common);
 }
+
 
 .web-item-icons {
   display: flex;
@@ -72,12 +84,12 @@ body {
 .web-item-icon-list {
   display: grid;
   grid-template-rows: auto;
-  height: 100%;
-  gap: .5rem;
+  justify-content: space-between;
+  align-items: initial;
 }
 
 .web-item-icon-list .iconfont {
-  font-size: 1.4rem;
+  font-size: 4vw;
   color: var(--color-font);
   opacity: 0.3;
 }
@@ -85,7 +97,7 @@ body {
 .web-item-logo {
   border-radius: 50%;
   border: 1vw solid #fff;
-  width: 40%;
+  width: calc((50vw - 2 * var(--padding-common)) / 2);
   height: auto;
 }
 
@@ -96,7 +108,7 @@ body {
 
 .web-item-text h3 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 3vw;
   padding: .8rem;
   margin: auto;
   overflow: hidden;
@@ -107,6 +119,7 @@ body {
 
 .web-item-description {
   text-align: center;
+  font-size: 3vw;
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
