@@ -1,0 +1,72 @@
+{
+  "id": "3838781",
+  "name": "kanjian.la",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "看见导航",
+  "glyphs": [
+    {
+      "icon_id": "1624982",
+      "name": "icon_menu",
+      "font_class": "menu",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "43905",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e6e5",
+      "unicode_decimal": 59109
+    },
+    {
+      "icon_id": "1251447",
+      "name": "tag",
+      "font_class": "tag",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "4766951",
+      "name": "heart",
+      "font_class": "heart",
+      "unicode": "e7df",
+      "unicode_decimal": 59359
+    },
+    {
+      "icon_id": "4936519",
+      "name": "heart-fill",
+      "font_class": "heart-fill",
+      "unicode": "e849",
+      "unicode_decimal": 59465
+    },
+    {
+      "icon_id": "7932009",
+      "name": "chinese",
+      "font_class": "chinese",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "7932260",
+      "name": "english",
+      "font_class": "english",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "15188382",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "24492805",
+      "name": "Document",
+      "font_class": "document",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}
