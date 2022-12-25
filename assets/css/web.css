@@ -1,0 +1,13 @@
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: .618vw;
+  }
+
+  .container {
+    width: 61.8vw;
+  }
+
+  .header {
+    display: none;
+  }
+}

@@ -1,0 +1,35 @@
+:root {
+  --padding-common: 3vw;
+  --font-size-basic: 5vw;
+}
+
+body {
+  font-size: var(--font-size-basic);
+}
+
+.container {
+  margin: auto;
+}
+
+.header {
+  background-color: var(--color-primary);
+  height: calc(var(--padding-common) * 2 + 1rem);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  padding: var(--padding-common);
+}
+
+.header>span {
+  width: 1rem;
+}
+
+.nav>ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav>ul>li {
+  display: block;
+}

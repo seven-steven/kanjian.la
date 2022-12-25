@@ -1,0 +1,39 @@
+:root {
+  --color-background: #f8f9fa;
+  --color-primary: #FCAD3F;
+  --color-success: #69E560;
+  --color-info: #2AC1FC;
+  --color-warning: #FFD53F;
+  --color-danger: #FF709F;
+
+  --color-font: rgb(0, 0, 0);
+
+  --border-radius: 1vw;
+  --padding-common: 3vw;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-font);
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-font);
+}
+
+.container {
+  margin: auto;
+}
