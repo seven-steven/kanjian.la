@@ -10,3 +10,5 @@
 - CSS
 - JavaScript
 - [iconfont](https://www.iconfont.cn/)
+- host by [Github Pages](https://docs.github.com/en/pages/quickstart)
+- dns by [CloudFlare](https://cloudflare.com/)

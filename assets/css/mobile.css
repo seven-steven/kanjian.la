@@ -37,6 +37,10 @@ nav {
   font-size: .8rem;
 }
 
+.nav .nav {
+  display: none;
+}
+
 nav>.nav {
   border-top: .05rem solid rgba(var(--color-font-rgb), calc(.1 * var(--color-font-opacity)));
 }
@@ -53,20 +57,17 @@ nav>.nav {
   border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.1 * var(--color-font-opacity)));
 }
 
-li.has-sub {
+.nav>li {
   position: relative;
 }
 
-.nav .has-sub>span {
+.nav>li>span {
+  display: none;
   position: absolute;
   font-size: .8rem;
   top: .8rem;
   left: calc(100vw - 1rem - var(--padding-common));
   transform: translate(-50%, -50%);
-}
-
-.nav .has-sub .nav {
-  /* display: none; */
 }
 
 .content {
@@ -100,7 +101,6 @@ li.has-sub {
   margin-top: var(--padding-common);
 }
 
-
 .web-item-icons {
   display: flex;
   flex-direction: row;
@@ -132,12 +132,13 @@ li.has-sub {
 .web-item-text {
   width: 80%;
   margin: auto;
+  font-size: .6rem;
 }
 
 .web-item-text h3 {
   text-align: center;
-  font-size: 3vw;
-  padding: .8rem;
+  padding: .3rem;
+  font-size: inherit;
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -147,7 +148,7 @@ li.has-sub {
 
 .web-item-description {
   text-align: center;
-  font-size: 3vw;
+  font-size: inherit;
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;

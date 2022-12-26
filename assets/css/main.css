@@ -32,9 +32,14 @@ ul {
   list-style: none;
 }
 
-a {
-  text-decoration: none;
+a,
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
   color: var(--color-font);
+  text-decoration: none;
 }
 
 .container {
