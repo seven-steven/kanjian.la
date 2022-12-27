@@ -1,11 +1,5 @@
-function switch_sub_menu(elem) {
-  console.log(elem);
-
-}
-
 document.querySelectorAll('.nav>li>a').forEach(item => {
   item.addEventListener('click', (event) => {
-    console.log(event.target);
     let elementA = event.target;
     let subNav = elementA.parentNode.querySelector('.nav');
     let subNavStyleDisplay = subNav.style.display

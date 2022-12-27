@@ -65,6 +65,14 @@ nav>.nav {
   left: calc(100vw - 1.5rem - var(--padding-common));
 }
 
+.nav .nav {
+  display: none;
+}
+
+.nav>li:focus-within>.nav {
+  display: flex;
+}
+
 .content {
   padding: 0 var(--padding-common);
 }

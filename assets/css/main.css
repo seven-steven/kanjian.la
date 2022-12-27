@@ -45,3 +45,11 @@ a:focus {
 .container {
   margin: auto;
 }
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
