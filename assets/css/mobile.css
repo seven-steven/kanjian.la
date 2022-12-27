@@ -37,10 +37,6 @@ nav {
   font-size: .8rem;
 }
 
-.nav .nav {
-  display: none;
-}
-
 nav>.nav {
   border-top: .05rem solid rgba(var(--color-font-rgb), calc(.1 * var(--color-font-opacity)));
 }
@@ -69,6 +65,25 @@ nav>.nav {
   left: calc(100vw - 1rem - var(--padding-common));
   transform: translate(-50%, -50%);
 }
+
+/* .nav>li:has(.nav)>span {
+  display: block;
+} */
+.nav>li:is(:has(.nav))>span {
+  display: block;
+}
+
+.nav>li:is(:has(.nav))>a:focus~ul.nav {
+  display: flex;
+}
+
+.nav .nav:not(:focus) {
+  display: none;
+}
+
+/* .nav>li:is(:has(.nav))>a:visited~ul.nav {
+  display: flex;
+} */
 
 .content {
   padding: 0 var(--padding-common);
