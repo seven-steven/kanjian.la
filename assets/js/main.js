@@ -15,6 +15,9 @@
 //   }
 // })
 
+/**
+ * 显示下级菜单图标
+ */
 document.querySelectorAll('.nav>li>.nav').forEach(item => {
   let elementIcon = item.parentNode.querySelector('span.iconfont');
   elementIcon.style.display = 'inline';

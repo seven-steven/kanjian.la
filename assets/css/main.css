@@ -12,6 +12,8 @@
 
   --border-radius: 1vw;
   --padding-common: 3vw;
+
+  --transition-time-basic: 1s;
 }
 
 * {

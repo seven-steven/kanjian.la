@@ -71,6 +71,17 @@ nav>.nav {
 
 .nav>li:focus-within>.nav {
   display: flex;
+  transition: display calc(var(--transition-time-basic) * .2);
+}
+
+.nav>li:focus-within>span {
+  transform: rotate(90deg);
+  transition: transform calc(var(--transition-time-basic) * .2);
+}
+
+.nav>li:not(:focus-within)>span {
+  transform: rotate(0deg);
+  transition: transform calc(var(--transition-time-basic) * .2);
 }
 
 .content {
