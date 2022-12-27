@@ -61,29 +61,9 @@ nav>.nav {
   display: none;
   position: absolute;
   font-size: .8rem;
-  top: .8rem;
-  left: calc(100vw - 1rem - var(--padding-common));
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: calc(100vw - 1.5rem - var(--padding-common));
 }
-
-/* .nav>li:has(.nav)>span {
-  display: block;
-} */
-.nav>li:is(:has(.nav))>span {
-  display: block;
-}
-
-.nav>li:is(:has(.nav))>a:focus~ul.nav {
-  display: flex;
-}
-
-.nav .nav:not(:focus) {
-  display: none;
-}
-
-/* .nav>li:is(:has(.nav))>a:visited~ul.nav {
-  display: flex;
-} */
 
 .content {
   padding: 0 var(--padding-common);
