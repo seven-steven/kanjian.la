@@ -63,6 +63,7 @@ nav>.nav {
   font-size: .8rem;
   top: 0;
   left: calc(100vw - 1.5rem - var(--padding-common));
+  pointer-events: none;
 }
 
 .nav .nav {

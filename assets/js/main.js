@@ -19,6 +19,8 @@
  * 显示下级菜单图标
  */
 document.querySelectorAll('.nav>li>.nav').forEach(item => {
-  let elementIcon = item.parentNode.querySelector('span.iconfont');
+  let navParent = item.parentNode;
+  // 显示下级菜单图标
+  let elementIcon = navParent.querySelector('span.iconfont');
   elementIcon.style.display = 'inline';
 })
