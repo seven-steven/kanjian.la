@@ -28,6 +28,7 @@ html {
 nav {
   padding: 0 var(--padding-common) var(--padding-common) var(--padding-common);
   background-color: var(--color-primary);
+  display: none;
 }
 
 .nav {
