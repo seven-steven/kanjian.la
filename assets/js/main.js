@@ -15,12 +15,12 @@
 //   }
 // })
 
-/**
- * 显示下级菜单图标
- */
-document.querySelectorAll('.nav>li>.nav').forEach(item => {
-  let navParent = item.parentNode;
-  // 显示下级菜单图标
-  let elementIcon = navParent.querySelector('span.iconfont');
-  elementIcon.style.display = 'inline';
-})
+// /**
+//  * 显示下级菜单图标
+//  */
+// document.querySelectorAll('.nav>li>.nav').forEach(item => {
+//   let navParent = item.parentNode;
+//   // 显示下级菜单图标
+//   let elementIcon = navParent.querySelector('span.iconfont');
+//   elementIcon.style.display = 'inline';
+// })
