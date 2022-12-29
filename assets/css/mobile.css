@@ -81,7 +81,7 @@ nav>.nav>li:focus-within>.nav {
   display: flex;
 }
 
-.nav>li:focus-within {
+.nav>li:focus-within>a {
   pointer-events: none;
 }
 
