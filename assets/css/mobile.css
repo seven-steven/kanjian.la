@@ -54,12 +54,20 @@ nav>.nav {
   border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.1 * var(--color-font-opacity)));
 }
 
+.nav-icon {
+  margin-right: .3rem;
+}
+
 .nav>li {
   position: relative;
 }
 
 .nav .nav {
   display: none;
+}
+
+.nav .nav>li>a {
+  padding-left: 1.3rem;
 }
 
 /**
