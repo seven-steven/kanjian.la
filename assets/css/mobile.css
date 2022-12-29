@@ -58,15 +58,6 @@ nav>.nav {
   position: relative;
 }
 
-.nav>li>span {
-  display: none;
-  position: absolute;
-  font-size: .8rem;
-  top: 0;
-  left: calc(100vw - 1.5rem - var(--padding-common));
-  pointer-events: none;
-}
-
 .nav .nav {
   display: none;
 }
@@ -74,11 +65,23 @@ nav>.nav {
 /**
   * 不支持三级菜单
   **/
+nav>.nav>li>.nav .nav {
+  display: none;
+}
+
 nav>.nav>li:focus-within>.nav {
   display: flex;
 }
 
 .nav>li:focus-within {
+  pointer-events: none;
+}
+
+.nav>li>span {
+  position: absolute;
+  font-size: .8rem;
+  top: 0;
+  right: 0;
   pointer-events: none;
 }
 
@@ -91,18 +94,6 @@ nav>.nav>li:focus-within>.nav {
   transform: rotate(0deg);
   transition: transform calc(var(--transition-time-basic) * .2);
 }
-
-/* .nav>li>.nav::before {
-  font-family: "iconfont" !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\e6a3";
-  color: inherit;
-  display: inline;
-  position: absolute;
-} */
 
 .content {
   padding: 0 var(--padding-common);
