@@ -55,6 +55,7 @@ nav>.nav {
 }
 
 .nav-icon {
+  font-size: .8rem;
   margin-right: .3rem;
   height: 1rem;
   width: 1rem;
@@ -70,7 +71,7 @@ nav>.nav {
 }
 
 .nav .nav>li>a {
-  padding-left: 1.3rem;
+  padding-left: 1.5rem;
 }
 
 /**
@@ -84,20 +85,23 @@ nav>.nav>li:focus-within>.nav {
   display: flex;
 }
 
-.nav>li:focus-within>a {
+.nav>li.nav-sub-container:focus-within>a {
   pointer-events: none;
 }
 
-.nav-icon-sub {
+.nav-sub-container>a>span:last-of-type {
   position: absolute;
   font-size: .8rem;
   top: 0;
   right: 0;
-  pointer-events: none;
 }
 
-.nav>li:focus-within>a>.nav-icon-sub {
+.nav>li.nav-sub-container:focus-within>a>span:last-of-type {
   transform: rotate(90deg);
+  transition: transform calc(var(--transition-time-basic) * .2);
+}
+
+.nav>li.nav-sub-container:not(:focus-within)>a>span:last-of-type {
   transition: transform calc(var(--transition-time-basic) * .2);
 }
 
