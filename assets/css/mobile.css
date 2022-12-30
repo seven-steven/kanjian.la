@@ -141,7 +141,7 @@ nav>.nav>li:focus-within>.nav {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .web-item-icon-list {
@@ -149,10 +149,11 @@ nav>.nav>li:focus-within>.nav {
   grid-template-rows: auto;
   justify-content: space-between;
   align-items: initial;
+  line-height: 1rem;
 }
 
-.web-item-icon-list .iconfont {
-  font-size: 4vw;
+.web-item-icon-list .web-item-icon {
+  font-size: .8rem;
   color: var(--color-font);
   opacity: 0.3;
 }
