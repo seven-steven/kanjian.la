@@ -157,11 +157,20 @@ nav>.nav>li:focus-within>.nav {
   opacity: 0.3;
 }
 
-.web-item-logo {
-  border-radius: 50%;
-  border: 1vw solid #fff;
+div.web-item-logo {
   width: calc((50vw - 2 * var(--padding-common)) / 2);
   height: auto;
+  overflow: clip;
+  border-radius: 50%;
+  border: .8vw solid var(--color-background);
+  background-color: var(--color-background);
+}
+
+div.web-item-logo>img {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  border-radius: 50%;
 }
 
 .web-item-text {
