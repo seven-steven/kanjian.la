@@ -149,10 +149,12 @@ nav>.nav>li:focus-within>.nav {
   justify-content: space-between;
   align-items: initial;
   line-height: 1rem;
+  width: .8rem;
+  font-size: .8rem;
 }
 
 .web-item-icon-list .web-item-icon {
-  font-size: .8rem;
+  font-size: inherit;
   color: var(--color-font);
   opacity: 0.3;
 }
