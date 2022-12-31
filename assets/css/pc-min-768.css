@@ -1,0 +1,16 @@
+html {
+  font-size: .618vw;
+}
+
+/* .container {
+  width: 61.8vw;
+}
+
+.header {
+  display: none;
+} */
+
+.web-item {
+  width: calc(30rem);
+  margin-top: var(--padding-common);
+}

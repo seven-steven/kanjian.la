@@ -4,5 +4,4 @@
 
 .web-item {
   width: calc(10.3rem - 2.5 * var(--padding-common));
-  margin-top: var(--padding-common);
 }

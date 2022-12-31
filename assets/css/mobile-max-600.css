@@ -197,6 +197,7 @@ a.web-item-logo>img {
 
 .web-item-description {
   text-align: center;
+  min-height: 1.8rem;
   font-size: inherit;
   margin: auto;
   overflow: hidden;
