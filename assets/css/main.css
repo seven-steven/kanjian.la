@@ -10,10 +10,15 @@
   --color-font-rgb: 0, 0, 0;
   --color-font-opacity: 1;
 
-  --border-radius: 1vw;
-  --padding-common: 3vw;
+  --font-size-basic: 5vw;
+  --padding-common: .6rem;
 
+  --border-radius: .2rem;
   --transition-time-basic: 1s;
+}
+
+html {
+  font-size: var(--font-size-basic);
 }
 
 * {

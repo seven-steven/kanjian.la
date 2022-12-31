@@ -1,6 +1,6 @@
 :root {
-  --padding-common: 3vw;
   --font-size-basic: 5vw;
+  --padding-common: .6rem;
 }
 
 html {
@@ -111,7 +111,7 @@ nav>.nav>li:focus-within>.nav {
 
 .sub-group>h2 {
   padding-top: var(--padding-common);
-  font-size: 4vw;
+  font-size: .8rem;
 }
 
 .sub-group>h2 .iconfont {
@@ -128,7 +128,7 @@ nav>.nav>li:focus-within>.nav {
 }
 
 .web-item {
-  width: calc(51.5vw - 2 * var(--padding-common));
+  width: calc(10.3rem - 2 * var(--padding-common));
   background-color: var(--color-info);
   /* border: .15rem solid var(--color-font); */
   border-radius: var(--padding-common);
@@ -159,11 +159,12 @@ nav>.nav>li:focus-within>.nav {
 }
 
 div.web-item-logo {
-  width: calc((50vw - 2 * var(--padding-common)) / 2);
+  width: calc((10rem - 2 * var(--padding-common)) / 2);
   height: auto;
   overflow: clip;
   border-radius: 50%;
-  border: .8vw solid var(--color-background);
+  vertical-align: middle;
+  border: .1rem solid var(--color-background);
   background-color: var(--color-background);
 }
 
