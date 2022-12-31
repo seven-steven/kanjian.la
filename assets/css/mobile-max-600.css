@@ -129,7 +129,7 @@ nav>.nav>li:focus-within>.nav {
 
 .web-item {
   width: calc(10.3rem - 2 * var(--padding-common));
-  height: calc(11rem - 2 * var(--padding-common));
+  height: calc(10.5rem - 2 * var(--padding-common));
   background-color: var(--color-info);
   border-radius: var(--padding-common);
   padding: var(--padding-common);
@@ -160,19 +160,26 @@ nav>.nav>li:focus-within>.nav {
   opacity: 0.3;
 }
 
-a.web-item-logo {
+.web-item-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+}
+
+div.web-item-logo>a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc((10rem - 2 * var(--padding-common)) / 2);
-  height: calc((10rem - 2 * var(--padding-common)) / 2);
+  width: calc((9rem - 2 * var(--padding-common)) / 2);
+  height: calc((9rem - 2 * var(--padding-common)) / 2);
   overflow: clip;
   border-radius: 50%;
   border: .1rem solid var(--color-background);
   background-color: var(--color-background);
 }
 
-a.web-item-logo>img {
+div.web-item-logo>a>img {
   width: 100%;
   height: 100%;
   vertical-align: middle;
