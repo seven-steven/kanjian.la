@@ -129,6 +129,7 @@ nav>.nav>li:focus-within>.nav {
 
 .web-item {
   width: calc(10.3rem - 2 * var(--padding-common));
+  height: calc(11rem - 2 * var(--padding-common));
   background-color: var(--color-info);
   border-radius: var(--padding-common);
   padding: var(--padding-common);
@@ -186,7 +187,7 @@ a.web-item-logo>img {
 
 .web-item-text h3 {
   text-align: center;
-  padding: .3rem;
+  padding: .8rem .3rem .3rem;
   font-size: inherit;
   margin: auto;
   overflow: hidden;
@@ -197,8 +198,9 @@ a.web-item-logo>img {
 
 .web-item-description {
   text-align: center;
-  min-height: 1.8rem;
   font-size: inherit;
+  line-height: 1.5;
+  /* height: 1.5rem; */
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
