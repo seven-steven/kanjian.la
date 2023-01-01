@@ -15,9 +15,14 @@
       logo: crashcourse.club.png
     - title: 数学乐
       url: https://www.shuxuele.com/index.html
-      # url: https://www.mathsisfun.com/
       description: 生动形象的数学知识
       logo: mathsisfun.com.svg
+      icon:
+        status:
+          - icon: iconfont icon-english
+        info:
+          - icon: iconfont icon-chinese
+            url: https://www.mathsisfun.com/
     - title: Coursera
       url: https://www.coursera.org/
       description: 无限制学习世界一流大学和公司的课程、专业证书和学位

@@ -15,22 +15,16 @@ layout: index
       {% for web_item in sub_category.links %}
       <div class="web-item">
         <div class="web-item-icons">
-          <ul class="web-item-icon-list">
-            {% for icon in web_item.icon.status %}
-            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
-            {% endfor %}
-          </ul>
+          {% assign icon_list = web_item.icon.status %}
+          {% include web-item-icon-list.html icon_list = icon_list %}
           <div class="web-item-logo">
             <a href="{{ web_item.url }}">
               <!-- TODO default logo -->
               <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="site icon" />
             </a>
           </div>
-          <ul class="web-item-icon-list">
-            {% for icon in web_item.icon.info %}
-            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
-            {% endfor %}
-          </ul>
+          {% assign icon_list = web_item.icon.info %}
+          {% include web-item-icon-list.html icon_list = icon_list %}
         </div>
         <div class="web-item-text">
           <a href="{{ web_item.url }}">
@@ -50,22 +44,16 @@ layout: index
       {% for web_item in category.links %}
       <div class="web-item">
         <div class="web-item-icons">
-          <ul class="web-item-icon-list">
-            {% for icon in web_item.icon.status %}
-            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
-            {% endfor %}
-          </ul>
+          {% assign icon_list = web_item.icon.status %}
+          {% include web-item-icon-list.html icon_list = icon_list %}
           <div class="web-item-logo">
             <a href="{{ web_item.url }}">
               <!-- TODO default logo -->
               <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="site icon" />
             </a>
           </div>
-          <ul class="web-item-icon-list">
-            {% for icon in web_item.icon.info %}
-            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
-            {% endfor %}
-          </ul>
+          {% assign icon_list = web_item.icon.info %}
+          {% include web-item-icon-list.html icon_list = icon_list %}
         </div>
         <div class="web-item-text">
           <a href="{{ web_item.url }}">

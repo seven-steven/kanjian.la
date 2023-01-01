@@ -1,0 +1,5 @@
+<ul class="web-item-icon-list">
+  {% for icon in icon_list %}
+  <li><a href="{{ icon.url }}"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+  {% endfor %}
+</ul>
