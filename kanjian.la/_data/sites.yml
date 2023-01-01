@@ -1,5 +1,5 @@
 - name: 学习资源
-  icon: linecons-lightbulb
+  icon: fa-solid fa-lines-leaning
   links:
     - title: 网易公开课
       url: https://open.163.com/
@@ -77,7 +77,7 @@
       logo: cook.aiurs.co.svg
 
 - name: 效率办公
-  icon: linecons-desktop
+  icon: fa-solid fa-desktop
   sub:
     - name: 在线工具
       links:
@@ -470,7 +470,7 @@
           logo: vmos.com.png
 
 - name: UI 设计
-  icon: linecons-pencil
+  icon: fa-solid fa-pencil
   sub:
     - name: 设计导航
       links:
@@ -794,7 +794,7 @@
           logo: fontconverter.com.svg
 
 - name: 开发资源
-  icon: linecons-params
+  icon: fa-solid fa-code
   sub:
     - name: 编程通识
       links:
@@ -1346,7 +1346,7 @@
           logo: vs-code-extension-markdown-preview-enhanced.svg
 
 - name: 无忧生活
-  icon: linecons-tv
+  icon: fa-solid fa-mountain-sun
   sub:
     - name: 便民服务
       links:
@@ -1522,7 +1522,7 @@
           logo: zhujiceping.com.png
 
 - name: 网络博客
-  icon: linecons-note
+  icon: fa-solid fa-blog
   sub:
     - name: 博客工具
       links:

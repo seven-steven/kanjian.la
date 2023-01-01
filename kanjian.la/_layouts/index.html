@@ -44,63 +44,31 @@
       </div>
       <nav>
         <ul class="nav">
-          {{ site.includes }}
-
-          {% for category in site.includes.sites %}
-          {{ category }}
-          {% endfor %}
-
-          <li>
-            <a href="#learn-resource">
-              <span class="nav-icon fa-solid fa-lines-leaning"></span>
-              学习资源
-            </a>
-          </li>
+          {% for category in site.data.sites %}
+          {% if category.sub %}
           <li class="nav-sub-container">
             <a href="javascript:void(0)">
-              <span class="nav-icon fa-solid fa-desktop"></span>
-              效率办公
+              {% else %}
+          <li>
+            <a href="#{{ category.name }}">
+              {% endif %}
+              <span class="nav-icon {{ category.icon }}"></span>
+              {{ category.name }}
+              {% if category.sub %}
               <span class="iconfont icon-right"></span>
+              {% endif %}
             </a>
+            {% if category.sub %}
             <ul class="nav">
+              {% for sub_category in category.sub %}
               <li>
-                <a href="#">在线工具</a>
+                <a href="#{{category.name}}-{{sub_category.name}}">{{ sub_category.name }}</a>
               </li>
-              <li>
-                <a href="#">在线文档</a>
-              </li>
-              <li>
-                <a href="#">PPT模板</a>
-              </li>
-              <li>
-                <a href="#">电脑软件</a>
-              </li>
+              {% endfor %}
             </ul>
+            {% endif %}
           </li>
-          <li>
-            <a href="#">
-              <span class="nav-icon fa-solid fa-pencil"></span>
-              页面设计
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-icon fa-solid fa-code"></span>
-              开发资源
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-icon fa-solid fa-mountain-sun"></span>
-              无忧生活
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-icon fa-solid fa-blog"></span>
-              网络博客
-            </a>
-          </li>
+          {% endfor %}
         </ul>
       </nav>
     </header>
