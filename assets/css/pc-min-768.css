@@ -1,9 +1,9 @@
 :root {
-  --font-size-basic: 1vw;
+  --font-size-basic: 2vw;
 }
 
 .container {
-  width: 61.8rem;
+  width: 92%;
 }
 
 .header {
@@ -63,6 +63,10 @@ nav>.nav {
   border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
 }
 
+.nav-sub-container:focus-within>.nav {
+  display: none;
+}
+
 .nav-sub-container>a>span:last-of-type {
   display: inline-block;
   position: relative;
@@ -74,10 +78,10 @@ nav>.nav {
 }
 
 .web-item {
-  width: calc(11.7rem - 3.5 * var(--padding-common));
+  width: calc(10.5rem - 3.5 * var(--padding-common));
 }
 
 .web-item-container {
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
   overflow: hidden;
 }
