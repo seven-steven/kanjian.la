@@ -190,6 +190,10 @@ div.web-item-logo>a>img {
   border-radius: 50%;
 }
 
+div.web-item-logo>a>img:hover {
+  opacity: .7;
+}
+
 .web-item-text {
   width: 90%;
   margin: auto;
@@ -207,6 +211,10 @@ div.web-item-logo>a>img {
   opacity: .7;
 }
 
+.web-item-text h3:hover {
+  opacity: .9;
+}
+
 .web-item-description {
   text-align: center;
   font-size: inherit;
@@ -219,4 +227,8 @@ div.web-item-logo>a>img {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   opacity: .6;
+}
+
+.web-item-description:hover {
+  opacity: .9;
 }
