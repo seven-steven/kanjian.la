@@ -1,0 +1,24 @@
+{
+  "name": "jekyll/jekyll 4",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "appPort": 4000,
+  // "postCreateCommand": "jekyll serve",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"michelemelluso.code-beautifier",
+		"wwm.better-align",
+		"aaron-bond.better-comments",
+		"oderwat.indent-rainbow",
+		"k--kato.intellij-idea-keybindings",
+		"PKief.material-icon-theme",
+		"redhat.vscode-yaml",
+		"DotJoshJohnson.xml"
+	]
+    }
+  }
+}
