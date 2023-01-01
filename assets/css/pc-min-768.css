@@ -1,8 +1,11 @@
-/* html {
-  font-size: .618vw;
+:root {
+  --font-size-basic: .618vw;
+}
+
+.container {
+  width: 100rem;
 }
 
 .web-item {
-  width: calc(30rem);
-  margin-top: var(--padding-common);
-} */
+  width: calc(10.3rem - 2.5 * var(--padding-common));
+}

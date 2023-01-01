@@ -120,10 +120,10 @@ nav>.nav>li:focus-within>.nav {
 }
 
 .web-item-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   padding-bottom: var(--padding-common);
-  justify-content: space-between;
+  grid-template-columns: auto auto;
+  justify-content: center;
   align-items: center;
 }
 
@@ -132,7 +132,7 @@ nav>.nav>li:focus-within>.nav {
   height: calc(10.5rem - 2 * var(--padding-common));
   border-radius: calc(var(--padding-common) / 2);
   padding: var(--padding-common);
-  margin-top: var(--padding-common);
+  margin: calc(var(--padding-common) / 2);
   background-color: var(--color-card-background);
 }
 
