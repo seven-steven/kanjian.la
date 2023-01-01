@@ -9,3 +9,9 @@ web-item:
 analystic:
   google:
     gtag: G-WTLLDD0ERC
+
+exclude:
+  - README.md
+  - CNAME
+  - kanjian.la.gemspec
+  - LICENSE.txt

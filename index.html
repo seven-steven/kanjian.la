@@ -16,10 +16,9 @@ layout: index
       <div class="web-item">
         <div class="web-item-icons">
           <ul class="web-item-icon-list">
-            <!-- <li><a href="#"><span class="web-item-icon iconfont icon-heart-fill"></span></a></li> -->
-            <li><a href="#"><span class="web-item-icon iconfont icon-heart"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-chinese"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-english"></span></a></li>
+            {% for icon in web_item.icon.status %}
+            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+            {% endfor %}
           </ul>
           <div class="web-item-logo">
             <a href="{{ web_item.url }}">
@@ -28,10 +27,9 @@ layout: index
             </a>
           </div>
           <ul class="web-item-icon-list">
-            <li><a href="#"><span class="web-item-icon iconfont icon-info"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-github"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-document"></span></a></li>
-            <!-- <li><a href="#"><span class="web-item-icon iconfont icon-chinese"></span></a></li> -->
+            {% for icon in web_item.icon.info %}
+            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+            {% endfor %}
           </ul>
         </div>
         <div class="web-item-text">
@@ -53,10 +51,9 @@ layout: index
       <div class="web-item">
         <div class="web-item-icons">
           <ul class="web-item-icon-list">
-            <!-- <li><a href="#"><span class="web-item-icon iconfont icon-heart-fill"></span></a></li> -->
-            <li><a href="#"><span class="web-item-icon iconfont icon-heart"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-chinese"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-english"></span></a></li>
+            {% for icon in web_item.icon.status %}
+            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+            {% endfor %}
           </ul>
           <div class="web-item-logo">
             <a href="{{ web_item.url }}">
@@ -65,10 +62,9 @@ layout: index
             </a>
           </div>
           <ul class="web-item-icon-list">
-            <li><a href="#"><span class="web-item-icon iconfont icon-info"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-github"></span></a></li>
-            <li><a href="#"><span class="web-item-icon iconfont icon-document"></span></a></li>
-            <!-- <li><a href="#"><span class="web-item-icon iconfont icon-chinese"></span></a></li> -->
+            {% for icon in web_item.icon.info %}
+            <li><a href="icon.url"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+            {% endfor %}
           </ul>
         </div>
         <div class="web-item-text">
