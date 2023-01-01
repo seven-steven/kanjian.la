@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="authro" content="Seven">
+  <title>{{ site.title }}</title>
+
+  <meta name="keywords" content="{{ site.keywords }}">
+  <meta name="description" content="{{ site.description }}">
+  <!-- FB Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ site.url }}">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:image" content="{{ site.logo }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <!-- / Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ site.title }}">
+  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:image" content="{{ site.logo }}">
+
+  <link rel="shortcut icon" href="./assets/image/favicon.png">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <!-- <link rel="stylesheet" media="only screen and (max-width: 600px)" href="./assets/css/mobile.css"> -->
+  <link rel="stylesheet" href="./assets/css/mobile-max-600.css">
+  <!-- <link rel="stylesheet" media="only screen and (min-width: 768px)" href="./assets/css/web.css"> -->
+  <link rel="stylesheet" media="only screen and (min-width: 600px)" href="./assets/css/tablet-min-600.css">
+  <link rel="stylesheet" media="only screen and (min-width: 768px)" href="./assets/css/pc-min-768.css">
+  <link rel="stylesheet" media="only screen and (min-width: 1200px)" href="./assets/css/large-min-1200.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="./assets/iconfont/iconfont.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="header">
+        <span class="iconfont icon-menu"
+          onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
+      </div>
+      <nav>
+        <ul class="nav">
+          {{ site.includes }}
+
+          {% for category in site.includes.sites %}
+          {{ category }}
+          {% endfor %}
+
+          <li>
+            <a href="#learn-resource">
+              <span class="nav-icon fa-solid fa-lines-leaning"></span>
+              学习资源
+            </a>
+          </li>
+          <li class="nav-sub-container">
+            <a href="javascript:void(0)">
+              <span class="nav-icon fa-solid fa-desktop"></span>
+              效率办公
+              <span class="iconfont icon-right"></span>
+            </a>
+            <ul class="nav">
+              <li>
+                <a href="#">在线工具</a>
+              </li>
+              <li>
+                <a href="#">在线文档</a>
+              </li>
+              <li>
+                <a href="#">PPT模板</a>
+              </li>
+              <li>
+                <a href="#">电脑软件</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <span class="nav-icon fa-solid fa-pencil"></span>
+              页面设计
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="nav-icon fa-solid fa-code"></span>
+              开发资源
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="nav-icon fa-solid fa-mountain-sun"></span>
+              无忧生活
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="nav-icon fa-solid fa-blog"></span>
+              网络博客
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    {{ content }}
+    <footer></footer>
+  </div>
+</body>
+
+<!-- <script src="./assets/js/main.js"></script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', '{{ site.analystic.google.gtag }}');
+</script>
+
+</html>

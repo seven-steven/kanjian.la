@@ -1,0 +1,1587 @@
+- name: 学习资源
+  icon: linecons-lightbulb
+  links:
+    - title: 网易公开课
+      url: https://open.163.com/
+      description: 国内外名校公开课
+      logo: open.163.com.ico
+    - title: 渐构
+      url: https://www.modevol.com/
+      description: 用科技改变教育方式
+      logo: www.modevol.com.png
+    - title: Crash Course 中文字幕组
+      url: https://crashcourse.club/category/
+      description: 涵盖了各个学科的科普视频，视频内容小而精，强烈推荐
+      logo: crashcourse.club.png
+    - title: 数学乐
+      url: https://www.shuxuele.com/index.html
+      # url: https://www.mathsisfun.com/
+      description: 生动形象的数学知识
+      logo: mathsisfun.com.svg
+    - title: Coursera
+      url: https://www.coursera.org/
+      description: 无限制学习世界一流大学和公司的课程、专业证书和学位
+      logo: coursera.org.png
+    - title: edx
+      url: https://www.edx.org/
+      description: 来自世界顶尖机构的课程
+      logo: edx.org.svg
+    - title: 李永乐老师
+      url: https://space.bilibili.com/9458053
+      description: 与我们的生活密切相关的各种科普知识，超赞！
+      logo: bilibili-liyongle.jpg
+    - title: 3Blue1Brown
+      url: https://space.bilibili.com/88461692
+      description: 深入浅出、直观明了地分享数学之美
+      logo: 3blue1brown.com.png
+    - title: 多邻国
+      url: https://www.duolingo.cn/
+      description: 有趣生动的语言学习网站
+      logo: duolingo.cn.png
+    - title: English-level-up-tips
+      url: https://github.com/byoungd/English-level-up-tips
+      description: 可能是让你受益匪浅的英语进阶指南
+      logo: github.com.svg
+    - title: 下厨房
+      url: https://www.xiachufang.com/
+      description: 实用菜谱做法与饮食知识
+      logo: xiachufang.com.png
+    - title: 译学馆
+      url: https://www.yxgapp.com/
+      description: 特别有意思、涨知识的英语学习平台
+      logo: yxgapp.com.png
+    - title: YJango
+      url: https://space.bilibili.com/344849038
+      description: 如何科学地学习知识
+      logo: bilibili-yjango.webp
+    - title: 五金少女
+      url: https://space.bilibili.com/303517323
+      description: 年轻人帅气出租屋改造干货基地
+      logo: bilibili-wujinshaonv.jpg
+    - title: Markdown 入门指南
+      url: https://www.markdown.xyz/
+      # url: https://www.markdownguide.org/
+      description: 学习快速、轻松地书写
+      logo: markdownguide.org.svg
+    - title: oeasy 教程
+      url: http://oeasy.org/
+      description: 给想学没钱学的老百姓做的教程
+      logo: oeasy.org.png
+    - title: 开源鱼菜共生网
+      url: https://www.myyucai.com/
+      description: 鱼菜共生（渔农综合种养）开源资料库
+      logo: wordpress.svg
+    - title: 程序员做饭指南
+      url: https://cook.aiurs.co/
+      description: 精准量化每一个细节的程序员做饭指南
+      logo: cook.aiurs.co.svg
+
+- name: 效率办公
+  icon: linecons-desktop
+  sub:
+    - name: 在线工具
+      links:
+        - title: You.com
+          url: https://you.com/
+          description: 一个还不错的搜索引擎
+          logo: you.com.webp
+        - title: 滴答清单
+          url: https://dida365.com/
+          description: 达成更多，用心生活
+          logo: dida365.png
+        - title: AmyMind
+          url: https://amymind.com/
+          description: 打开即用的思维导图和画板工具
+          logo: amymind.com.png
+        # - title: 幕布
+        #   url: https://mubu.com/inv/4650548
+        #   description: 极简大纲笔记 | 一键生成思维导图
+        #   logo: mubu.com.ico
+        - title: ProcessOn
+          url: https://www.processon.com/i/55b83deee4b0e58e8454b67a
+          description: 免费在线作图、实时协作
+          logo: processon.com.ico
+        - title: Excalidraw
+          url: https://excalidraw.com/
+          description: 白板绘图工具
+          logo: excalidraw.com.png
+        - title: iLovePDF
+          url: https://www.ilovepdf.com/zh-cn
+          description: 完全免费、易于使用、丰富的PDF处理工具
+          logo: ilovepdf.com.png
+        # - title: cloudconvert
+        #   url: https://cloudconvert.com/
+        #   description: convert anything to anything
+        #   logo: cloudconvert.png
+        # - title: ALL TO ALL
+        #   url: https://www.alltoall.net/
+        #   description: 免费的在线格式转换工具，文件大小限制 20M
+        #   logo: alltoall.net.jpg
+        - title: Convertio
+          url: https://convertio.co/zh/
+          description: 将您的文件转换成任意格式
+          logo: convertio.co.png
+        - title: 白描
+          url: https://web.baimiaoapp.com/
+          description: OCR 识别工具，支持图片转表格
+          logo: web.baimiaoapp.com.png
+        - title: DeepL
+          url: https://www.deepl.com/zh/translator
+          description: 很好用的翻译工具
+          logo: deepl.com.svg
+        - title: 阿里云盘
+          url: https://www.aliyundrive.com/
+          description: 不限速的网盘
+          logo: aliyundrive.com.svg
+        - title: 皮皮直连
+          url: https://www.ppzhilian.com/
+          description: 安全便捷的电脑/手机互连，点对点文件传送、云剪贴板、屏幕共享、可视化交流工具
+          logo: ppzhilian.com.png
+        - title: 奶牛快传
+          url: https://cowtransfer.com/
+          description: 不限速文件传输
+          logo: cowtransfer.com.png
+        - title: 小码短连接
+          url: https://xiaomark.com/
+          description: 短链接生成器，拥有统计功能
+          logo: xiaomark.com.png
+
+    - name: 在线文档
+      links:
+        - title: 石墨文档
+          url: https://shimo.im/desktop
+          description: 多人实时协作的「云端 Office」
+          logo: shimo.im.ico
+        - title: 腾讯文档
+          url: https://docs.qq.com/
+          description: 一款可多人协作的在线文档
+          logo: docs.qq.com.ico
+        - title: 语雀
+          url: https://www.yuque.com/register?invite_token=357df65e3061673e3b03a080fade2e493ba5cafce13251181c822e3b1e44daf9
+          description: 十万阿里人都在用的笔记与文档知识库
+          logo: yuque.com.png
+        - title: 花火
+          url: https://activity.hanabi.cn/activity?code=L58FTS
+          description: 免费的在线图表制作工具，可以制作动态排名条形统计图
+          logo: hanabi.data-viz.cn.ico
+        - title: 图表秀
+          url: https://www.tubiaoxiu.com
+          description: 在线图表制作网站
+          logo: tubiaoxiu.com.png
+        - title: 文图
+          url: https://wentu.io/
+          description: 在线图表制作工具
+          logo: wentu.io.png
+        - title: 极简简历
+          url: https://www.polebrief.com/
+          description: 极致、简约、专业、优质的简历制作平台
+          logo: polebrief.com.png
+        - title: XODO
+          url: https://www.xodo.com/
+          description: 在线的 PDF 阅读、编辑工具
+          logo: xodo.com.png
+
+    - name: PPT 模板
+      links:
+        - title: ρρt超级市场
+          url: https://ppt.sotary.com/
+          description: 免费、优质、高效、安全的 PPT 模板下载网站
+          logo: ppt.sotary.com.ico
+        - title: 稻壳儿
+          url: https://www.docer.com/
+          description: WPS 稻壳儿官网
+          logo: docer.com.svg
+        - title: 优品PPT
+          url: https://www.ypppt.com/
+          description: 免费PPT模板下载
+          logo: ypppt.com.png
+        - title: OfficePlus
+          url: https://www.officeplus.cn/templates/?cat=PPT
+          description: 微软官方 Office 模板服务平台
+          logo: officeplus.cn.svg
+        - title: 站长素材
+          url: https://sc.chinaz.com/ppt/
+          description: PPT 模板免费下载
+          logo: sc.chinaz.com.png
+        - title: 叮当设计
+          url: https://www.dingdangsheji.com/
+          description: 完全免费的优秀素材下载网站
+          logo: dingdangsheji.com.png
+        - title: 吾道
+          url: https://www.woodo.cn/
+          description: 专业演示文档制作工具，PPT模板，协同办公
+          logo: woodo.cn.jpg
+        - title: PPT BOSS
+          url: https://www.pptboss.com/?inviter=yo039hz2
+          description: PPT 免费在线制作工具
+          logo: pptboss.com.ico
+
+    - name: 电脑软件
+      links:
+        - title: Chrome
+          url: https://www.google.com/intl/zh-CN/chrome/
+          description: 最好用的浏览器，没有之一
+          logo: chrome.png
+        - title: uTools
+          url: https://u.tools/
+          description: 程序员的生产力工具集
+          logo: u.tools.ico
+        - title: Listary
+          url: https://www.listary.com/
+          description: Windows 下的效率搜索与快捷启动工具
+          logo: listary.com.png
+        - title: Snipaste
+          url: https://zh.snipaste.com/
+          description: 超级好用的截图 + 贴图工具
+          logo: snipaste.com.svg
+        - title: Xmind Zen
+          url: https://www.xmind.cn/
+          description: 一个全功能的思维导图和头脑风暴软件
+          logo: xmind.cn.png
+        - title: MarkText
+          url: https://github.com/marktext/marktext
+          description: 一款所见即所得的 Markdown 编辑器, 简洁、快速、开源
+          logo: marktext.app.png
+        - title: VLC
+          url: https://www.videolan.org/
+          description: 一款自由、开源的跨平台多媒体播放器
+          logo: videolan.org.png
+        - title: Sublime Text
+          url: https://www.sublimetext.com/
+          description: 能够大幅度提高效率的文本编辑工具
+          logo: sublimetext.com.png
+        - title: 火绒
+          url: https://www.huorong.cn/
+          description: 如果一定要安装杀软，那就选择火绒吧
+          logo: huorong.cn.png
+        - title: everything
+          url: https://www.voidtools.com/zh-cn/
+          description: Windows 下的高效文件搜索工具
+          logo: voidtools.com.ico
+        - title: Geek Uninstaller
+          url: https://geekuninstaller.com/download
+          description: Windows 下的软件卸载小工具
+          logo: geekuninstaller.com.ico
+        - title: Captura
+          url: https://mathewsachin.github.io/Captura/
+          description: 录制屏幕、声音、光标和按键
+          logo: mathewsachin.github.io.ico
+        - title: Motrix
+          url: https://motrix.app/
+          description: 开源的高颜值下载工具
+          logo: motrix.app.png
+        - title: 幕享
+          url: https://letsview.com/zh/
+          description: 免费的无线投屏工具
+          logo: letsview.com.svg
+        - title: PowerToys
+          url: https://github.com/microsoft/PowerToys
+          description: Windows 下的自由分屏软件
+          logo: powertoys.microsoft.png
+        - title: Rainmeter
+          url: https://www.rainmeter.net/
+          description: windows 桌面挂件
+          logo: rainmeter.net.ico
+        - title: Quicker
+          url: http://getquicker.net/
+          description: Windows 指尖工具箱
+          logo: getquicker.net.ico
+        - title: Synergy
+          url: https://symless.com/synergy
+          # url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
+          description: 纯软件的跨电脑键鼠共享方案，代码开源，免费版本需要自己编译
+          logo: synergy.svg
+        - title: Awesome Windows
+          url: https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
+          description: Windows 精品软件清单
+          logo: awesome-windows.png
+        - title: Awesome Mac
+          url: https://github.com/jaywcjlove/awesome-mac
+          description: Mac 精品软件清单
+          logo: apple.svg
+
+    - name: Chrome插件
+      links:
+        - title: Vimium
+          url: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb
+          description: 在 Chrome 中使用 Vim 插件
+          logo: chrome-extension-vimium.png
+        - title: Adblock Plus
+          url: https://chrome.google.com/webstore/detail/adblock-plus-free-ad-bloc/cfhdojbkjhnklbpkdaibdccddilifddb
+          description: 免费的广告拦截器
+          logo: chrome-extension-adblock-plus.png
+        - title: OneTab
+          url: https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall
+          description: 节省高达95％的内存，并减轻标签页混乱现象
+          logo: chrome-extension-one-tab.png
+        - title: Proxy SwitchOmega
+          url: https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif
+          description: 道曰：不可说
+          logo: chrome-extension-proxy-switch-omega.png
+        - title: iTab新标签页
+          url: https://itab.link/
+          description: 一个让你不受广告干扰的个性化卡片式起始页插件
+          logo: itab.link.svg
+        - title: Infinity 新标签页 (Pro)
+          url: https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh
+          description: 美化你的新标签页
+          logo: chrome-extension-infinity-new-tab-pro.png
+        - title: Header Editor
+          url: https://chrome.google.com/webstore/detail/header-editor/eningockdidmgiojffjmkdblpjocbhgh/related
+          description: 修改浏览器请求和响应
+          logo: chrome-extension-header-editor.jpg
+        - title: Dark reader
+          url: https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
+          description: 为任何网站提供黑色主题
+          logo: chrome-extension-dark-reader.png
+        - title: 滴答清单
+          url: https://chrome.google.com/webstore/detail/ticktick-todo-task-list/diankknpkndanachmlckaikddgcehkod
+          description: 滴答清单的 Chrome 扩展
+          logo: dida365.png
+        - title: 番茄土豆
+          url: https://chrome.google.com/webstore/detail/pomotodo/algakdpepofkajponmledaldoloboinf
+          description: 番茄工作法插件
+          logo: chrome-extension-pomotodo.png
+        - title: The Great Suspender
+          url: https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg
+          description: 冻结暂时用不到的标签页，以便释放系统资源
+          logo: chrome-extension-the-great-suspender.png
+        - title: Video Speed Controller
+          url: https://chrome.google.com/webstore/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk
+          description: 控制 HTML5 视频播放速度
+          logo: chrome-extension-video-speed-controller.png
+        - title: Global Speed 视频速度控制
+          url: https://chrome.google.com/webstore/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff
+          description: 全局视频速度控制
+          logo: chrome-extension-global-speed.jpg
+        - title: Web Scraper
+          url: https://chrome.google.com/webstore/detail/web-scraper/jnhgnonknehpejjnehehllkliplmbmhn
+          description: 一个网页爬虫扩展
+          logo: chrome-extension-web-scraper.png
+        - title: 简悦
+          url: https://chrome.google.com/webstore/detail/simpread-reader-view/ijllcpnolfcooahcekpamkbidhejabll
+          description: 沉浸式阅读插件
+          logo: chrome-extension-simpread.png
+        - title: ublacklist
+          url: https://github.com/iorate/ublacklist
+          description: 屏蔽谷歌搜索结果中的指定站点
+          logo: chrome-extension-ublacklist.png
+        - title: 自选基金助手
+          url: https://chrome.google.com/webstore/detail/%E8%87%AA%E9%80%89%E5%9F%BA%E9%87%91%E5%8A%A9%E6%89%8B-%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%9F%BA%E9%87%91%E6%B6%A8%E8%B7%8C%E5%B9%85/dhdelcemeednchdmijiocipbjlknndff/related?hl=zh-CN
+          description: 实时查看基金涨跌幅
+          logo: chrome-extension-custom-fund-assistant.jpg
+        - title: Screenity
+          url: https://chrome.google.com/webstore/detail/screenity-screen-recorder/kbbdabhdfibnancpjfhlkhafgdilcnji
+          description: 屏幕录像和标注工具
+          logo: chrome-extension-screenity-screen-recorder.jpg
+        - title: 划词翻译(柯林斯词典)+扇贝生词本
+          url: https://chrome.google.com/webstore/detail/%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91%E6%9F%AF%E6%9E%97%E6%96%AF%E8%AF%8D%E5%85%B8%20%E6%89%87%E8%B4%9D%E7%94%9F%E8%AF%8D%E6%9C%AC/mkohdjbfagmlcaclajmadgkojelkbbfj
+          description: 划词翻译(柯林斯词典)+扇贝生词本
+          logo: chrome-extension-kelinsi-shanbei.jpg
+        - title: 不背单词查词
+          url: https://chrome.google.com/webstore/detail/%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8D%E6%9F%A5%E8%AF%8D/cklfipcjofdnmdolnfngpmokdaejidim
+          description: 不背单词查词
+          logo: bbdc.cn.svg
+        - title: Tampermonkey BETA
+          url: https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf
+          description: 传说中的油猴插件，给你的浏览器添加各种超能力
+          logo: chrome-extension-tampermonkey-beta.png
+        - title: Greasy Fork
+          url: https://greasyfork.org/zh-CN/scripts
+          description: 油猴脚本资源列表
+          logo: greasyfork.org.png
+        - title: 东方永页机
+          url: https://greasyfork.org/zh-CN/scripts/438684-pagetual
+          description: 自动翻页
+          logo: greasyfork.org.png
+        - title: 网盘直链下载助手
+          url: https://greasyfork.org/zh-CN/scripts/436446-%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B
+          description: 获取网盘文件真实下载地址
+          logo: greasyfork.org.png
+        - title: 外链自动跳转
+          url: https://greasyfork.org/zh-CN/scripts/453403-external-link-auto-jump
+          description: 知乎、CSDN、OSChina 外链自动跳转
+          logo: greasyfork.org.png
+
+    - name: 安卓软件
+      links:
+        - title: F-Droid
+          url: https://f-droid.org/
+          description: 下载你想要的安卓应用
+          logo: f-droid.org.svg
+        - title: 钱迹
+          url: https://qianjiapp.com/
+          description: 发现记账的乐趣
+          logo: qianjiapp.com.ico
+        - title: kodi
+          url: https://kodi.tv/
+          description: 你的家庭影视中心
+          logo: kodi.tv.svg
+
+        - title: 夸克浏览器
+          url: https://www.myquark.cn/
+          description: 极速极简极致的移动端浏览器，配合夸克网盘看视频体验极佳
+          logo: myquark.cn.png
+        - title: Via
+          url: https://viayoo.com/
+          description: 极速极简、极尽所能的移动端浏览器
+          logo: viayoo.com.png
+        - title: X浏览器
+          url: https://www.xbext.com/
+          description: 无新闻，无推送，无后台，小而强大，给你淋漓尽致的浏览体验。支持油猴。
+          logo: xbext.com.png
+
+        - title: Magisk
+          url: https://github.com/topjohnwu/Magisk
+          description: 获取 Android Root 权限
+          logo: magisk.png
+        - title: LSPosed
+          url: https://github.com/LSPosed/LSPosed
+          description: 你懂就好
+          logo: lsposed.jpeg
+        # - title: ClashForAndroid
+        #   url: https://github.com/Kr328/ClashForAndroid/releases
+        #   description: 一款还不错的代理软件
+        #   logo: github-kr328-clash-for-android.png
+        - title: V2rayNG
+          url: https://github.com/2dust/v2rayNG/releases
+          description: A V2Ray client for Android
+          logo: github-2dust-v2rayng.png
+
+        - title: KDEConnect
+          description: 连接你的局域网设备
+          url: https://community.kde.org/KDEConnect
+          logo: community.kde.org.png
+        - title: Termux
+          url: https://github.com/termux/termux-app
+          description: 安卓系统上的命令行终端神器
+          logo: termux.svg
+        #        - title: HttpCanary
+        #          url: https://apkpure.com/httpcanary-%E2%80%94-http-sniffer-capture-analysis/com.guoshi.httpcanary
+        #          description: 最好用的安卓抓包工具
+        #          logo: httpcanary.webp
+        - title: VNET
+          url: https://www.vnet-tech.com/
+          description: 安卓抓包工具，无需 ROOT
+          logo: vnet-tech.com.png
+        - title: VMOS
+          url: https://www.vmos.com/
+          description: 安卓虚拟机
+          logo: vmos.com.png
+
+- name: UI 设计
+  icon: linecons-pencil
+  sub:
+    - name: 设计导航
+      links:
+        - title: Laws of UX
+          url: https://lawsofux.com/
+          description: 20条UX设计师的设计准则
+          logo: lawsofux.com.svg
+        - title: 兰客
+          url: https://b.lackk.com/
+          description: 非常非常非常优秀的导航网站
+          logo: b.lackk.com.ico
+        - title: Dribbble
+          url: https://dribbble.com/
+          description: 世界顶级的设计师和创意作品
+          logo: dribbble.com.png
+        - title: Design Tips
+          url: https://twitter.com/i/events/994601867987619840
+          description: 关于设计的一些小技巧
+          logo: twitter.svg
+        - title: 码力全开
+          url: https://design.maliquankai.com/
+          description: 产品/设计师/独立开发者的资源库
+          logo: design.maliquankai.com.ico
+        - title: WebStack
+          url: https://webstack.cc/
+          description: 设计师网址导航
+          logo: webstack.cc.png
+        - title: 搜图导航
+          url: https://www.91sotu.com/
+          description: 强大且智能的设计师导航
+          logo: 91soutu.com.ico
+        - title: 优波设计
+          url: https://www.ubuuk.com/
+          description: 设计师必备网址导航
+          logo: ubuuk.com.ico
+        - title: ICONS8
+          url: https://igoutu.cn/
+          description: 图标、插图、照片、音乐和设计工具
+          logo: igoutu.cn.png
+
+    - name: 图片素材
+      links:
+        - title: iconfont
+          url: https://www.iconfont.cn/
+          description: 阿里巴巴矢量图标库
+          logo: iconfont.cn.svg
+        - title: Pixabay
+          url: https://pixabay.com/
+          description: 免费图片、视频、音效
+          logo: pixabay.png
+        - title: Pexels
+          url: https://www.pexels.com/
+          description: Pexels 上的所有图片和视频均可免费下载和使用。
+          logo: pexels.com.svg
+        - title: manypixels
+          url: https://www.manypixels.co/gallery
+          description: 无版权插画素材
+          logo: manypixels.co.ico
+        - title: Unsplash
+          url: https://unsplash.com/
+          description: The internet’s source of freely usable images. Powered by creators everywhere
+          logo: unsplash.jpg
+        - title: StockSnap.io
+          url: https://stocksnap.io/
+          description: Beautiful free stock photos
+          logo: stocksnap.io.png
+        - title: manypixels
+          url: https://gallery.manypixels.co/
+          description: 一个收集无版权插图的网站，提供 SVG / PNG 格式下载，并且允许更改颜色
+          logo: manypixels.png
+        - title: visualhunt
+          url: https://visualhunt.com/
+          description: 100% Free High Quality Photos
+          logo: visualhunt.png
+        - title: Stockio
+          url: https://www.stockio.com/
+          description: 海量的免版权照片、矢量素材、图标、视频和字体
+          logo: stockio.com.png
+        - title: PngPix
+          url: https://www.pngpix.com/
+          description: 免扣图 png 素材
+          logo: pngpix.com.png
+        - title: PxHere
+          url: https://pxhere.com/
+          description: 免费高清商业素材
+          logo: pxhere.com.png
+        - title: Illustrations | unDraw
+          url: https://undraw.co/illustrations
+          description: 免费可商用的矢量素材网站
+          logo: undraw.co.png
+        - title: 创客贴
+          url: https://www.chuangkit.com/
+          description: 极简的平面设计工具
+          logo: chuangkit.ico
+        - title: Canva
+          url: https://www.canva.cn/
+          description: 在线设计协作平台
+          logo: cavan.cn.png
+        - title: Mockup Photos
+          url: https://mockup.photos/
+          description: 样机模板
+          logo: mockup.photos.png
+        - title: Tranglife
+          url: https://trianglify.io/
+          description: 多边形图片生成器
+          logo: trianglify.io.png
+        - title: DesignEvo
+          url: https://www.designevo.com/
+          description: 在线 LOGO 设计
+          logo: designevo.com.ico
+        - title: 易词云
+          url: https://www.yciyun.com/
+          description: 词云生成器
+          logo: yciyun.com.ico
+        - title: QRCode Monkey
+          url: https://www.qrcode-monkey.com/
+          description: 免费的二维码生成器
+          logo: qrcode-monkey.com.png
+
+    - name: 图片工具
+      links:
+        - title: Squoosh
+          url: https://squoosh.app/
+          description: 一款开源免费可调节的图片压缩工具
+          logo: squoosh.app.svg
+        - title: docsmall
+          url: https://docsmall.com/
+          description: 在线图片压缩工具
+          logo: docsmall.com.png
+        - title: Compressor
+          url: https://compressor.io/
+          description: 无损压缩图片
+          logo: compressor.io.svg
+        - title: remove.bg
+          url: https://www.remove.bg/zh
+          description: 图片背景消除工具
+          logo: removebg.png
+        - title: Magic Eraser
+          url: https://www.magiceraser.io/
+          description: 瞬间删除图像中不需要的部分
+          logo: magiceraser.io.svg
+        - title: PIXLR
+          url: https://pixlr.com/
+          description: 在线 PS 工具，无需登录
+          logo: pixlr.com.png
+        - title: 稿定
+          url: https://ps.gaoding.com/#/
+          description: 在线 PS 工具
+          logo: ps.gaoding.com.ico
+        - title: Petalica Paint
+          url: https://petalica-paint.pixiv.dev/index_zh.html
+          description: AI 线稿上色
+          logo: petalica-paint.pixiv.dev.png
+        - title: PhotoMosh
+          url: https://photomosh.com/
+          description: 故障风艺术效果生成器
+          logo: photomosh.com.ico
+        - title: UU 在线工具
+          url: https://uutool.cn/id-photo/
+          description: 证件照处理
+          logo: uutool.cn.ico
+
+    - name: 影音素材
+      links:
+        - title: Pexels
+          url: https://www.pexels.com/videos/
+          description: Pexels 上的所有图片和视频均可免费下载和使用。
+          logo: pexels.com.svg
+        - title: Mixkit
+          url: https://mixkit.co/free-stock-video/
+          description: 所有内容免费可商用
+          logo: mixkit.png
+        - title: Vidsplay
+          url: https://www.vidsplay.com/
+          description: 使用时须注明视频来源及链接
+          logo: vidsplay.png
+        - title: Fugue
+          url: https://icons8.cn/music
+          description: 免费的音乐素材网站
+          logo: icons8.cn.png
+        - title: 懒人全网音乐下载
+          url: https://www.eggvod.cn/music/
+          description: 免费下载各大音乐网站的歌曲
+          logo: eggvod.cn.png
+
+    - name: 影音工具
+      links:
+        - title: 蜜蜂剪辑
+          url: https://beecut.cn/online-video-editor
+          description: 免费云剪辑平台，全站一键式操作
+          logo: beecut.cn.png
+        - title: 网易见外
+          url: https://jianwai.youdao.com/
+          description: 拥有视频翻译、视频转写、语音翻译、语音转写功能
+          logo: jianwai.youdao.com.ico
+        - title: ArcTime
+          url: https://arctime.org/
+          description: 免费跨平台字幕软件
+          logo: arctime.org.ico
+        - title: Audio Trimmer
+          url: https://audiotrimmer.com/cn/
+          description: 在线剪辑音频文件
+          logo: audiotrimmer.com.png
+        - title: youtube-dl
+          url: https://github.com/ytdl-org/youtube-dl
+          description: 视频下载工具
+          logo: github.com.svg
+        - title: you-get
+          url: https://github.com/soimort/you-get
+          description: 视频下载工具
+          logo: you-get.org.jpg
+        - title: Kdenlive
+          url: https://kdenlive.org/
+          description: 开源的视频编辑器
+          logo: kdenlive.org.png
+        - title: LALAL.AI
+          url: https://www.lalal.ai/
+          description: 从曲目中分离人声和音乐
+          logo: lalal.ai.png
+
+    - name: 颜色搭配
+      links:
+        - title: Reeoo
+          url: https://reeoo.com/
+          description: 优秀网页设计案例
+          logo: reeoo.com.ico
+        - title: paletton
+          url: https://paletton.com/
+          description: 根据指定基色完成智能配色
+          logo: paletton.com.png
+        - title: Happy Hues
+          url: https://www.happyhues.co/
+          description: 收集了十多种配色，说明了每种颜色的用途
+          logo: happyhues.co.png
+        - title: ColorSupply
+          url: https://colorsupplyyy.com/
+          description: 来自世界各地设计师的色彩搭配方案
+          logo: colorsupplyyy.com.svg
+        - title: WebGradients
+          url: https://webgradients.com/
+          description: 漂亮的渐变色合集
+          logo: webgradients.com.png
+        - title: Colormind
+          url: http://colormind.io/
+          description: AI 配色，可以根据选定的配色生成网站预览样式
+          logo: colormind.io.gif
+        - title: Eva Design System
+          url: https://colors.eva.design/
+          description: AI 智能配色，给一种品牌颜色生成多种语义颜色
+          logo: colors.eva.design.svg
+        - title: Adobe Color
+          url: https://color.adobe.com/
+          description: Adobe 官方出品的配色工具
+          logo: color.adobe.com.png
+        - title: Flat UI Colors
+          url: https://flatuicolors.com/
+          description: 扁平化设计调色板
+          logo: flatuicolors.com.ico
+        - title: Hue Tools
+          url: https://hue.tools/
+          description: 一款开源的配色工具
+          logo: hue.tools.svg
+        - title: 中国色
+          url: http://zhongguose.com/
+          description: 中国传统色
+          logo: zhongguose.com.ico
+        - title: 日本传统色
+          url: https://nipponcolors.com/
+          description: 日本传统色
+          logo: nipponcolors.com.ico
+        - title: Material Palette
+          url: https://www.materialpalette.com/
+          description: 基于材质设计的调色板生成器
+          logo: materialpalette.com.ico
+        - title: Color Space
+          url: https://mycolor.space/
+          description: 根据原色生成 调色板
+          logo: mycolor.space.png
+        - title: Colors
+          url: https://coolors.co/
+          description: 可以为每种颜色选择阴影替代品的颜色生成器
+          logo: coolors.co.png
+        - title: Uigradients
+          url: https://uigradients.com/
+          description: 渐变色合集
+          logo: uigradients.com.png
+        - title: Open Color
+          url: https://yeun.github.io/open-color/
+          description: 13 种常用颜色
+          logo: yeun.github.io-open-color.png
+        - title: BrandColors
+          url: https://brandcolors.net/
+          description: 最大的官方品牌颜色代码合集
+          logo: brandcolors.net.png
+        - title: Color Claim
+          url: https://vanschneider.com/colors
+          description: 德国设计师创建的配色参考网站
+          logo: vanschneider.com.ico
+
+    - name: 字体素材
+      links:
+        - title: 100font
+          url: https://www.100font.com/
+          description: 一个专门收集“免费商用”字体的网站
+          logo: 100font.com.ico
+        - title: 字体天下
+          url: https://www.fonts.net.cn/
+          description: 提供各类字体的免费下载和在线预览服务
+          logo: fonts.net.cn.ico
+        - title: 求字体网
+          url: https://www.qiuziti.com/
+          description: 字体下载、识别与搜索
+          logo: qiuziti.com.ico
+        #      - title: 字体仓库
+        #        url: https://www.ziticangku.com/
+        #        description: 免费下载无版权可商用字体
+        #        logo: ziticangku.com.ico
+        - title: Font Converter
+          url: https://fontconverter.com/
+          description: 字体格式转换
+          logo: fontconverter.com.svg
+
+- name: 开发资源
+  icon: linecons-params
+  sub:
+    - name: 编程通识
+      links:
+        - title: LeetCode
+          url: https://leetcode.com/problemset/all/
+          description: 算法学习 No.1
+          logo: leetcode.com.png
+        - title: REFACTORING GURU
+          url: https://refactoringguru.cn/design-patterns
+          description: 设计模式教程
+          logo: refactoringguru.cn.png
+        - title: Learn X in Y minutes
+          url: https://learnxinyminutes.com/
+          description: 在 Y 分钟内速成 X, 可以用来快速了解一门语言
+          logo: learnxinyminutes.com.ico
+        - title: 极客时间
+          url: https://time.geekbang.org/activity/getinvite?gk_ucode=09AFAB893C7CC9
+          description: 轻松学习，高效学习
+          logo: geektime.jpg
+        - title: 慕课网
+          url: https://www.imooc.com/
+          description: 程序员的梦工厂
+          logo: imooc.png
+        - title: Git 文档
+          url: https://git-scm.com/docs
+          description: Git 使用手册
+          logo: git.svg
+        - title: 1on1-questions
+          url: https://github.com/VGraupera/1on1-questions
+          description: 1:1 沟通问题列表
+          logo: github.com.svg
+        - title: EbookFoundation/free-programming-books
+          url: https://github.com/EbookFoundation/free-programming-books/
+          description: 分类列举了大量编程书籍和网络资源
+          logo: github.com.svg
+
+    - name: 辅助工具
+      links:
+        - title: Replit
+          url: https://replit.com/
+          description: 支持几乎所有现代编程语言的在线 IDE
+          logo: replit.com.png
+        - title: gerrit
+          url: https://www.gerritcodereview.com/
+          # url: https://github.com/GerritCodeReview/gerrit
+          description: code review 工具
+          logo: gerritcodereview.com.png
+        - title: PlantUML
+          url: https://plantuml.com/zh/
+          description: 一款文本绘图工具
+          logo: plantuml.com.svg
+        - title: draw.io
+          url: https://app.diagrams.net/
+          description: 非常好用的轻量级绘图工具
+          logo: draw.io.png
+        - title: carbon
+          url: https://carbon.now.sh/
+          description: 代码图片美化工具
+          logo: carbon.now.sh.png
+        #      - title: codeimg.io
+        #        url: https://codeimg.io/
+        #        description: 代码图片美化工具，支持多种样式
+        #        logo: codeimg.io.png
+        - title: 在线身份证号码生成器
+          url: https://www.suijidaquan.com/shenfenzheng
+          description: 在线身份证号码生成器，测试数据生成
+          logo: www.suijidaquan.com.jpeg
+        - title: Apifox
+          url: https://www.apifox.cn/
+          description: 全平台的接口文档、调试、Mock、自动化测试工具
+          logo: apifox.cn.png
+        - title: JSON 格式化
+          url: https://www.json.cn/
+          description: JSON 格式化工具
+          logo: json.cn.ico
+        - title: JSON HERO
+          url: https://jsonhero.io/
+          description: 一款开源的 JSON 资源管理器
+          logo: jsonhero.io.svg
+        - title: httpbin.org
+          url: https://httpbin.org/
+          description: A simple HTTP Request & Response Service.
+          logo: httpbin.org.ico
+        - title: RequestBin
+          url: https://requestbin.com/
+          description: 调试 HTTP 或 Webhook 请求
+          logo: requestbin.com.png
+        - title: I18n Translation Search Engine
+          url: https://i18ns.com/
+          description: i18n 国际化翻译工具
+          logo: i18ns.com.ico
+        - title: AnyProxy
+          url: https://github.com/alibaba/anyproxy
+          description: AnyProxy是一个基于NodeJS的，可供插件配置的HTTP/HTTPS代理服务器。
+          logo: anyproxy.io.png
+        - title: ngrok
+          url: https://github.com/inconshreveable/ngrok
+          description: 一款非常好用的内网穿透工具
+          logo: ngrok.com.png
+        - title: ipw.cn
+          url: https://ipw.cn/
+          description: 致力于普及 IPv6 ,推进 IPv6 规模部署和应用
+          logo: ipw.cn.svg
+        #      - title: 面包多
+        #        url: https://mianbaoduo.com/
+        #        description: 为创作者创收
+        #        logo: mianbaoduo.com.ico
+
+    - name: 开源项目
+      links:
+        - title: hellogithub
+          url: https://raw.hellogithub.com/hosts
+          description: Github Host 列表
+          logo: github.com.svg
+        - title: awesome-selfhosted/awesome-selfhosted
+          url: https://github.com/awesome-selfhosted/awesome-selfhosted
+          description: 可以自行免费部署的软件和 web 应用清单
+          logo: github.com.svg
+        - title: MinIO
+          url: https://min.io/
+          description: 一款开源的对象存储服务
+          logo: min.io.svg
+        - title: alibaba/DataX
+          url: https://github.com/alibaba/DataX
+          description: 支持超多数据库的离线数据同步工具
+          logo: github.com.svg
+        - title: megaease/easegress
+          url: https://github.com/megaease/easegress
+          # url: https://megaease.com/
+          description: 全功能型的流量调度和编排系统
+          logo: megaease.com.png
+        - title: TrueNAS
+          url: https://www.truenas.com/
+          description: 开源免费 NAS 系统
+          logo: truenas.com.png
+        - title: Syncthing
+          url: https://syncthing.net/
+          description: 多端数据同步
+          logo: syncthing.net.png
+        - title: CompVis/stable-diffusion
+          url: https://github.com/CompVis/stable-diffusion
+          description: 根据文本描述生成精美图片
+          logo: github.com.svg
+        - title: Molunerfinn/PicGo
+          url: https://github.com/Molunerfinn/PicGo
+          description: 兼容多种服务端的图床客户端
+          logo: picgo.png
+        - title: NewFuture/DDNS
+          url: https://github.com/NewFuture/DDNS
+          description: 自动更新域名解析到本机 IP
+          logo: github.com.svg
+        - title: jeessy2/ddns-go
+          url: https://github.com/jeessy2/ddns-go
+          description: 自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务
+          logo: github.com.svg
+        - title: Cloudreve
+          url: https://github.com/cloudreve/Cloudreve
+          logo: github.com.svg
+          description: 支持多家云存储驱动的公有云文件系统
+        - title: Alist
+          url: https://alist-doc.nn.ci/
+          description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
+          logo: alist-doc.nn.ci.svg
+        - title: fatedier/frp
+          url: https://github.com/fatedier/frp
+          description: 一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议
+          logo: github.com.svg
+        - title: kkFileView
+          url: https://github.com/kekingcn/kkFileView
+          logo: kkfileview.keking.cn.ico
+          description: 主流办公文档的在线预览解决方案
+        - title: Roverr/rtsp-streamH
+          logo: github.com.svg
+          url: https://github.com/Roverr/rtsp-stream
+          description: 一款 rtsp 转 hls 的视频流服务
+        - title: BaiduPCS-Go
+          url: https://github.com/qjfoidnh/BaiduPCS-Go
+          description: 仿 Linux shell 文件处理命令的百度网盘命令行客户端
+          logo: github.com.svg
+        - title: KasmVNC
+          url: https://github.com/kasmtech/KasmVNC
+          description: Linux Web Remote Desktop
+          logo: github.com.svg
+        - title: kasmweb/centos-7-desktop
+          url: https://hub.docker.com/r/kasmweb/centos-7-desktop
+          description: 一个可以使用浏览器访问的 CentOS 7 Docker 镜像
+          logo: github.com.svg
+        - title: budtmo/docker-android
+          url: https://github.com/budtmo/docker-android
+          description: 在 Docker 中运行 android
+          logo: github.com.svg
+
+    - name: 前端开发
+      links:
+        - title: MDN Web Docs
+          url: https://developer.mozilla.org/
+          description: 标准且详细的前端技术文档
+          logo: developer.mozilla.org.png
+        #      - title: 千古前端图文教程
+        #        url: https://github.com/qianguyihao/Web
+        #        description: 前端入门到进阶图文教程
+        #        logo: github.com.svg
+        - title: W3Schools
+          url: https://www.w3schools.cn/
+          description: 编程知识学习
+          logo: w3schools.cn.ico
+        - title: JavaScript.INFO
+          url: https://javascript.info/
+          description: 现代 JavaScript 教程
+          logo: javascript.info.png
+        - title: Free Code Camp
+          url: https://www.freecodecamp.org/
+          description: 免费的编码训练营
+          logo: circle-blue.svg
+        - title: CodePen
+          url: https://codepen.io/trending
+          description: 前端程序员交流社区
+          logo: codepan.io.svg
+        - title: Patterns.dev
+          url: https://www.patterns.dev/
+          description: 关于前端设计模式和组件模式的免费教程，帮助你更好地架构前端应用
+          logo: patterns.dev.png
+        - title: CSS Layout
+          url: https://csslayout.io/
+          # url: https://github.com/phuocng/csslayout
+          description: 常见的 CSS 布局示例
+          logo: csslayout.io.png
+        - title: 50projects50days
+          url: https://github.com/bradtraversy/50projects50days
+          description: 50 个 web 小 demo，用来学习再好不过了
+          logo: github.com.svg
+        - title: 30-seconds/30-seconds-of-css
+          url: https://github.com/30-seconds/30-seconds-of-css
+          description: 一些 css 代码片段，可以拿来学习练手
+          logo: github.com.svg
+        - title: Tailwind CSS
+          url: https://tailwindcss.com/
+          description: 一个功能类优先的 CSS 框架
+          logo: tailwindcss.com.png
+        - title: animate.css
+          # url: https://github.com/animate-css/animate.css
+          url: https://animate.style/
+          description: css 动效库
+          logo: github.com.svg
+        - title: normalize.css
+          url: https://github.com/necolas/normalize.css
+          description: 让你的 HTML 默认样式保持跨浏览器的一致性
+          logo: github.com.svg
+        - title: bulma
+          url: https://bulma.io/
+          # url: https://github.com/jgthms/bulma
+          description: 基于 Flexbox 的现代化响应式 css 框架
+          logo: bulma.io.svg
+        - title: IanLunn/Hover
+          url: https://github.com/IanLunn/Hover
+          description: 给你的网站添加 hover 动效
+          logo: github.com.svg
+        - title: tobiasahlin/SpinKit
+          url: https://github.com/tobiasahlin/SpinKit
+          description: 有趣的页面加载动效
+          logo: github.com.svg
+        - title: jsPlumb
+          url: https://github.com/jsplumb/jsplumb
+          description: 强大的可视化连接库
+          logo: github.com.svg
+        - title: fancytree
+          url: https://github.com/mar10/fancytree
+          description: 一个强大的构建树形结构的组件
+          logo: github.com.svg
+        - title: ckeditor5
+          url: https://github.com/ckeditor/ckeditor5
+          description: 富文本编辑器
+          logo: github.com.svg
+        - title: codemirror5
+          url: https://github.com/codemirror/codemirror5
+          description: 支持多种语言的代码编辑器
+          logo: github.com.svg
+        - title: FontAwesome
+          url: https://fontawesome.com/
+          description: 矢量图标库
+          logo: fontawesome.com.svg
+        - title: Bootstrap
+          url: https://getbootstrap.com/
+          description: 强大、可扩展、功能丰富的前端工具箱
+          logo: getbootstrap.com.svg
+        - title: Bootstrap 中文网
+          url: https://www.bootcss.com/
+          description: Bootstrap 中文网，网站也收集了非常多其他前端框架的中文文档
+          logo: bootcss.com.png
+        - title: React
+          url: https://reactjs.org/
+          description: 用于构建用户界面的 JavaScript 库
+          logo: reactjs.org.svg
+        - title: React Docs Beta
+          url: https://beta.reactjs.org/
+          description: 官方重写的 React 文档
+          logo: reactjs.org.svg
+        - title: Vue
+          url: https://vuejs.org/
+          description: 渐进式 JavaScript 框架
+          logo: vuejs.org.svg
+        - title: Ant Design
+          url: https://ant.design/
+          description: 企业级产品设计体系，创造高效愉悦的工作体验
+          logo: ant.design.svg
+        - title: Ant Design Pro
+          url: https://beta-pro.ant.design/
+          description: 开箱即用的中台前端/设计解决方案
+          logo: ant.design.svg
+        - title: TDesign
+          url: https://tdesign.tencent.com/
+          description: 企业级设计体系
+          logo: tdesign.tencent.com.svg
+        - title: fingerprintjs
+          url: https://github.com/fingerprintjs/fingerprintjs/
+          # url: https://fingerprint.com/
+          description: 生成客户端唯一标识
+          logo: fingerprint.com.ico
+        - title: rrweb-io/rrweb
+          url: https://github.com/rrweb-io/rrweb
+          # url: https://www.rrweb.io/
+          description: 记录和回放用户在前端的操作，可用于故障重现
+          logo: rrweb.io.png
+        - title: Taro
+          url: https://taro.jd.com/
+          description: 开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发各种小程序、H5 和 RN 应用
+          logo: taro.jd.com.png
+
+        - title: justjavac/awesome-wechat-weapp
+          url: https://github.com/justjavac/awesome-wechat-weapp
+          description: 微信小程序开发资源汇总
+          logo: github.com.svg
+        - title: transloadit/uppy
+          url: https://github.com/transloadit/uppy
+          description: 文件上传组件
+          logo: uppy.io.svg
+        - title: vuepress
+          url: https://github.com/vuejs/vuepress
+          description: 极简的静态网站生成器，支持 markdown，可用于生成项目文档
+          logo: vuepress.vuejs.org.png
+        - title: hexo
+          url: https://hexo.io/
+          description: 快速、简洁且高效的纯静态博客框架
+          logo: hexo.io.png
+        - title: Neumorphism
+          url: https://neumorphism.io/
+          description: 简单轻松地实现 CSS 新拟态效果
+          logo: neumorphism.io.png
+        - title: Can I Use
+          url: https://caniuse.com/
+          description: 查询浏览器对 Web API 的兼容性
+          logo: caniuse.com.png
+        - title: unminify
+          url: https://unminify.com/
+          description: 针对 html, css, js 的解包、反混淆、格式化工具
+          logo: unminify.com.png
+        - title: Bundlephobia
+          url: https://bundlephobia.com/
+          description: 帮助分析添加一个 npm 包的成本
+          logo: bundlephobia.com.png
+        - title: web code tools
+          url: https://webcode.tools/
+          description: 前端代码生成器
+          logo: circle-blue.svg
+
+    - name: 后端开发
+      links:
+        - title: Intellij IDEA 最佳实践
+          url: https://idea.diqigan.cn
+          description: 详细讲解了 Intellij IDEA 的设置、能力、插件等最佳实践
+          logo: idea.diqigan.cn.svg
+        - title: Java 全栈知识体系
+          url: https://pdai.tech/
+          description: Java 学习笔记
+          logo: pdai.tech.jpeg
+        - title: Spring
+          url: https://spring.io/
+          description: 最最最最最最牛最全的 Java 开发框架
+          logo: spring.io.svg
+        - title: Maven
+          url: https://maven.apache.org/
+          description: Java 依赖管理
+          logo: maven.apache.org.ico
+        - title: Maven Repository
+          url: https://mvnrepository.com/
+          description: Maven 中央仓库
+          logo: mavenrepository.com.ico
+        - title: Gradle Build Tool
+          url: https://gradle.org/
+          description: 更加灵活的 Java 依赖管理工具
+          logo: gradle.org.svg
+        - title: nacos
+          url: https://nacos.io/
+          description: 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台
+          logo: nacos.io.png
+        - title: Swagger
+          url: https://swagger.io/
+          description: 接口文档生成工具
+          logo: swagger.io.svg
+        - title: xxl-job
+          url: https://github.com/xuxueli/xxl-job
+          description: 分布式任务调度平台
+          logo: xuxueli.com.png
+        - title: MyBatis-Plus
+          url: https://github.com/baomidou/mybatis-plus
+          description: Mybatis 的增强工具，只做增强不做改变，简化开发，提高效率
+          logo: baomidou.com.png
+        - title: Hutool
+          url: https://hutool.cn/
+          description: 一个小而全的Java工具类库
+          logo: hutool.cn.ico
+        - title: screw
+          url: https://github.com/pingfangushi/screw
+          description: 简洁好用的数据库表结构文档生成工具
+          logo: github.com.svg
+        - title: dbeaver
+          url: https://github.com/dbeaver/dbeaver
+          #        url: https://dbeaver.io/
+          description: 一款开源的数据库客户端
+          logo: dbeaver.io.png
+        - title: Beekeeper Studio
+          url: https://www.beekeeperstudio.io/
+          # url: https://github.com/beekeeper-studio/beekeeper-studio
+          description: 一款“还行”的开源跨平台数据客户端
+          logo: beekeeperstudio.io.svg
+        - title: PDManer
+          url: https://gitee.com/robergroup/pdmaner
+          description: 开源免费的跨平台关系型数据库建模工具
+          logo: pdmaner.png
+        - title: Another Redis Desktop Manager
+          url: https://github.com/qishibo/AnotherRedisDesktopManager
+          description: 一款全平台通用的 Redis 连接工具
+          logo: another-redis-desktop-manager.png
+
+    - name: 服务运维
+      links:
+        - title: Docker 从入门到实践
+          url: https://yeasy.gitbook.io/docker_practice/
+          description: Docker 教程
+          logo: yeasy.gitbook.io.svg
+        - title: Ansible 中文权威指南
+          url: https://ansible-tran.readthedocs.io/en/latest/
+          description: Ansible 中文权威指南
+          logo: ansible.com.png
+        - title: ansible/ansible
+          url: https://github.com/ansible/ansible
+          description: 自动化部署神器
+          logo: github.com.svg
+        - title: Linux工具快速教程
+          url: https://linuxtools-rst.readthedocs.io/zh_CN/latest/
+          description: Linux工具的最常用用法
+          logo: github.com.svg
+        - title: jlevy/the-art-of-command-line
+          url: https://github.com/jlevy/the-art-of-command-line
+          description: 常见名命令行工具的使用方法
+          logo: github.com.svg
+        - title: alebcay/awesome-shell
+          url: https://github.com/alebcay/awesome-shell
+          description: 好用的命令行工具列表
+          logo: github.com.svg
+        - title: zsh
+          url: https://www.zsh.org/
+          description: 非常好用的命令行终端
+          logo: zsh.org.png
+        - title: unixorn/awesome-zsh-plugins
+          url: https://github.com/unixorn/awesome-zsh-plugins
+          description: 好用的 zsh 插件推荐
+          logo: github.com.svg
+        - title: fish shell
+          url: https://fishshell.com/
+          description: 另一款好用的命令行终端
+          logo: fishshell.com.png
+        - title: starship
+          #        url: https://starship.rs/
+          url: https://github.com/starship/starship
+          description: 终端状态显示
+          logo: starship.rs.png
+        - title: z.lua
+          url: https://github.com/skywind3000/z.lua
+          description: 一款高性能的目录跳转工具
+          logo: github.com.svg
+        - title: unofficial-bash-strict-mode
+          description: 如何更好地编写脚本文件
+          url: http://redsymbol.net/articles/unofficial-bash-strict-mode/
+          logo: bash.png
+        - title: 阮一峰的 SSH 教程
+          url: https://wangdoc.com/ssh/
+          description: SSH 的基本概念和用法
+          logo: ssh.svg
+        - title: The Linux Command Line
+          url: http://billie66.github.io/TLCL/book/
+          description: Linux 命令行系列教程
+          logo: billie66.github.io.png
+        #      - title: 阮一峰的 Bash 教程
+        #        url: https://wangdoc.com/bash/
+        #        description: Bash 的基本用法和脚本编程
+        #        logo: bash.png
+        #      - title: UbuntuManual
+        #        url: https://wiki.ubuntu.org.cn/UbuntuManual
+        #        description: Ubuntu 参考手册
+        #        logo: ubuntu.svg
+        - title: Arch Wiki
+          url: https://wiki.archlinux.org/
+          description: Linux 百科全书
+          logo: archlinux.org.svg
+        - title: transfer.sh
+          url: https://github.com/dutchcoders/transfer.sh
+          description: 命令行文件上传神器
+          logo: github.com.svg
+        #      - title: tmate
+        #        url: https://github.com/tmate-io/tmate
+        #        description: 分享自己的终端用以结对编程，使用此工具时要注意安全风险
+        #        logo: tmate.io.png
+        - title: 金步国作品集
+          url: http://www.jinbuguo.com/
+          description: Linux 周边中文手册
+          logo: jinbuguo.com.ico
+        - title: TunnelBroker
+          url: https://www.tunnelbroker.net/
+          description: 为纯 ipv4 主机添加 ipv6 支持
+          logo: tunnelbroker.net.ico
+        - title: Nginx 配置
+          url: https://nginxconfig.io
+          description: 可视化生成 Nginx 配置
+          logo: nginxconfig.io.png
+        - title: SSL Configuration Generator
+          url: https://ssl-config.mozilla.org/
+          description: SSL 配置生成工具
+          logo: ssl-config.mozilla.org.svg
+        - title: SSL Labs
+          url: https://www.ssllabs.com/
+          description: SSL 质量检测工具
+          logo: www.ssllabs.com.ico
+        - title: namesilo
+          url: https://www.namesilo.com/
+          description: 域名注册服务商
+          logo: namesilo.com.ico
+        - title: Cloudcraft
+          url: https://www.cloudcraft.co/
+          description: 可以帮助你设计云，并制定云资源预算
+          logo: cloudcraft.co.svg
+
+    - name: VSCode 插件
+      links:
+        - title: Markdown Preview Enhanced
+          url: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
+          # url: https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/
+          description: Markdown 预览增强
+          logo: vs-code-extension-markdown-preview-enhanced.svg
+
+- name: 无忧生活
+  icon: linecons-tv
+  sub:
+    - name: 便民服务
+      links:
+        - title: 12306
+          url: https://www.12306.cn/
+          description: 中国铁路 12306，买火车票认准这个网站
+          logo: 12306.cn.ico
+        - title: 电信用户申诉受理中心
+          url: https://yhssglxt.miit.gov.cn/web/userAppeal/
+          description: 电信申诉
+          logo: yhssglxt.miit.gov.cn.ico
+        - title: 全国移动电话卡“一证通查”
+          url: https://getsimnum.caict.ac.cn/#/
+          description: 查询自己名下有多少张电话卡
+          logo: getsimnum.caict.ac.cn.ico
+        - title: 邮政业服务申诉平台
+          url: https://sswz.spb.gov.cn/
+          description: 快递问题申诉
+          logo: sswz.spb.gov.cn.ico
+        - title: 合同示范文本库
+          description: 国家市场监督管理总局出具的各种合同范本
+          url: https://cont.12315.cn/
+          logo: cont.12315.cn.svg
+        - title: 中国裁判文书网
+          url: https://wenshu.court.gov.cn/
+          description: 查一个人是否有过案底
+          logo: wenshu.court.gov.cn.png
+        - title: 中国执行信息公开网
+          url: http://zxgk.court.gov.cn/
+          description: 查询一个人是否失信
+          logo: zxgk.court.gov.cn.png
+        - title: 国家药品监督管理局
+          url: https://www.nmpa.gov.cn/
+          description: 药品查询
+          logo: nmpa.gov.cn.png
+        - title: 国家企业信用信息公示系统
+          url: https://www.gsxt.gov.cn/
+          description: 查询企业信用信息
+          logo: guohui.png
+        - title: 酷家乐
+          url: https://www.kujiale.com/
+          description: 3D 设计平台
+          logo: kujiale.com.ico
+    #        - title: 快递 100
+    #          url: https://www.kuaidi100.com/
+    #          description: 快递查询
+    #          logo: kuaidi100.com.gif
+
+    - name: 影音资源
+      links:
+        - title: RARGB
+          url: https://rargb.to/
+          description: 高质量影音下载网站
+          logo: rargb.to.ico
+        - title: 无名小站
+          url: https://www.btnull.org/
+          description: 满足你的影视需求
+          logo: btnull.org.ico
+        - title: 哔嘀影视
+          url: https://www.bdys01.com/
+          description: 热门影视在线观看
+          logo: bdys01.com.svg
+        - title: 茶杯狐
+          url: https://cupfox.app/
+          description: 另一个刷剧网站
+          logo: cupfox.app.png
+        - title: 海盗湾
+          url: https://thepiratebay.org/
+          description: 最大最全盗版资源下载网站
+          logo: thepiratebay.org.jpg
+        # - title: Anime Scene Search Engine
+        #   url: https://trace.moe/
+        #   description: 根据动漫图片查找动漫
+        #   logo: trace.moe.png
+
+    - name: 电子书籍
+      links:
+        - title: Anna's Archive
+          url: https://annas-archive.org/
+          description: z-library 的镜像站
+          logo: z-lib.org.png
+        # - title: z-library
+        #   url: https://z-lib.org/
+        #   description: 世界上最大的数字图书馆
+        #   logo: z-lib.org.png
+        # - title: 熊猫搜书
+        #   url: https://xmsoushu.com/#/
+        #   description: 集成了多个搜书平台，可以当成导航网站来用
+        #   logo: xmsoushu.com.png
+        - title: LoreFree
+          url: https://ebook2.lorefree.com/
+          description: 去中心化免费电子书共享社区
+          logo: ebook2.lorefree.com.ico
+        - title: 图灵社区
+          url: https://www.ituring.com.cn/book
+          description: IT 领域书籍
+          logo: ituring.com.cn.png
+        - title: 鸠摩搜索
+          url: https://www.jiumodiary.com/
+          description: 文档搜索引擎
+          logo: jiumodiary.com.png
+
+    - name: 游戏资源
+      links:
+        - title: RuTracker.org
+          url: https://rutracker.org/
+          description: 盗版游戏、电影、软件下载
+          logo: rutracker.org.svg
+        - title: byrutor
+          url: https://s1.byrutor.com/
+          # url: https://byrutor.org/
+          # url: https://byrut.org/
+          description: 各种游戏、软件下载
+          logo: byrutor.org.png
+        - title: FitGirl Repacks
+          url: https://fitgirl-repacks.site/
+          description: 破解游戏下载
+          logo: fitgirl-repacks.site.jpg
+        - title: CrazyGames
+          url: https://www.crazygames.com/
+          description: 免费在线游戏
+          logo: crazygames.com.jpeg
+        - title: Switch520
+          url: https://switch520.com/
+          description: switch 游戏，金手指，3A大作免费下载
+          logo: switch520.com.png
+
+    - name: 杂七杂八
+      links:
+        - title: Ventoy
+          url: https://github.com/ventoy/Ventoy
+          description: 可同时兼容多种操作系统的启动盘制作工具
+          logo: ventoy.net.png
+        - title: Rufus
+          url: https://rufus.ie/
+          description: 轻松创建 USB 启动盘，开源软件
+          logo: rufus.ie.png
+        - title: 微PE
+          url: https://www.wepe.com.cn/
+          description: 很好用的 Win PE 装机维护工具
+          logo: wepe.com.cn.svg
+        - title: itellyou
+          url: https://next.itellyou.cn/Original/Index
+          description: 纯净 Windows 镜像下载
+          logo: msdn.itellyou.cn.ico
+        - title: OpenStreenMap
+          url: https://www.openstreetmap.org/
+          description: 唯一真正不受限制，可以自由使用的全球地图服务
+          logo: openstreetmap.org.svg
+        - title: 科塔学术
+          url: https://site.sciping.com/
+          description: 学术导航
+          logo: site.sciping.com.png
+        - title: Symbolab
+          url: https://zs.symbolab.com/
+          description: 分步求解的万能数学计算器
+          logo: zs.symbolab.com.svg
+        - title: 图形计算器
+          url: https://www.desmos.com/calculator
+          description: 根据公式绘制函数图像
+          logo: desmos.com.png
+        - title: 地图搜租房
+          url: https://woyaozufang.live/#/
+          description: 满大街找租房心力交瘁？试试换个方式直接在地图上搜租房
+          logo: woyaozufang.live.png
+        - title: FakeUpdate
+          url: https://fakeupdate.net/
+          description: 假装系统升级
+          logo: circle-blue.svg
+        - title: 主机测评
+          url: https://www.zhujiceping.com/
+          description: VPS，服务器，主机测评
+          logo: zhujiceping.com.png
+
+- name: 网络博客
+  icon: linecons-note
+  sub:
+    - name: 博客工具
+      links:
+        - title: Feeds Pub
+          url: https://feeds.pub/
+          description: 一个 RSS 聚合器，可以订阅自己喜欢的网站
+          logo: feeds.pub.png
+        - title: BlogHub
+          url: https://bloghub.fun/
+          description: 个人博客聚合网站
+          logo: bloghub.fun.png
+        - title: Markdown 在线编辑器
+          url: https://markdown.com.cn/editor/
+          description: Markdown 文件转微信排版的工具
+          logo: markdown.com.cn-editor.svg
+        - title: ArtiPub
+          url: https://github.com/crawlab-team/artipub
+          description: 支持多个博客平台的一文多发工具
+          logo: github.com.svg
+
+    - name: 个人博客
+      links:
+        - title: Seven's blog
+          url: https://blog.diqigan.cn
+          description: 小柒的个人博客
+          logo: blog.diqigan.cn.png
+        - title: Thoughtworks洞见
+          url: https://insights.thoughtworks.cn/
+          description: IT 从业者的指路明灯
+          logo: insights.thoughtworks.cn.png
+        - title: 阮一峰的网络日志
+          url: https://www.ruanyifeng.com/blog/
+          description: 作者会分享很多网络见闻，是开拓视野的好去处
+          logo: ruanyifeng.com.jpg
+        - title: 酷壳
+          url: https://coolshell.cn/
+          description: 享受编程和技术所带来的快乐
+          logo: coolshell.cn.ico
+        - title: 构建我的被动收入
+          url: https://www.bmpi.dev/
+          description: 一位践行终身学习的全栈开发者
+          logo: www.bmpi.dev.png
+        - title: 思圆笔记
+          url: https://hintsnet.com/pimgeek/blog/
+          description: 一位百科知识爱好者和数字化知识管理研究者
+          logo: hintsnet.com.jpg
+        - title: 翁天信
+          url: https://www.dandyweng.com/
+          description: 你好，我是翁天信，一个自学者。爱好旅行、摄影、设计和编程。
+          logo: dandyweng.com.jpg
+        - title: DecodeZ
+          url: https://decodezp.github.io/
+          description: 刚日读经 柔日读史 昼进其技 夜付诸笔
+          logo: decodezp.github.io.ico
+        - title: 朱双印个人日志
+          url: https://www.zsythink.net/
+          description: linux 运维笔记，深入浅出，简单易懂
+          logo: zsythink.net.jpg
+        - title: VillageCity
+          url: https://villagecity.org/
+          description: 一款实验性的「现实世界」游戏，旨在日积月累提高您的英语阅读和写作水平
+          logo: villagecity.org.ico

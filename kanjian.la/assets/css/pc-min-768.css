@@ -1,0 +1,91 @@
+:root {
+  --font-size-basic: 2vw;
+}
+
+.container {
+  width: 92%;
+}
+
+.header {
+  display: none;
+}
+
+header {
+  padding: var(--padding-common);
+}
+
+nav {
+  display: block;
+  padding: var(--padding-common);
+  border-radius: calc(var(--padding-common) / 2);
+  background-color: var(--color-card-background);
+}
+
+nav>.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+}
+
+.nav .nav {
+  display: none;
+  position: absolute;
+}
+
+.nav-sub-container:hover>.nav {
+  display: flex;
+}
+
+.nav a {
+  height: 2rem;
+}
+
+.nav>li>a {
+  display: block;
+  border: none;
+}
+
+.nav a:hover {
+  border-top: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
+}
+
+.nav .nav a {
+  position: relative;
+  left: -1.5rem;
+  background-color: var(--color-card-background);
+  padding-left: 1.5rem;
+  width: 6rem;
+  z-index: 10;
+}
+
+.nav .nav a:hover {
+  border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
+}
+
+.nav-sub-container:focus-within>.nav {
+  display: none;
+}
+
+.nav-sub-container>a>span:last-of-type {
+  display: inline-block;
+  position: relative;
+}
+
+.nav>li.nav-sub-container>a>span:last-of-type {
+  transform: rotate(90deg);
+  transition: transform calc(var(--transition-time-basic) * .2);
+}
+
+.sub-group>h2 {
+  padding-top: 0;
+}
+
+.web-item-container {
+  grid-template-columns: auto auto auto auto auto;
+  overflow: hidden;
+}
+
+.web-item {
+  width: calc(10.5rem - 3.5 * var(--padding-common));
+}
