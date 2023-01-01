@@ -120,7 +120,7 @@ nav>.nav>li>.nav .nav {
   display: grid;
   gap: var(--padding-common);
   grid-template-columns: auto auto;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 }
 

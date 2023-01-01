@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 99.7 99.7" style="enable-background:new 0 0 99.7 99.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);fill:#010103;}
+	.st2{filter:url(#Adobe_OpacityMaskFilter);}
+	.st3{clip-path:url(#SVGID_6_);fill:url(#SVGID_8_);}
+	.st4{clip-path:url(#SVGID_6_);mask:url(#SVGID_7_);fill:url(#SVGID_9_);}
+	.st5{clip-path:url(#SVGID_11_);fill:#FFFFFF;}
+	.st6{clip-path:url(#SVGID_13_);fill:url(#SVGID_14_);}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" width="99.7" height="99.7"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st0">
+		<defs>
+			<rect id="SVGID_3_" y="0" width="99.7" height="99.7"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st1" d="M77.9,99.7H21.8C9.8,99.7,0,89.9,0,77.9V21.8C0,9.8,9.8,0,21.8,0h56.1c12,0,21.8,9.8,21.8,21.8v56.1
+			C99.7,89.9,89.9,99.7,77.9,99.7"/>
+	</g>
+	<g class="st0">
+		<defs>
+			<path id="SVGID_5_" d="M41.6,26.5v-0.1L17.8,44.2l-1,9.4l24.9,17.7v0c4.7,3.5,10.4,5.6,16.7,5.6c15.4,0,28-12.5,28-28
+				c0-15.4-12.5-28-28-28C52,20.9,46.2,23,41.6,26.5"/>
+		</defs>
+		<clipPath id="SVGID_6_">
+			<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+		</clipPath>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-7.5" y="-9.2" width="118" height="116.1">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-7.5" y="-9.2" width="118" height="116.1" id="SVGID_7_">
+			<g class="st2">
+				
+					<linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="0" y1="99.6229" x2="1" y2="99.6229" gradientTransform="matrix(56.6434 32.7031 32.7031 -56.6434 -3233.8147 5676.083)">
+					<stop  offset="0" style="stop-color:#808080"/>
+					<stop  offset="5.916941e-002" style="stop-color:#6A6A6A"/>
+					<stop  offset="0.169" style="stop-color:#4A4A4A"/>
+					<stop  offset="0.2877" style="stop-color:#2F2F2F"/>
+					<stop  offset="0.4165" style="stop-color:#1A1A1A"/>
+					<stop  offset="0.5603" style="stop-color:#0B0B0B"/>
+					<stop  offset="0.7314" style="stop-color:#030303"/>
+					<stop  offset="1" style="stop-color:#000000"/>
+				</linearGradient>
+				<polygon class="st3" points="34.1,-9.2 110.5,34.9 68.9,106.9 -7.5,62.9 				"/>
+			</g>
+		</mask>
+		
+			<linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="0" y1="99.6229" x2="1" y2="99.6229" gradientTransform="matrix(56.6434 32.7031 32.7031 -56.6434 -3233.8152 5676.0835)">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0.3828" style="stop-color:#F7F7F7"/>
+			<stop  offset="1" style="stop-color:#F4F4F4"/>
+		</linearGradient>
+		<polygon class="st4" points="34.1,-9.2 110.5,34.9 68.9,106.9 -7.5,62.9 		"/>
+	</g>
+	<g class="st0">
+		<defs>
+			<rect id="SVGID_10_" y="0" width="99.7" height="99.7"/>
+		</defs>
+		<clipPath id="SVGID_11_">
+			<use xlink:href="#SVGID_10_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st5" d="M58.3,20.9c-15.4,0-28,12.5-28,28c0,15.4,12.5,28,28,28s28-12.5,28-28C86.2,33.4,73.7,20.9,58.3,20.9
+			 M58.3,68.7c-10.9,0-19.8-8.9-19.8-19.8c0-10.9,8.9-19.8,19.8-19.8S78.1,38,78.1,48.9C78.1,59.8,69.2,68.7,58.3,68.7"/>
+	</g>
+	<g class="st0">
+		<defs>
+			<path id="SVGID_12_" d="M13.1,48.9c0,2.6,2.1,4.7,4.7,4.7c2.6,0,4.7-2.1,4.7-4.7c0-2.6-2.1-4.7-4.7-4.7
+				C15.2,44.2,13.1,46.3,13.1,48.9"/>
+		</defs>
+		<clipPath id="SVGID_13_">
+			<use xlink:href="#SVGID_12_"  style="overflow:visible;"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_14_" gradientUnits="userSpaceOnUse" x1="8.661447e-006" y1="99.6751" x2="1" y2="99.6751" gradientTransform="matrix(9.359 0 0 -9.359 13.0769 981.7324)">
+			<stop  offset="0" style="stop-color:#FEA86C"/>
+			<stop  offset="1" style="stop-color:#FF715B"/>
+		</linearGradient>
+		<rect x="13.1" y="44.2" class="st6" width="9.4" height="9.4"/>
+	</g>
+</g>
+</svg>
