@@ -6,6 +6,55 @@
   width: 61.8rem;
 }
 
+.header {
+  display: none;
+}
+
+header {
+  padding: var(--padding-common);
+}
+
+nav {
+  display: block;
+  padding: var(--padding-common);
+  border-radius: calc(var(--padding-common) / 2);
+  background-color: var(--color-card-background);
+}
+
+nav>.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+}
+
+.nav .nav {
+  display: none;
+  position: absolute;
+  background-color: var(--color-card-background);
+  /* padding: 0 1.em 0 1.5rem; */
+}
+
+.nav-sub-container:hover>.nav {
+  display: flex;
+}
+
+.nav>li>a {
+  display: block;
+  border: none;
+  /* padding: 0 1.em 0 1.5rem; */
+}
+
+.nav-sub-container>a>span:last-of-type {
+  display: inline-block;
+  position: relative;
+}
+
+.nav>li.nav-sub-container>a>span:last-of-type {
+  transform: rotate(90deg);
+  transition: transform calc(var(--transition-time-basic) * .2);
+}
+
 .web-item {
   width: calc(11.7rem - 3.5 * var(--padding-common));
 }

@@ -68,9 +68,6 @@ nav>.nav {
 
 .nav .nav {
   display: none;
-}
-
-.nav .nav>li>a {
   padding-left: 1.5rem;
 }
 
@@ -81,7 +78,7 @@ nav>.nav>li>.nav .nav {
   display: none;
 }
 
-nav>.nav>li:focus-within>.nav {
+.nav-sub-container:focus-within>.nav {
   display: flex;
 }
 
@@ -101,7 +98,7 @@ nav>.nav>li:focus-within>.nav {
   transition: transform calc(var(--transition-time-basic) * .2);
 }
 
-.nav>li.nav-sub-container:not(:focus-within)>a>span:last-of-type {
+.nav>li.nav-sub-container>a>span:last-of-type {
   transition: transform calc(var(--transition-time-basic) * .2);
 }
 
