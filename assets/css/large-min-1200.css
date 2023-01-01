@@ -6,10 +6,10 @@
   width: 61.8rem;
 }
 
-.web-item {
-  width: calc(11.7rem - 3.5 * var(--padding-common));
-}
-
 .web-item-container {
   grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.web-item {
+  width: calc(11.7rem - 3.5 * var(--padding-common));
 }

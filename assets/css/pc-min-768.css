@@ -77,11 +77,15 @@ nav>.nav {
   transition: transform calc(var(--transition-time-basic) * .2);
 }
 
-.web-item {
-  width: calc(10.5rem - 3.5 * var(--padding-common));
+.sub-group>h2 {
+  padding-top: 0;
 }
 
 .web-item-container {
   grid-template-columns: auto auto auto auto auto;
   overflow: hidden;
+}
+
+.web-item {
+  width: calc(10.5rem - 3.5 * var(--padding-common));
 }
