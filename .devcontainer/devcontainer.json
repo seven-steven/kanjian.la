@@ -1,24 +1,24 @@
 {
-  "name": "jekyll/jekyll 4",
+  "name": "ruby-3-jekyll-3.9.3",
   "build": {
     "dockerfile": "Dockerfile"
   },
   "appPort": 4000,
-  // "postCreateCommand": "jekyll serve",
+  "postCreateCommand": "jekyll install && jekyll serve",
   "customizations": {
     "vscode": {
       "extensions": [
-		"formulahendry.auto-close-tag",
-		"formulahendry.auto-rename-tag",
-		"michelemelluso.code-beautifier",
-		"wwm.better-align",
-		"aaron-bond.better-comments",
-		"oderwat.indent-rainbow",
-		"k--kato.intellij-idea-keybindings",
-		"PKief.material-icon-theme",
-		"redhat.vscode-yaml",
-		"DotJoshJohnson.xml"
-	]
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "michelemelluso.code-beautifier",
+        "wwm.better-align",
+        "aaron-bond.better-comments",
+        "oderwat.indent-rainbow",
+        "k--kato.intellij-idea-keybindings",
+        "PKief.material-icon-theme",
+        "redhat.vscode-yaml",
+        "DotJoshJohnson.xml"
+      ]
     }
   }
 }
