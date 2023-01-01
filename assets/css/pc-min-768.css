@@ -31,18 +31,36 @@ nav>.nav {
 .nav .nav {
   display: none;
   position: absolute;
-  background-color: var(--color-card-background);
-  /* padding: 0 1.em 0 1.5rem; */
 }
 
 .nav-sub-container:hover>.nav {
   display: flex;
 }
 
+.nav a {
+  height: 2rem;
+}
+
 .nav>li>a {
   display: block;
   border: none;
-  /* padding: 0 1.em 0 1.5rem; */
+}
+
+.nav a:hover {
+  border-top: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
+}
+
+.nav .nav a {
+  position: relative;
+  left: -1.5rem;
+  background-color: var(--color-card-background);
+  padding-left: 1.5rem;
+  width: 6rem;
+  z-index: 10;
+}
+
+.nav .nav a:hover {
+  border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
 }
 
 .nav-sub-container>a>span:last-of-type {
