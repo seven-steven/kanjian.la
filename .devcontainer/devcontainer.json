@@ -1,10 +1,12 @@
 {
   "name": "ruby-3-jekyll-3.9.3",
   "build": {
-    "dockerfile": "Dockerfile"
+    // "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile-jekyll"
   },
   "appPort": 4000,
-  "postCreateCommand": "jekyll install && jekyll serve",
+  "postCreateCommand": "bundle install",
+  "postStartCommand": "bundle exec jekyll serve",
   "customizations": {
     "vscode": {
       "extensions": [
