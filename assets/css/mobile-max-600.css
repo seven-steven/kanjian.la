@@ -110,7 +110,7 @@ nav>.nav>li:focus-within>.nav {
 }
 
 .sub-group>h2 {
-  padding-top: var(--padding-common);
+  padding: var(--padding-common) 0;
   font-size: .8rem;
 }
 
@@ -121,7 +121,7 @@ nav>.nav>li:focus-within>.nav {
 
 .web-item-container {
   display: grid;
-  padding-bottom: var(--padding-common);
+  gap: var(--padding-common);
   grid-template-columns: auto auto;
   justify-content: center;
   align-items: center;
@@ -130,9 +130,8 @@ nav>.nav>li:focus-within>.nav {
 .web-item {
   width: calc(10.3rem - 2 * var(--padding-common));
   height: calc(10.5rem - 2 * var(--padding-common));
-  border-radius: calc(var(--padding-common) / 2);
   padding: var(--padding-common);
-  margin: calc(var(--padding-common) / 2);
+  border-radius: calc(var(--padding-common) / 2);
   background-color: var(--color-card-background);
 }
 
