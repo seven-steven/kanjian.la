@@ -114,7 +114,7 @@ nav>.nav>li:focus-within>.nav {
   font-size: .8rem;
 }
 
-.sub-group>h2 .iconfont {
+.sub-group>h2>span {
   font-size: inherit;
   margin-right: .5rem;
 }
@@ -130,8 +130,9 @@ nav>.nav>li:focus-within>.nav {
 .web-item {
   width: calc(10.3rem - 2 * var(--padding-common));
   height: calc(10.5rem - 2 * var(--padding-common));
-  background-color: var(--color-info);
-  border-radius: var(--padding-common);
+  /* border: .1rem solid #dee2e6; */
+  border: .1rem solid rgba(var(--color-font-rgb), calc(.07 * var(--color-font-opacity)));
+  border-radius: calc(var(--padding-common) / 2);
   padding: var(--padding-common);
   margin-top: var(--padding-common);
 }
