@@ -3,7 +3,7 @@
     {% assign icon_list = web_item.icon.status %}
     {% include web-item-icon-list.html icon_list = icon_list %}
     <div class="web-item-logo">
-      <a href="{{ web_item.url }}">
+      <a href="{{ web_item.url }}" target="_blank">
         <!-- TODO default logo -->
         <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="site icon" />
       </a>
@@ -12,7 +12,7 @@
     {% include web-item-icon-list.html icon_list = icon_list %}
   </div>
   <div class="web-item-text">
-    <a href="{{ web_item.url }}">
+    <a href="{{ web_item.url }}" target="_blank">
       <h3>{{ web_item.title }}</h3>
       <p class="web-item-description">{{ web_item.description }}</p>
     </a>

@@ -1,5 +1,9 @@
 <ul class="web-item-icon-list">
   {% for icon in icon_list %}
-  <li><a href="{{ icon.url }}"><span class="web-item-icon {{ icon.icon }}"></span></a></li>
+  <li>
+    <a href="{{ icon.url }}" target="_blank" {% unless icon.url %} class="pointer-events-none"  {% endunless %}>
+      <span class="web-item-icon {{ icon.icon }}"></span>
+    </a>
+  </li>
   {% endfor %}
 </ul>

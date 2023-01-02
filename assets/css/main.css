@@ -61,3 +61,7 @@ a:active {
 .display-block {
   display: block;
 }
+
+.pointer-events-none {
+  pointer-events: none;
+}
