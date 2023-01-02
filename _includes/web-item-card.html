@@ -5,7 +5,7 @@
     <div class="web-item-logo">
       <a href="{{ web_item.url }}" target="_blank">
         <!-- TODO default logo -->
-        <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="site icon" />
+        <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="logo for {{web_item.title}}" loading="lazy" />
       </a>
     </div>
     {% assign icon_list = web_item.icon.info %}
