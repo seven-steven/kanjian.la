@@ -963,6 +963,10 @@
           url: https://alist-doc.nn.ci/
           description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
           logo: alist-doc.nn.ci.svg
+          icon:
+            info:
+              - icon: iconfont icon-document
+                url: https://alist-doc.nn.ci/docs/intro
         - title: fatedier/frp
           url: https://github.com/fatedier/frp
           description: 一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议
