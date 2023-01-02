@@ -5,28 +5,15 @@ layout: index
 
 <section class="content">
   {% for category in site.data.sites %}
-
   {% if category.sub %}
   {% for sub_category in category.sub %}
-  <div class="sub-group">
-    <h2 id="{{category.name}}-{{sub_category.name}}"><span class="iconfont icon-tag"></span>{{ sub_category.name }}
-    </h2>
-    <div class="web-item-container">
-      {% for web_item in sub_category.links %}
-      {% include web-item-card.html web_item=web_item %}
-      {% endfor %}
-    </div>
-  </div>
+  {% assign sub_category_id = category.name | append: '-' | append: sub_category.name %}
+  {% include sub_category.html %}
   {% endfor %}
   {% else %}
-  <div class="sub-group">
-    <h2 id="{{ category.name }}"><span class="iconfont icon-tag"></span>{{ category.name }} </h2>
-    <div class="web-item-container">
-      {% for web_item in category.links %}
-      {% include web-item-card.html web_item=web_item %}
-      {% endfor %}
-    </div>
-  </div>
+  {% assign sub_category_id = category.name %}
+  {% assign sub_category = category %}
+  {% include sub_category.html %}
   {% endif %}
   {% endfor %}
 </section>
