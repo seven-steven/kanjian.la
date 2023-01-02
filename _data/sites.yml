@@ -305,7 +305,7 @@
           description: Mac 精品软件清单
           logo: apple.svg
 
-    - name: Chrome插件
+    - name: Chrome
       links:
         - title: Vimium
           url: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb
@@ -1024,9 +1024,12 @@
           logo: patterns.dev.png
         - title: CSS Layout
           url: https://csslayout.io/
-          # url: https://github.com/phuocng/csslayout
           description: 常见的 CSS 布局示例
           logo: csslayout.io.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/phuocng/csslayout
         - title: 50projects50days
           url: https://github.com/bradtraversy/50projects50days
           description: 50 个 web 小 demo，用来学习再好不过了
@@ -1040,19 +1043,24 @@
           description: 一个功能类优先的 CSS 框架
           logo: tailwindcss.com.png
         - title: animate.css
-          # url: https://github.com/animate-css/animate.css
           url: https://animate.style/
           description: css 动效库
           logo: github.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/animate-css/animate.css
         - title: normalize.css
           url: https://github.com/necolas/normalize.css
           description: 让你的 HTML 默认样式保持跨浏览器的一致性
           logo: github.com.svg
         - title: bulma
           url: https://bulma.io/
-          # url: https://github.com/jgthms/bulma
           description: 基于 Flexbox 的现代化响应式 css 框架
           logo: bulma.io.svg
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/jgthms/bulma
         - title: IanLunn/Hover
           url: https://github.com/IanLunn/Hover
           description: 给你的网站添加 hover 动效
@@ -1114,15 +1122,19 @@
           description: 企业级设计体系
           logo: tdesign.tencent.com.svg
         - title: fingerprintjs
-          url: https://github.com/fingerprintjs/fingerprintjs/
-          # url: https://fingerprint.com/
+          url: https://fingerprint.com/
           description: 生成客户端唯一标识
           logo: fingerprint.com.ico
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/fingerprintjs/fingerprintjs/
         - title: rrweb-io/rrweb
-          url: https://github.com/rrweb-io/rrweb
-          # url: https://www.rrweb.io/
+          url: https://www.rrweb.io/
           description: 记录和回放用户在前端的操作，可用于故障重现
           logo: rrweb.io.png
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/rrweb-io/rrweb
         - title: Taro
           url: https://taro.jd.com/
           description: 开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发各种小程序、H5 和 RN 应用
@@ -1216,15 +1228,19 @@
           description: 简洁好用的数据库表结构文档生成工具
           logo: github.com.svg
         - title: dbeaver
-          url: https://github.com/dbeaver/dbeaver
-          #        url: https://dbeaver.io/
+          url: https://dbeaver.io/
           description: 一款开源的数据库客户端
           logo: dbeaver.io.png
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/dbeaver/dbeaver
         - title: Beekeeper Studio
           url: https://www.beekeeperstudio.io/
-          # url: https://github.com/beekeeper-studio/beekeeper-studio
           description: 一款“还行”的开源跨平台数据客户端
           logo: beekeeperstudio.io.svg
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/beekeeper-studio/beekeeper-studio
         - title: PDManer
           url: https://gitee.com/robergroup/pdmaner
           description: 开源免费的跨平台关系型数据库建模工具
@@ -1273,10 +1289,12 @@
           description: 另一款好用的命令行终端
           logo: fishshell.com.png
         - title: starship
-          #        url: https://starship.rs/
-          url: https://github.com/starship/starship
+          url: https://starship.rs/
           description: 终端状态显示
           logo: starship.rs.png
+          info:
+            - icon: iconfont icon-github
+              url: https://github.com/starship/starship
         - title: z.lua
           url: https://github.com/skywind3000/z.lua
           description: 一款高性能的目录跳转工具
@@ -1342,7 +1360,7 @@
           description: 可以帮助你设计云，并制定云资源预算
           logo: cloudcraft.co.svg
 
-    - name: VSCode 插件
+    - name: VSCode
       links:
         - title: Markdown Preview Enhanced
           url: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
