@@ -10,9 +10,10 @@
 - CSS
 - JavaScript
 - [iconfont](https://www.iconfont.cn/)
-- generate by [jekyll](https://jekyllrb.com/)
-- host by [Github Pages](https://docs.github.com/en/pages/quickstart)
-- dns by [CloudFlare](https://cloudflare.com/)
+- Pipeline by [Github Actions](https://docs.github.com/actions)
+- Generate by [jekyll](https://jekyllrb.com/)
+- Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
+- DNS by [CloudFlare](https://cloudflare.com/)
 
 ## 编码历程与心得体会
 
