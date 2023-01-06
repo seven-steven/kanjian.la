@@ -867,10 +867,6 @@
         #        url: https://codeimg.io/
         #        description: 代码图片美化工具，支持多种样式
         #        logo: codeimg.io.png
-        - title: 在线身份证号码生成器
-          url: https://www.suijidaquan.com/shenfenzheng
-          description: 在线身份证号码生成器，测试数据生成
-          logo: www.suijidaquan.com.jpeg
         - title: Apifox
           url: https://www.apifox.cn/
           description: 全平台的接口文档、调试、Mock、自动化测试工具
