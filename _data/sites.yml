@@ -811,6 +811,10 @@
           url: https://leetcode.com/problemset/all/
           description: 算法学习 No.1
           logo: leetcode.com.png
+          icon:
+            info:
+              - icon: iconfont icon-chinese
+                url: https://leetcode.cn/
         - title: REFACTORING GURU
           url: https://refactoringguru.cn/design-patterns
           description: 设计模式教程
@@ -819,6 +823,10 @@
           url: https://learnxinyminutes.com/
           description: 在 Y 分钟内速成 X, 可以用来快速了解一门语言
           logo: learnxinyminutes.com.ico
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/adambard/learnxinyminutes-docs
         - title: 极客时间
           url: https://time.geekbang.org/activity/getinvite?gk_ucode=09AFAB893C7CC9
           description: 轻松学习，高效学习
@@ -832,14 +840,23 @@
           description: Git 使用手册
           logo: git.svg
         - title: 1on1-questions
-          url: https://github.com/VGraupera/1on1-questions
+          url: https://www.managersclub.com/mega-list-of-1-on-1-meeting-questions/
           description: 1:1 沟通问题列表
           logo: github.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/VGraupera/1on1-questions
         - title: EbookFoundation/free-programming-books
           url: https://github.com/EbookFoundation/free-programming-books/
           description: 分类列举了大量编程书籍和网络资源
           logo: github.com.svg
-
+          icon:
+            info:
+              - icon: iconfont icon-chinese
+                url: https://github.com/VGraupera/1on1-questions
+              - icon: iconfont icon-github
+                url: https://github.com/EbookFoundation/free-programming-books/
     - name: 辅助工具
       links:
         - title: Replit
@@ -848,9 +865,12 @@
           logo: replit.com.png
         - title: gerrit
           url: https://www.gerritcodereview.com/
-          # url: https://github.com/GerritCodeReview/gerrit
           description: code review 工具
           logo: gerritcodereview.com.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/GerritCodeReview/gerrit
         - title: PlantUML
           url: https://plantuml.com/zh/
           description: 一款文本绘图工具
@@ -903,10 +923,6 @@
           url: https://ipw.cn/
           description: 致力于普及 IPv6 ,推进 IPv6 规模部署和应用
           logo: ipw.cn.svg
-        #      - title: 面包多
-        #        url: https://mianbaoduo.com/
-        #        description: 为创作者创收
-        #        logo: mianbaoduo.com.ico
 
     - name: 开源项目
       links:
