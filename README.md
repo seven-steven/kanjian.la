@@ -1,13 +1,14 @@
 # 看见导航
 
-这是一个使用纯 HTML、CSS、JavaScript 开发的静态导航网站。
+一个纯静态导航网站
 
-因为作者初学前端，想要学习各种原生的写法，以及 想要踩更多的坑。所以本项目未引入任何第三方的工具或者框架。仅此而已。
+因为作者初学前端，想要学习各种原生的写法，以及 想要踩更多的坑。所以本项目未引入任何第三方的 CSS 或者 JavaScript 框架。
 
 ## 技术栈
 
 - Code by HTML & CSS & JavaScript
 - Icon by [iconfont](https://www.iconfont.cn/) & [fontawesome](https://fontawesome.com/)
+- Templated by [Liquid](https://shopify.github.io/liquid/)
 - Generate by [jekyll](https://jekyllrb.com/)
 - Pipeline by [Github Actions](https://docs.github.com/actions)
 - Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
@@ -19,10 +20,71 @@
 - [ ] 添加 footer
 - [ ] pc 菜单栏优化 stick 布局
 - [ ] 渐变背景 & 固定背景
-- [ ] 完善 README 使用手册
+- [x] 完善 README 使用手册
 - [x] 使用 jekyll 动态生成站点内容
 - [x] 添加响应式布局
 - [x] 基础静态页面编写
+
+## HOW TO USE
+
+### 开发
+
+#### 预览
+
+1. 克隆仓库到本地 `git clone https://github.com/Seven-Steven/kanjian.la.git`
+1. 使用 Docker 运行代码
+
+  ```bash
+     docker run -it \
+     --rm \
+     -v=$PWD:/srv/jekyll \
+     -p 4000:4000 \
+     jekyll/jekyll:4 jekyll serve
+  ```
+1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
+
+#### [目录结构](https://jekyllrb.com/docs/structure/)
+
+  ```text
+   .
+├── assets    站点静态文件
+│   ├── css     站点 CSS 样式目录
+│   └── image     站点图片
+│            └── logo     导航站点 logo 文件目录
+├── _config.yml     网站配置
+├── _data
+│   └── sites.yml     站点数据
+├── Gemfile     ruby 依赖定义文件
+├── _includes     页面模板
+├── index.html      首页
+├── _layouts      页面布局
+│   ├── default.html      默认布局
+│   └── index.html      首页布局
+├── README.md     项目说明
+└── _site     编译文件目录，可用于发布的静态文件
+  ```
+
+一般情况下，只需要关注 `_config.yml` 和 `data/sites.yml` 文件。
+
+- `_config.yml` 文件是站点的配置信息，包括站点名称、描述、favicon 等信息
+- `data/sites.yml` 文件是站点内容配置文件，网站的所有内容都是依照这个文件编译生成
+
+### 部署
+
+1. 使用 Docker 编译代码
+
+  ```bash
+  docker run --rm -it \
+    -v ${PWD}:/srv/jekyll \
+    -v ${PWD}/_site:/srv/jekyll/_site \
+    jekyll/builder:4 /bin/bash -c '
+      gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
+      bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
+      bundle config --delete "mirror.https://rubygems.org" && \
+      jekyll build --future'
+  ```
+
+1. 发布 `_site` 目录到服务器
 
 ## 编码历程与心得体会
 
