@@ -1574,6 +1574,19 @@
 
     - name: 影音资源
       links:
+        - title: listen1
+          url: https://listen1.github.io/listen1/
+          description: 免费听全网音乐
+          logo: listen1.png
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: github
+                url: https://github.com/listen1
+        - title: 哔嘀影视
+          url: https://www.bdys01.com/
+          description: 热门影视在线观看
+          logo: bdys01.com.svg
         - title: RARGB
           url: https://rargb.to/
           description: 高质量影音下载网站
@@ -1582,10 +1595,6 @@
           url: https://www.btnull.org/
           description: 满足你的影视需求
           logo: btnull.org.ico
-        - title: 哔嘀影视
-          url: https://www.bdys01.com/
-          description: 热门影视在线观看
-          logo: bdys01.com.svg
         - title: 茶杯狐
           url: https://cupfox.app/
           description: 另一个刷剧网站
