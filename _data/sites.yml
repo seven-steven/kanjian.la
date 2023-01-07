@@ -17,7 +17,7 @@
       url: https://www.mathsisfun.com/
       description: 生动形象的数学知识
       logo: mathsisfun.com.svg
-      icon:
+      icons:
         info:
           - title: English
             icon: ri-english-input
@@ -42,7 +42,7 @@
       url: https://tagly.notion.site/
       description: 精选各类有趣的工具、网站和服务，与你共同探索浩瀚的数字海洋
       logo: tagly.notion.site.png
-      icon:
+      icons:
         info:
           - icon: ri-book-2-line
             title: 介绍
@@ -75,7 +75,7 @@
       url: https://www.markdown.xyz/
       description: 学习快速、轻松地书写
       logo: markdownguide.org.svg
-      icon:
+      icons:
         info:
           - icon: ri-english-input
             title: 官网
@@ -307,7 +307,7 @@
           url: https://symless.com/synergy
           description: 纯软件的跨电脑键鼠共享方案，代码开源，免费版本需要自己编译
           logo: synergy.svg
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 title: github
@@ -531,7 +531,7 @@
           url: https://igoutu.cn/
           description: 图标、插图、照片、音乐和设计工具
           logo: igoutu.cn.png
-          icon:
+          icons:
             info:
               - icon: icon-english
                 title: English
@@ -723,7 +723,7 @@
           url: https://remixicon.com/
           description: 开源免费图标库
           logo: remixicon.com.ico
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 title: 文档
@@ -735,7 +735,7 @@
           url: https://fontawesome.com/
           description: 字体图标库，部分免费
           logo: fontawesome.com.svg
-          icon:
+          icons:
             status:
               - title: 部分收费
                 icon: ri-money-cny-circle-line
@@ -766,7 +766,7 @@
           url: https://fontello.com/
           description: 把矢量图形打包成 webfonts，同时内置了大量图标，按需下载
           logo: fontello.com.ico
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 title: wiki
@@ -778,7 +778,7 @@
           url: https://heroicons.com/
           description: SVG 图标库，由 Tailwind CSS 团队制作
           logo: heroicons.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 title: github
@@ -791,7 +791,7 @@
           url: https://ionic.io/
           description: 基于 js 的开源图标库
           logo: ionic.io.png
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -911,7 +911,7 @@
           url: https://leetcode.cn/
           description: 算法学习 No.1
           logo: leetcode.com.png
-          icon:
+          icons:
             info:
               - icon: ri-english-input
                 url: https://leetcode.com/
@@ -923,7 +923,7 @@
           url: https://learnxinyminutes.com/
           description: 在 Y 分钟内速成 X, 可以用来快速了解一门语言
           logo: learnxinyminutes.com.ico
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/adambard/learnxinyminutes-docs
@@ -943,7 +943,7 @@
           url: https://www.managersclub.com/mega-list-of-1-on-1-meeting-questions/
           description: 1:1 沟通问题列表
           logo: github.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/VGraupera/1on1-questions
@@ -951,7 +951,7 @@
           url: https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-zh.html
           description: 分类列举了大量编程书籍和网络资源
           logo: github.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-english-input
                 url: https://ebookfoundation.github.io/free-programming-books/
@@ -967,7 +967,7 @@
           url: https://www.gerritcodereview.com/
           description: code review 工具
           logo: gerritcodereview.com.png
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/GerritCodeReview/gerrit
@@ -1038,7 +1038,7 @@
           url: https://min.io/
           description: 一款开源的对象存储服务
           logo: min.io.svg
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/minio/minio
@@ -1048,7 +1048,7 @@
           url: https://github.com/alibaba/DataX
           description: 支持超多数据库的离线数据同步工具
           logo: github.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 url: https://github.com/alibaba/DataX/blob/master/userGuid.md
@@ -1056,7 +1056,7 @@
           url: https://megaease.com/
           description: 全功能型的流量调度和编排系统
           logo: megaease.com.png
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/megaease/easegress
@@ -1064,7 +1064,7 @@
           url: https://www.truenas.com/
           description: 开源免费 NAS 系统
           logo: truenas.com.png
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 url: https://www.truenas.com/docs/
@@ -1072,7 +1072,7 @@
           url: https://syncthing.net/
           description: 多端数据同步
           logo: syncthing.net.png
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/syncthing/syncthing
@@ -1086,7 +1086,7 @@
           url: https://molunerfinn.com/PicGo/
           description: 兼容多种服务端的图床客户端
           logo: picgo.png
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/Molunerfinn/PicGo
@@ -1102,7 +1102,7 @@
           url: https://github.com/cloudreve/Cloudreve
           logo: github.com.svg
           description: 支持多家云存储驱动的公有云文件系统
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/Molunerfinn/PicGo
@@ -1110,7 +1110,7 @@
           url: https://alist-doc.nn.ci/
           description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
           logo: alist-doc.nn.ci.svg
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 url: https://alist-doc.nn.ci/docs/intro
@@ -1118,7 +1118,7 @@
           url: https://github.com/fatedier/frp
           description: 一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议
           logo: github.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-book-2-line
                 url: https://gofrp.org/docs/
@@ -1126,7 +1126,7 @@
           url: https://kkfileview.keking.cn/zh-cn/index.html
           description: 主流办公文档的在线预览解决方案
           logo: kkfileview.keking.cn.ico
-          icon:
+          icons:
             - icon: ri-github-fill
               url: https://github.com/kekingcn/kkFileView
         - title: Roverr/rtsp-streamH
@@ -1184,7 +1184,7 @@
           url: https://csslayout.io/
           description: 常见的 CSS 布局示例
           logo: csslayout.io.png
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/phuocng/csslayout
@@ -1204,7 +1204,7 @@
           url: https://animate.style/
           description: css 动效库
           logo: github.com.svg
-          icon:
+          icons:
             info:
               - icon: ri-github-fill
                 url: https://github.com/animate-css/animate.css

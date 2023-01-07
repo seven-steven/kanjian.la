@@ -1,6 +1,6 @@
 <div class="web-item">
   <div class="web-item-icons">
-    {% assign icon_list = web_item.icon.status %}
+    {% assign icon_list = web_item.icons.status %}
     {% include web-item-icon-list.html icon_list = icon_list %}
     <div class="web-item-logo">
       <a href="{{ web_item.url }}" target="_blank" title="{{ web_item.url }}">
@@ -8,7 +8,7 @@
         <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="logo for {{web_item.title}}" loading="lazy" />
       </a>
     </div>
-    {% assign icon_list = web_item.icon.info %}
+    {% assign icon_list = web_item.icons.info %}
     {% include web-item-icon-list.html icon_list = icon_list %}
   </div>
   <div class="web-item-text">
