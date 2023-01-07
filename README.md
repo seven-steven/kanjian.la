@@ -13,6 +13,17 @@
 - Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
 - DNS by [CloudFlare](https://cloudflare.com/)
 
+## TODO LIST
+
+- [ ] 添加 icon title & site-item title
+- [ ] 添加 footer
+- [ ] pc 菜单栏优化 stick 布局
+- [ ] 渐变背景 & 固定背景
+- [ ] 完善 README 使用手册
+- [x] 使用 jekyll 动态生成站点内容
+- [x] 添加响应式布局
+- [x] 基础静态页面编写
+
 ## 编码历程与心得体会
 
 ### 经验漫谈

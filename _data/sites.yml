@@ -43,6 +43,10 @@
       url: https://tagly.notion.site/
       description: 精选各类有趣的工具、网站和服务，与你共同探索浩瀚的数字海洋
       logo: tagly.notion.site.png
+      icon:
+        info:
+          - icon: iconfont icon-document
+            url: https://tagly.notion.site/3a0eaafbaa8343388c01f32e06c91597
     - title: 多邻国
       url: https://www.duolingo.cn/
       description: 有趣生动的语言学习网站
