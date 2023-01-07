@@ -6,12 +6,10 @@
 
 ## 技术栈
 
-- HTML
-- CSS
-- JavaScript
-- [iconfont](https://www.iconfont.cn/)
-- Pipeline by [Github Actions](https://docs.github.com/actions)
+- Code by HTML & CSS & JavaScript
+- Icon by [iconfont](https://www.iconfont.cn/) & [fontawesome](https://fontawesome.com/)
 - Generate by [jekyll](https://jekyllrb.com/)
+- Pipeline by [Github Actions](https://docs.github.com/actions)
 - Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
 - DNS by [CloudFlare](https://cloudflare.com/)
 

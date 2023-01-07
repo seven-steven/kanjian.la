@@ -39,6 +39,10 @@
       url: https://space.bilibili.com/88461692
       description: 深入浅出、直观明了地分享数学之美
       logo: 3blue1brown.com.png
+    - title: 全网漫游指南
+      url: https://tagly.notion.site/
+      description: 精选各类有趣的工具、网站和服务，与你共同探索浩瀚的数字海洋
+      logo: tagly.notion.site.png
     - title: 多邻国
       url: https://www.duolingo.cn/
       description: 有趣生动的语言学习网站
@@ -807,6 +811,10 @@
           url: https://leetcode.com/problemset/all/
           description: 算法学习 No.1
           logo: leetcode.com.png
+          icon:
+            info:
+              - icon: iconfont icon-chinese
+                url: https://leetcode.cn/
         - title: REFACTORING GURU
           url: https://refactoringguru.cn/design-patterns
           description: 设计模式教程
@@ -815,6 +823,10 @@
           url: https://learnxinyminutes.com/
           description: 在 Y 分钟内速成 X, 可以用来快速了解一门语言
           logo: learnxinyminutes.com.ico
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/adambard/learnxinyminutes-docs
         - title: 极客时间
           url: https://time.geekbang.org/activity/getinvite?gk_ucode=09AFAB893C7CC9
           description: 轻松学习，高效学习
@@ -828,14 +840,23 @@
           description: Git 使用手册
           logo: git.svg
         - title: 1on1-questions
-          url: https://github.com/VGraupera/1on1-questions
+          url: https://www.managersclub.com/mega-list-of-1-on-1-meeting-questions/
           description: 1:1 沟通问题列表
           logo: github.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/VGraupera/1on1-questions
         - title: EbookFoundation/free-programming-books
           url: https://github.com/EbookFoundation/free-programming-books/
           description: 分类列举了大量编程书籍和网络资源
           logo: github.com.svg
-
+          icon:
+            info:
+              - icon: iconfont icon-chinese
+                url: https://github.com/VGraupera/1on1-questions
+              - icon: iconfont icon-github
+                url: https://github.com/EbookFoundation/free-programming-books/
     - name: 辅助工具
       links:
         - title: Replit
@@ -844,9 +865,12 @@
           logo: replit.com.png
         - title: gerrit
           url: https://www.gerritcodereview.com/
-          # url: https://github.com/GerritCodeReview/gerrit
           description: code review 工具
           logo: gerritcodereview.com.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/GerritCodeReview/gerrit
         - title: PlantUML
           url: https://plantuml.com/zh/
           description: 一款文本绘图工具
@@ -863,10 +887,6 @@
         #        url: https://codeimg.io/
         #        description: 代码图片美化工具，支持多种样式
         #        logo: codeimg.io.png
-        - title: 在线身份证号码生成器
-          url: https://www.suijidaquan.com/shenfenzheng
-          description: 在线身份证号码生成器，测试数据生成
-          logo: www.suijidaquan.com.jpeg
         - title: Apifox
           url: https://www.apifox.cn/
           description: 全平台的接口文档、调试、Mock、自动化测试工具
@@ -903,10 +923,6 @@
           url: https://ipw.cn/
           description: 致力于普及 IPv6 ,推进 IPv6 规模部署和应用
           logo: ipw.cn.svg
-        #      - title: 面包多
-        #        url: https://mianbaoduo.com/
-        #        description: 为创作者创收
-        #        logo: mianbaoduo.com.ico
 
     - name: 开源项目
       links:
@@ -922,31 +938,58 @@
           url: https://min.io/
           description: 一款开源的对象存储服务
           logo: min.io.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/minio/minio
+              - icon: iconfont icon-document
+                url: https://min.io/docs/minio/kubernetes/upstream/
         - title: alibaba/DataX
           url: https://github.com/alibaba/DataX
           description: 支持超多数据库的离线数据同步工具
           logo: github.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-document
+                url: https://github.com/alibaba/DataX/blob/master/userGuid.md
         - title: megaease/easegress
-          url: https://github.com/megaease/easegress
-          # url: https://megaease.com/
+          url: https://megaease.com/
           description: 全功能型的流量调度和编排系统
           logo: megaease.com.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/megaease/easegress
         - title: TrueNAS
           url: https://www.truenas.com/
           description: 开源免费 NAS 系统
           logo: truenas.com.png
+          icon:
+            info:
+              - icon: iconfont icon-document
+                url: https://www.truenas.com/docs/
         - title: Syncthing
           url: https://syncthing.net/
           description: 多端数据同步
           logo: syncthing.net.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/syncthing/syncthing
+              - icon: iconfont icon-document
+                url: https://docs.syncthing.net/
         - title: CompVis/stable-diffusion
           url: https://github.com/CompVis/stable-diffusion
           description: 根据文本描述生成精美图片
           logo: github.com.svg
         - title: Molunerfinn/PicGo
-          url: https://github.com/Molunerfinn/PicGo
+          url: https://molunerfinn.com/PicGo/
           description: 兼容多种服务端的图床客户端
           logo: picgo.png
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/Molunerfinn/PicGo
         - title: NewFuture/DDNS
           url: https://github.com/NewFuture/DDNS
           description: 自动更新域名解析到本机 IP
@@ -959,6 +1002,10 @@
           url: https://github.com/cloudreve/Cloudreve
           logo: github.com.svg
           description: 支持多家云存储驱动的公有云文件系统
+          icon:
+            info:
+              - icon: iconfont icon-github
+                url: https://github.com/Molunerfinn/PicGo
         - title: Alist
           url: https://alist-doc.nn.ci/
           description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
@@ -971,10 +1018,17 @@
           url: https://github.com/fatedier/frp
           description: 一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议
           logo: github.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-document
+                url: https://gofrp.org/docs/
         - title: kkFileView
-          url: https://github.com/kekingcn/kkFileView
-          logo: kkfileview.keking.cn.ico
+          url: https://kkfileview.keking.cn/zh-cn/index.html
           description: 主流办公文档的在线预览解决方案
+          logo: kkfileview.keking.cn.ico
+          icon:
+            - icon: iconfont icon-github
+              url: https://github.com/kekingcn/kkFileView
         - title: Roverr/rtsp-streamH
           logo: github.com.svg
           url: https://github.com/Roverr/rtsp-stream

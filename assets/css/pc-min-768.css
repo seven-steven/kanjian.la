@@ -63,9 +63,9 @@ nav>.nav {
   border-bottom: .05rem solid rgba(var(--color-font-rgb), calc(.5 * var(--color-font-opacity)));
 }
 
-/* .nav-sub-container:focus-within>.nav {
-  display: none;
-} */
+.nav-sub-container:focus-within>.nav {
+  display: initial;
+}
 
 .nav-sub-container>a>span:last-of-type {
   display: inline-block;
