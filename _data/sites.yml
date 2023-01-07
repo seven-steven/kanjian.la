@@ -14,15 +14,14 @@
       description: 涵盖了各个学科的科普视频，视频内容小而精，强烈推荐
       logo: crashcourse.club.png
     - title: 数学乐
-      url: https://www.shuxuele.com/index.html
+      url: https://www.mathsisfun.com/
       description: 生动形象的数学知识
       logo: mathsisfun.com.svg
       icon:
-        status:
-          - icon: iconfont icon-english
         info:
-          - icon: iconfont icon-chinese
-            url: https://www.mathsisfun.com/
+          - title: English
+            icon: iconfont icon-english
+            url: https://www.shuxuele.com/index.html
     - title: Coursera
       url: https://www.coursera.org/
       description: 无限制学习世界一流大学和公司的课程、专业证书和学位
@@ -46,6 +45,7 @@
       icon:
         info:
           - icon: iconfont icon-document
+            title: 介绍
             url: https://tagly.notion.site/3a0eaafbaa8343388c01f32e06c91597
     - title: 多邻国
       url: https://www.duolingo.cn/
@@ -73,9 +73,13 @@
       logo: bilibili-wujinshaonv.jpg
     - title: Markdown 入门指南
       url: https://www.markdown.xyz/
-      # url: https://www.markdownguide.org/
       description: 学习快速、轻松地书写
       logo: markdownguide.org.svg
+      icon:
+        info:
+          - icon: iconfont icon-english
+            title: 官网
+            url: https://www.markdownguide.org/
     - title: oeasy 教程
       url: http://oeasy.org/
       description: 给想学没钱学的老百姓做的教程
@@ -301,9 +305,13 @@
           logo: getquicker.net.ico
         - title: Synergy
           url: https://symless.com/synergy
-          # url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
           description: 纯软件的跨电脑键鼠共享方案，代码开源，免费版本需要自己编译
           logo: synergy.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                title: github
+                url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
         - title: Awesome Windows
           url: https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
           description: Windows 精品软件清单
@@ -523,6 +531,11 @@
           url: https://igoutu.cn/
           description: 图标、插图、照片、音乐和设计工具
           logo: igoutu.cn.png
+          icon:
+            info:
+              - icon: icon-english
+                title: English
+                url: https://icons8.com/icons
 
     - name: 图片素材
       links:
@@ -704,6 +717,93 @@
           description: 从曲目中分离人声和音乐
           logo: lalal.ai.png
 
+    - name: 图标库
+      links:
+        - title: iconfont
+          url: https://www.iconfont.cn/
+          description: 海量用户贡献的海量图标库，可自主选择下载使用
+          logo: www.iconfont.cn.svg
+        - title: REMIX ICON
+          url: https://remixicon.com/
+          description: 开源免费图标库
+          logo: remixicon.com.ico
+          icon:
+            info:
+              - icon: iconfont icon-document
+                title: 文档
+                url: https://github.com/Remix-Design/RemixIcon/blob/master/README_CN.md
+              - icon: iconfont icon-github
+                url: https://github.com/Remix-Design/RemixIcon
+                title: github
+        - title: FontAwesome
+          url: https://fontawesome.com/
+          description: 字体图标库，部分免费
+          logo: fontawesome.com.svg
+          icon:
+            status:
+              - title: 部分收费
+                icon: fa-solid fa-yen-sign
+              - title: github
+                icon: iconfont icon-github
+                url: https://github.com/FortAwesome/Font-Awesome
+        - title: IconPark
+          url: https://iconpark.oceanengine.com/
+          description: 字节跳动巨量引擎出品的开源 SVG 图标库
+          logo: iconpark.oceanengine.com.svg
+          icons:
+            info:
+              - icon: iconfont icon-document
+                name: 文档
+                url: https://bytedance.feishu.cn/wiki/wikcnrOVHCJQ4V3a7mDvmLjrePf#KNxVYO
+              - icon: iconfont icon-github
+                name: github
+                url: iconpark.oceanengine.com.svg
+        - title: iconmonstr
+          url: https://iconmonstr.com/
+          description: 德国团队出品的完全免费的图标库
+          logo: iconmonstr.com.ico
+        - title: Material Design
+          url: https://fonts.google.com/icons
+          description: Google 设计团队出品
+          logo: fonts.google.com.svg
+        - title: fontello
+          url: https://fontello.com/
+          description: 把矢量图形打包成 webfonts，同时内置了大量图标，按需下载
+          logo: fontello.com.ico
+          icon:
+            info:
+              - icon: iconfont icon-document
+                title: wiki
+                url: https://github.com/fontello/fontello/wiki/Help
+              - icon: iconfont icon-github
+                title: github
+                url: https://github.com/fontello/fontello
+        - title: heroicons
+          url: https://heroicons.com/
+          description: SVG 图标库，由 Tailwind CSS 团队制作
+          logo: heroicons.com.svg
+          icon:
+            info:
+              - icon: iconfont icon-github
+                title: github
+                url: https://github.com/tailwindlabs/heroicons
+        - title: LivIcons Evolution
+          url: https://livicons.com/
+          description: 动态图标库
+          logo: livicons.com.png
+        - title: ionicons
+          url: https://ionic.io/
+          description: 基于 js 的开源图标库
+          logo: ionic.io.png
+          icon:
+            info:
+              - icon: iconfont icon-document
+                title: Document
+                url: https://ionic.io/ionicons/usage
+              - icon: iconfont icon-github
+                title: github
+                url: https://github.com/ionic-team/ionicons
+
     - name: 颜色搭配
       links:
         - title: Reeoo
@@ -852,13 +952,13 @@
               - icon: iconfont icon-github
                 url: https://github.com/VGraupera/1on1-questions
         - title: EbookFoundation/free-programming-books
-          url: https://github.com/EbookFoundation/free-programming-books/
+          url: https://ebookfoundation.github.io/free-programming-books/
           description: 分类列举了大量编程书籍和网络资源
           logo: github.com.svg
           icon:
             info:
               - icon: iconfont icon-chinese
-                url: https://github.com/VGraupera/1on1-questions
+                url: https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-zh.html
               - icon: iconfont icon-github
                 url: https://github.com/EbookFoundation/free-programming-books/
     - name: 辅助工具
@@ -1147,10 +1247,6 @@
           url: https://github.com/codemirror/codemirror5
           description: 支持多种语言的代码编辑器
           logo: github.com.svg
-        - title: FontAwesome
-          url: https://fontawesome.com/
-          description: 矢量图标库
-          logo: fontawesome.com.svg
         - title: Bootstrap
           url: https://getbootstrap.com/
           description: 强大、可扩展、功能丰富的前端工具箱

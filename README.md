@@ -7,7 +7,7 @@
 ## 技术栈
 
 - Code by HTML & CSS & JavaScript
-- Icon by [iconfont](https://www.iconfont.cn/) & [fontawesome](https://fontawesome.com/)
+- Icon by [iconfont](https://www.iconfont.cn/) & [fontawesome](https://fontawesome.com/search?o=r&m=free)
 - Templated by [Liquid](https://shopify.github.io/liquid/)
 - Generate by [jekyll](https://jekyllrb.com/)
 - Pipeline by [Github Actions](https://docs.github.com/actions)
