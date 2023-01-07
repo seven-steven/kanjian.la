@@ -5,8 +5,15 @@
     "dockerfile": "Dockerfile-jekyll"
   },
   "appPort": 4000,
-  "postCreateCommand": "bundle install",
-  "postStartCommand": "bundle exec jekyll serve",
+  "postCreateCommand": "mkdir -p /root/.ssh && cp -r /root/.ssh-host/* /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && bundle install",
+  // "postStartCommand": "jekyll serve",
+  // "mounts": [
+  //   "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+  // ],
+  "runArgs": [
+    "-v",
+    "${env:HOME}${env:USERPROFILE}/.ssh/id_rsa:/root/.ssh-host/id_rsa:ro"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
