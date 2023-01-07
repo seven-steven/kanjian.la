@@ -32,36 +32,37 @@
 #### 预览
 
 1. 克隆仓库到本地 `git clone https://github.com/Seven-Steven/kanjian.la.git`
+1. 进入代码目录 `cd kanjian.la`
 1. 使用 Docker 运行代码
 
-  ```bash
-     docker run -it \
-     --rm \
-     -v=$PWD:/srv/jekyll \
-     -p 4000:4000 \
-     jekyll/jekyll:4 jekyll serve
-  ```
+    ```bash
+      docker run -it \
+      --rm \
+      -v=$PWD:/srv/jekyll \
+      -p 4000:4000 \
+      jekyll/jekyll:4 jekyll serve
+    ```
 1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
 
 #### [目录结构](https://jekyllrb.com/docs/structure/)
 
   ```text
-   .
-├── assets    站点静态文件
-│   ├── css     站点 CSS 样式目录
-│   └── image     站点图片
-│            └── logo     导航站点 logo 文件目录
-├── _config.yml     网站配置
-├── _data
-│   └── sites.yml     站点数据
-├── Gemfile     ruby 依赖定义文件
-├── _includes     页面模板
-├── index.html      首页
-├── _layouts      页面布局
-│   ├── default.html      默认布局
-│   └── index.html      首页布局
-├── README.md     项目说明
-└── _site     编译文件目录，可用于发布的静态文件
+    .
+  ├── assets    站点静态文件
+  │   ├── css     站点 CSS 样式目录
+  │   └── image     站点图片
+  │            └── logo     导航站点 logo 文件目录
+  ├── _config.yml     网站配置
+  ├── _data
+  │   └── sites.yml     站点数据
+  ├── Gemfile     ruby 依赖定义文件
+  ├── _includes     页面模板
+  ├── index.html      首页
+  ├── _layouts      页面布局
+  │   ├── default.html      默认布局
+  │   └── index.html      首页布局
+  ├── README.md     项目说明
+  └── _site     编译文件目录，可用于发布的静态文件
   ```
 
 一般情况下，只需要关注 `_config.yml` 和 `data/sites.yml` 文件。
@@ -73,16 +74,16 @@
 
 1. 使用 Docker 编译代码
 
-  ```bash
-  docker run --rm -it \
-    -v ${PWD}:/srv/jekyll \
-    -v ${PWD}/_site:/srv/jekyll/_site \
-    jekyll/builder:4 /bin/bash -c '
-      gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
-      bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
-      bundle config --delete "mirror.https://rubygems.org" && \
-      jekyll build --future'
-  ```
+    ```bash
+    docker run --rm -it \
+      -v ${PWD}:/srv/jekyll \
+      -v ${PWD}/_site:/srv/jekyll/_site \
+      jekyll/builder:4 /bin/bash -c '
+        gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
+        bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
+        bundle config --delete "mirror.https://rubygems.org" && \
+        jekyll build --future'
+    ```
 
 1. 发布 `_site` 目录到服务器
 
