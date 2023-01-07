@@ -36,18 +36,17 @@
 1. 使用 Docker 运行代码
 
     ```bash
-      docker run -it \
-      --rm \
-      -v=$PWD:/srv/jekyll \
-      -p 4000:4000 \
-      jekyll/jekyll:4 jekyll serve
+    docker run -it \
+    --rm \
+    -v=$PWD:/srv/jekyll \
+    -p 4000:4000 \
+    jekyll/jekyll:4 jekyll serve
     ```
 1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
 
 #### [目录结构](https://jekyllrb.com/docs/structure/)
 
   ```text
-    .
   ├── assets    站点静态文件
   │   ├── css     站点 CSS 样式目录
   │   └── image     站点图片
