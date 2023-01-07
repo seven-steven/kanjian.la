@@ -20,7 +20,7 @@
 - [ ] pc 菜单栏优化 stick 布局
 - [ ] 渐变背景 & 固定背景
 - [ ] 高分屏适配
-- [] 添加微信分享图标
+- [ ] 添加微信分享图标
 - [x] 添加 icon title & site-item title
 - [x] 完善 README 使用手册
 - [x] 使用 jekyll 动态生成站点内容
