@@ -24,21 +24,19 @@
   <meta name="twitter:image" content="{{ site.url }}{{ site.logo }}">
 
   <link rel="shortcut icon" href="./assets/image/favicon.png">
+  <link rel="stylesheet" href="./assets/remixicon/remixicon.css">
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/mobile-max-600.css">
   <link rel="stylesheet" media="only screen and (min-width: 600px)" href="./assets/css/tablet-min-600.css">
   <link rel="stylesheet" media="only screen and (min-width: 768px)" href="./assets/css/pc-min-768.css">
   <link rel="stylesheet" media="only screen and (min-width: 1200px)" href="./assets/css/large-min-1200.css">
-  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="./assets/iconfont/iconfont.css">
 </head>
 
 <body>
   <div class="container">
     <header>
       <div class="header">
-        <span class="iconfont icon-menu"
-          onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
+        <span class="ri-menu-fill" onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
       </div>
       <nav>
         <ul class="nav">
@@ -53,7 +51,7 @@
               <span class="nav-icon {{ category.icon }}"></span>
               {{ category.name }}
               {% if category.sub %}
-              <span class="iconfont icon-right"></span>
+              <span class="ri-arrow-right-s-line"></span>
               {% endif %}
             </a>
             {% if category.sub %}
@@ -74,8 +72,6 @@
     <footer></footer>
   </div>
 </body>
-
-<!-- <script src="./assets/js/main.js"></script> -->
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>

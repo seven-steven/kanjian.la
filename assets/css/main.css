@@ -65,3 +65,8 @@ a:active {
 .pointer-events-none {
   pointer-events: none;
 }
+
+span[class^="ri-"],
+span[class*=" ri-"] {
+  vertical-align: middle;
+}

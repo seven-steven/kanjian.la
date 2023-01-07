@@ -1,5 +1,5 @@
 - name: 学习资源
-  icon: fa-solid fa-lines-leaning
+  icon: ri-book-3-line
   links:
     - title: 网易公开课
       url: https://open.163.com/
@@ -20,7 +20,7 @@
       icon:
         info:
           - title: English
-            icon: iconfont icon-english
+            icon: ri-english-input
             url: https://www.shuxuele.com/index.html
     - title: Coursera
       url: https://www.coursera.org/
@@ -44,7 +44,7 @@
       logo: tagly.notion.site.png
       icon:
         info:
-          - icon: iconfont icon-document
+          - icon: ri-book-2-line
             title: 介绍
             url: https://tagly.notion.site/3a0eaafbaa8343388c01f32e06c91597
     - title: 多邻国
@@ -77,7 +77,7 @@
       logo: markdownguide.org.svg
       icon:
         info:
-          - icon: iconfont icon-english
+          - icon: ri-english-input
             title: 官网
             url: https://www.markdownguide.org/
     - title: oeasy 教程
@@ -94,7 +94,7 @@
       logo: cook.aiurs.co.svg
 
 - name: 效率办公
-  icon: fa-solid fa-desktop
+  icon: ri-computer-line
   sub:
     - name: 在线工具
       links:
@@ -309,7 +309,7 @@
           logo: synergy.svg
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 title: github
                 url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
         - title: Awesome Windows
@@ -491,7 +491,7 @@
           logo: vmos.com.png
 
 - name: UI 设计
-  icon: fa-solid fa-pencil
+  icon: ri-palette-line
   sub:
     - name: 设计导航
       links:
@@ -539,10 +539,6 @@
 
     - name: 图片素材
       links:
-        - title: iconfont
-          url: https://www.iconfont.cn/
-          description: 阿里巴巴矢量图标库
-          logo: iconfont.cn.svg
         - title: Pixabay
           url: https://pixabay.com/
           description: 免费图片、视频、音效
@@ -729,10 +725,10 @@
           logo: remixicon.com.ico
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 title: 文档
                 url: https://github.com/Remix-Design/RemixIcon/blob/master/README_CN.md
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/Remix-Design/RemixIcon
                 title: github
         - title: FontAwesome
@@ -742,9 +738,9 @@
           icon:
             status:
               - title: 部分收费
-                icon: fa-solid fa-yen-sign
+                icon: ri-money-cny-circle-line
               - title: github
-                icon: iconfont icon-github
+                icon: ri-github-fill
                 url: https://github.com/FortAwesome/Font-Awesome
         - title: IconPark
           url: https://iconpark.oceanengine.com/
@@ -752,10 +748,10 @@
           logo: iconpark.oceanengine.com.svg
           icons:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 name: 文档
                 url: https://bytedance.feishu.cn/wiki/wikcnrOVHCJQ4V3a7mDvmLjrePf#KNxVYO
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 name: github
                 url: iconpark.oceanengine.com.svg
         - title: iconmonstr
@@ -772,10 +768,10 @@
           logo: fontello.com.ico
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 title: wiki
                 url: https://github.com/fontello/fontello/wiki/Help
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 title: github
                 url: https://github.com/fontello/fontello
         - title: heroicons
@@ -784,7 +780,7 @@
           logo: heroicons.com.svg
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 title: github
                 url: https://github.com/tailwindlabs/heroicons
         - title: LivIcons Evolution
@@ -797,10 +793,10 @@
           logo: ionic.io.png
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 title: Document
                 url: https://ionic.io/ionicons/usage
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 title: github
                 url: https://github.com/ionic-team/ionicons
 
@@ -907,18 +903,18 @@
           logo: fontconverter.com.svg
 
 - name: 开发资源
-  icon: fa-solid fa-code
+  icon: ri-code-box-line
   sub:
     - name: 编程通识
       links:
         - title: LeetCode
-          url: https://leetcode.com/problemset/all/
+          url: https://leetcode.cn/
           description: 算法学习 No.1
           logo: leetcode.com.png
           icon:
             info:
-              - icon: iconfont icon-chinese
-                url: https://leetcode.cn/
+              - icon: ri-english-input
+                url: https://leetcode.com/
         - title: REFACTORING GURU
           url: https://refactoringguru.cn/design-patterns
           description: 设计模式教程
@@ -929,7 +925,7 @@
           logo: learnxinyminutes.com.ico
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/adambard/learnxinyminutes-docs
         - title: 极客时间
           url: https://time.geekbang.org/activity/getinvite?gk_ucode=09AFAB893C7CC9
@@ -949,17 +945,17 @@
           logo: github.com.svg
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/VGraupera/1on1-questions
         - title: EbookFoundation/free-programming-books
-          url: https://ebookfoundation.github.io/free-programming-books/
+          url: https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-zh.html
           description: 分类列举了大量编程书籍和网络资源
           logo: github.com.svg
           icon:
             info:
-              - icon: iconfont icon-chinese
-                url: https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-zh.html
-              - icon: iconfont icon-github
+              - icon: ri-english-input
+                url: https://ebookfoundation.github.io/free-programming-books/
+              - icon: ri-github-fill
                 url: https://github.com/EbookFoundation/free-programming-books/
     - name: 辅助工具
       links:
@@ -973,7 +969,7 @@
           logo: gerritcodereview.com.png
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/GerritCodeReview/gerrit
         - title: PlantUML
           url: https://plantuml.com/zh/
@@ -1044,9 +1040,9 @@
           logo: min.io.svg
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/minio/minio
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://min.io/docs/minio/kubernetes/upstream/
         - title: alibaba/DataX
           url: https://github.com/alibaba/DataX
@@ -1054,7 +1050,7 @@
           logo: github.com.svg
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://github.com/alibaba/DataX/blob/master/userGuid.md
         - title: megaease/easegress
           url: https://megaease.com/
@@ -1062,7 +1058,7 @@
           logo: megaease.com.png
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/megaease/easegress
         - title: TrueNAS
           url: https://www.truenas.com/
@@ -1070,7 +1066,7 @@
           logo: truenas.com.png
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://www.truenas.com/docs/
         - title: Syncthing
           url: https://syncthing.net/
@@ -1078,9 +1074,9 @@
           logo: syncthing.net.png
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/syncthing/syncthing
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://docs.syncthing.net/
         - title: CompVis/stable-diffusion
           url: https://github.com/CompVis/stable-diffusion
@@ -1092,7 +1088,7 @@
           logo: picgo.png
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/Molunerfinn/PicGo
         - title: NewFuture/DDNS
           url: https://github.com/NewFuture/DDNS
@@ -1108,7 +1104,7 @@
           description: 支持多家云存储驱动的公有云文件系统
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/Molunerfinn/PicGo
         - title: Alist
           url: https://alist-doc.nn.ci/
@@ -1116,7 +1112,7 @@
           logo: alist-doc.nn.ci.svg
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://alist-doc.nn.ci/docs/intro
         - title: fatedier/frp
           url: https://github.com/fatedier/frp
@@ -1124,14 +1120,14 @@
           logo: github.com.svg
           icon:
             info:
-              - icon: iconfont icon-document
+              - icon: ri-book-2-line
                 url: https://gofrp.org/docs/
         - title: kkFileView
           url: https://kkfileview.keking.cn/zh-cn/index.html
           description: 主流办公文档的在线预览解决方案
           logo: kkfileview.keking.cn.ico
           icon:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/kekingcn/kkFileView
         - title: Roverr/rtsp-streamH
           logo: github.com.svg
@@ -1190,7 +1186,7 @@
           logo: csslayout.io.png
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/phuocng/csslayout
         - title: 50projects50days
           url: https://github.com/bradtraversy/50projects50days
@@ -1210,7 +1206,7 @@
           logo: github.com.svg
           icon:
             info:
-              - icon: iconfont icon-github
+              - icon: ri-github-fill
                 url: https://github.com/animate-css/animate.css
         - title: normalize.css
           url: https://github.com/necolas/normalize.css
@@ -1221,7 +1217,7 @@
           description: 基于 Flexbox 的现代化响应式 css 框架
           logo: bulma.io.svg
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/jgthms/bulma
         - title: IanLunn/Hover
           url: https://github.com/IanLunn/Hover
@@ -1284,14 +1280,14 @@
           description: 生成客户端唯一标识
           logo: fingerprint.com.ico
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/fingerprintjs/fingerprintjs/
         - title: rrweb-io/rrweb
           url: https://www.rrweb.io/
           description: 记录和回放用户在前端的操作，可用于故障重现
           logo: rrweb.io.png
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/rrweb-io/rrweb
         - title: Taro
           url: https://taro.jd.com/
@@ -1390,14 +1386,14 @@
           description: 一款开源的数据库客户端
           logo: dbeaver.io.png
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/dbeaver/dbeaver
         - title: Beekeeper Studio
           url: https://www.beekeeperstudio.io/
           description: 一款“还行”的开源跨平台数据客户端
           logo: beekeeperstudio.io.svg
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/beekeeper-studio/beekeeper-studio
         - title: PDManer
           url: https://gitee.com/robergroup/pdmaner
@@ -1451,7 +1447,7 @@
           description: 终端状态显示
           logo: starship.rs.png
           info:
-            - icon: iconfont icon-github
+            - icon: ri-github-fill
               url: https://github.com/starship/starship
         - title: z.lua
           url: https://github.com/skywind3000/z.lua
@@ -1527,7 +1523,7 @@
           logo: vs-code-extension-markdown-preview-enhanced.svg
 
 - name: 无忧生活
-  icon: fa-solid fa-mountain-sun
+  icon: ri-cake-3-line
   sub:
     - name: 便民服务
       links:
@@ -1703,7 +1699,7 @@
           logo: zhujiceping.com.png
 
 - name: 网络博客
-  icon: fa-solid fa-blog
+  icon: ri-edit-2-line
   sub:
     - name: 博客工具
       links:
