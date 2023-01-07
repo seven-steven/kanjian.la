@@ -20,6 +20,7 @@
 - [ ] 添加 footer
 - [ ] pc 菜单栏优化 stick 布局
 - [ ] 渐变背景 & 固定背景
+- [ ] 高分屏适配
 - [x] 完善 README 使用手册
 - [x] 使用 jekyll 动态生成站点内容
 - [x] 添加响应式布局
@@ -64,10 +65,11 @@
   └── _site     编译文件目录，可用于发布的静态文件
   ```
 
-一般情况下，只需要关注 `_config.yml` 和 `data/sites.yml` 文件。
+一般情况下，只需要关注 `_config.yml`, `data/sites.yml` 文件和 `assets/image/logo` 目录
 
 - `_config.yml` 文件是站点的配置信息，包括站点名称、描述、favicon 等信息
 - `data/sites.yml` 文件是站点内容配置文件，网站的所有内容都是依照这个文件编译生成
+- `assets/image/logo` 目录用于存放导航站点 logo，然后被 `data/sites.yml` 引用
 
 ### 部署
 
