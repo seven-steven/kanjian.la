@@ -16,11 +16,11 @@
 
 ## TODO LIST
 
-- [ ] 添加 icon title & site-item title
 - [ ] 添加 footer
 - [ ] pc 菜单栏优化 stick 布局
 - [ ] 渐变背景 & 固定背景
 - [ ] 高分屏适配
+- [ ] 添加 icon title & site-item title
 - [x] 完善 README 使用手册
 - [x] 使用 jekyll 动态生成站点内容
 - [x] 添加响应式布局
@@ -43,6 +43,7 @@
     -p 4000:4000 \
     jekyll/jekyll:4 jekyll serve
     ```
+
 1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
 
 #### [目录结构](https://jekyllrb.com/docs/structure/)
