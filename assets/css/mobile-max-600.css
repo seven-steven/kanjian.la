@@ -237,3 +237,13 @@ div.web-item-logo>a>img:hover {
 .web-item-description:hover {
   opacity: .9;
 }
+
+footer {
+  padding: var(--padding-common);
+  font-size: .6rem;
+  opacity: .6;
+}
+
+footer a {
+  font-weight: bold;
+}
