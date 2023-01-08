@@ -17,10 +17,12 @@
 ## TODO LIST
 
 - [ ] 添加 footer
-- [ ] pc 菜单栏优化 stick 布局
 - [ ] 渐变背景 & 固定背景
 - [ ] 高分屏适配
 - [ ] 添加微信分享图标
+- [ ] 移动端菜单优化 / 考虑添加返回顶部按钮
+- [x] 借用暗锚修正因 stick 布局造成的 a 标签 anchor 定位偏移
+- [x] pc 菜单栏优化 stick 布局
 - [x] 添加 icon title & site-item title
 - [x] 完善 README 使用手册
 - [x] 使用 jekyll 动态生成站点内容
@@ -108,3 +110,4 @@
 ### 其他
 
 1. `inline` 元素不支持 `transform`，需要将其 `display` 设置为 `inline-block` 或者 `block`；
+1. 使用暗锚可以修复因为 `fix` 或者 `stick` 布局带来的 anchor 定位偏移。[参考文档](https://segmentfault.com/q/1010000000124208)

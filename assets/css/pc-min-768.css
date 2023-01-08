@@ -86,6 +86,14 @@ nav>.nav {
   overflow: hidden;
 }
 
+div.sub-group-target-fix {
+  position: relative;
+  top: calc(-1 * (var(--padding-common) * 2 + 2rem));
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
 .web-item {
   width: calc(10.5rem - 3.5 * var(--padding-common));
 }
