@@ -21,6 +21,7 @@
 - [ ] 高分屏适配
 - [ ] 添加微信分享图标
 - [ ] 移动端菜单优化 / 考虑添加返回顶部按钮
+- [ ] 优化动画
 - [x] 借用暗锚修正因 stick 布局造成的 a 标签 anchor 定位偏移
 - [x] pc 菜单栏优化 stick 布局
 - [x] 添加 icon title & site-item title
