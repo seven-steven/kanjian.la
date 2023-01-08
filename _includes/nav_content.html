@@ -1,4 +1,4 @@
-<section class="content">
+<div class="content">
   {% for category in site.data.sites %}
   {% if category.sub %}
   {% for sub_category in category.sub %}
@@ -11,4 +11,4 @@
   {% include sub_category.html %}
   {% endif %}
   {% endfor %}
-</section>
+</div>
