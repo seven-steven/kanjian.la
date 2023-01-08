@@ -11,13 +11,17 @@
 }
 
 header {
-  padding: var(--padding-common) var(--padding-common) 0 var(--padding-common);
+  padding: 0 var(--padding-common);
+  position: sticky;
+  top: 0;
 }
 
 nav {
   display: block;
   padding: var(--padding-common);
   border-radius: calc(var(--padding-common) / 2);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   background-color: var(--color-card-background);
 }
 

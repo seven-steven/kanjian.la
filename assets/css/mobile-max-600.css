@@ -11,6 +11,10 @@ html {
   margin: auto;
 }
 
+header {
+  z-index: 10;
+}
+
 .header {
   background-color: var(--color-primary);
   height: calc(var(--padding-common) * 2 + 1rem);
@@ -69,6 +73,7 @@ nav>.nav {
 .nav .nav {
   display: none;
   padding-left: 1.5rem;
+  z-index: 11;
 }
 
 /**
