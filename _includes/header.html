@@ -1,0 +1,34 @@
+<header>
+  <div class="header">
+    <span class="ri-menu-fill" onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
+  </div>
+  <nav>
+    <ul class="nav">
+      {% for category in site.data.sites %}
+      {% if category.sub %}
+      <li class="nav-sub-container">
+        <a href="javascript:void(0)">
+          {% else %}
+      <li>
+        <a href="#{{ category.name }}">
+          {% endif %}
+          <span class="nav-icon {{ category.icon }}"></span>
+          {{ category.name }}
+          {% if category.sub %}
+          <span class="ri-arrow-right-s-line"></span>
+          {% endif %}
+        </a>
+        {% if category.sub %}
+        <ul class="nav">
+          {% for sub_category in category.sub %}
+          <li>
+            <a href="#{{category.name}}-{{sub_category.name}}">{{ sub_category.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
