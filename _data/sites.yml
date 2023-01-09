@@ -1563,9 +1563,30 @@
       links:
         - title: Markdown Preview Enhanced
           url: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
-          # url: https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/
           description: Markdown 预览增强
           logo: vs-code-extension-markdown-preview-enhanced.svg
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/
+
+    - name: 人工智能
+      links:
+        - title: DreamStudio
+          url: https://beta.dreamstudio.ai/
+          description: 高质量 AI 绘图
+          logo: beta.dreamstudio.ai.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: FAQ
+                url: https://beta.dreamstudio.ai/faq
 
 - name: 无忧生活
   icon: ri-cake-3-line
