@@ -1573,6 +1573,10 @@
 
     - name: 人工智能
       links:
+        - title: ChatGPT
+          url: https://chat.openai.com/
+          description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
+          logo: chat.openai.com.jpeg
         - title: DreamStudio
           url: https://beta.dreamstudio.ai/
           description: 高质量 AI 绘图
