@@ -1,8 +1,8 @@
 <ul class="web-item-icon-list">
   {% for icon in icon_list %}
   <li>
-    <a href="{{ icon.url }}" target="_blank" {% unless icon.url %} class="pointer-events-none" {% endunless %} {% if
-      icon.title %} title="{{ icon.title }}" {% elsif icon.url %} title="{{ icon.url }}" {% endif%}>
+    <a {% if icon.url %} href="{{ icon.url }}" {% endif%} target="_blank"
+      {% if icon.title %} title="{{ icon.title }}"{% elsif icon.url %} title="{{ icon.url }}" {% endif%}>
       <span class="web-item-icon {{ icon.icon }}"></span>
     </a>
   </li>

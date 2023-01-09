@@ -168,6 +168,10 @@ nav>.nav>li>.nav .nav {
   opacity: .7;
 }
 
+.web-item-icon-list a:not([href]) .web-item-icon {
+  opacity: .1;
+}
+
 .web-item-logo {
   display: flex;
   justify-content: center;
