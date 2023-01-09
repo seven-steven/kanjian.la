@@ -1,12 +1,12 @@
 {
-  "name": "ruby-3-jekyll-3.9.3",
+  "name": "jekyll/jekyll:4",
   "build": {
     // "dockerfile": "Dockerfile"
     "dockerfile": "Dockerfile-jekyll"
   },
   "appPort": "4000:4000",
-  "postCreateCommand": "mkdir -p /root/.ssh && cp -r /root/.ssh-host/* /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && bundle config mirror.https:///rubygems.org https://gems.ruby-china.com && bundle install",
-  "postStartCommand": "jekyll serve",
+  "postCreateCommand": "mkdir -p /root/.ssh && cp -r /root/.ssh-host/* /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && bundle config mirror.https://rubygems.org https://gems.ruby-china.com && bundle install",
+  "postStartCommand": "bundle exec jekyll serve",
   "mounts": [
     "source=${env:HOME}${env:USERPROFILE}/.ssh/id_rsa,target=/root/.ssh-host/id_rsa,type=bind,consistency=cached,ro"
   ],
