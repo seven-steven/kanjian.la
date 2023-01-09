@@ -1,6 +1,7 @@
 <div id="{{ sub_category_id }}" class="sub-group-target-fix"></div>
 <section class="sub-group">
-  <h2 href="{{ '#' | append: sub_category_id }}"><span class="ri-price-tag-line"></span>{{ sub_category.name }}
+  <h2><span class="ri-price-tag-line"></span>
+    <a href="{{ '#' | append: sub_category_id }}">{{ sub_category.name }}</a>
   </h2>
   <div class="web-item-container">
     {% for web_item in sub_category.links %}
