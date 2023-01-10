@@ -119,7 +119,7 @@ nav>.nav>li>.nav .nav {
 .sub-group>h2>span {
   display: inline-block;
   font-size: inherit;
-  margin-right: .5rem;
+  margin-right: .2rem;
   transform: rotate(90deg);
 }
 
