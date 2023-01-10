@@ -13,14 +13,17 @@
       url: https://crashcourse.club/category/
       description: 涵盖了各个学科的科普视频，视频内容小而精，强烈推荐
       logo: crashcourse.club.png
-    - title: 数学乐
+    - title: Math is Fun
       url: https://www.mathsisfun.com/
       description: 生动形象的数学知识
       logo: mathsisfun.com.svg
       icons:
+        status:
+          - icon: ri-english-input
+            title: English
         info:
-          - title: English
-            icon: ri-english-input
+          - icon: ri-translate
+            title: 数学乐
             url: https://www.shuxuele.com/index.html
     - title: Coursera
       url: https://www.coursera.org/
