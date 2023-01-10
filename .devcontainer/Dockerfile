@@ -1,14 +1,11 @@
-FROM ruby:3.1.3-slim
+FROM jekyll/jekyll:4.2.0
 
-RUN sed -i "s@http://\(deb\|security\).debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends git && \
-  gem sources --remove https://rubygems.org/ && \
-  gem sources -a https://gems.ruby-china.com/ && \
-  gem sources -u && \
-  gem install bundler && \
-  bundle config mirror.https:///rubygems.org https://gems.ruby-china.com && \
-  gem install jekyll -v 3.9.1
+RUN \
+  apk add --no-cache openssh-client
+# gem sources --remove https://rubygems.org/ && \
+# gem sources -a https://gems.ruby-china.com/ && \
+# gem sources -u && \
+# bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 
 EXPOSE 4000
 
