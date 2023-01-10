@@ -3,7 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "appPort": "4000:4000",
+  "forwardPorts": [
+    4000
+  ],
   "postCreateCommand": "mkdir -p /root/.ssh && cp -r /root/.ssh-host/* /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && touch Gemfile.lock && mkdir -p _site && chmod a+w Gemfile.lock _site &&  bundle config mirror.https://rubygems.org https://gems.ruby-china.com && bundle install",
   "postStartCommand": "bundle exec jekyll serve",
   "mounts": [

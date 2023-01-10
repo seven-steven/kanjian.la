@@ -15,3 +15,5 @@ exclude:
   - CNAME
   - kanjian.la.gemspec
   - LICENSE.txt
+  - Gemfile
+  - Gemfile.lock
