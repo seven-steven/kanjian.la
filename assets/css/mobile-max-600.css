@@ -120,6 +120,10 @@ nav>.nav>li>.nav .nav {
   padding: 0 var(--padding-common);
 }
 
+.sub-group {
+  content-visibility: auto;
+}
+
 .sub-group>h2 {
   padding: var(--padding-common) 0;
   font-size: .8rem;
