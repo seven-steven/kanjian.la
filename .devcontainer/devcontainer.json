@@ -10,7 +10,10 @@
     "ssh": "mkdir -p /root/.ssh && cp -r /root/.ssh-host/* /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/*",
     "bundle": "touch Gemfile.lock && mkdir -p _site && chmod a+w Gemfile.lock _site &&  bundle config mirror.https://rubygems.org https://gems.ruby-china.com && bundle install"
   },
-  "postStartCommand": "bundle exec jekyll serve",
+  "postStartCommand": {
+    "git-update": "git pull",
+    "start": "bundle exec jekyll serve"
+  },
   "mounts": [
     "source=${env:HOME}${env:USERPROFILE}/.ssh/id_rsa,target=/root/.ssh-host/id_rsa,type=bind,consistency=cached,ro"
   ],
