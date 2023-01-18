@@ -960,6 +960,7 @@
                 url: https://ebookfoundation.github.io/free-programming-books/
               - icon: ri-github-fill
                 url: https://github.com/EbookFoundation/free-programming-books/
+
     - name: 辅助工具
       links:
         - title: Replit
@@ -1314,6 +1315,18 @@
           url: https://beta-pro.ant.design/
           description: 开箱即用的中台前端/设计解决方案
           logo: ant.design.svg
+        - title: pnpm
+          url: https://pnpm.io/
+          description: 快速、节省磁盘空间的新一代包管理工具
+          logo: pnpm.io.svg
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://pnpm.io/zh/installation
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/pnpm/pnpm
         - title: TDesign
           url: https://tdesign.tencent.com/
           description: 企业级设计体系
