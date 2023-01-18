@@ -1610,6 +1610,23 @@
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
 
+    - name: 服务编排
+      links:
+        - title: pipedream
+          url: https://pipedream.com/
+          description: 组织、连接、编排 API, 自动化工作流程
+          logo: pipedream.com.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 专业版收费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://pipedream.com/docs
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/PipedreamHQ/pipedream
 - name: 无忧生活
   icon: ri-cake-3-line
   sub:
