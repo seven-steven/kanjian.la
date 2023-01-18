@@ -1059,15 +1059,6 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://github.com/alibaba/DataX/blob/master/userGuid.md
-        - title: megaease/easegress
-          url: https://megaease.com/
-          description: 全功能型的流量调度和编排系统
-          logo: megaease.com.png
-          icons:
-            info:
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/megaease/easegress
         - title: TrueNAS
           url: https://www.truenas.com/
           description: 开源免费 NAS 系统
@@ -1619,7 +1610,7 @@
           icons:
             status:
               - icon: ri-money-cny-circle-line
-                title: 专业版收费
+                title: 专业收费
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -1627,6 +1618,16 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/PipedreamHQ/pipedream
+        - title: Easegress
+          url: https://megaease.com/zh/easegress/
+          description: 全功能型的流量调度和编排系统
+          logo: megaease.com.png
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/megaease/easegress
+
 - name: 无忧生活
   icon: ri-cake-3-line
   sub:
