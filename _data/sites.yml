@@ -1624,6 +1624,9 @@
           logo: megaease.com.png
           icons:
             info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://megaease.com/zh/docs/easegress/
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/megaease/easegress
