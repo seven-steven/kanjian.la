@@ -315,6 +315,15 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
+        - title: Clash for Windows
+          url: https://github.com/Fndroid/clash_for_windows_pkg/releases/latest
+          description: Clash 的 Windows/macOS/Linux 图形客户端
+          logo: clash.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.cfw.lbyczf.com/
         - title: Awesome Windows
           url: https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
           description: Windows 精品软件清单
