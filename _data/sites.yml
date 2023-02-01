@@ -1384,6 +1384,10 @@
           url: https://neumorphism.io/
           description: 简单轻松地实现 CSS 新拟态效果
           logo: neumorphism.io.png
+        - title: Get Waves
+          url: https://getwaves.io/
+          description: 波浪生成器
+          logo: getwaves.io.svg
         - title: Can I Use
           url: https://caniuse.com/
           description: 查询浏览器对 Web API 的兼容性
