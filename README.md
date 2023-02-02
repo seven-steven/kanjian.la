@@ -26,7 +26,7 @@
 - [ ] 发布 jekyll 主题
 - [ ] 自动获取 item 图标和简介
 - [ ] 定期巡检，移除失效站点
-- [x] ~~借助 `content-visibility: auto;` 优化页面加载速度~~
+- [x] 借助 `content-visibility: auto;` 优化页面加载速度
 - [x] 渐变背景 & 固定背景
 - [x] 添加 footer
 - [x] 高分屏适配
