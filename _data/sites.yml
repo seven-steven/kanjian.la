@@ -823,6 +823,19 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/ionic-team/ionicons
+        - title: lordicon
+          url: https://lordicon.com/icons
+          description: 动态图标库，部分收费
+          logo: lordicon.com.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 部分收费
+                url: https://lordicon.com/pricing
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://lordicon.com/docs
 
     - name: 颜色搭配
       links:
