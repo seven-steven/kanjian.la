@@ -861,6 +861,15 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://lordicon.com/docs
+        - title: iconify.DESIGN
+          url: https://icon-sets.iconify.design/
+          description: 聚合了几乎所有开源免费图标库
+          logo: icon-sets.iconify.design.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: icon-sets.iconify.design.png
 
     - name: 颜色搭配
       links:
