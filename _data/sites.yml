@@ -1315,6 +1315,10 @@
           url: https://beta.reactjs.org/
           description: 官方重写的 React 文档
           logo: reactjs.org.svg
+        - title: React Icons
+          url: https://react-icons.github.io/react-icons/
+          description: 适用于 React 的图标库
+          logo: react-icons.github.io.svg
         - title: Vue
           url: https://vuejs.org/
           description: 渐进式 JavaScript 框架
