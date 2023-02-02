@@ -819,6 +819,15 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/tailwindlabs/heroicons
+        - title: Tabler ICONS
+          url: https://github.com/astrit/css.gg#get-started
+          description: Free and open source pixel-perfect icons for web design
+          logo: tabler-icons.io.ico
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/tabler/tabler-icons
         - title: LivIcons Evolution
           url: https://livicons.com/
           description: 动态图标库
