@@ -1376,10 +1376,6 @@
           url: https://github.com/vuejs/vuepress
           description: 极简的静态网站生成器，支持 markdown，可用于生成项目文档
           logo: vuepress.vuejs.org.png
-        - title: hexo
-          url: https://hexo.io/
-          description: 快速、简洁且高效的纯静态博客框架
-          logo: hexo.io.png
         - title: Neumorphism
           url: https://neumorphism.io/
           description: 简单轻松地实现 CSS 新拟态效果
