@@ -755,6 +755,18 @@
               - icon: ri-github-fill
                 url: https://github.com/Remix-Design/RemixIcon
                 title: Github
+        - title: CSS.GG
+          url: https://css.gg/
+          description: Open-source CSS, SVG and Figma UI Icons
+          logo: css.gg.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://github.com/astrit/css.gg#get-started
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/astrit/css.gg
         - title: FontAwesome
           url: https://fontawesome.com/
           description: 字体图标库，部分免费
