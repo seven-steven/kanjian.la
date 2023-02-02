@@ -1644,6 +1644,15 @@
 
     - name: VSCode
       links:
+        - title: Dev Containers
+          url: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
+          description: 借助 Docker 构建开发环境
+          logo: vs-code-extension-dev-containers.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://code.visualstudio.com/docs/devcontainers/containers
         - title: Markdown Preview Enhanced
           url: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
           description: Markdown 预览增强
