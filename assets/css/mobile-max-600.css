@@ -121,7 +121,8 @@ nav>.nav>li>.nav .nav {
 }
 
 .sub-group {
-  content-visibility: auto;
+  /* content-visibility: auto; */
+  /* contain-intrinsic-size: auto inherit; */
 }
 
 .sub-group>h2 {
@@ -141,6 +142,7 @@ nav>.nav>li>.nav .nav {
   gap: var(--padding-common);
   grid-template-columns: auto auto;
   align-items: center;
+  content-visibility: auto;
 }
 
 .web-item {
