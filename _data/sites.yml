@@ -743,6 +743,10 @@
           url: https://www.iconfont.cn/
           description: 海量用户贡献的海量图标库，可自主选择下载使用
           logo: www.iconfont.cn.svg
+        - title: flaticon
+          url: https://www.flaticon.com/
+          description: Access 9.2M+ vector icons & stickers
+          logo: flaticon.com.png
         - title: REMIX ICON
           url: https://remixicon.com/
           description: 开源免费图标库
