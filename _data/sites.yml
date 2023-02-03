@@ -1312,6 +1312,18 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/necolas/normalize.css
+        - title: OPEN PROPS
+          url: https://open-props.style/
+          description: CSS custom properties to help accelerate adaptive and consistent design.
+          logo: open-props.style.svg
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://open-props.style/#getting-started
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/argyleink/open-props
         - title: bulma
           url: https://bulma.io/
           description: 基于 Flexbox 的现代化响应式 css 框架
