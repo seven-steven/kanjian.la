@@ -658,6 +658,10 @@
           url: https://www.magiceraser.io/
           description: 瞬间删除图像中不需要的部分
           logo: magiceraser.io.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 部分收费
         - title: PIXLR
           url: https://pixlr.com/
           description: 在线 PS 工具，无需登录
