@@ -1896,6 +1896,10 @@
           url: https://www.openstreetmap.org/
           description: 唯一真正不受限制，可以自由使用的全球地图服务
           logo: openstreetmap.org.svg
+        - title: GetAFreeNode
+          url: https://getafreenode.com/?inviter=CC38A476-6280-4ACE-9CC3-3AC25B5F0442
+          description: Free VPN Nodes
+          logo: getafreenode.com.ico
         - title: 科塔学术
           url: https://site.sciping.com/
           description: 学术导航

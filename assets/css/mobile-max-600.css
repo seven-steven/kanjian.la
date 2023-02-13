@@ -142,7 +142,7 @@ nav>.nav>li>.nav .nav {
   gap: var(--padding-common);
   grid-template-columns: auto auto;
   align-items: center;
-  content-visibility: auto;
+  /* content-visibility: auto; */
 }
 
 .web-item {
