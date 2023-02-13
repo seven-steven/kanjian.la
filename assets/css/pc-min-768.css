@@ -83,7 +83,7 @@ nav>.nav {
 }
 
 .web-item-container {
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: max-content max-content max-content max-content max-content;
   overflow: hidden;
 }
 

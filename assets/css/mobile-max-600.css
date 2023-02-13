@@ -140,7 +140,7 @@ nav>.nav>li>.nav .nav {
 .web-item-container {
   display: grid;
   gap: var(--padding-common);
-  grid-template-columns: auto auto;
+  grid-template-columns: max-content max-content;
   align-items: center;
   /* content-visibility: auto; */
 }
