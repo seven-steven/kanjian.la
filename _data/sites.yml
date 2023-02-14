@@ -1892,6 +1892,10 @@
           url: https://next.itellyou.cn/Original/Index
           description: 纯净 Windows 镜像下载
           logo: msdn.itellyou.cn.ico
+        - title: TempMail
+          url: https://www.tempmail.vip/
+          description: 临时邮箱
+          logo: tempmail.vip.png
         - title: OpenStreenMap
           url: https://www.openstreetmap.org/
           description: 唯一真正不受限制，可以自由使用的全球地图服务
