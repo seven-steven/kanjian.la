@@ -1369,7 +1369,7 @@
             info:
               - icon: ri-translate
                 title: Bootstrap 中文网，网站也收集了非常多其他前端框架的中文文档
-                url: ://www.bootcss.com/
+                url: https://www.bootcss.com/
         - title: React
           url: https://reactjs.org/
           description: 用于构建用户界面的 JavaScript 库
