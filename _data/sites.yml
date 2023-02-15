@@ -1716,6 +1716,14 @@
               - icon: ri-book-2-line
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
+        - title: Luma AI
+          url: https://lumalabs.ai/
+          description: Capture the world in lifelike 3D
+          logo: lumalabs.ai.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
         - title: Tome
           url: https://beta.tome.app/
           description: AI 生成 KeyNote
