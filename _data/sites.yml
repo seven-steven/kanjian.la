@@ -1720,6 +1720,22 @@
           url: https://beta.tome.app/
           description: AI 生成 KeyNote
           logo: beta.tome.app.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: Sonic Pi
+          url: https://sonic-pi.net/
+          description: 基于代码的音乐创作工具
+          logo: sonic-pi.net.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://sonic-pi.net/tutorial.html
 
     - name: 服务编排
       links:
