@@ -1704,6 +1704,10 @@
               - icon: ri-book-2-line
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
+        - title: Tome
+          url: https://beta.tome.app/
+          description: AI 生成 KeyNote
+          logo: beta.tome.app.png
 
     - name: 服务编排
       links:
