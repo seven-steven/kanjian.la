@@ -324,6 +324,9 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://docs.cfw.lbyczf.com/
+              - icon: ri-tools-line
+                title: 工具
+                url: https://v2rayse.com/
         - title: Awesome Windows
           url: https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
           description: Windows 精品软件清单
