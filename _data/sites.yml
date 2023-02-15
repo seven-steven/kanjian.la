@@ -1688,6 +1688,14 @@
           url: https://chat.openai.com/
           description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
           logo: chat.openai.com.jpeg
+        - title: Lexica
+          url: https://lexica.art/
+          description: AI 图像搜索引擎
+          logo: lexica.art.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
         - title:
           url: https://www.midjourney.com/
           description: 高质量 AI 绘图
