@@ -250,6 +250,10 @@
           url: https://www.google.com/intl/zh-CN/chrome/
           description: 最好用的浏览器，没有之一
           logo: chrome.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: uTools
           url: https://u.tools/
           description: 程序员的生产力工具集
@@ -350,35 +354,66 @@
           url: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb
           description: 在 Chrome 中使用 Vim 插件
           logo: chrome-extension-vimium.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Adblock Plus
           url: https://chrome.google.com/webstore/detail/adblock-plus-free-ad-bloc/cfhdojbkjhnklbpkdaibdccddilifddb
           description: 免费的广告拦截器
           logo: chrome-extension-adblock-plus.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: OneTab
           url: https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall
           description: 节省高达95％的内存，并减轻标签页混乱现象
           logo: chrome-extension-one-tab.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Proxy SwitchOmega
           url: https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif
           description: 道曰：不可说
           logo: chrome-extension-proxy-switch-omega.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: iTab新标签页
           url: https://itab.link/
           description: 一个让你不受广告干扰的个性化卡片式起始页插件
           logo: itab.link.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Infinity 新标签页 (Pro)
           url: https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh
           description: 美化你的新标签页
           logo: chrome-extension-infinity-new-tab-pro.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Header Editor
           url: https://chrome.google.com/webstore/detail/header-editor/eningockdidmgiojffjmkdblpjocbhgh/related
           description: 修改浏览器请求和响应
           logo: chrome-extension-header-editor.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Aria2 for Chrome
           url: https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn/related
           description: 自动拦截或手动添加下载任务到 Aria2 来完成网络资源下载
           logo: chrome-extension-aria2-for-chrome.png
           icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -390,58 +425,114 @@
           url: https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
           description: 为任何网站提供黑色主题
           logo: chrome-extension-dark-reader.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 滴答清单
           url: https://chrome.google.com/webstore/detail/ticktick-todo-task-list/diankknpkndanachmlckaikddgcehkod
           description: 滴答清单的 Chrome 扩展
           logo: dida365.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 番茄土豆
           url: https://chrome.google.com/webstore/detail/pomotodo/algakdpepofkajponmledaldoloboinf
           description: 番茄工作法插件
           logo: chrome-extension-pomotodo.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: The Great Suspender
           url: https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg
           description: 冻结暂时用不到的标签页，以便释放系统资源
           logo: chrome-extension-the-great-suspender.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Video Speed Controller
           url: https://chrome.google.com/webstore/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk
           description: 控制 HTML5 视频播放速度
           logo: chrome-extension-video-speed-controller.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Global Speed 视频速度控制
           url: https://chrome.google.com/webstore/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff
           description: 全局视频速度控制
           logo: chrome-extension-global-speed.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Web Scraper
           url: https://chrome.google.com/webstore/detail/web-scraper/jnhgnonknehpejjnehehllkliplmbmhn
           description: 一个网页爬虫扩展
           logo: chrome-extension-web-scraper.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 简悦
           url: https://chrome.google.com/webstore/detail/simpread-reader-view/ijllcpnolfcooahcekpamkbidhejabll
           description: 沉浸式阅读插件
           logo: chrome-extension-simpread.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: ublacklist
           url: https://github.com/iorate/ublacklist
           description: 屏蔽谷歌搜索结果中的指定站点
           logo: chrome-extension-ublacklist.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 自选基金助手
           url: https://chrome.google.com/webstore/detail/%E8%87%AA%E9%80%89%E5%9F%BA%E9%87%91%E5%8A%A9%E6%89%8B-%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%9F%BA%E9%87%91%E6%B6%A8%E8%B7%8C%E5%B9%85/dhdelcemeednchdmijiocipbjlknndff/related?hl=zh-CN
           description: 实时查看基金涨跌幅
           logo: chrome-extension-custom-fund-assistant.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Screenity
           url: https://chrome.google.com/webstore/detail/screenity-screen-recorder/kbbdabhdfibnancpjfhlkhafgdilcnji
           description: 屏幕录像和标注工具
           logo: chrome-extension-screenity-screen-recorder.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 划词翻译(柯林斯词典)+扇贝生词本
           url: https://chrome.google.com/webstore/detail/%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91%E6%9F%AF%E6%9E%97%E6%96%AF%E8%AF%8D%E5%85%B8%20%E6%89%87%E8%B4%9D%E7%94%9F%E8%AF%8D%E6%9C%AC/mkohdjbfagmlcaclajmadgkojelkbbfj
           description: 划词翻译(柯林斯词典)+扇贝生词本
           logo: chrome-extension-kelinsi-shanbei.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 不背单词查词
           url: https://chrome.google.com/webstore/detail/%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8D%E6%9F%A5%E8%AF%8D/cklfipcjofdnmdolnfngpmokdaejidim
           description: 不背单词查词
           logo: bbdc.cn.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Tampermonkey BETA
           url: https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf
           description: 传说中的油猴插件，给你的浏览器添加各种超能力
           logo: chrome-extension-tampermonkey-beta.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Greasy Fork
           url: https://greasyfork.org/zh-CN/scripts
           description: 油猴脚本资源列表
