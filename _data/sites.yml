@@ -109,6 +109,14 @@
           url: https://dida365.com/
           description: 达成更多，用心生活
           logo: dida365.png
+        - title: Tweek 日历
+          url: https://tweek.so/
+          description: 极简的待办事项和每周任务计划应用
+          logo: tweek.so.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: AmyMind
           url: https://amymind.com/
           description: 打开即用的思维导图和画板工具
