@@ -831,7 +831,7 @@
                 title: Github
                 url: https://github.com/tailwindlabs/heroicons
         - title: Tabler ICONS
-          url: https://github.com/astrit/css.gg#get-started
+          url: https://tabler-icons.io/
           description: Free and open source pixel-perfect icons for web design
           logo: tabler-icons.io.ico
           icons:
