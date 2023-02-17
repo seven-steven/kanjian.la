@@ -1549,6 +1549,15 @@
           url: https://github.com/qishibo/AnotherRedisDesktopManager
           description: 一款全平台通用的 Redis 连接工具
           logo: another-redis-desktop-manager.png
+        - title: ElasticView
+          url: http://www.elastic-view.cn/index.html
+          description: 一款用来监控 ElasticSearch 状态和操作 ElasticSearch 索引的 web 可视化工具
+          logo: elastic-view.cn.png
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: elastic-view.cn.png
 
     - name: 服务运维
       links:
