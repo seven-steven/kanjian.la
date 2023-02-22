@@ -1287,18 +1287,6 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/Molunerfinn/PicGo
-        - title: Alist
-          url: https://alist.nn.ci/
-          description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
-          logo: alist.nn.ci.svg
-          icons:
-            info:
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://alist.nn.ci/zh/guide/
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/alist-org/alist
         - title: fatedier/frp
           url: https://github.com/fatedier/frp
           description: 一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议
@@ -1341,6 +1329,21 @@
 
     - name: 开源应用
       links:
+        - title: Alist
+          url: https://alist.nn.ci/
+          description: 一款支持多种存储的目录文件列表程序，简言之，网盘聚合
+          logo: alist.nn.ci.svg
+          icons:
+            info:
+              - icon: ri-computer-line
+                title: Demo
+                url: https://al.nn.ci/
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://alist.nn.ci/zh/guide/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/alist-org/alist
         - title: GreaterWMS
           url: https://www.56yhz.com/
           description: 完全开源的仓库管理生态系统
