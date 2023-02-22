@@ -1334,6 +1334,10 @@
           url: https://github.com/budtmo/docker-android
           description: 在 Docker 中运行 android
           logo: github.com.svg
+        - title: Open Source Alternatives
+          url: https://www.btw.so/open-source-alternatives
+          description: 企业日常运营工具的开源替代方案
+          logo: btw.so.png
 
     - name: 前端开发
       links:
