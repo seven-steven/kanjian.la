@@ -1339,6 +1339,18 @@
           description: 企业日常运营工具的开源替代方案
           logo: btw.so.png
 
+    - name: 开源应用
+      links:
+        - title: GreaterWMS
+          url: https://www.56yhz.com/
+          description: 完全开源的仓库管理生态系统
+          logo: 56yhz.com.ico
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/Singosgu/GreaterWMS
+
     - name: 前端开发
       links:
         - title: MDN Web Docs
