@@ -1347,6 +1347,9 @@
           logo: 56yhz.com.ico
           icons:
             info:
+              - icon: ri-computer-line
+                title: Demo
+                url: https://production.56yhz.com/#/web/
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/Singosgu/GreaterWMS
