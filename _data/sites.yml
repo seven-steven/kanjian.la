@@ -521,6 +521,18 @@
               - icon: ri-computer-line
                 url: https://www.awesomescreenshot.com/
                 title: 官网
+        - title: 截图快手
+          url: https://chrome.google.com/webstore/detail/awesome-screenshot-tool-s/mfpiaehgjbbfednooihadalhehabhcjo/related?hl=zh-CN
+          description: 快捷的截屏助手
+          logo: chrome-extension-awesome-screenshot-tool-s.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-computer-line
+                url: https://www.awesomescreenshot.com/
+                title: 官网
         - title: Screenity
           url: https://chrome.google.com/webstore/detail/screenity-screen-recorder/kbbdabhdfibnancpjfhlkhafgdilcnji
           description: 屏幕录像和标注工具
