@@ -387,13 +387,17 @@
               - icon: ri-send-plane-fill
                 title: 国际互联网
         - title: iTab新标签页
-          url: https://itab.link/
+          url: https://chrome.google.com/webstore/detail/itab%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5/mhloojimgilafopcmlcikiidgbbnelip
           description: 一个让你不受广告干扰的个性化卡片式起始页插件
           logo: itab.link.svg
           icons:
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+            info:
+              - icon: ri-computer-line
+                title: 官网
+                url: https://itab.link/
         - title: Infinity 新标签页 (Pro)
           url: https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh
           description: 美化你的新标签页
@@ -505,6 +509,18 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+        - title: Awesome Screenshot 截图录屏
+          url: https://chrome.google.com/webstore/detail/awesome-screenshot-and-sc/nlipoenfbbikpbjkfpfillcgkoblgpmj
+          description: 全能的截图、录屏、标注工具
+          logo: chrome-extension-awesome-screenshot-and-sc.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-computer-line
+                url: https://www.awesomescreenshot.com/
+                title: 官网
         - title: Screenity
           url: https://chrome.google.com/webstore/detail/screenity-screen-recorder/kbbdabhdfibnancpjfhlkhafgdilcnji
           description: 屏幕录像和标注工具
