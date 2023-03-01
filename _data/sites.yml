@@ -1198,11 +1198,25 @@
               - icon: ri-english-input
                 title: English
               - icon: ri-money-cny-circle-line
-                title: 阶级付费
+                title: 升级付费
             info:
               - icon: ri-book-2-line
                 title: Document
                 url: https://dbdiagram.io/docs/
+        - title: dbdocs
+          url: https://dbdocs.io/
+          description: 用 DSL 语言生成在线数据库文档
+          logo: dbdocs.io.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: English
+              - icon: ri-money-cny-circle-line
+                title: 升级付费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://dbdocs.io/docs
         - title: carbon
           url: https://carbon.now.sh/
           description: 代码图片美化工具
