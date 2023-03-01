@@ -1189,6 +1189,20 @@
           url: https://app.diagrams.net/
           description: 非常好用的轻量级绘图工具
           logo: draw.io.png
+        - title: dbdiagram.io
+          url: https://dbdiagram.io/
+          description: 在线绘制数据库设计
+          logo: dbdiagram.io.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: English
+              - icon: ri-money-cny-circle-line
+                title: 阶级付费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://dbdiagram.io/docs/
         - title: carbon
           url: https://carbon.now.sh/
           description: 代码图片美化工具
