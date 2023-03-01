@@ -1256,6 +1256,21 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/minio/minio
+        - title: DBML
+          url: https://www.dbml.org/
+          description: Database Markup Language
+          logo: github.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: English
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/holistics/dbml
+              - icon: ri-book-2-line
+                title: Document
+                url: https://www.dbml.org/docs/
         - title: alibaba/DataX
           url: https://github.com/alibaba/DataX
           description: 支持超多数据库的离线数据同步工具
