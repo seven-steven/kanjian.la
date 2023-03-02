@@ -541,14 +541,21 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
-        - title: 划词翻译(柯林斯词典)+扇贝生词本
-          url: https://chrome.google.com/webstore/detail/%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91%E6%9F%AF%E6%9E%97%E6%96%AF%E8%AF%8D%E5%85%B8%20%E6%89%87%E8%B4%9D%E7%94%9F%E8%AF%8D%E6%9C%AC/mkohdjbfagmlcaclajmadgkojelkbbfj
-          description: 划词翻译(柯林斯词典)+扇贝生词本
-          logo: chrome-extension-kelinsi-shanbei.jpg
+        - title: 沉浸式翻译
+          url: https://chrome.google.com/webstore/detail/immersive-translate/bpoadfkcbjbfhfodiogcnhhhpibjhbnh
+          description: 沉浸式双语网页翻译扩展
+          logo: chrome-extension-immersive-translate.png
           icons:
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://immersive-translate.owenyoung.com/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/immersive-translate/immersive-translate
         - title: 不背单词查词
           url: https://chrome.google.com/webstore/detail/%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8D%E6%9F%A5%E8%AF%8D/cklfipcjofdnmdolnfngpmokdaejidim
           description: 不背单词查词
@@ -1211,12 +1218,13 @@
             status:
               - icon: ri-english-input
                 title: English
-              - icon: ri-money-cny-circle-line
-                title: 升级付费
             info:
               - icon: ri-book-2-line
                 title: Document
                 url: https://dbdocs.io/docs
+              - icon: ri-computer-line
+                title: demo
+                url: https://dbdocs.io/Holistics/Ecommerce
         - title: carbon
           url: https://carbon.now.sh/
           description: 代码图片美化工具
