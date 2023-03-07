@@ -1937,6 +1937,16 @@
               - icon: ri-book-2-line
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
+        - title: ChatPDF
+          url: https://www.chatpdf.com/
+          description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
+          logo: chatpdf.com.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Astria
           url: https://www.astria.ai/
           description: 识别和再生成特定对象的图片
