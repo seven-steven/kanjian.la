@@ -2005,6 +2005,14 @@
             status:
               - icon: ri-english-input
                 title: 英文
+        - title: FuturePedia
+          url: https://www.futurepedia.io/
+          description: AI 工具库
+          logo: futurepedia.io.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
         - title: Ai 导航
           url: https://www.ainavpro.com/
           description: 一个专注于人工智能产品的导航站
