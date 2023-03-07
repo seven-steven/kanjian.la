@@ -1,0 +1,79 @@
+{
+	// Place your kanjian.la workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Add an Item": {
+		"scope": "yaml,yml",
+		"prefix": "item",
+		"body": [
+			"title: $1",
+			"  url: $2",
+			"  description: $3",
+			"  logo: $4",
+			"  icons:",
+			"    status:",
+			"    info:",
+		],
+		"description": "Add an Item"
+	},
+	"Icon Status English": {
+		"scope": "yaml",
+		"prefix": "ise",
+		"body": [
+			"- icon: ri-english-input",
+			"  title: 英文",
+		],
+		"description": "Icon Status English"
+	},
+	"Icon Status Plane": {
+		"scope": "yaml",
+		"prefix": "isp",
+		"body": [
+			"- icon: ri-send-plane-fill",
+			"  title: 国际互联网",
+		],
+		"description": "Icon Status Plane"
+	},
+	"Icon Status Money": {
+		"scope": "yaml",
+		"prefix": "ism",
+		"body": [
+			"- icon: ri-money-cny-circle-line",
+			"  title: 收费",
+		],
+		"description": "Icon Status Money"
+	},
+	"Icon Info Document": {
+		"scope": "yaml",
+		"prefix": "iid",
+		"body": [
+			"- icon: ri-book-2-line",
+			"  title: $1",
+			"  url: $2",
+		],
+		"description": "Icon Info Document"
+	},
+	"Icon Info Github": {
+		"scope": "yaml",
+		"prefix": "iig",
+		"body": [
+			"- icon: ri-github-fill",
+			"  title: Github",
+			"  url: $1",
+		],
+		"description": "Icon Info Github"
+	},
+}
