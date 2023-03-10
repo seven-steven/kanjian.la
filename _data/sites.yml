@@ -1909,6 +1909,16 @@
             status:
               - icon: ri-english-input
                 title: 英文
+        - title: Perplexity
+          url: https://www.perplexity.ai/
+          description: AI 搜索引擎
+          logo: perplexity.ai.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Copilot
           url: https://github.com/features/copilot
           description: AI 帮你写代码
