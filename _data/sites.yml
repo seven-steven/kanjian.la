@@ -153,6 +153,10 @@
           url: https://web.baimiaoapp.com/
           description: OCR 识别工具，支持图片转表格
           logo: web.baimiaoapp.com.png
+        - title: Tutanota
+          url: https://mail.tutanota.com/
+          description: 安全、绿色、无广告的邮箱服务
+          logo: mail.tutanota.com.png
         - title: DeepL
           url: https://www.deepl.com/zh/translator
           description: 很好用的翻译工具
