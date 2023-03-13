@@ -252,6 +252,10 @@
             status:
               - icon: ri-english-input
                 title: 英文
+        - title: 风声雨声
+          url: https://fsys.app/
+          description: 用 AI 帮助你高效双语阅读
+          logo: fsys.app.ico
         - title: ChatPDF
           url: https://www.chatpdf.com/
           description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
