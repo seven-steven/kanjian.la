@@ -76,4 +76,14 @@
 		],
 		"description": "Icon Info Github"
 	},
+	"Icon Info Alternative": {
+		"scope": "yaml",
+		"prefix": "iia",
+		"body": [
+			"- icon: ri-exchange-line",
+			"  title: Alternative",
+			"  url: $1",
+		],
+		"description": "Icon Info Alternative"
+	},
 }

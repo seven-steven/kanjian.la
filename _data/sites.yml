@@ -178,6 +178,161 @@
           description: 短链接生成器，拥有统计功能
           logo: xiaomark.com.png
 
+    - name: 人工智能
+      links:
+        - title: ChatGPT
+          url: https://chat.openai.com/
+          description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
+          logo: chat.openai.com.jpeg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-exchange-line
+                title: Alternative
+                url: https://freegpt.one/
+        - title: Lexica
+          url: https://lexica.art/
+          description: AI 图像搜索引擎
+          logo: lexica.art.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: Perplexity
+          url: https://www.perplexity.ai/
+          description: AI 搜索引擎
+          logo: perplexity.ai.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+        - title: Copilot
+          url: https://github.com/features/copilot
+          description: AI 帮你写代码
+          logo: github.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://docs.github.com/en/copilot
+        - title: Midjourney
+          url: https://www.midjourney.com/
+          description: 高质量 AI 绘图
+          logo: midjourney.com.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: midjourney.com.png
+        - title: DreamStudio
+          url: https://beta.dreamstudio.ai/
+          description: 高质量 AI 绘图
+          logo: beta.dreamstudio.ai.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: FAQ
+                url: https://beta.dreamstudio.ai/faq
+        - title: ChatPDF
+          url: https://www.chatpdf.com/
+          description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
+          logo: chatpdf.com.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+        - title: Astria
+          url: https://www.astria.ai/
+          description: 识别和再生成特定对象的图片
+          logo: astria.ai.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: How-To
+                url: https://www.astria.ai/tips
+        - title: Luma AI
+          url: https://lumalabs.ai/
+          description: Capture the world in lifelike 3D
+          logo: lumalabs.ai.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: Tome
+          url: https://beta.tome.app/
+          description: AI 生成 KeyNote
+          logo: beta.tome.app.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: SOUNDRAW
+          url: https://soundraw.io/
+          description: AI 生成音乐
+          logo: soundraw.io.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: Sonic Pi
+          url: https://sonic-pi.net/
+          description: 基于代码的音乐创作工具
+          logo: sonic-pi.net.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://sonic-pi.net/tutorial.html
+        - title: All Things Ai
+          url: https://allthingsai.com/
+          description: AI 工具和服务集合
+          logo: allthingsai.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: FuturePedia
+          url: https://www.futurepedia.io/
+          description: AI 工具库
+          logo: futurepedia.io.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+        - title: Ai 导航
+          url: https://www.ainavpro.com/
+          description: 一个专注于人工智能产品的导航站
+          logo: ainavpro.com.png
+
     - name: 在线文档
       links:
         - title: 石墨文档
@@ -1898,153 +2053,6 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/
-
-    - name: 人工智能
-      links:
-        - title: ChatGPT
-          url: https://chat.openai.com/
-          description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
-          logo: chat.openai.com.jpeg
-        - title: Lexica
-          url: https://lexica.art/
-          description: AI 图像搜索引擎
-          logo: lexica.art.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Perplexity
-          url: https://www.perplexity.ai/
-          description: AI 搜索引擎
-          logo: perplexity.ai.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-        - title: Copilot
-          url: https://github.com/features/copilot
-          description: AI 帮你写代码
-          logo: github.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-money-cny-circle-line
-                title: 收费
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://docs.github.com/en/copilot
-        - title: Midjourney
-          url: https://www.midjourney.com/
-          description: 高质量 AI 绘图
-          logo: midjourney.com.png
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: midjourney.com.png
-        - title: DreamStudio
-          url: https://beta.dreamstudio.ai/
-          description: 高质量 AI 绘图
-          logo: beta.dreamstudio.ai.png
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: FAQ
-                url: https://beta.dreamstudio.ai/faq
-        - title: ChatPDF
-          url: https://www.chatpdf.com/
-          description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
-          logo: chatpdf.com.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-        - title: Astria
-          url: https://www.astria.ai/
-          description: 识别和再生成特定对象的图片
-          logo: astria.ai.png
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: How-To
-                url: https://www.astria.ai/tips
-        - title: Luma AI
-          url: https://lumalabs.ai/
-          description: Capture the world in lifelike 3D
-          logo: lumalabs.ai.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Tome
-          url: https://beta.tome.app/
-          description: AI 生成 KeyNote
-          logo: beta.tome.app.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: SOUNDRAW
-          url: https://soundraw.io/
-          description: AI 生成音乐
-          logo: soundraw.io.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Sonic Pi
-          url: https://sonic-pi.net/
-          description: 基于代码的音乐创作工具
-          logo: sonic-pi.net.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://sonic-pi.net/tutorial.html
-        - title: All Things Ai
-          url: https://allthingsai.com/
-          description: AI 工具和服务集合
-          logo: allthingsai.com.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: FuturePedia
-          url: https://www.futurepedia.io/
-          description: AI 工具库
-          logo: futurepedia.io.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Ai 导航
-          url: https://www.ainavpro.com/
-          description: 一个专注于人工智能产品的导航站
-          logo: ainavpro.com.png
 
     - name: 服务编排
       links:
