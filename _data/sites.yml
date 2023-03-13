@@ -157,6 +157,18 @@
           url: https://mail.tutanota.com/
           description: 安全、绿色、无广告的邮箱服务
           logo: mail.tutanota.com.png
+        - title: TempMail
+          url: https://www.tempmail.vip/
+          description: 临时邮箱
+          logo: tempmail.vip.png
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Temp Mail
+                url: https://tempmail.email/
+              - icon: ri-exchange-line
+                title: 临时邮箱
+                url: https://www.linshi-email.com/
         - title: DeepL
           url: https://www.deepl.com/zh/translator
           description: 很好用的翻译工具
@@ -2260,10 +2272,6 @@
           url: https://next.itellyou.cn/Original/Index
           description: 纯净 Windows 镜像下载
           logo: msdn.itellyou.cn.ico
-        - title: TempMail
-          url: https://www.tempmail.vip/
-          description: 临时邮箱
-          logo: tempmail.vip.png
         - title: OpenStreenMap
           url: https://www.openstreetmap.org/
           description: 唯一真正不受限制，可以自由使用的全球地图服务
