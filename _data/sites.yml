@@ -2192,14 +2192,14 @@
 
     - name: 电子书籍
       links:
+        - title: z-library
+          url: https://singlelogin.me/
+          description: 世界上最大的数字图书馆
+          logo: z-lib.org.png
         - title: Anna's Archive
           url: https://annas-archive.org/
           description: z-library 的镜像站
           logo: z-lib.org.png
-        # - title: z-library
-        #   url: https://z-lib.org/
-        #   description: 世界上最大的数字图书馆
-        #   logo: z-lib.org.png
         # - title: 熊猫搜书
         #   url: https://xmsoushu.com/#/
         #   description: 集成了多个搜书平台，可以当成导航网站来用
@@ -2212,10 +2212,10 @@
           url: https://www.ituring.com.cn/book
           description: IT 领域书籍
           logo: ituring.com.cn.png
-        - title: 鸠摩搜索
-          url: https://www.jiumodiary.com/
-          description: 文档搜索引擎
-          logo: jiumodiary.com.png
+        # - title: 鸠摩搜索
+        #   url: https://www.jiumodiary.com/
+        #   description: 文档搜索引擎
+        #   logo: jiumodiary.com.png
 
     - name: 游戏资源
       links:
