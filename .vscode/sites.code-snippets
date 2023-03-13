@@ -16,10 +16,10 @@
 	// 	"description": "Log output to console"
 	// }
 	"Add an Item": {
-		"scope": "yaml,yml",
+		"scope": "yaml",
 		"prefix": "item",
 		"body": [
-			"title: $1",
+			"- title: $1",
 			"  url: $2",
 			"  description: $3",
 			"  logo: $4",
