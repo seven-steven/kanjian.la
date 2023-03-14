@@ -157,15 +157,12 @@
           url: https://mail.tutanota.com/
           description: 安全、绿色、无广告的邮箱服务
           logo: mail.tutanota.com.png
-        - title: TempMail
-          url: https://www.tempmail.vip/
-          description: 临时邮箱
-          logo: tempmail.vip.png
+        - title: TEMP MAIL
+          url: https://tempmail.email/
+          description: 临时邮箱、十分钟邮箱
+          logo: tempmail.email.svg
           icons:
             info:
-              - icon: ri-exchange-line
-                title: Temp Mail
-                url: https://tempmail.email/
               - icon: ri-exchange-line
                 title: 临时邮箱
                 url: https://www.linshi-email.com/
