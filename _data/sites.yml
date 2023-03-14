@@ -178,10 +178,6 @@
           url: https://www.ppzhilian.com/
           description: 安全便捷的电脑/手机互连，点对点文件传送、云剪贴板、屏幕共享、可视化交流工具
           logo: ppzhilian.com.png
-        - title: 奶牛快传
-          url: https://cowtransfer.com/
-          description: 不限速文件传输
-          logo: cowtransfer.com.png
         - title: 小码短连接
           url: https://xiaomark.com/
           description: 短链接生成器，拥有统计功能
