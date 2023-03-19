@@ -827,6 +827,11 @@
           description: 连接你的局域网设备
           url: https://community.kde.org/KDEConnect
           logo: community.kde.org.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://userbase.kde.org/KDEConnect
         - title: Termux
           url: https://github.com/termux/termux-app
           description: 安卓系统上的命令行终端神器
