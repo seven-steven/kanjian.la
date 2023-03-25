@@ -780,6 +780,10 @@
 
     - name: 安卓软件
       links:
+        - title: APKPure
+          url: https://apkpure.com/
+          description: 快速、免费、安全地下载 apk 到安卓
+          logo: apkpure.com.webp
         - title: F-Droid
           url: https://f-droid.org/
           description: 下载你想要的安卓应用
