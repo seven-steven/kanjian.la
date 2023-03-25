@@ -698,18 +698,6 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
-        - title: Awesome Screenshot 截图录屏
-          url: https://chrome.google.com/webstore/detail/awesome-screenshot-and-sc/nlipoenfbbikpbjkfpfillcgkoblgpmj
-          description: 全能的截图、录屏、标注工具
-          logo: chrome-extension-awesome-screenshot-and-sc.png
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-            info:
-              - icon: ri-computer-line
-                url: https://www.awesomescreenshot.com/
-                title: 官网
         - title: 截图快手
           url: https://chrome.google.com/webstore/detail/awesome-screenshot-tool-s/mfpiaehgjbbfednooihadalhehabhcjo/related?hl=zh-CN
           description: 快捷的截屏助手
