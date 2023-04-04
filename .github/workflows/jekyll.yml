@@ -65,7 +65,7 @@ jobs:
       - name: Sync data
         run: |
           cd source && git checkout jekyll
-          export commit-message=(git log -1 --pretty=format:%s)
+          git log -1 --pretty=format:%s > ../commit-message
           cd ..
           rsync -a source/_data/sites.yml target/_data/webstack.yml
           rsync -a source/assets/image/logo/* target/assets/images/logos/
@@ -73,5 +73,5 @@ jobs:
           git config user.name 'Seven-Steven'
           git config user.email 'seven@diqigan.cn'
           git add -A .
-          git commit -m "${commit-message}"
+          git commit -F ../commit-message
           git push
