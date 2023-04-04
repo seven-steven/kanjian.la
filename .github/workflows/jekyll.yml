@@ -73,5 +73,5 @@ jobs:
           git config user.name 'Seven-Steven'
           git config user.email 'seven@diqigan.cn'
           git add -A .
-          git commit -m ${commit-message}
+          git commit -m "${commit-message}"
           git push
