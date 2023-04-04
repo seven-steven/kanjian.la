@@ -34,7 +34,7 @@ jobs:
         with:
           repository: Seven-Steven/webstack-jekyll
           path: target
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
       - name: Sync data
         run: |
           cd source && git checkout jekyll && cd ..
