@@ -65,7 +65,7 @@ jobs:
       - name: Sync data
         run: |
           cd source && git checkout jekyll
-          export commit-message=`git log -1 --pretty=format:%s`
+          export commit-message=(git log -1 --pretty=format:%s)
           cd ..
           rsync -a source/_data/sites.yml target/_data/webstack.yml
           rsync -a source/assets/image/logo/* target/assets/images/logos/
