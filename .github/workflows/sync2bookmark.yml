@@ -1,0 +1,84 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Sync WebSite 2 Seven-Steven/webstack-jekyll
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["jekyll"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+        with:
+          repository: Seven-Steven/kanjian.la
+          path: source
+      # - name: Upload Source AS artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: source-repo
+      #     path: .
+      - name: Checkout target reporitory
+        uses: actions/checkout@v2
+        with:
+          repository: Seven-Steven/webstack-jekyll
+          path: target
+      # - name: Download source artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: source-repo
+      #     path: source
+      - name: Sync data
+        run: |
+          ls source
+          ls target
+          cd source && git checkout jekyll && cd ..
+          rsync -a source/_data/sites.yml webstack-jekyll/_data/webstack.yml
+          rsync -a source/assets/image/logo webstack-jekyll/assets/images/logos
+          cd webstack-jekyll
+          git add -A .
+          git commit -m "update webstack data"
+          git push
+
+
+  # Single deploy job since we're just deploying
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: build with jekyll
+  #       run: |
+  #         docker run \
+  #         -v ${{ github.workspace }}:/srv/jekyll \
+  #         -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+  #         jekyll/builder:4.2.0 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v2
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v1
+  #       with:
+  #         # Upload entire repository
+  #         path: "./_site"
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v1
