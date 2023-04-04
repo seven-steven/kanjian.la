@@ -29,29 +29,20 @@ jobs:
         with:
           repository: Seven-Steven/kanjian.la
           path: source
-      # - name: Upload Source AS artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: source-repo
-      #     path: .
       - name: Checkout target reporitory
         uses: actions/checkout@v2
         with:
           repository: Seven-Steven/webstack-jekyll
           path: target
-      # - name: Download source artifact
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: source-repo
-      #     path: source
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Sync data
         run: |
-          ls source
-          ls target
           cd source && git checkout jekyll && cd ..
           rsync -a source/_data/sites.yml target/_data/webstack.yml
           rsync -a source/assets/image/logo target/assets/images/logos
           cd target
+          git config user.name 'Seven-Steven'
+          git config user.email 'seven@diqigan.cn'
           git add -A .
           git commit -m "update webstack data"
           git push
