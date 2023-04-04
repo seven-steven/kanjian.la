@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: Seven-Steven/kanjian.la
           path: source
       - name: Checkout target reporitory
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: Seven-Steven/webstack-jekyll
           path: target
