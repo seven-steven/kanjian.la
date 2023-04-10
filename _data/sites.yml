@@ -346,6 +346,18 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://sonic-pi.net/tutorial.html
+        - title: 周报通
+          url: https://zhoubaotong.com/zh
+          description: 简单描述工作内容，帮你生成完整周报
+          logo: zhoubaotong.com.ico
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/guaguaguaxia/weekly_report
         - title: All Things Ai
           url: https://allthingsai.com/
           description: AI 工具和服务集合
