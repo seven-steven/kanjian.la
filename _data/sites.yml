@@ -280,6 +280,10 @@
                 title: 英文
               - icon: ri-send-plane-fill
                 title: 国际互联网
+        - title: 即时AI
+          url: https://js.design/ai
+          description: 即时 AI 生成设计工具，需要排队
+          logo: js.design.ico
         - title: Scribble Diffusion
           url: https://scribblediffusion.com/
           description: 根据草图绘制图片
