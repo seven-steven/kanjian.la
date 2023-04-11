@@ -296,6 +296,11 @@
           url: https://js.design/ai
           description: 即时 AI 生成设计工具，需要排队
           logo: js.design.ico
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://js.design/ai/report
         - title: Scribble Diffusion
           url: https://scribblediffusion.com/
           description: 根据草图绘制图片
