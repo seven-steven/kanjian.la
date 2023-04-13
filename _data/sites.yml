@@ -95,6 +95,15 @@
       url: https://cook.aiurs.co/
       description: 精准量化每一个细节的程序员做饭指南
       logo: cook.aiurs.co.svg
+    - title: GLaDOS
+      url: https://1lq2b-q22hs-lpfk7-tduwv.glados.space
+      description: 国际互联网
+      logo: glados.rocks.ico
+      icons:
+        status:
+          - icon: ri-money-cny-circle-line
+            title: 收费
+        info:
 
 - name: 效率办公
   icon: ri-computer-line
