@@ -1679,7 +1679,16 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/Singosgu/GreaterWMS
-
+        - title: DomainAdmin
+          url: https://github.com/mouday/domain-admin
+          description: 域名SSL证书监测平台
+          logo: github.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: 接口文档
+                url: https://mouday.github.io/domain-admin/#/
     - name: 前端开发
       links:
         - title: MDN Web Docs
