@@ -74,6 +74,18 @@
       url: https://space.bilibili.com/303517323
       description: 年轻人帅气出租屋改造干货基地
       logo: bilibili-wujinshaonv.jpg
+    - title: AsciiDoc
+      url: https://asciidoc.org/
+      description: 一种用于编写技术内容的纯文本标记语言
+      logo: asciidoc.org.svg
+      icons:
+        status:
+          - icon: ri-english-input
+            title: 英文
+        info:
+          - icon: ri-book-2-line
+            title: Document
+            url: https://docs.asciidoctor.org/asciidoc/latest/
     - title: Markdown 入门指南
       url: https://www.markdown.xyz/
       description: 学习快速、轻松地书写
