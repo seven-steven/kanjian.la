@@ -218,6 +218,17 @@
 
     - name: 人工智能
       links:
+        - title: Learning Prompt
+        - title: Learning Prompt
+          url: https://learningprompt.wiki/
+          description: ChatGPT 和 Midjourney 教程
+          logo: learningprompt.wiki.ico
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/thinkingjimmy/Learning-Prompt
         - title: ChatGPT
           url: https://chat.openai.com/
           description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
