@@ -2143,6 +2143,15 @@
               - icon: ri-exchange-line
                 title: Alternative
                 url: http://ip111.cn/
+        - title: Scamalytics
+          url: https://scamalytics.com/
+          description: IP 地址欺诈检查器
+          logo: scamalytics.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
 
     - name: VSCode
       links:
