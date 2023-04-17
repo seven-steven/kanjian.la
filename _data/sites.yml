@@ -2133,6 +2133,16 @@
           url: https://www.cloudcraft.co/
           description: 可以帮助你设计云，并制定云资源预算
           logo: cloudcraft.co.svg
+        - title: IP.SB
+          url: https://ip.sb/
+          description: ip 地址查看
+          logo: ip.sb.webp
+          icons:
+            status:
+            info:
+              - icon: ri-exchange-line
+                title: Alternative
+                url: http://ip111.cn/
 
     - name: VSCode
       links:
