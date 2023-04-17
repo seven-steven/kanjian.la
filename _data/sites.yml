@@ -239,16 +239,6 @@
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
-        - title: Perplexity
-          url: https://www.perplexity.ai/
-          description: AI 搜索引擎
-          logo: perplexity.ai.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
         - title: Copilot
           url: https://github.com/features/copilot
           description: AI 帮你写代码
@@ -291,6 +281,16 @@
               - icon: ri-book-2-line
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
+        - title: Perplexity
+          url: https://www.perplexity.ai/
+          description: AI 搜索引擎
+          logo: perplexity.ai.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: Lexica
           url: https://lexica.art/
           description: AI 图像搜索引擎
