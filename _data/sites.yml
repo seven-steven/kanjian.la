@@ -462,7 +462,7 @@
         - title: 石墨文档
           url: https://shimo.im/desktop
           description: 多人实时协作的「云端 Office」
-          logo: shimo.im.ico
+          logo: shimo.im.svg
         - title: 腾讯文档
           url: https://docs.qq.com/
           description: 一款可多人协作的在线文档
@@ -486,7 +486,7 @@
         - title: 极简简历
           url: https://www.polebrief.com/
           description: 极致、简约、专业、优质的简历制作平台
-          logo: polebrief.com.png
+          logo: polebrief.com.svg
         - title: XODO
           url: https://www.xodo.com/
           description: 在线的 PDF 阅读、编辑工具
@@ -513,7 +513,7 @@
         - title: 站长素材
           url: https://sc.chinaz.com/ppt/
           description: PPT 模板免费下载
-          logo: sc.chinaz.com.png
+          logo: sc.chinaz.com.svg
         - title: 叮当设计
           url: https://www.dingdangsheji.com/
           description: 完全免费的优秀素材下载网站
@@ -1074,7 +1074,7 @@
         - title: remove.bg
           url: https://www.remove.bg/zh
           description: 图片背景消除工具
-          logo: removebg.png
+          logo: removebg.svg
         - title: Magic Eraser
           url: https://www.magiceraser.io/
           description: 瞬间删除图像中不需要的部分
