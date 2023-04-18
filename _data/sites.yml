@@ -298,7 +298,7 @@
         - title: DreamStudio
           url: https://beta.dreamstudio.ai/
           description: 高质量 AI 绘图
-          logo: beta.dreamstudio.ai.png
+          logo: beta.dreamstudio.ai.svg
           icons:
             status:
               - icon: ri-money-cny-circle-line
@@ -439,7 +439,7 @@
         - title: All Things Ai
           url: https://allthingsai.com/
           description: AI 工具和服务集合
-          logo: allthingsai.com.png
+          logo: allthingsai.com.svg
           icons:
             status:
               - icon: ri-english-input
