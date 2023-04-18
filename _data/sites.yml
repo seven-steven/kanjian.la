@@ -2328,7 +2328,7 @@
         - title: z-library
           url: https://singlelogin.me/
           description: 世界上最大的数字图书馆
-          logo: z-lib.org.png
+          logo: singlelogin.me.svg
           icons:
             status:
               - icon: ri-send-plane-fill
@@ -2340,7 +2340,7 @@
         - title: Ylibrary
           url: https://ylibrary.org/
           description: 去中心化图书馆项目
-          logo: z-lib.org.png
+          logo: singlelogin.me.svg
           icons:
             status:
             info:
