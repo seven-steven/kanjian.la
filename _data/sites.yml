@@ -237,7 +237,6 @@
     - name: 人工智能
       links:
         - title: Learning Prompt
-        - title: Learning Prompt
           url: https://learningprompt.wiki/
           description: ChatGPT 和 Midjourney 教程
           logo: learningprompt.wiki.ico
