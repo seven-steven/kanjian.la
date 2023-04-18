@@ -2331,12 +2331,25 @@
           logo: z-lib.org.png
           icons:
             status:
-             - icon: ri-send-plane-fill
-               title: 国际互联网
+              - icon: ri-send-plane-fill
+                title: 国际互联网
             info:
               - icon: ri-exchange-line
                 title: Anna's Archive
                 url: https://annas-archive.org/
+        - title: Ylibrary
+          url: https://ylibrary.org/
+          description: 去中心化图书馆项目
+          logo: z-lib.org.png
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.ylibrary.org/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/ylibrary-org
         # - title: 熊猫搜书
         #   url: https://xmsoushu.com/#/
         #   description: 集成了多个搜书平台，可以当成导航网站来用
