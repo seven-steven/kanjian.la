@@ -2329,10 +2329,14 @@
           url: https://singlelogin.me/
           description: 世界上最大的数字图书馆
           logo: z-lib.org.png
-        - title: Anna's Archive
-          url: https://annas-archive.org/
-          description: z-library 的镜像站
-          logo: z-lib.org.png
+          icons:
+            status:
+             - icon: ri-send-plane-fill
+               title: 国际互联网
+            info:
+              - icon: ri-exchange-line
+                title: Anna's Archive
+                url: https://annas-archive.org/
         # - title: 熊猫搜书
         #   url: https://xmsoushu.com/#/
         #   description: 集成了多个搜书平台，可以当成导航网站来用
