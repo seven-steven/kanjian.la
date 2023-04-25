@@ -596,6 +596,19 @@
           url: https://geekuninstaller.com/download
           description: Windows 下的软件卸载小工具
           logo: geekuninstaller.com.ico
+        - title: ScreenToGif
+          url: https://www.screentogif.com/
+          description: 屏幕、摄像头和画板录像，并有内置编辑器
+          logo: screentogif.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://www.screentogif.com/how-to-use
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/NickeManarin/ScreenToGif
         - title: Captura
           url: https://mathewsachin.github.io/Captura/
           description: 录制屏幕、声音、光标和按键
