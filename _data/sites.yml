@@ -555,6 +555,19 @@
           url: https://www.snipaste.com/
           description: 超级好用的截图 + 贴图工具
           logo: snipaste.com.svg
+        - title: calibre
+          url: https://calibre-ebook.com/
+          description: 电子书管理、阅读
+          logo: calibre-ebook.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://calibre-ebook.com/help
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/kovidgoyal/calibre
         - title: Xmind Zen
           url: https://www.xmind.cn/
           description: 一个全功能的思维导图和头脑风暴软件
