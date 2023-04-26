@@ -7,12 +7,14 @@
 ## 技术栈
 
 - Code by HTML & CSS & JavaScript
+- Edit by [Visual Studio Code](https://code.visualstudio.com/)
 - Icon by [REMIX ICON](https://remixicon.com/)
 - Templated by [Liquid](https://shopify.github.io/liquid/)
 - Generate by [jekyll](https://jekyllrb.com/)
 - Pipeline by [Github Actions](https://docs.github.com/actions)
 - Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
 - DNS by [CloudFlare](https://cloudflare.com/)
+- ICON Vectorizer by [Vectorizer.AI](https://vectorizer.ai/)
 
 ## TODO LIST
 
