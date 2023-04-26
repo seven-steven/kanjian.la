@@ -86,4 +86,14 @@
 		],
 		"description": "Icon Info Alternative"
 	},
+	"Icon Info Home": {
+		"scope": "yaml",
+		"prefix": "iih",
+		"body": [
+			"- icon: ri-home-office-line",
+			"  title: 官网",
+			"  url: $1",
+		],
+		"description": "Icon Info Home"
+	},
 }
