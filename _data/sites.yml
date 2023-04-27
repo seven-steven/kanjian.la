@@ -2248,7 +2248,7 @@
           icons:
             status:
               - icon: ri-money-cny-circle-line
-                title: 专业收费
+                title: 免费方案
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -2268,6 +2268,18 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/megaease/easegress
+        - title: 腾讯轻联
+          url: https://qinglian.tencent.com/
+          description: 将日常的重复工作快速实现流程自动化
+          logo: qinglian.tencent.com.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://qinglian.tencent.com/docs/
 
 - name: 无忧生活
   icon: ri-cake-3-line
