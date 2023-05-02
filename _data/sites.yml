@@ -243,6 +243,9 @@
           icons:
             status:
             info:
+              - icon: ri-exchange-line
+                title: OpenAI API 最佳实践
+                url: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/thinkingjimmy/Learning-Prompt
