@@ -273,21 +273,15 @@
               - icon: ri-english-input
                 title: 英文
             info:
-              # - icon: ri-exchange-line
-              #   title: Alternative
-              #   url: https://chat.theb.ai/#/chat/1002
               - icon: ri-exchange-line
                 title: Alternative
-                url: https://chat.bushiai.com/
+                url: https://chat3.aichatos.top/
+              - icon: ri-exchange-line
+                title: Alternative
+                url: https://chat.theb.ai/#/chat/1002
               - icon: ri-exchange-line
                 title: Alternative
                 url: https://freegpt.one/
-              - icon: ri-exchange-line
-                title: AI Playground by Vercel Labs
-                url: https://play.vercel.ai/
-              # - icon: ri-exchange-line
-              #   title: Alternative
-              #   url: https://chat5.aichatos.com/
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
