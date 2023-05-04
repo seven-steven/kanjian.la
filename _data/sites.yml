@@ -148,6 +148,11 @@
           url: https://dida365.com/
           description: 达成更多，用心生活
           logo: dida365.svg
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Todoist
+                url: https://todoist.com/
         - title: Tweek 日历
           url: https://tweek.so/
           description: 极简的待办事项和每周任务计划应用
@@ -163,6 +168,9 @@
           icons:
             status:
             info:
+              - icon: ri-exchange-line
+                title: Pomofocus
+                url: https://pomofocus.io/
         - title: AmyMind
           url: https://amymind.com/
           description: 打开即用的思维导图和画板工具
