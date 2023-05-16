@@ -2278,6 +2278,23 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/megaease/easegress
+        - title: n8n.io
+          url: https://n8n.io/
+          description: 开源的低代码自动化工作流构建工具
+          logo: n8n.io.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://docs.n8n.io/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/n8n-io/n8n
         - title: Actionsflow
           url: https://actionsflow.github.io/
           description: 基于 Github Actions 的可用于替代 Zapier/IFTTT 的自动化工作流
