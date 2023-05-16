@@ -2324,6 +2324,18 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://www.make.com/en/help/home
+        - title: Zapier
+          url: https://zapier.com/
+          description: 流程自动化工具
+          logo: zapier.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+                url: https://zapier.com/pricing
+            info:
         - title: IFTTT
           url: https://ifttt.com/
           description: 快速轻松地自动化您喜爱的应用和设备，有丰富的模板
