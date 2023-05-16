@@ -2305,6 +2305,15 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://qinglian.tencent.com/docs/
+        - title: 集简云
+          url: https://www.jijyun.cn/
+          description: 无代码软件集成
+          logo: jijyun.cn.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
 
 - name: 无忧生活
   icon: ri-cake-3-line
