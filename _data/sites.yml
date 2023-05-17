@@ -2623,6 +2623,13 @@
           url: https://hintsnet.com/pimgeek/blog/
           description: 一位百科知识爱好者和数字化知识管理研究者
           logo: hintsnet.com.jpg
+        - title: 张理查的海拉鲁
+          url: http://zhangwei.online/
+          description: 有趣的翻译项目、技术博客以及学习心得
+          logo: zhangwei.online
+          icons:
+            status:
+            info:
         - title: 翁天信
           url: https://www.dandyweng.com/
           description: 你好，我是翁天信，一个自学者。爱好旅行、摄影、设计和编程。
