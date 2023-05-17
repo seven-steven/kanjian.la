@@ -124,3 +124,4 @@
 
 1. `inline` 元素不支持 `transform`，需要将其 `display` 设置为 `inline-block` 或者 `block`；
 1. 使用暗锚可以修复因为 `fix` 或者 `stick` 布局带来的 anchor 定位偏移。[参考文档](https://segmentfault.com/q/1010000000124208)
+1. 尽可能引入少的静态资源，尽量按需引入。能够显著提升页面加载速度。
