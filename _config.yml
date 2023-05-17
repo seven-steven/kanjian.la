@@ -17,3 +17,5 @@ exclude:
   - LICENSE.txt
   - Gemfile
   - Gemfile.lock
+  - assets/remixicon/full
+  - assets/remixicon/partly/remixicon-collecton.remixicon
