@@ -2461,18 +2461,10 @@
 
     - name: 电子书籍
       links:
-        - title: z-library
-          url: https://singlelogin.me/
-          description: 世界上最大的数字图书馆
+        - title: Anna's Archive
+          url: https://annas-archive.org/
+          description: 世界上最大的数字图书馆 Zlibrary 的镜像站
           logo: singlelogin.me.svg
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-            info:
-              - icon: ri-exchange-line
-                title: Anna's Archive
-                url: https://annas-archive.org/
         - title: Ylibrary
           url: https://ylibrary.org/
           description: 去中心化图书馆项目
