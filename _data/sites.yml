@@ -288,6 +288,21 @@
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
+        - title: Dify
+          url: https://dify.ai/
+          description: 提示词编排，打造你的个性化 AI 助理
+          logo: dify.ai.ico
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费试用
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.dify.ai/v/zh-hans/getting-started/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/langgenius/dify
         - title: Copilot
           url: https://github.com/features/copilot
           description: AI 帮你写代码
@@ -2464,7 +2479,7 @@
         - title: Anna's Archive
           url: https://annas-archive.org/
           description: 世界上最大的数字图书馆 Zlibrary 的镜像站
-          logo: singlelogin.me.svg
+          logo: annas-archive.org.svg
         - title: Ylibrary
           url: https://ylibrary.org/
           description: 去中心化图书馆项目
