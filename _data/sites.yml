@@ -460,6 +460,15 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://sonic-pi.net/tutorial.html
+        - title: 通义千问
+          url: https://tongyi.aliyun.com/
+          description: 一个专门响应人类指令的大模型。需要申请才能使用。
+          logo: tongyi.aliyun.com.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 申请内测
+            info:
         - title: 周报通
           url: https://zhoubaotong.com/zh
           description: 简单描述工作内容，帮你生成完整周报
