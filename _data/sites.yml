@@ -664,8 +664,8 @@
             status:
             info:
               - icon: ri-book-2-line
-                title: 文档
-                url: https://rustdesk.com/docs/zh-cn/
+                title: Document
+                url: https://rustdesk.com/docs/
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/rustdesk/rustdesk
