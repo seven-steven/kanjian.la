@@ -656,6 +656,19 @@
           url: https://motrix.app/
           description: 开源的高颜值下载工具
           logo: motrix.app.png
+        - title: RustDesk
+          url: https://rustdesk.com/
+          description: 开源的支持全平台的远程桌面工具
+          logo: rustdesk.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://rustdesk.com/docs/zh-cn/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/rustdesk/rustdesk
         - title: 幕享
           url: https://letsview.com/zh/
           description: 免费的无线投屏工具
