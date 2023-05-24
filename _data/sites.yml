@@ -2089,6 +2089,22 @@
           url: https://github.com/xuxueli/xxl-job
           description: 分布式任务调度平台
           logo: xuxueli.com.svg
+        - title: Mybatis
+          url: https://mybatis.org/
+          description: MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。
+          logo: mybatis.org.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://mybatis.org/mybatis-3/index.html
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://mybatis.org/mybatis-3/zh/index.html
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/mybatis/mybatis-3
         - title: MyBatis-Plus
           url: https://github.com/baomidou/mybatis-plus
           description: Mybatis 的增强工具，只做增强不做改变，简化开发，提高效率
