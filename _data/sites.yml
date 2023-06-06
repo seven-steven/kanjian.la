@@ -2487,6 +2487,16 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/listen1
+        - title: 低端影视
+          url: https://ddys.pro/
+          description: 超清在线视频站
+          logo: ddys.pro.svg
+          icons:
+            status:
+            info:
+              - icon: ri-exchange-line
+                title: 网址发布页
+                url: https://ddys.site/
         - title: 哔嘀影视
           url: https://www.bdys01.com/
           description: 热门影视在线观看
