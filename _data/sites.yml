@@ -1371,6 +1371,16 @@
               - icon: ri-book-2-line
                 title: Document
                 url: icon-sets.iconify.design.svg
+        - title: Animated Emoji
+          url: https://googlefonts.github.io/noto-emoji-animation/
+          description: 动态 Emoji
+          logo: googlefonts.github.io.webp
+          icons:
+            status:
+            info:
+              - icon: ri-exchange-line
+                title: gitmoji
+                url: https://gitmoji.dev/
         - title: Emoji 大全
           url: https://piliapp.com/emoji/list/
           description: 表情符号大全
@@ -1384,6 +1394,7 @@
               - icon: ri-exchange-line
                 title: symbl.cc
                 url: https://symbl.cc/en/emoji/smileys-and-emotion/
+
     - name: 颜色搭配
       links:
         - title: Reeoo
