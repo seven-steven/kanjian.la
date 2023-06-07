@@ -1371,7 +1371,19 @@
               - icon: ri-book-2-line
                 title: Document
                 url: icon-sets.iconify.design.svg
-
+        - title: Emoji 大全
+          url: https://piliapp.com/emoji/list/
+          description: 表情符号大全
+          logo: piliapp.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-exchange-line
+                title: Emoji 大全
+                url: https://www.emojidaquan.com/
+              - icon: ri-exchange-line
+                title: symbl.cc
+                url: https://symbl.cc/en/emoji/smileys-and-emotion/
     - name: 颜色搭配
       links:
         - title: Reeoo
