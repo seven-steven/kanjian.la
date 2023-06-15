@@ -2136,6 +2136,19 @@
           url: https://hutool.cn/
           description: 一个小而全的Java工具类库
           logo: hutool.cn.ico
+        - title: EasyExcel
+          url: https://easyexcel.opensource.alibaba.com/
+          description: 一个基于Java的、快速、简洁、解决大文件内存溢出的Excel处理工具
+          logo: easyexcel.opensource.alibaba.com.ico
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://easyexcel.opensource.alibaba.com/docs/current/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/alibaba/easyexcel
         - title: screw
           url: https://github.com/pingfangushi/screw
           description: 简洁好用的数据库表结构文档生成工具
