@@ -151,6 +151,9 @@
           icons:
             info:
               - icon: ri-exchange-line
+                title: 朝暮计划
+                url: https://web.zomoplan.com/
+              - icon: ri-exchange-line
                 title: 时光序
                 url: https://shiguangxu.com
               - icon: ri-exchange-line
