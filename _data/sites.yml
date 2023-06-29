@@ -348,6 +348,15 @@
               - icon: ri-book-2-line
                 title: FAQ
                 url: https://beta.dreamstudio.ai/faq
+        - title: D-ID
+          url: https://studio.d-id.com/
+          description: 利用文字转视频，创建你的专属数字人
+          logo: studio.d-id.com.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
         - title: Perplexity
           url: https://www.perplexity.ai/
           description: AI 搜索引擎
