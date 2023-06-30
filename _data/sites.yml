@@ -1144,6 +1144,14 @@
           url: https://www.qrcode-monkey.com/
           description: 免费的二维码生成器
           logo: qrcode-monkey.com.png
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: QRBTF
+                url: https://qrbtf.com/
+              - icon: ri-exchange-line
+                title: 草料二维码
+                url: https://cli.im/
 
     - name: 图片工具
       links:
