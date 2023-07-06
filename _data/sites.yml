@@ -1469,10 +1469,11 @@
           url: http://zhongguose.com/
           description: 中国传统色
           logo: zhongguose.com.ico
-        - title: 日本传统色
-          url: https://nipponcolors.com/
-          description: 日本传统色
-          logo: nipponcolors.com.ico
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: 日本传统色
+                url: https://nipponcolors.com/
         - title: Material Palette
           url: https://www.materialpalette.com/
           description: 基于材质设计的调色板生成器
