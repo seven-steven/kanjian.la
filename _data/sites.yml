@@ -1467,6 +1467,18 @@
           url: https://flatuicolors.com/
           description: 扁平化设计调色板
           logo: flatuicolors.com.ico
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Color Claim
+                url: https://vanschneider.com/colors
+                description: 德国设计师创建的配色参考网站
+                logo: vanschneider.com.ico
+              - icon: ri-exchange-line
+                title: Material Palette
+                url: https://www.materialpalette.com/
+                description: 基于材质设计的调色板生成器
+                logo: materialpalette.com.ico
         - title: Hue Tools
           url: https://hue.tools/
           description: 一款开源的配色工具
@@ -1480,10 +1492,6 @@
               - icon: ri-exchange-line
                 title: 日本传统色
                 url: https://nipponcolors.com/
-        - title: Material Palette
-          url: https://www.materialpalette.com/
-          description: 基于材质设计的调色板生成器
-          logo: materialpalette.com.ico
         - title: Color Space
           url: https://mycolor.space/
           description: 根据原色生成 调色板
@@ -1496,10 +1504,6 @@
           url: https://brandcolors.net/
           description: 最大的官方品牌颜色代码合集
           logo: brandcolors.net.svg
-        - title: Color Claim
-          url: https://vanschneider.com/colors
-          description: 德国设计师创建的配色参考网站
-          logo: vanschneider.com.ico
 
     - name: 字体素材
       links:
