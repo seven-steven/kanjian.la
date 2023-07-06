@@ -1429,6 +1429,10 @@
           url: https://www.happyhues.co/
           description: 收集了十多种配色，说明了每种颜色的用途
           logo: happyhues.co.svg
+        - title: Open Color
+          url: https://yeun.github.io/open-color/
+          description: 13 种常用颜色
+          logo: yeun.github.io-open-color.svg
         - title: ColorSupply
           url: https://colorsupplyyy.com/
           description: 来自世界各地设计师的色彩搭配方案
@@ -1445,14 +1449,19 @@
               - icon: ri-exchange-line
                 title: Uigradients
                 url: https://uigradients.com/
-        - title: Colormind
-          url: http://colormind.io/
+        - title:
+          url:
           description: AI 配色，可以根据选定的配色生成网站预览样式
           logo: colormind.io.gif
         - title: Eva Design System
           url: https://colors.eva.design/
           description: AI 智能配色，给一种品牌颜色生成多种语义颜色
           logo: colors.eva.design.svg
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Colormind
+                url: http://colormind.io/
         - title: Adobe Color
           url: https://color.adobe.com/
           description: Adobe 官方出品的配色工具
@@ -1486,10 +1495,6 @@
           url: https://coolors.co/
           description: 可以为每种颜色选择阴影替代品的颜色生成器
           logo: coolors.co.svg
-        - title: Open Color
-          url: https://yeun.github.io/open-color/
-          description: 13 种常用颜色
-          logo: yeun.github.io-open-color.svg
         - title: BrandColors
           url: https://brandcolors.net/
           description: 最大的官方品牌颜色代码合集
