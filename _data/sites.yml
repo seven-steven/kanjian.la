@@ -1425,6 +1425,11 @@
           url: https://paletton.com/
           description: 根据指定基色完成智能配色
           logo: paletton.com.png
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Adobe Color
+                url: https://color.adobe.com/
         - title: Happy Hues
           url: https://www.happyhues.co/
           description: 收集了十多种配色，说明了每种颜色的用途
@@ -1458,10 +1463,6 @@
               - icon: ri-exchange-line
                 title: Colormind
                 url: http://colormind.io/
-        - title: Adobe Color
-          url: https://color.adobe.com/
-          description: Adobe 官方出品的配色工具
-          logo: color.adobe.com.svg
         - title: Flat UI Colors
           url: https://flatuicolors.com/
           description: 扁平化设计调色板
