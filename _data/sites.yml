@@ -1470,6 +1470,11 @@
           icons:
             info:
               - icon: ri-exchange-line
+                title: BrandColors
+                url: https://brandcolors.net/
+                description: 最大的官方品牌颜色代码合集
+                logo: brandcolors.net.svg
+              - icon: ri-exchange-line
                 title: Color Claim
                 url: https://vanschneider.com/colors
                 description: 德国设计师创建的配色参考网站
@@ -1500,10 +1505,6 @@
           url: https://coolors.co/
           description: 可以为每种颜色选择阴影替代品的颜色生成器
           logo: coolors.co.svg
-        - title: BrandColors
-          url: https://brandcolors.net/
-          description: 最大的官方品牌颜色代码合集
-          logo: brandcolors.net.svg
 
     - name: 字体素材
       links:
