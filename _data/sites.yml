@@ -1449,10 +1449,6 @@
               - icon: ri-exchange-line
                 title: Uigradients
                 url: https://uigradients.com/
-        - title:
-          url:
-          description: AI 配色，可以根据选定的配色生成网站预览样式
-          logo: colormind.io.gif
         - title: Eva Design System
           url: https://colors.eva.design/
           description: AI 智能配色，给一种品牌颜色生成多种语义颜色
