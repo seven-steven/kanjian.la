@@ -197,6 +197,10 @@
           url: https://www.ilovepdf.com/zh-cn
           description: 完全免费、易于使用、丰富的PDF处理工具
           logo: ilovepdf.com.svg
+        - title: docsmall
+          url: https://docsmall.com/
+          description: 在线文档压缩工具
+          logo: docsmall.com.png
         # - title: cloudconvert
         #   url: https://cloudconvert.com/
         #   description: convert anything to anything
@@ -1165,10 +1169,6 @@
                 url: https://compressor.io/
                 description: 无损压缩图片
                 logo: compressor.io.svg
-        - title: docsmall
-          url: https://docsmall.com/
-          description: 在线图片压缩工具
-          logo: docsmall.com.png
         - title: remove.bg
           url: https://www.remove.bg/zh
           description: 图片背景消除工具
