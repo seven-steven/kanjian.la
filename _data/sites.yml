@@ -1124,10 +1124,6 @@
           url: https://www.canva.cn/
           description: 在线设计协作平台
           logo: cavan.cn.png
-        - title: Mockup Photos
-          url: https://mockup.photos/
-          description: 样机模板
-          logo: mockup.photos.svg
         - title: Tranglife
           url: https://trianglify.io/
           description: 多边形图片生成器
@@ -1196,6 +1192,11 @@
               - icon: ri-english-input
                 title: 英文
             info:
+              - icon: ri-exchange-line
+                title: Mockup Photos
+                url: https://mockup.photos/
+                description: 样机模板
+                logo: mockup.photos.svg
         - title: Petalica Paint
           url: https://petalica-paint.pixiv.dev/index_zh.html
           description: AI 线稿上色
