@@ -2,7 +2,7 @@
   <div class="header">
     <span class="ri-menu-fill" onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
   </div>
-  <nav>
+  <nav class="blur">
     <ul class="nav">
       {% for category in site.data.sites %}
       {% if category.sub %}
@@ -19,7 +19,7 @@
           {% endif %}
         </a>
         {% if category.sub %}
-        <ul class="nav">
+        <ul class="nav blur">
           {% for sub_category in category.sub %}
           <li>
             <a href="#{{category.name}}-{{sub_category.name}}">{{ sub_category.name }}</a>

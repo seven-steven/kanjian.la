@@ -126,3 +126,17 @@
 1. `inline` 元素不支持 `transform`，需要将其 `display` 设置为 `inline-block` 或者 `block`；
 1. 使用暗锚可以修复因为 `fix` 或者 `stick` 布局带来的 anchor 定位偏移。[参考文档](https://segmentfault.com/q/1010000000124208)
 1. 尽可能引入少的静态资源，尽量按需引入。能够显著提升页面加载速度。
+1. 无法直接使用 `backdrop-filter` 属性同时对父子元素创建模糊效果，受 [解决父级使用backdrop-filter后，子级再使用不生效](https://ylface.com/course/2821.html) 启发，使用下面的代码解决了问题。
+
+  ```css
+  .blur::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-backdrop-filter: blur(.1rem);
+    backdrop-filter: blur(.1rem);
+  }
+  ```
