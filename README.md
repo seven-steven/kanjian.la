@@ -28,6 +28,7 @@
 - [ ] 发布 jekyll 主题
 - [ ] 自动获取 item 图标和简介
 - [ ] 定期巡检，移除失效站点
+- [x] 感谢设计师 [@Huazi](https://huazi.space/) 的建议，给 PC 导航栏加上了磨砂效果
 - [x] 借助 `content-visibility: auto;` 优化页面加载速度
 - [x] 渐变背景 & 固定背景
 - [x] 添加 footer

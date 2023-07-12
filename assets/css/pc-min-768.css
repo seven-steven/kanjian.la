@@ -24,6 +24,7 @@ nav {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   background-color: var(--color-card-background);
+  backdrop-filter: blur(.1rem);
 }
 
 nav>.nav {
