@@ -1,6 +1,15 @@
 - name: 学习资源
   icon: ri-book-3-line
   links:
+    - title: 16 Personalities
+      url: https://www.16personalities.com/ch/
+      description: "准确到“令你毛骨悚然”的人格测试"
+      logo: 16personalities.com.svg
+      icons:
+        status:
+          - icon: ri-money-cny-circle-line
+            title: 详细报告收费
+        info:
     - title: 网易公开课
       url: https://open.163.com/
       description: 国内外名校公开课
