@@ -120,11 +120,6 @@ nav>.nav>li>.nav .nav {
   padding: 0 var(--padding-common);
 }
 
-.sub-group {
-  /* content-visibility: auto; */
-  /* contain-intrinsic-size: auto inherit; */
-}
-
 .sub-group>h2 {
   padding: var(--padding-common) 0;
   font-size: .8rem;
@@ -134,7 +129,7 @@ nav>.nav>li>.nav .nav {
   display: inline-block;
   font-size: inherit;
   margin-right: .2rem;
-  transform: rotate(90deg);
+  transform: rotate(90deg) translateX(.17em);
 }
 
 .web-item-container {
