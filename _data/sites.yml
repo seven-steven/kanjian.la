@@ -313,6 +313,15 @@
               - icon: ri-send-plane-fill
                 title: 国际互联网
             info:
+        - title: Claude
+          url: https://claude.ai/
+          description: 由 Anthropic 开发的大型语言模型
+          logo: claude.ai.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
         - title: Dify
           url: https://dify.ai/
           description: 提示词编排，打造你的个性化 AI 助理
