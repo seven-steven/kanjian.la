@@ -304,6 +304,15 @@
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
+        - title: Bard
+          url: https://bard.google.com/
+          description: 谷歌的大语言模型
+          logo: bard.google.com.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
         - title: Dify
           url: https://dify.ai/
           description: 提示词编排，打造你的个性化 AI 助理
