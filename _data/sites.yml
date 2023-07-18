@@ -56,9 +56,6 @@
       logo: tagly.notion.site.png
       icons:
         info:
-          - icon: ri-book-2-line
-            title: 介绍
-            url: https://tagly.notion.site/3a0eaafbaa8343388c01f32e06c91597
     - title: 多邻国
       url: https://www.duolingo.cn/
       description: 有趣生动的语言学习网站
