@@ -202,6 +202,17 @@
           url: https://excalidraw.com/
           description: 白板绘图工具
           logo: excalidraw.com.svg
+        - title: Gamma
+          url: https://gamma.app/
+          description: 借助 AI 帮你完成演示文稿
+          logo: gamma.app.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
         - title: iLovePDF
           url: https://www.ilovepdf.com/zh-cn
           description: 完全免费、易于使用、丰富的PDF处理工具
