@@ -2558,6 +2558,10 @@
           url: https://getsimnum.caict.ac.cn/#/
           description: 查询自己名下有多少张电话卡
           logo: getsimnum.caict.ac.cn.ico
+        - title: 互联网信息服务投诉平台
+          url: https://ts.isc.org.cn/
+          description: 互联网公司问题投诉
+          logo: ts.isc.org.cn.png
         - title: 邮政业服务申诉平台
           url: https://sswz.spb.gov.cn/
           description: 快递问题申诉
