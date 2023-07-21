@@ -2420,6 +2420,9 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/shd101wyy/markdown-preview-enhanced
 
     - name: 服务编排
       links:
