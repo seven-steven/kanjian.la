@@ -278,6 +278,20 @@
 
     - name: 人工智能
       links:
+        - title: Hugging Face
+          url: https://huggingface.co/
+          description: 构建未来的 AI 社区
+          logo: huggingface.co.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 服务收费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://huggingface.co/docs
         - title: Learning Prompt
           url: https://learningprompt.wiki/
           description: ChatGPT 和 Midjourney 教程
