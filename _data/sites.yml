@@ -145,8 +145,14 @@
                 url: https://www.notion.so/pricing
             info:
               - icon: ri-book-2-line
+                title: Notion 101
+                url: https://www.notion.so/help/notion-academy/course/101-introduction
+              - icon: ri-book-2-line
                 title: Document
                 url: https://www.notion.so/help
+              - icon: ri-book-2-line
+                title: Notion Template
+                url: https://www.notion.so/templates
               - icon: ri-book-2-line
                 title: 非官方中文文档
                 url: https://notionchina.co/
