@@ -949,6 +949,24 @@
               - icon: ri-send-plane-fill
                 title: 国际互联网
 
+        - title: Automa
+          url: https://chrome.google.com/webstore/detail/automa/infppggnoaenmfagbfknfkancpbljcca
+          description: 运行在浏览器端的自动化和流程编排引擎
+          logo: automa.site.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://docs.automa.site/
+              - icon: ri-home-office-line
+                title: 官网
+                url: https://www.automa.site/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/AutomaApp/automa
         - title: Vimium
           url: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb
           description: 在 Chrome 中使用 Vim 插件
