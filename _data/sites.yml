@@ -64,6 +64,14 @@
       url: https://github.com/byoungd/English-level-up-tips
       description: 可能是让你受益匪浅的英语进阶指南
       logo: github.com.svg
+    - title: Qwerty Learner
+      url: https://kaiyiwing.gitee.io/qwerty-learner/
+      description: 为键盘工作者设计的英语肌肉记忆练习工具
+      logo: qwerty.kaiyi.cool.svg
+      icons:
+        - icon: ri-exchange-line
+          title: Alternative
+          url: https://qwerty.kaiyi.cool/
     - title: 下厨房
       url: https://www.xiachufang.com/
       description: 实用菜谱做法与饮食知识
