@@ -1127,6 +1127,13 @@
           url: https://www.vmos.com/
           description: 安卓虚拟机
           logo: vmos.com.png
+        - title: 朋友圈不折叠输入法
+          url: https://www.buzhedie.com/
+          description: 朋友圈你做主，文字不折叠
+          logo: buzhedie.com.svg
+          icons:
+            status:
+            info:
 
 - name: UI 设计
   icon: ri-palette-line
