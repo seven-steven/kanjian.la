@@ -1342,10 +1342,6 @@
           url: https://icons8.cn/music
           description: 免费的音乐素材网站
           logo: icons8.cn.svg
-        - title: 懒人全网音乐下载
-          url: https://www.eggvod.cn/music/
-          description: 免费下载各大音乐网站的歌曲
-          logo: eggvod.cn.svg
 
     - name: 影音工具
       links:
