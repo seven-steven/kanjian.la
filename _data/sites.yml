@@ -2566,6 +2566,21 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/actionsflow/actionsflow
+        - title: Laf
+          url: https://laf.dev/
+          description: Laf 是一个集函数、数据库、存储为一体的云开发平台
+          logo: laf.dev.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 云服务收费
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://doc.laf.run/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/labring/laf
         - title: Make
           url: https://www.make.com/
           description: 在可视化平台构建任何事情
