@@ -2567,7 +2567,7 @@
                 title: Github
                 url: https://github.com/actionsflow/actionsflow
         - title: Laf
-          url: https://laf.dev/
+          url: https://laf.dev/signup?code=taERVoO
           description: Laf 是一个集函数、数据库、存储为一体的云开发平台
           logo: laf.dev.svg
           icons:
