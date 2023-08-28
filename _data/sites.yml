@@ -1342,6 +1342,18 @@
           url: https://icons8.cn/music
           description: 免费的音乐素材网站
           logo: icons8.cn.svg
+        - title: slider.kz
+          url: https://slider.kz/
+          description: 全球音乐下载
+          logo: slider.kz.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-exchange-line
+                title: Alternative
+                url: https://tools.liumingye.cn/music/#/
 
     - name: 影音工具
       links:
