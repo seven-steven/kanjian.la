@@ -2566,6 +2566,9 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/actionsflow/actionsflow
+              - icon: ri-exchange-line
+                title: denoflow
+                url: https://github.com/denoflow/denoflow
         - title: Laf
           url: https://laf.dev/signup?code=taERVoO
           description: Laf 是一个集函数、数据库、存储为一体的云开发平台
