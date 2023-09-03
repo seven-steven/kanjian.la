@@ -252,10 +252,10 @@
           url: https://mail.tutanota.com/
           description: 安全、绿色、无广告的邮箱服务
           logo: mail.tutanota.com.svg
-        - title: TEMP MAIL
-          url: https://tempmail.email/
-          description: 临时邮箱、十分钟邮箱
-          logo: tempmail.email.svg
+        - title: Fake Email Generator
+          url: https://temp-mail.id/
+          description: 临时邮箱
+          logo: temp-mail.id.svg
           icons:
             info:
               - icon: ri-exchange-line
