@@ -261,6 +261,9 @@
               - icon: ri-exchange-line
                 title: 临时邮箱
                 url: https://www.linshi-email.com/
+              - icon: ri-exchange-line
+                title: Alternative
+                url: https://temp-mailbox.com/
         - title: DeepL
           url: https://www.deepl.com/zh/translator
           description: 很好用的翻译工具
