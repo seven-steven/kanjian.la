@@ -333,13 +333,7 @@
             info:
               - icon: ri-exchange-line
                 title: 镜像站点
-                url: https://chat12.aichatos.xyz/
-              - icon: ri-exchange-line
-                title: 镜像站点
-                url: https://chat.theb.ai/#/chat/1002
-              - icon: ri-exchange-line
-                title: 镜像站点
-                url: https://freegpt.one/
+                url: https://chat15.aichatos.xyz/
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
@@ -770,7 +764,7 @@
           logo: letsview.com.svg
         - title: PowerToys
           url: https://github.com/microsoft/PowerToys
-          description: Windows 下的自由分屏软件
+          description: Windows 下的效率工具
           logo: powertoys.microsoft.svg
         - title: Rainmeter
           url: https://www.rainmeter.net/
