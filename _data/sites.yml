@@ -2875,10 +2875,6 @@
           url: https://markdown.com.cn/editor/
           description: Markdown 文件转微信排版的工具
           logo: markdown.com.cn-editor.svg
-        - title: ArtiPub
-          url: https://github.com/crawlab-team/artipub
-          description: 支持多个博客平台的一文多发工具
-          logo: github.com.svg
 
     - name: 个人博客
       links:
