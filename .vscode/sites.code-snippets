@@ -96,4 +96,14 @@
 		],
 		"description": "Icon Info Home"
 	},
+	"Icon Info Relation": {
+		"scope": "yaml",
+		"prefix": "iir",
+		"body": [
+			"- icon: ri-sparkling-2-line",
+			"  title: $1",
+			"  url: $2",
+		],
+		"description": "Icon Info Relation"
+	},
 }
