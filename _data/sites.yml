@@ -289,7 +289,7 @@
               - icon: ri-money-cny-circle-line
                 title: 收费
             info:
-              - icon: sparkling-2-line
+              - icon: ri-sparkling-2-line
                 title: 美国地址生成器
                 url: https://www.meiguodizhi.com/usa-address/oregon
               - icon: ri-exchange-line
