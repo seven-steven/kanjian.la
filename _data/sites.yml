@@ -934,6 +934,10 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+            info:
+              - icon: ri-home-office-line
+                title: 官网
+                url: https://dida365.com/
         - title: SuperCopy 超级复制
           url: https://chrome.google.com/webstore/detail/supercopy-enable-copy/onepmapfbjohnegdmfhndpefjkppbjkm
           description: 破解禁止复制
