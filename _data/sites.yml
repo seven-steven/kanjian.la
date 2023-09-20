@@ -934,6 +934,18 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+        - title: SuperCopy 超级复制
+          url: https://chrome.google.com/webstore/detail/supercopy-enable-copy/onepmapfbjohnegdmfhndpefjkppbjkm
+          description: 破解禁止复制
+          logo: chrome-extension-super-copy.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-home-office-line
+                title: 官网
+                url: https://www.enablecopy.com/
         - title: 自选基金助手
           url: https://chrome.google.com/webstore/detail/%E8%87%AA%E9%80%89%E5%9F%BA%E9%87%91%E5%8A%A9%E6%89%8B-%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%9F%BA%E9%87%91%E6%B6%A8%E8%B7%8C%E5%B9%85/dhdelcemeednchdmijiocipbjlknndff/related?hl=zh-CN
           description: 实时查看基金涨跌幅
