@@ -1414,6 +1414,13 @@
           url: https://www.iconfont.cn/
           description: 海量用户贡献的海量图标库，可自主选择下载使用
           logo: www.iconfont.cn.svg
+        - title: Yesicon
+          url: https://yesicon.app/
+          description: 精选全球高品质、开源、免费图标库
+          logo: yesicon.app.svg
+          icons:
+            status:
+            info:
         - title: flaticon
           url: https://www.flaticon.com/
           description: Access 9.2M+ vector icons & stickers
@@ -1735,6 +1742,16 @@
 
     - name: 辅助工具
       links:
+        - title: Free For Developers
+          url: https://free-for.dev/
+          description: 免费的开发资源
+          logo: free-for.dev.webp
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/ripienaar/free-for-dev
         - title: Replit
           url: https://replit.com/
           description: 支持几乎所有现代编程语言的在线 IDE
