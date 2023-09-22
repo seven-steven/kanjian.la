@@ -1514,6 +1514,22 @@
           url: https://livicons.com/
           description: 动态图标库
           logo: livicons.com.png
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: lordicon
+                url: https://lordicon.com/icons
+                description: 动态图标库，部分收费
+                logo: lordicon.com.svg
+                icons:
+                  status:
+                    - icon: ri-money-cny-circle-line
+                      title: 部分收费
+                      url: https://lordicon.com/pricing
+                  info:
+                    - icon: ri-book-2-line
+                      title: Document
+                      url: https://lordicon.com/docs
         - title: ionicons
           url: https://ionic.io/
           description: 基于 js 的开源图标库
@@ -1526,19 +1542,6 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/ionic-team/ionicons
-        - title: lordicon
-          url: https://lordicon.com/icons
-          description: 动态图标库，部分收费
-          logo: lordicon.com.svg
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 部分收费
-                url: https://lordicon.com/pricing
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://lordicon.com/docs
         - title: iconify.DESIGN
           url: https://icon-sets.iconify.design/
           description: 聚合了几乎所有开源免费图标库
