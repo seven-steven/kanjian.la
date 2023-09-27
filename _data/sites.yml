@@ -2805,6 +2805,10 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+            info:
+              - icon: ri-exchange-line
+                title: Zlibrary
+                url: https://singlelogin.se/
         - title: Ylibrary
           url: https://ylibrary.org/
           description: 去中心化图书馆项目
