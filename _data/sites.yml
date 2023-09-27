@@ -2790,10 +2790,10 @@
           url: https://thepiratebay.org/
           description: 最大最全盗版资源下载网站
           logo: thepiratebay.org.jpg
-        # - title: Anime Scene Search Engine
-        #   url: https://trace.moe/
-        #   description: 根据动漫图片查找动漫
-        #   logo: trace.moe.svg
+        - title: Anime Scene Search Engine
+          url: https://trace.moe/
+          description: 根据动漫图片查找动漫
+          logo: trace.moe.svg
 
     - name: 电子书籍
       links:
