@@ -808,6 +808,15 @@
               - icon: ri-tools-line
                 title: 工具
                 url: https://v2rayse.com/
+        - title: Microsoft Activation Scripts
+          url: https://massgrave.dev/
+          description: Windows 和 Office 激活工具
+          logo: massgrave.dev.png
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/massgravel/Microsoft-Activation-Scripts
         - title: Awesome Windows
           url: https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
           description: Windows 精品软件清单
