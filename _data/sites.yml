@@ -1150,6 +1150,16 @@
           description: 无新闻，无推送，无后台，小而强大，给你淋漓尽致的浏览体验。支持油猴。
           logo: xbext.com.png
 
+        - title: TVBox
+          url: https://vinswu.github.io/tvbox/
+          description: 智能电视
+          logo: vinsuw.github.io-tvbox.svg
+          icons:
+            status:
+            info:
+              - icon: ri-sparkling-2-line
+                title: 下载地址
+                url: https://github.com/o0HalfLife0o/TVBoxOSC/releases
         - title: Magisk
           url: https://github.com/topjohnwu/Magisk
           description: 获取 Android Root 权限
