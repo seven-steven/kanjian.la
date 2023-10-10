@@ -1110,6 +1110,13 @@
           url: https://greasyfork.org/zh-CN/scripts/453403-external-link-auto-jump
           description: 知乎、CSDN、OSChina 外链自动跳转
           logo: greasyfork.org.png
+        - title: 复制 Notion Page 内容为标准 Markdown 文本
+          url: https://greasyfork.org/zh-CN/scripts/477050-copy-notion-page-content-as-markdown
+          description: 复制 Notion Page 内容为标准 Markdown 文本
+          logo: greasyfork.org.png
+          icons:
+            status:
+            info:
 
     - name: 安卓软件
       links:
