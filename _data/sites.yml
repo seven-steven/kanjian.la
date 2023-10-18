@@ -963,10 +963,10 @@
               - icon: ri-home-office-line
                 title: 官网
                 url: https://www.enablecopy.com/
-        - title: SessionBox
-          url: https://chrome.google.com/webstore/detail/sessionbox-multi-login-to/megbklhjamjbcafknkgmokldgolkdfig
+        - title: SendWin
+          url: https://chrome.google.com/webstore/detail/nbnjpdfblnfaniloehlfjkdfclljcgfn
           description: 用一个浏览器访问多个账户
-          logo: sessionbox.io.svg
+          logo:
           icons:
             status:
               - icon: ri-send-plane-fill
@@ -974,7 +974,28 @@
             info:
               - icon: ri-home-office-line
                 title: 官网
-                url: https://sessionbox.io/
+                url: https://send.win/
+              - icon: ri-exchange-line
+                title: MultiLogin
+                url: https://chrome.google.com/webstore/detail/ijfgglilaeakmoilplpcjcgjaoleopfi
+              - icon: ri-exchange-line
+                title: Session Switcher & Account Manager
+                url: https://chrome.google.com/webstore/detail/session-switcher-account/cfoijgjkinadiedfgkpdkeipkedfjcfk
+              - icon: ri-exchange-line
+                title: SessionBox
+                url: https://chrome.google.com/webstore/detail/sessionbox-multi-login-to/megbklhjamjbcafknkgmokldgolkdfig
+                description: 用一个浏览器访问多个账户
+                logo: sessionbox.io.svg
+                icons:
+                  status:
+                    - icon: ri-send-plane-fill
+                      title: 国际互联网
+                    - icon: ri-money-cny-circle-line
+                      title: 收费
+                  info:
+                    - icon: ri-home-office-line
+                      title: 官网
+                      url: https://sessionbox.io/
         - title: 自选基金助手
           url: https://chrome.google.com/webstore/detail/%E8%87%AA%E9%80%89%E5%9F%BA%E9%87%91%E5%8A%A9%E6%89%8B-%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%9F%BA%E9%87%91%E6%B6%A8%E8%B7%8C%E5%B9%85/dhdelcemeednchdmijiocipbjlknndff/related?hl=zh-CN
           description: 实时查看基金涨跌幅
