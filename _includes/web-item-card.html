@@ -4,8 +4,7 @@
     {% include web-item-icon-list.html icon_list = icon_list %}
     <div class="web-item-logo">
       <a href="{{ web_item.url }}" target="_blank" title="{{ web_item.url }}">
-        <!-- TODO default logo -->
-        <img src="{{ site.assets.image.path }}loading.svg" data-src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="logo for {{web_item.title}}" loading="lazy" />
+        <img src="{{ site.assets.image.path }}loading.svg" data-src="{{ site.web-item.logo.path }}{{ web_item.logo }}" alt="logo" loading="lazy" />
       </a>
     </div>
     {% assign icon_list = web_item.icons.info %}
