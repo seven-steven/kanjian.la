@@ -2,9 +2,10 @@ title: 看见导航
 description: 看见导航 | 美好的事物，值得被更多人看见
 keywords: 导航, 看见导航, 精品网站
 logo: assets/image/favicon.png
-web-item:
+assets:
   image:
     path: ./assets/image/
+web-item:
   logo:
     path: ./assets/image/logo/
 

@@ -43,11 +43,42 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>
 <script>
+  // Google 统计
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', '{{ site.analystic.google.gtag }}');
+</script>
+
+<script>
+  // 图片懒加载
+  document.addEventListener("DOMContentLoaded", function () {
+      const images = document.querySelectorAll("img[data-src]");
+      function lazyLoad() {
+          images.forEach((img) => {
+              if (isElementInViewport(img) && img.getAttribute("data-src")) {
+                  img.src = img.getAttribute("data-src");
+                  img.removeAttribute("data-src");
+              }
+          });
+      }
+
+      function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+              rect.top >= 0 &&
+              rect.left >= 0 &&
+              rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+          );
+      }
+
+      // Initial lazy load on page load
+      lazyLoad();
+
+      // Lazy load images when the user scrolls
+      window.addEventListener("scroll", lazyLoad);
+  });
 </script>
 
 </html>
