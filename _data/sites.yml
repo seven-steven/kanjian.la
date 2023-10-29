@@ -1345,6 +1345,10 @@
           url: https://www.designevo.com/
           description: 在线 LOGO 设计
           logo: designevo.com.ico
+        - title: 标准地图服务系统
+          url: http://bzdt.ch.mnr.gov.cn/
+          description: 标准地图素材
+          logo: bzdt.ch.mnr.gov.cn.ico
         - title: 易词云
           url: https://www.yciyun.com/
           description: 词云生成器
