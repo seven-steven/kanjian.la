@@ -2615,6 +2615,9 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://code.visualstudio.com/docs/devcontainers/containers
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/devcontainers/spec/
         - title: Markdown Preview Enhanced
           url: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
           description: Markdown 预览增强
