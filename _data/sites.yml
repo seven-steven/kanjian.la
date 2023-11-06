@@ -2078,6 +2078,15 @@
           url: https://github.com/budtmo/docker-android
           description: 在 Docker 中运行 android
           logo: github.com.svg
+        - title: 紫微研习社
+          url: https://github.com/SylarLong/iztro
+          description: 支持多语言轻量级获取紫微斗数排盘信息的javascript开源库
+          logo: docs.iztro.com.png
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.iztro.com/
         - title: Open Source Alternatives
           url: https://www.btw.so/open-source-alternatives
           description: 企业日常运营工具的开源替代方案
