@@ -1845,6 +1845,16 @@
               - icon: ri-sparkling-2-line
                 title: Playground
                 url: https://developers.cloudflare.com/workers/playground/
+        - title: Github Pages
+          url: https://pages.github.com/
+          description: Github 提供的免费静态网页托管服务，百度无法收录
+          logo: github.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.github.com/zh/pages
         - title: Free For Developers
           url: https://free-for.dev/
           description: 免费的开发资源
