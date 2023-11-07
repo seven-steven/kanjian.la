@@ -1838,6 +1838,8 @@
           logo: workers.cloudflare.com.svg
           icons:
             status:
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -1864,6 +1866,18 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://docs.github.com/en/actions
+        - title: Vercel
+          url: https://vercel.com/
+          description: 静态资源托管与云函数
+          logo: vercel.com.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://vercel.com/docs
         - title: Free For Developers
           url: https://free-for.dev/
           description: 免费的开发资源
