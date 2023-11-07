@@ -1830,8 +1830,21 @@
               - icon: ri-github-fill
                 url: https://github.com/EbookFoundation/free-programming-books/
 
-    - name: 辅助工具
+    - name: 云端资源
       links:
+        - title: CloudFlare Workers
+          url: https://workers.cloudflare.com/
+          description: CloudFlare 云函数，每天有 10 万次免费请求
+          logo: workers.cloudflare.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://developers.cloudflare.com/workers/
+              - icon: ri-sparkling-2-line
+                title: Playground
+                url: https://developers.cloudflare.com/workers/playground/
         - title: Free For Developers
           url: https://free-for.dev/
           description: 免费的开发资源
@@ -1842,6 +1855,9 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/ripienaar/free-for-dev
+
+    - name: 辅助工具
+      links:
         - title: Replit
           url: https://replit.com/
           description: 支持几乎所有现代编程语言的在线 IDE
