@@ -1857,6 +1857,16 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://docs.github.com/zh/pages
+        - title: CloudFlare Pages
+          url: https://pages.cloudflare.com/
+          description: CloudFlare 提供的网页托管服务
+          logo: pages.cloudflare.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://developers.cloudflare.com/pages
         - title: Github Actions
           url: https://github.com/features/actions
           description: Github 提供的持续集成服务
