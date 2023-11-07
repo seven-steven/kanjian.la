@@ -1840,6 +1840,7 @@
             status:
               - icon: ri-money-cny-circle-line
                 title: 免费方案
+                url: https://workers.cloudflare.com/#plans
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -1863,6 +1864,9 @@
           logo: pages.cloudflare.com.svg
           icons:
             status:
+              - icon: ri-money-cny-circle-line
+                title: 免费
+                url: https://pages.cloudflare.com/#plans
             info:
               - icon: ri-book-2-line
                 title: Document
@@ -1884,6 +1888,7 @@
             status:
               - icon: ri-money-cny-circle-line
                 title: 免费方案
+                url: https://vercel.com/pricing
             info:
               - icon: ri-book-2-line
                 title: Document
