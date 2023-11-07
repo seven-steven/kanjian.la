@@ -1855,6 +1855,10 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://docs.github.com/zh/pages
+        - title: Github Actions
+          url: https://docs.github.com/en/actions
+          description: Github 提供的持续集成服务
+          logo: github.com.svg
         - title: Free For Developers
           url: https://free-for.dev/
           description: 免费的开发资源
