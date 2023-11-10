@@ -30,6 +30,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      # see: https://imagemagick.org/
+      - name: minify logos
+        run: |
+          /bin/bash -c './.github/workflows/minify-pic.sh ./assets/image/logo 50x || true'
+
       - name: build with jekyll
         run: |
           docker run \
@@ -54,12 +60,12 @@ jobs:
       - name: Checkout source repository
         uses: actions/checkout@v3
         with:
-          repository: Seven-Steven/kanjian.la
+          repository: seven-steven/kanjian.la
           path: source
       - name: Checkout target reporitory
         uses: actions/checkout@v3
         with:
-          repository: Seven-Steven/webstack-jekyll
+          repository: seven-steven/webstack-jekyll
           path: target
           token: ${{ secrets.TOKEN }}
       - name: Sync data
@@ -70,7 +76,7 @@ jobs:
           rsync -a source/_data/sites.yml target/_data/webstack.yml
           rsync -a source/assets/image/logo/* target/assets/images/logos/
           cd target
-          git config user.name 'Seven-Steven'
+          git config user.name 'seven-steven'
           git config user.email 'seven@diqigan.cn'
           git add -A .
           git commit -F ../commit-message
