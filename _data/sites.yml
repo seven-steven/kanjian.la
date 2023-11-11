@@ -567,6 +567,21 @@
               - icon: ri-money-cny-circle-line
                 title: 申请内测
             info:
+        - title: GPTsHunter
+          url: https://www.gptshunter.com/
+          description: GPTs 导航
+          logo: gptshunter.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-exchange-line
+                title: GPTStore
+                url: https://gptstore.ai/
+              - icon: ri-exchange-line
+                title: AllGPTs
+                url: https://allgpts.co/
         - title: 周报通
           url: https://zhoubaotong.com/zh
           description: 简单描述工作内容，帮你生成完整周报
