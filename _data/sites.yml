@@ -1863,6 +1863,9 @@
               - icon: ri-sparkling-2-line
                 title: Playground
                 url: https://developers.cloudflare.com/workers/playground/
+              - icon: ri-sparkling-2-line
+                title: Templates
+                url: https://github.com/cloudflare/workers-sdk/tree/main/templates
         - title: Github Pages
           url: https://pages.github.com/
           description: Github 提供的免费静态网页托管服务，百度无法收录
