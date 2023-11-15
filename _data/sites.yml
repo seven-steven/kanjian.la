@@ -162,9 +162,12 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://www.notion.so/help
-              - icon: ri-book-2-line
-                title: Notion Template
-                url: https://www.notion.so/templates
+              - icon: ri-github-fill
+                title: Official Notion JavaScript Client
+                url: https://github.com/makenotion/notion-sdk-js
+              # - icon: ri-book-2-line
+              #   title: Notion Template
+              #   url: https://www.notion.so/templates
               - icon: ri-book-2-line
                 title: 非官方中文文档
                 url: https://notionchina.co/
