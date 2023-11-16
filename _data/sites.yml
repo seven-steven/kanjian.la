@@ -1847,6 +1847,16 @@
                 url: https://ebookfoundation.github.io/free-programming-books/
               - icon: ri-github-fill
                 url: https://github.com/EbookFoundation/free-programming-books/
+        - title: 凤凰架构
+          url: https://icyfenix.cn/
+          description: 凤凰架构：构建可靠的大型分布式系统
+          logo: icyfenix.cn.ico
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/fenixsoft/awesome-fenix
 
     - name: 云端资源
       links:
