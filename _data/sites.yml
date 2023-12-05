@@ -1038,7 +1038,18 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
-
+        - title: 壹伴
+          url: https://chromewebstore.google.com/detail/%E5%A3%B9%E4%BC%B4-%C2%B7-%E5%B0%8F%E6%8F%92%E4%BB%B6/ibefaeehajgcpooopoegkifhgecigeeg?hl=en-US
+          description: 简单好用的公众号效率工具
+          logo: yiban.io.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-home-office-line
+                title: 官网
+                url: https://yiban.io/
         - title: Automa
           url: https://chrome.google.com/webstore/detail/automa/infppggnoaenmfagbfknfkancpbljcca
           description: 运行在浏览器端的自动化和流程编排引擎
