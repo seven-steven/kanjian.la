@@ -349,6 +349,9 @@
               - icon: ri-exchange-line
                 title: 镜像站点集合
                 url: https://github.com/xx025/carrot
+              - icon: ri-exchange-line
+                title: 镜像站点集合
+                url: https://github.com/LiLittleCat/awesome-free-chatgpt
         - title: Bard
           url: https://bard.google.com/
           description: 谷歌的大语言模型
