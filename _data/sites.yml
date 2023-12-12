@@ -287,23 +287,23 @@
           url: https://xiaomark.com/
           description: 短链接生成器，拥有统计功能
           logo: xiaomark.com.svg
-        - title: FOMEPay
-          url: https://gpt.fomepay.com/#/pages/login/index?d=857188
-          description: 虚拟信用卡
-          logo: gpt.fomepay.com.png
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-            info:
-              - icon: ri-sparkling-2-line
-                title: 美国地址生成器
-                url: https://www.meiguodizhi.com/usa-address/oregon
-              - icon: ri-exchange-line
-                title: NobePay
-                url: https://nobepay.com/
-                description: 虚拟信用卡
-                logo: nobepay.com.svg
+        # - title: FOMEPay
+        #   url: https://gpt.fomepay.com/#/pages/login/index?d=857188
+        #   description: 虚拟信用卡
+        #   logo: gpt.fomepay.com.png
+        #   icons:
+        #     status:
+        #       - icon: ri-money-cny-circle-line
+        #         title: 收费
+        #     info:
+        #       - icon: ri-sparkling-2-line
+        #         title: 美国地址生成器
+        #         url: https://www.meiguodizhi.com/usa-address/oregon
+        #       - icon: ri-exchange-line
+        #         title: NobePay
+        #         url: https://nobepay.com/
+        #         description: 虚拟信用卡
+        #         logo: nobepay.com.svg
 
     - name: 人工智能
       links:
