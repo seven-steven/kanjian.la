@@ -2066,6 +2066,16 @@
 
     - name: 开源项目
       links:
+        - title: 开源服务指南
+          url: https://osguider.com
+          description: 发现开源之美，碰撞无限可能
+          logo: osguider.com.svg
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/osguider/blog
         - title: hellogithub
           url: https://raw.hellogithub.com/hosts
           description: Github Host 列表
