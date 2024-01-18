@@ -1818,6 +1818,16 @@
             info:
               - icon: ri-english-input
                 url: https://leetcode.com/
+        - title: CS 自学指南
+          url: https://csdiy.wiki/
+          description: 计算机自学指南
+          logo: csdiy.wiki.ico
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/PKUFlyingPig/cs-self-learning
         - title: REFACTORING GURU
           url: https://refactoringguru.cn/design-patterns
           description: 设计模式教程
