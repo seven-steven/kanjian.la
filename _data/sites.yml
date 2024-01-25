@@ -287,6 +287,10 @@
           url: https://xiaomark.com/
           description: 短链接生成器，拥有统计功能
           logo: xiaomark.com.svg
+        - title: Paste.ee
+          url: https://paste.ee/
+          description: 云剪贴板
+          logo: circle-blue.svg
         # - title: FOMEPay
         #   url: https://gpt.fomepay.com/#/pages/login/index?d=857188
         #   description: 虚拟信用卡
