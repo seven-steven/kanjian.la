@@ -832,18 +832,6 @@
           url: https://github.com/debauchee/barrier/
           description: 基于 Synergy 开发的开源跨平台多终端键鼠共享软件
           logo: barrier.svg
-        - title: Clash for Windows
-          url: https://github.com/Fndroid/clash_for_windows_pkg/releases/latest
-          description: Clash 的 Windows/macOS/Linux 图形客户端
-          logo: clash.png
-          icons:
-            info:
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://docs.cfw.lbyczf.com/
-              - icon: ri-tools-line
-                title: 工具
-                url: https://v2rayse.com/
         - title: Microsoft Activation Scripts
           url: https://massgrave.dev/
           description: Windows 和 Office 激活工具
