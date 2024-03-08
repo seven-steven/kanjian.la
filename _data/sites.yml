@@ -2058,13 +2058,17 @@
           url: https://ipw.cn/
           description: 致力于普及 IPv6 ,推进 IPv6 规模部署和应用
           logo: ipw.cn.svg
-        - title: 正则表达式在线测试
-          url: https://c.runoob.com/front-end/854/
-          description: 正则表达式在线测试
-          logo: c.runoob.com.svg
+        - title: Regular Expressions 101
+          url: https://regex101.com/
+          description: 正则表达式在线构建、测试、debug
+          logo: regex101.com.png
           icons:
             status:
             info:
+              - icon: ri-exchange-line
+                title: 正则表达式在线测试
+                logo: c.runoob.com.svg
+                url: https://c.runoob.com/front-end/854/
 
     - name: 开源项目
       links:
