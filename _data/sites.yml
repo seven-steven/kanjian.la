@@ -3120,10 +3120,6 @@
           url: https://www.desmos.com/calculator
           description: 根据公式绘制函数图像
           logo: desmos.com.svg
-        - title: 地图搜租房
-          url: https://woyaozufang.live/#/
-          description: 满大街找租房心力交瘁？试试换个方式直接在地图上搜租房
-          logo: woyaozufang.live.svg
         - title: FakeUpdate
           url: https://fakeupdate.net/
           description: 假装系统升级
