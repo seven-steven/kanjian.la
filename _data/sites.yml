@@ -3261,6 +3261,10 @@
           url: https://cupfox.app/
           description: 另一个刷剧网站
           logo: cupfox.app.svg
+        - title: 樱花动漫
+          url: https://www.yinhuadm.one/
+          description: 全网动漫资源
+          logo: yinhuadm.one.ico
         - title: 海盗湾
           url: https://thepiratebay.org/
           description: 最大最全盗版资源下载网站
