@@ -2367,6 +2367,13 @@
           url: https://www.btw.so/open-source-alternatives
           description: 企业日常运营工具的开源替代方案
           logo: btw.so.svg
+        - title: Template0
+          url: https://template0.com/
+          description: 开源的前端网页集锦
+          logo: template0.com.png
+          icons:
+            status:
+            info:
 
     - name: 开源应用
       links:
