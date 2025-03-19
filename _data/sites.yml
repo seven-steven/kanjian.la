@@ -406,12 +406,17 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+        - title: Gemini
+          url: https://gemini.google.com/app/
+          description: DeepResearch 很不错
+          logo: gemini.google.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
             info:
-              - icon: ri-exchange-line
-                title: Gemini
-                url: https://gemini.google.com/
-                description: 谷歌的大语言模型
-                logo: gemini.google.com.svg
         - title: Kimi
           url: https://kimi.moonshot.cn/
           description: 国产大语言模型
