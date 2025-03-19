@@ -1521,6 +1521,17 @@
 
     - name: 图片工具
       links:
+        - title: Google AI Studio
+          url: https://aistudio.google.com/prompts/new_chat
+          description: Gemini 2.0 Flash(Image Generation) 模型，画图王者
+          logo: aistudio.google.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
         - title: Squoosh
           url: https://squoosh.app/
           description: 一款开源免费可调节的图片压缩工具
