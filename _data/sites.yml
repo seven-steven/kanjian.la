@@ -1608,18 +1608,10 @@
           url: https://icons8.cn/music
           description: 免费的音乐素材网站
           logo: icons8.cn.svg
-        - title: slider.kz
-          url: https://hayqbhgr.slider.kz/
-          description: 全球音乐下载
-          logo: slider.kz.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-exchange-line
-                title: Alternative
-                url: https://tools.liumingye.cn/music/#/
+        - title: 全网音乐免费下载
+          url: https://music.txqq.pro/
+          description: 提供多站合一 音乐下载解决方案
+          logo: music.txqq.pro.png
 
     - name: 影音工具
       links:
@@ -3262,16 +3254,9 @@
               - icon: ri-exchange-line
                 title: 网址发布页
                 url: https://ddys.site/
-        - title: 哔嘀影视
-          url: https://www.52bdys.com/
-          description: 热门影视在线观看
-          logo: bdys01.com.svg
-          icons:
-            status:
-            info:
               - icon: ri-exchange-line
-                title: 网址发布页
-                url: https://www.bdys.me/
+                title: 修罗影视
+                url: https://v.xlys.ltd.ua/
         - title: RARGB
           url: https://rargb.to/
           description: 高质量影音下载网站
