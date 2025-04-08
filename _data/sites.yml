@@ -934,6 +934,11 @@
           url: https://github.com/debauchee/barrier/
           description: 基于 Synergy 开发的开源跨平台多终端键鼠共享软件
           logo: barrier.svg
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: Deskflow
+                url: https://github.com/deskflow/deskflow/
         - title: Microsoft Activation Scripts
           url: https://massgrave.dev/
           description: Windows 和 Office 激活工具
