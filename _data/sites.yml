@@ -940,6 +940,15 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
+        - title: SpaceDesk
+          url: https://www.spacedesk.net/
+          description: 把你的任何设备变成电脑附加显示器
+          logo: spacedesk.net.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
         - title: Microsoft Activation Scripts
           url: https://massgrave.dev/
           description: Windows 和 Office 激活工具
