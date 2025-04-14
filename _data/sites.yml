@@ -924,7 +924,7 @@
         - title: Deskflow
           url: https://github.com/deskflow/deskflow/
           description: 开源跨平台多终端键鼠共享软件
-          logo:
+          logo: github-deskflow-deskflow.png
           icons:
             info:
               - icon: ri-exchange-line
