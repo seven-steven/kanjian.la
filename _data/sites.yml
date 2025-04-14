@@ -921,24 +921,25 @@
           url: http://getquicker.net/
           description: Windows 指尖工具箱
           logo: getquicker.net.ico
-        - title: Synergy
-          url: https://symless.com/synergy
-          description: 纯软件的跨电脑键鼠共享方案，代码开源，免费版本需要自己编译
-          logo: synergy.svg
-          icons:
-            info:
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
-        - title: Barrier
-          url: https://github.com/debauchee/barrier/
-          description: 基于 Synergy 开发的开源跨平台多终端键鼠共享软件
-          logo: barrier.svg
+        - title: Deskflow
+          url: https://github.com/deskflow/deskflow/
+          description: 开源跨平台多终端键鼠共享软件
+          logo:
           icons:
             info:
               - icon: ri-exchange-line
-                title: Deskflow
-                url: https://github.com/deskflow/deskflow/
+                title: Barrier
+                url: https://github.com/debauchee/barrier/
+                description: 基于 Synergy 开发的开源跨平台多终端键鼠共享软件
+                logo: barrier.svg
+              - icon: ri-exchange-line
+                title: Synergy
+                url: https://symless.com/synergy
+                description: 纯软件的跨电脑键鼠共享方案，代码开源，免费版本需要自己编译
+                logo: synergy.svg
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/DEAKSoftware/Synergy-Binaries/releases
         - title: Microsoft Activation Scripts
           url: https://massgrave.dev/
           description: Windows 和 Office 激活工具
