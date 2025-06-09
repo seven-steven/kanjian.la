@@ -2103,6 +2103,15 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/ripienaar/free-for-dev
+        - title: AutoDL
+          url: https://www.autodl.com/
+          description: AI 云算力
+          logo: autodl.com.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
 
     - name: 辅助工具
       links:
