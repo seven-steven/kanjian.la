@@ -2013,6 +2013,13 @@
           url: https://db-engines.com/
           description: 数据库排名
           logo: db-engines.com.ico
+        - title: Zread
+          url: https://zread.ai/
+          description: AI 帮你总结开源项目信息
+          logo: zread.ai.ico
+          icons:
+            status:
+            info:
 
     - name: 云端资源
       links:
