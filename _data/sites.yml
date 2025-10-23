@@ -1910,6 +1910,10 @@
 
     - name: 字体素材
       links:
+        - title: 中文网字计划
+          url: https://chinese-font.netlify.app/zh-cn/
+          description: 一套开源的、全方位的、全场景的 Web 字体解决方案。
+          logo: chinese-font.netlify.app.ico
         - title: 100font
           url: https://www.100font.com/
           description: 一个专门收集“免费商用”字体的网站
