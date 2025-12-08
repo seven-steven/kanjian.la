@@ -2192,6 +2192,19 @@
               - icon: ri-computer-line
                 title: demo
                 url: https://dbdocs.io/Holistics/Ecommerce
+        - title: Quarto
+          url: https://quarto.org/
+          description: Markdown 转 Word 文档格式
+          logo: quarto.org.png
+          icons:
+            status:
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://quarto.org/docs/get-started/
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/quarto-dev/quarto-cli
         - title: carbon
           url: https://carbon.now.sh/
           description: 代码图片美化工具
