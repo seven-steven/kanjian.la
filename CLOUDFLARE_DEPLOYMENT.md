@@ -93,10 +93,11 @@
    cd kanjian.la
    
    # 使用 Docker 构建（推荐）
+   # 注意：本项目在 GitHub Actions 中使用 Jekyll 4.2.0
    docker run --rm -it \
      -v ${PWD}:/srv/jekyll \
      -v ${PWD}/_site:/srv/jekyll/_site \
-     jekyll/builder:4 jekyll build --future
+     jekyll/builder:4.2.0 jekyll build --future
    
    # 或者使用本地 Jekyll
    bundle install
@@ -206,12 +207,25 @@ chmod +x build.sh && ./build.sh
 
 ### 环境变量使用
 
-你可以在 Cloudflare Pages 中设置环境变量，并在 Jekyll 构建过程中使用：
+你可以在 Cloudflare Pages 中设置环境变量。Jekyll 可以通过 `ENV` 对象在构建时访问这些变量。
+
+例如，在 `_config.yml` 中：
 
 ```yaml
 # _config.yml
-google_analytics: <%= ENV['GOOGLE_ANALYTICS_ID'] %>
+# Jekyll 会在构建时自动读取环境变量
+# 如果设置了 JEKYLL_ENV=production，可以在配置中使用条件判断
 ```
+
+或者在 Liquid 模板中使用：
+
+```liquid
+{% if jekyll.environment == "production" %}
+  <!-- 生产环境特定内容 -->
+{% endif %}
+```
+
+**注意**: Jekyll 使用 Liquid 模板语法，不是 ERB。环境变量主要通过 Jekyll 的内置环境支持来使用。
 
 ## 性能优化建议
 
