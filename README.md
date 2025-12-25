@@ -12,7 +12,7 @@
 - Templated by [Liquid](https://shopify.github.io/liquid/)
 - Generate by [jekyll](https://jekyllrb.com/)
 - Pipeline by [Github Actions](https://docs.github.com/actions)
-- Host by [Github Pages](https://docs.github.com/en/pages/quickstart)
+- Host by [Github Pages](https://docs.github.com/en/pages/quickstart) / [Cloudflare Pages](https://pages.cloudflare.com/)
 - DNS by [CloudFlare](https://cloudflare.com/)
 - ICON Vectorizer by [Vectorizer.AI](https://vectorizer.ai/)
 
@@ -89,6 +89,25 @@
 - `assets/image/logo` 目录用于存放导航站点 logo，然后被 `data/sites.yml` 引用
 
 ### 部署
+
+#### 部署到 Cloudflare Pages
+
+Cloudflare Pages 提供了免费、快速且易用的静态网站托管服务。
+
+**快速部署步骤：**
+
+1. Fork 本仓库到你的 GitHub 账户
+2. 登录 [Cloudflare Pages](https://pages.cloudflare.com/)
+3. 创建新项目并连接到你的 GitHub 仓库
+4. 使用以下构建配置：
+   - **生产分支**: `jekyll`
+   - **构建命令**: `jekyll build --future`
+   - **构建输出目录**: `_site`
+5. 保存并部署
+
+详细的部署指南和故障排查，请参考 [Cloudflare Pages 部署文档](./CLOUDFLARE_DEPLOYMENT.md)。
+
+#### 手动部署到其他服务器
 
 1. 使用 Docker 编译代码
 
