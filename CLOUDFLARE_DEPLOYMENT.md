@@ -1,6 +1,16 @@
 # Cloudflare Pages 部署指南
 
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
+
 本指南将帮助你将「看见导航」部署到 Cloudflare Pages。
+
+## 快速开始
+
+点击上方的 "Deploy to Cloudflare Pages" 按钮或访问 [Cloudflare Pages](https://pages.cloudflare.com/) 开始部署。你需要：
+
+1. 一个 Cloudflare 账户（免费）
+2. Fork 本仓库到你的 GitHub 账户
+3. 按照下方的详细步骤进行配置
 
 ## 部署方式
 
