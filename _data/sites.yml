@@ -2229,10 +2229,13 @@
           url: https://httpbin.org/
           description: A simple HTTP Request & Response Service.
           logo: httpbin.org.ico
-        - title: RequestBin
-          url: https://requestbin.com/
-          description: 调试 HTTP 或 Webhook 请求
-          logo: requestbin.com.svg
+        - title: Webhook.site
+          url: https://webhook.site/
+          description: 实时调测、转换、自动化处理 Webhook、HTTP 请求和电子邮件
+          logo:
+          icons:
+            status:
+            info:
         - title: I18n Translation Search Engine
           url: https://i18ns.com/
           description: i18n 国际化翻译工具
