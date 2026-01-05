@@ -2388,7 +2388,7 @@
           icons:
             info:
               - icon: ri-book-2-line
-                url: https://gofrp.org/docs/
+                url: https://gofrp.org/
         - title: kkFileView
           url: https://kkfileview.keking.cn/zh-cn/index.html
           description: 主流办公文档的在线预览解决方案
