@@ -2270,6 +2270,16 @@
           url: https://mirrors.tuna.tsinghua.edu.cn/help/
           description: 软件开发加速器
           logo: mirrors.tuna.tsinghua.edu.cn.png
+        - title: DownGit
+          url: https://downgit.github.io/
+          description: 下载 Github 资源
+          logo: downgit.github.io.png
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/MinhasKamal/DownGit
 
     - name: 开源项目
       links:
