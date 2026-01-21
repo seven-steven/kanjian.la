@@ -1,18 +1,22 @@
+<!--
+git-translate-upstream-commit-id: 01745fd82df059b80d60abf3391ab55b0a46f476
+-->
+
 # Cloudflare Pages 部署指南
 
-[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
+\[\!\[部署到 Cloudflare Pages\](https://img.shields.io/badge/部署到\-Cloudflare%20Pages\-F38020?style\=for\-the\-badge&logo\=cloudflare&logoColor\=white)\](https://pages.cloudflare.com/)
 
-本指南将帮助你将「看见导航」部署到 Cloudflare Pages。
+This guide will help you deploy "See Navigation" to Cloudflare Pages.
 
-## 快速开始
+## 快速入门
 
-点击上方的 "Deploy to Cloudflare Pages" 按钮或访问 [Cloudflare Pages](https://pages.cloudflare.com/) 开始部署。你需要：
+点击上方的“Deploy to Cloudflare Pages”按钮或访问 \[Cloudflare Pages\](https://pages.cloudflare.com/) 开始部署。你需要：
 
 1. 一个 Cloudflare 账户（免费）
 2. Fork 本仓库到你的 GitHub 账户
 3. 按照下方的详细步骤进行配置
 
-## 部署方式
+## Deployment Methods
 
 ### 方式一：通过 Cloudflare Pages 控制台部署（推荐）
 
@@ -41,11 +45,11 @@
    - **项目名称 (Project name)**: 自定义你的项目名称（例如：`kanjian-la`）
    - **生产分支 (Production branch)**: `jekyll`
    - **框架预设 (Framework preset)**: 选择 `None` 或 `Jekyll`
-   - **构建命令 (Build command)**:
+   - **build (Build command)**:
      ```bash
      jekyll build --future
      ```
-   - **构建输出目录 (Build output directory)**:
+   - **Build Output Directory (Build output directory)**:
      ```
      _site
      ```
@@ -69,7 +73,7 @@
 
 如果你熟悉命令行工具，可以使用 Wrangler CLI 进行部署。
 
-#### 前置要求
+#### 前置条件
 
 - 已安装 Node.js (推荐 v16 或更高版本)
 - 已安装 Ruby 和 Jekyll
@@ -126,23 +130,23 @@ jekyll build --future
 _site
 ```
 
-Jekyll 默认将生成的静态文件输出到 `_site` 目录。
+Jekyll 默认将生成的静态文件输出到 \`\_site\` 目录。
 
 ### Ruby 版本
 
-Cloudflare Pages 默认使用 Ruby 2.7.x。如果你需要指定 Ruby 版本，可以在项目根目录创建 `.ruby-version` 文件：
+Cloudflare Pages 默认使用 Ruby 2.7.x。如果你需要指定 Ruby 版本，可以在项目根目录创建 \`.ruby\-version\` 文件：
 
 ```
 2.7.8
 ```
 
-或者在环境变量中设置 `RUBY_VERSION`。
+Alternatively, set \`RUBY\_VERSION\` in the environment variables.
 
 ## 自动部署
 
-配置完成后，每次你向 `jekyll` 分支推送代码，Cloudflare Pages 都会自动触发构建和部署。
+Once configured, each time you push code to the \`jekyll\` branch, Cloudflare Pages will automatically trigger the build and deployment process.
 
-你也可以在 Cloudflare Pages 控制台中：
+您也可以在 Cloudflare Pages 控制台中：
 - 查看部署历史
 - 回滚到之前的版本
 - 查看构建日志
@@ -157,33 +161,33 @@ Cloudflare Pages 默认使用 Ruby 2.7.x。如果你需要指定 Ruby 版本，�
 
 ## 常见问题
 
-### Q: 构建失败，提示找不到 Jekyll
+### A: 构建失败，提示找不到 Jekyll
 
-**A**: 确保构建命令正确，并且 Cloudflare Pages 能够自动安装 Ruby 依赖。检查 `Gemfile` 是否包含了所有必要的依赖。
+\*\*A\*\*: 确保构建命令正确，并且 Cloudflare Pages 能够自动安装 Ruby 依赖。检查 \`Gemfile\` 是否包含了所有必要的依赖。
 
-### Q: 网站样式或图片无法加载
+### A: 网站样式或图片无法加载
 
-**A**: 检查 `_config.yml` 中的 `baseurl` 配置。对于 Cloudflare Pages，通常应该留空或设置为 `/`。
+\*\*A\*\*: 检查 \`\_config.yml\` 中的 \`baseurl\` 配置。对于 Cloudflare Pages，通常应留空或设为 \`/\`。
 
 ### Q: 构建时间过长
 
-**A**: Jekyll 的构建速度取决于网站内容的数量。Cloudflare Pages 的免费套餐提供充足的构建时间，一般不会有问题。
+\*\*A\*\*: Jekyll 的构建速度取决于网站内容的数量。Cloudflare Pages 的免费套餐提供充足的构建时间，一般不会有问题。
 
-### Q: 如何查看构建日志
+### A: 如何查看构建日志
 
-**A**: 在 Cloudflare Pages 项目控制台中，点击具体的部署记录，可以查看详细的构建日志。
+\*\*A\*\*: 在 Cloudflare Pages 项目控制台中，点击具体的部署记录，可以查看详细的构建日志。
 
-### Q: 能否使用其他分支进行部署
+### A: 可以使用其他分支进行部署。在部署配置中，您可以指定任意分支作为部署源，只需在设置中将默认分支更改为您希望使用的分支即可。
 
-**A**: 可以。在项目设置中，你可以修改生产分支或配置预览分支。
+\*\*A\*\*: 可以。在项目设置中，你可以修改生产分支或配置预览分支。
 
-## 高级配置
+## Advanced Configuration
 
-### 自定义构建脚本
+### Custom Build Script
 
-如果你需要在构建过程中执行额外的操作（如图片压缩、资源优化等），可以创建一个构建脚本并在构建命令中调用。
+如果您需要在构建过程中执行额外操作（例如图片压缩、资源优化等），可以创建一个构建脚本并在构建命令中调用它。
 
-例如，创建 `build.sh`:
+例如，创建 \`build.sh\`：
 
 ```bash
 #!/bin/bash
@@ -207,9 +211,9 @@ chmod +x build.sh && ./build.sh
 
 ### 环境变量使用
 
-你可以在 Cloudflare Pages 中设置环境变量。Jekyll 可以通过 `ENV` 对象在构建时访问这些变量。
+您可以在 Cloudflare Pages 中设置环境变量。Jekyll 可以通过 \`ENV\` 对象在构建过程中访问这些变量。
 
-例如，在 `_config.yml` 中：
+例如，在 \`\_config.yml\` 文件中：
 
 ```yaml
 # _config.yml
@@ -225,7 +229,7 @@ chmod +x build.sh && ./build.sh
 {% endif %}
 ```
 
-**注意**: Jekyll 使用 Liquid 模板语法，不是 ERB。环境变量主要通过 Jekyll 的内置环境支持来使用。
+\*\*注意\*\*: Jekyll 使用 Liquid 模板语法，而非 ERB。环境变量主要通过 Jekyll 的内置环境支持功能来使用。
 
 ## 性能优化建议
 
@@ -244,9 +248,9 @@ chmod +x build.sh && ./build.sh
 - [Jekyll 官方文档](https://jekyllrb.com/)
 - [Wrangler CLI 文档](https://developers.cloudflare.com/workers/wrangler/)
 
-## 技术支持
+## Technical Support
 
-如果你在部署过程中遇到问题，可以：
+如果在部署过程中遇到问题，您可以尝试以下方法：
 
 1. 查看本项目的 [Issues](https://github.com/Seven-Steven/kanjian.la/issues)
 2. 参考 [Cloudflare Community](https://community.cloudflare.com/)

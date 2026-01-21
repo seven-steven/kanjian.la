@@ -1,0 +1,33 @@
+🕒 开始时间: 2026-01-21 15:31:03
+=== 加载配置 ===
+✓ 配置已加载 (目标语言: zh-CN)
+
+=== 初始化服务 ===
+✓ 服务已初始化
+
+=== 识别翻译基准点 ===
+2026/01/21 15:31:03 [metadata] 未找到 git-translate commit (仓库: /data/coding/projects/seven/git-translate/bin/kanjian)
+✓ 首次翻译 (无历史记录)
+
+=== 获取最新 upstream commit ===
+正在拉取 upstream 变更...
+✓ upstream 变更已拉取 (耗时: 1.73s)
+✓ 最新 upstream commit: 01745fd
+
+=== 检测到新变更:  → 01745fd ===
+
+=== 生成待翻译文件列表 ===
+2026/01/21 15:31:05 [update] 使用 git worktree 访问远程 upstream: /data/coding/projects/seven/git-translate/bin/kanjian/.git/git-translate-upstream-worktree
+2026/01/21 15:31:05 [update] 更新现有 worktree: /data/coding/projects/seven/git-translate/bin/kanjian/.git/git-translate-upstream-worktree
+[FileList] 2026/01/21 15:31:07 文件列表生成完成: 匹配 2 个文件, 跳过 1 个文件
+✓ whitelist 匹配: 2 个文件
+
+=== 分析文件差异 ===
+⚠ 首次翻译: 将所有文件标记为新增,执行完整翻译
+✓ 检测到 2 个文件变更
+
+=== 开始增量翻译 ===
+
+[1/2] 处理文件: CLOUDFLARE_DEPLOYMENT.md (状态: 新增)
+2026/01/21 15:31:07 [新增文件] 开始翻译新文件: CLOUDFLARE_DEPLOYMENT.md (目标语言: zh-CN)
+2026/01/21 15:31:07 [新增文件] 临时文件已创建: /tmp/git-translate-new-3967783299
