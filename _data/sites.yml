@@ -1851,9 +1851,6 @@
           icons:
             info:
               - icon: ri-exchange-line
-                title: SVG Gradients
-                url: https://svggradients.com/
-              - icon: ri-exchange-line
                 title: Uigradients
                 url: https://uigradients.com/
         - title: Eva Design System
