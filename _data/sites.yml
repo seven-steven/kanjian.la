@@ -2267,6 +2267,16 @@
           url: https://mirrors.tuna.tsinghua.edu.cn/help/
           description: 软件开发加速器
           logo: mirrors.tuna.tsinghua.edu.cn.png
+        - title: Chezmoi
+          url: https://www.chezmoi.io/
+          description: dotfile 多端同步工具
+          logo: chezmoi.png
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/twpayne/chezmoi
         - title: DownGit
           url: https://downgit.github.io/
           description: 下载 Github 资源
