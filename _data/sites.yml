@@ -966,6 +966,10 @@
           url: https://github.com/jaywcjlove/awesome-mac
           description: Mac 精品软件清单
           logo: apple.svg
+        - title: App Store Price
+          url: https://appstoreprice.org/zh/apps
+          description: 对比 App 订阅套餐在不同国家的价格差异
+          logo: appstoreprice.org.png
 
     - name: Chrome
       links:
