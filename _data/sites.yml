@@ -3334,9 +3334,32 @@
           description: 高质量影音下载网站
           logo: rargb.to.ico
         - title: 观影 GYING
-          url: https://www.gying.net
+          url: https://教父.com
           description: 满足你的影视需求
           logo: btnull.org.svg
+          icons:
+            info:
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://星际穿越.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://楚门的世界.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://泰坦尼克号.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://盗梦空间.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://肖申克的救赎.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://阿甘正传.com
+              - icon: ri-exchange-line
+                title: 获取新网址
+                url: https://黑客帝国.com
         - title: 茶杯狐
           url: https://cupfox.app/
           description: 另一个刷剧网站
