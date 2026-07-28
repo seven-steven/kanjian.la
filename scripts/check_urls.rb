@@ -1,0 +1,169 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "json"
+require "net/http"
+require "optparse"
+require "openssl"
+require "socket"
+require "timeout"
+require "time"
+require "uri"
+require "yaml"
+require "digest"
+
+# Checks external URLs declared in _data/sites.yml. It deliberately has no gem
+# dependencies so it can run in GitHub Actions' stock Ruby installation.
+class UrlCheck
+  DEFAULT_TIMEOUT = 10
+  DEFAULT_RETRIES = 2
+  MAX_REDIRECTS = 5
+  TRANSIENT_STATUSES = (500..599).to_a + [408, 425, 429]
+  HEAD_FALLBACK_STATUSES = [405, 501]
+
+  def initialize(timeout: DEFAULT_TIMEOUT, retries: DEFAULT_RETRIES, http: Net::HTTP)
+    @timeout = timeout
+    @retries = retries
+    @http = http
+  end
+
+  def self.normalize(raw_url)
+    uri = URI.parse(raw_url.to_s.strip)
+    raise URI::InvalidURIError, "URL must use http or https" unless %w[http https].include?(uri.scheme&.downcase)
+    raise URI::InvalidURIError, "URL must include a host" if uri.host.nil? || uri.host.empty?
+
+    uri.scheme = uri.scheme.downcase
+    uri.host = uri.host.downcase
+    uri.fragment = nil
+    uri.path = "/" if uri.path.nil? || uri.path.empty?
+    uri.port = nil if (uri.scheme == "http" && uri.port == 80) || (uri.scheme == "https" && uri.port == 443)
+    uri.to_s
+  end
+
+  def self.entries(data, path = [])
+    case data
+    when Array
+      data.flat_map.with_index { |item, index| entries(item, path + [index]) }
+    when Hash
+      result = []
+      if data["url"].is_a?(String) && data["url"].match?(%r{\Ahttps?://}i)
+        kind = path.include?("icons") ? "icon" : "main"
+        result << {
+          "url" => data["url"], "kind" => kind, "title" => data["title"],
+          "path" => (path + ["url"]).join(".")
+        }
+      end
+      data.each do |key, value|
+        result.concat(entries(value, path + [key])) if value.is_a?(Array) || value.is_a?(Hash)
+      end
+      result
+    else
+      []
+    end
+  end
+
+  def check(entry)
+    normalized = self.class.normalize(entry.fetch("url"))
+    response, final_url, redirects, method, attempts = request_with_retries(normalized)
+    status = response.code.to_i
+    category = category_for(status, redirects)
+    result(entry, normalized, final_url, category, status: status, method: method,
+                                                    redirects: redirects, attempts: attempts)
+  rescue URI::InvalidURIError => error
+    result(entry, entry["url"], entry["url"], "invalid_url", error: error.message)
+  rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "timeout", error: error.message)
+  rescue SocketError, Errno::ECONNREFUSED, Errno::ECONNRESET, EOFError, OpenSSL::SSL::SSLError, Net::HTTPBadResponse => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "network_error", error: error.message)
+  rescue StandardError => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "network_error", error: "#{error.class}: #{error.message}")
+  end
+
+  private
+
+  def request_with_retries(url)
+    attempts = 0
+    loop do
+      attempts += 1
+      response, final_url, redirects, method = request(url)
+      return [response, final_url, redirects, method, attempts] unless TRANSIENT_STATUSES.include?(response.code.to_i) && attempts <= @retries
+
+      sleep(2**(attempts - 1))
+    rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error, SocketError, Errno::ECONNREFUSED, Errno::ECONNRESET, EOFError, OpenSSL::SSL::SSLError
+      raise if attempts > @retries
+
+      sleep(2**(attempts - 1))
+    end
+  end
+
+  def request(url)
+    current = url
+    redirects = []
+    method = "HEAD"
+    loop do
+      response = perform(current, method)
+      if HEAD_FALLBACK_STATUSES.include?(response.code.to_i) && method == "HEAD"
+        method = "GET"
+        response = perform(current, method)
+      end
+      unless response.is_a?(Net::HTTPRedirection)
+        return [response, current, redirects, method]
+      end
+
+      raise Net::HTTPBadResponse, "too many redirects" if redirects.length >= MAX_REDIRECTS
+      location = response["location"]
+      raise Net::HTTPBadResponse, "redirect missing Location" if location.nil? || location.empty?
+
+      current = self.class.normalize(URI.join(current, location).to_s)
+      redirects << current
+      method = "HEAD"
+    end
+  end
+
+  def perform(url, method)
+    uri = URI.parse(url)
+    @http.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: @timeout, read_timeout: @timeout) do |http|
+      request = method == "HEAD" ? Net::HTTP::Head.new(uri) : Net::HTTP::Get.new(uri)
+      request["User-Agent"] = "kanjian-la-url-check/1.0"
+      http.request(request)
+    end
+  end
+
+  def category_for(status, redirects)
+    return "redirect" if status.between?(200, 399) && !redirects.empty?
+    return "ok" if status.between?(200, 399)
+    return "client_error" if status.between?(400, 499)
+    return "server_error" if status.between?(500, 599)
+
+    "network_error"
+  end
+
+  def result(entry, normalized, final_url, category, details = {})
+    key_source = "#{entry.fetch("kind")}:#{normalized}"
+    entry.merge(
+      "key" => Digest::SHA256.hexdigest(key_source)[0, 20],
+      "normalized_url" => normalized,
+      "final_url" => final_url,
+      "category" => category
+    ).merge(details)
+  end
+end
+
+if $PROGRAM_NAME == __FILE__
+  options = { input: "_data/sites.yml", output: nil, timeout: UrlCheck::DEFAULT_TIMEOUT, retries: UrlCheck::DEFAULT_RETRIES }
+  OptionParser.new do |parser|
+    parser.banner = "Usage: ruby scripts/check_urls.rb [options]"
+    parser.on("--input PATH", "YAML site data (default: _data/sites.yml)") { |value| options[:input] = value }
+    parser.on("--output PATH", "Write JSON to PATH (default: stdout)") { |value| options[:output] = value }
+    parser.on("--timeout SECONDS", Integer, "Per-request timeout") { |value| options[:timeout] = value }
+    parser.on("--retries COUNT", Integer, "Retries after first transient failure") { |value| options[:retries] = value }
+  end.parse!
+
+  data = YAML.safe_load_file(options[:input], permitted_classes: [], aliases: false)
+  entries = UrlCheck.entries(data)
+  checks = UrlCheck.new(timeout: options[:timeout], retries: options[:retries])
+  results = entries.map { |entry| checks.check(entry) }
+  payload = { "checked_at" => Time.now.utc.iso8601, "results" => results }
+  json = JSON.pretty_generate(payload) + "\n"
+  options[:output] ? File.write(options[:output], json) : $stdout.write(json)
+end

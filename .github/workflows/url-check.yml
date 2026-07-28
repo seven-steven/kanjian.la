@@ -1,0 +1,83 @@
+name: URL check
+
+on:
+  schedule:
+    - cron: "23 3 * * 1"
+  workflow_dispatch:
+  push:
+    paths:
+      - "_data/sites.yml"
+      - "scripts/check_urls.rb"
+      - ".github/workflows/url-check.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: url-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Check external URLs
+        run: ruby scripts/check_urls.rb --output url-check.json --timeout 10 --retries 2
+      - name: Create, reopen, or close per-URL issues
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v7.0.1
+        env:
+          RESULTS_FILE: url-check.json
+        with:
+          script: |
+            const fs = require('fs');
+            const { results } = JSON.parse(fs.readFileSync(process.env.RESULTS_FILE, 'utf8'));
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const markerFor = (key) => `<!-- url-check:${key} -->`;
+            const isHealthy = (item) => ['ok', 'redirect'].includes(item.category);
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: 'url-check' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({ owner, repo, name: 'url-check', color: 'd73a4a' });
+            }
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'all', per_page: 100, labels: 'url-check'
+            });
+            const existing = new Map();
+            for (const issue of issues) {
+              for (const item of results) {
+                if (issue.body?.includes(markerFor(item.key))) existing.set(item.key, issue);
+              }
+            }
+            for (const item of results) {
+              const issue = existing.get(item.key);
+              if (isHealthy(item)) {
+                if (issue?.state === 'open') {
+                  await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'closed' });
+                }
+                continue;
+              }
+              const body = [
+                markerFor(item.key),
+                'Automated URL check detected a failure.',
+                '',
+                `- URL: ${item.url}`,
+                `- Normalized URL: ${item.normalized_url}`,
+                `- Type: ${item.kind}`,
+                `- Category: ${item.category}`,
+                `- Status: ${item.status ?? 'n/a'}`,
+                `- Error: ${item.error ?? 'n/a'}`,
+                `- Final URL: ${item.final_url ?? 'n/a'}`
+              ].join('\n');
+              if (issue) {
+                await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'open', body });
+              } else {
+                await github.rest.issues.create({
+                  owner, repo, title: `[URL Check] ${item.title || item.url}`, body, labels: ['url-check']
+                });
+              }
+            }
