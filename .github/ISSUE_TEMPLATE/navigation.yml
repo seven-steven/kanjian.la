@@ -1,46 +1,75 @@
 name: 导航收录申请
-description: 申请新增或修改导航站点。仅仓库所有者创建且获 `approved` 标签的 Issue 可触发自动化。
+description: 申请新增、更新或移除导航站点；仅仓库所有者创建且获 `agent:approved` 标签的 Issue 可触发自动化。
 title: "[导航] "
 labels:
-  - navigation
+  - navigation-request
 body:
   - type: markdown
     attributes:
       value: |
-        请填写可公开验证的信息。提交后由维护者审核；自动化只会处理仓库所有者创建且标记为 `approved` 的申请。
+        请填写可公开验证的信息。提交后由维护者审核；自动化仅处理仓库所有者创建、保持 open 状态、带有 `navigation-request` 和 `agent:approved` 标签的申请。
+        自动化仅可编辑站点数据，并且仅在明确提供 logo URL 时下载一个单层 logo 文件。
+  - type: dropdown
+    id: operation
+    attributes:
+      label: 操作
+      description: 新增、更新或移除一个现有站点。
+      options:
+        - add
+        - update
+        - remove
+    validations:
+      required: true
+  - type: input
+    id: locate_name
+    attributes:
+      label: 定位名称
+      description: 更新或移除时，填写 `_data/sites.yml` 中现有条目的精确 `name`；新增时留空。
+      placeholder: 示例：Example
+    validations:
+      required: false
   - type: input
     id: name
     attributes:
       label: 站点名称
+      description: 新增或更新时必填；移除时可留空。
       placeholder: 示例：Example
     validations:
-      required: true
+      required: false
   - type: input
     id: url
     attributes:
       label: 站点 URL
-      description: 必须是可公开访问的 HTTPS 地址。
+      description: 新增或更新时填写可公开访问的 HTTPS 地址；移除时可留空。
       placeholder: https://example.com
     validations:
-      required: true
+      required: false
   - type: input
     id: category
     attributes:
       label: 分类
-      description: 请填写 `_data/sites.yml` 中已存在的分类。
+      description: 新增或更新时填写 `_data/sites.yml` 中已存在的分类；移除时可留空。
     validations:
-      required: true
+      required: false
   - type: textarea
     id: description
     attributes:
       label: 简介
-      description: 简洁描述站点用途；不要包含凭据、TOKEN 或其他敏感信息。
+      description: 新增或更新时填写简洁说明；不要包含凭据、TOKEN 或其他敏感信息。
     validations:
-      required: true
+      required: false
+  - type: input
+    id: logo_url
+    attributes:
+      label: Logo URL
+      description: 可选。仅接受公开 HTTPS 图片 URL；留空则不下载或修改 logo。自动化至多下载一个 logo 到 `assets/image/logo/<basename>`，basename 必须安全且不含路径。
+      placeholder: https://example.com/logo.png
+    validations:
+      required: false
   - type: textarea
     id: notes
     attributes:
       label: 补充说明
-      description: 可选。说明备用网址、推荐理由或已知限制。
+      description: 可选。说明更新原因、移除原因、备用网址或已知限制。
     validations:
       required: false

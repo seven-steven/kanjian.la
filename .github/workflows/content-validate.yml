@@ -6,8 +6,11 @@ on:
     paths:
       - _data/sites.yml
       - assets/image/logo/**
-      - scripts/validate_sites.rb
-      - scripts/check_agent_diff.rb
+      - scripts/site_data.rb
+      - scripts/check_urls.rb
+      - scripts/fetch_logo.rb
+      - test/**
+      - .github/workflows/content-validate.yml
   workflow_dispatch:
 
 permissions:
@@ -17,18 +20,27 @@ jobs:
   validate:
     name: Validate navigation data
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out pull request
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
-          bundler-cache: true
-      - name: Run project tests
-        run: ruby test
+          ruby-version: '3.1'
+          bundler-cache: false
+      - name: Run every Ruby test file
+        run: |
+          set -euo pipefail
+          find test -type f -name '*_test.rb' -print0 | sort -z | xargs -0 -r -n1 ruby
       - name: Validate site data
         run: ruby scripts/validate_sites.rb
-      - name: Check agent diff scope
-        if: startsWith(github.head_ref, 'claude/navigation-')
-        run: ruby scripts/check_agent_diff.rb
+      - name: Build Jekyll site in Docker
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE:/srv/jekyll" \
+            --workdir /srv/jekyll \
+            --entrypoint /bin/sh \
+            jekyll/jekyll:4.2.0 \
+            -lc 'bundle install && bundle exec jekyll build'

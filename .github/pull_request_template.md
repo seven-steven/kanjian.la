@@ -10,7 +10,7 @@
 
 ## Agent-created PR checklist
 
-- [ ] Source Issue was created by the repository owner and has the `approved` label.
+- [ ] Source Issue was created by the repository owner and has the `navigation-request` and `agent:approved` labels.
 - [ ] Base branch is `jekyll`.
 - [ ] Changes are limited to the workflow allowlist (`_data/sites.yml`, `assets/image/logo/`, and agent metadata where applicable).
 - [ ] No deployment credential, including `TOKEN`, was read, printed, or modified.

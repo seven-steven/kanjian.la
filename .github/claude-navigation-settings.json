@@ -7,29 +7,19 @@
       "Read(_data/sites.yml)",
       "Read(assets/image/logo/**)",
       "Edit(_data/sites.yml)",
-      "Write(assets/image/logo/**)",
-      "Bash(ruby test)",
-      "Bash(ruby scripts/validate_sites.rb)",
-      "Bash(ruby scripts/check_agent_diff.rb)",
-      "Bash(ruby scripts/fetch_logo.rb *)",
-      "Bash(git status --short)",
-      "Bash(git diff --check)",
-      "Bash(git diff --name-only *)",
-      "Bash(git add _data/sites.yml assets/image/logo/**)",
-      "Bash(git commit -m *)",
-      "Bash(git push origin HEAD:claude/navigation-*)",
-      "Bash(gh pr create *)",
-      "Bash(gh pr view *)",
-      "Bash(gh pr edit *)"
+      "Write(assets/image/logo/*)",
+      "Bash(ruby scripts/fetch_logo.rb * --name *)"
     ],
     "deny": [
-      "Read(.github/workflows/jekyll.yml)",
+      "Read(.github/workflows/**)",
       "Read(**/*TOKEN*)",
       "Read(**/.env*)",
       "Bash(*TOKEN*)",
-      "Bash(git push origin *:jekyll)",
-      "Bash(gh secret *)",
-      "Bash(gh variable *)"
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(ruby test)",
+      "Bash(ruby scripts/validate_sites.rb)",
+      "Bash(ruby scripts/check_agent_diff.rb *)"
     ]
   }
 }
