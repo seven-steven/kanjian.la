@@ -1,0 +1,9 @@
+- name: 坏分类
+  links:
+    - title: ""
+      url: not a url
+      description: 错误条目
+      logo: ../outside.svg
+      icons:
+        status: invalid
+        extra: []
