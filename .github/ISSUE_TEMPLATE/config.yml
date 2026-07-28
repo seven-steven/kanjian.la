@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 一般讨论
+    url: https://github.com/Seven-Steven/kanjian.la/discussions
+    about: 不属于导航收录申请的问题请在 Discussions 发起讨论。

@@ -1,0 +1,50 @@
+name: Enforce navigation agent PR scope
+
+on:
+  pull_request:
+    branches: [jekyll]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  enforce-scope:
+    if: startsWith(github.head_ref, 'claude/navigation-navigation-issue-')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Validate source issue and PR metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_AUTHOR: ${{ github.event.repository.owner.login }}
+          PR_BASE: ${{ github.event.pull_request.base.ref }}
+          PR_HEAD: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -euo pipefail
+          test "$PR_BASE" = "jekyll"
+          issue_number="${PR_HEAD#claude/navigation-navigation-issue-}"
+          test "$issue_number" != "$PR_HEAD"
+          case "$issue_number" in (*[!0-9]*|'') exit 1;; esac
+          issue_json="$(gh api "repos/${{ github.repository }}/issues/${issue_number}")"
+          test "$(jq -r '.user.login' <<<"$issue_json")" = "$ISSUE_AUTHOR"
+          jq -e '.labels | any(.name == "approved")' <<<"$issue_json" >/dev/null
+          jq -e '.labels | any(.name == "navigation")' <<<"$issue_json" >/dev/null
+          test "$PR_TITLE" = "chore(navigation): process issue #${issue_number}"
+      - name: Enforce changed-path allowlist
+        run: |
+          set -euo pipefail
+          git diff --name-only "origin/${{ github.event.pull_request.base.ref }}...HEAD" > /tmp/changed-files
+          test -s /tmp/changed-files
+          while IFS= read -r path; do
+            case "$path" in
+              _data/sites.yml|assets/image/logo/*) ;;
+              *) printf 'Disallowed agent PR path: %s\n' "$path" >&2; exit 1 ;;
+            esac
+          done < /tmp/changed-files

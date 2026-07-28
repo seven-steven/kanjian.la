@@ -1,0 +1,34 @@
+name: Validate navigation content
+
+on:
+  pull_request:
+    branches: [jekyll]
+    paths:
+      - _data/sites.yml
+      - assets/image/logo/**
+      - scripts/validate_sites.rb
+      - scripts/check_agent_diff.rb
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate navigation data
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4.2.2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run project tests
+        run: ruby test
+      - name: Validate site data
+        run: ruby scripts/validate_sites.rb
+      - name: Check agent diff scope
+        if: startsWith(github.head_ref, 'claude/navigation-')
+        run: ruby scripts/check_agent_diff.rb

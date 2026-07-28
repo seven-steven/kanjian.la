@@ -1,0 +1,41 @@
+name: Navigation agent
+
+on:
+  issues:
+    types: [opened, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: navigation-agent-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-approved-navigation:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      contains(github.event.issue.labels.*.name, 'approved') &&
+      contains(github.event.issue.labels.*.name, 'navigation')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out jekyll
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: jekyll
+          fetch-depth: 0
+      - name: Run Claude Code Action
+        uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ github.token }}
+          base_branch: jekyll
+          branch_prefix: claude/navigation-
+          branch_name_template: navigation-issue-${{ github.event.issue.number }}
+          settings: .github/claude-navigation-settings.json
+          prompt: ${{ github.workspace }}/.github/prompts/navigation-agent.md
+          use_sticky_comment: "true"
+          display_report: "false"

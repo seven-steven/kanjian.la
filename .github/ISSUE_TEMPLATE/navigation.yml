@@ -1,0 +1,46 @@
+name: 导航收录申请
+description: 申请新增或修改导航站点。仅仓库所有者创建且获 `approved` 标签的 Issue 可触发自动化。
+title: "[导航] "
+labels:
+  - navigation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请填写可公开验证的信息。提交后由维护者审核；自动化只会处理仓库所有者创建且标记为 `approved` 的申请。
+  - type: input
+    id: name
+    attributes:
+      label: 站点名称
+      placeholder: 示例：Example
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 站点 URL
+      description: 必须是可公开访问的 HTTPS 地址。
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: 分类
+      description: 请填写 `_data/sites.yml` 中已存在的分类。
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 简介
+      description: 简洁描述站点用途；不要包含凭据、TOKEN 或其他敏感信息。
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充说明
+      description: 可选。说明备用网址、推荐理由或已知限制。
+    validations:
+      required: false
