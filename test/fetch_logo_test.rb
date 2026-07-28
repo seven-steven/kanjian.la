@@ -2,51 +2,30 @@
 
 require "minitest/autorun"
 require "tmpdir"
-require "socket"
 require_relative "../scripts/fetch_logo"
 
 class FetchLogoTest < Minitest::Test
-  def test_fetches_image_response
-    with_server do |server|
-      Dir.mktmpdir do |directory|
-        output = File.join(directory, "logo.png")
-        FetchLogo.fetch("http://127.0.0.1:#{server}/image", output)
+  def test_requires_https
+    error = assert_raises(ArgumentError) { FetchLogo.fetch("http://example.com/logo.png", "logo.png") }
+    assert_equal "URL must use https", error.message
+  end
 
-        assert_equal "image", File.binread(output)
-      end
+  def test_rejects_unsafe_output_basename
+    %w[../logo.png /tmp/logo.png nested/logo.png . ..].each do |name|
+      assert_raises(ArgumentError) { FetchLogo.safe_basename!(name) }
     end
   end
 
-  def test_rejects_non_image_response
-    with_server do |server|
-      Dir.mktmpdir do |directory|
-        error = assert_raises(ArgumentError) do
-          FetchLogo.fetch("http://127.0.0.1:#{server}/text", File.join(directory, "logo"))
-        end
-
-        assert_equal "response is not an image", error.message
-      end
-    end
+  def test_accepts_safe_output_basename
+    assert_equal "example-logo_2.png", FetchLogo.safe_basename!("example-logo_2.png")
   end
 
-  private
-
-  def with_server
-    server = TCPServer.new("127.0.0.1", 0)
-    port = server.addr[1]
-    thread = Thread.new do
-      2.times do
-        client = server.accept
-        request = client.gets
-        path = request.split[1]
-        body, content_type = path == "/image" ? ["image", "image/png"] : ["text", "text/plain"]
-        client.write("HTTP/1.1 200 OK\r\nContent-Type: #{content_type}\r\nContent-Length: #{body.bytesize}\r\nConnection: close\r\n\r\n#{body}")
-        client.close
-      end
-    end
-    yield port
-  ensure
-    server&.close
-    thread&.join
+  def test_recognizes_only_allowed_image_magic_bytes
+    assert FetchLogo.valid_magic?("image/png", "\x89PNG\r\n\x1A\nbody".b)
+    assert FetchLogo.valid_magic?("image/jpeg", "\xFF\xD8\xFFbody".b)
+    assert FetchLogo.valid_magic?("image/webp", "RIFFxxxxWEBPbody".b)
+    refute FetchLogo.valid_magic?("image/png", "<svg".b)
+    refute FetchLogo.valid_magic?("image/png", "GIF89a".b)
+    refute FetchLogo.valid_magic?("image/png", "\x00\x00\x01\x00".b)
   end
 end

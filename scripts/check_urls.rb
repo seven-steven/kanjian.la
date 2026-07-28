@@ -11,6 +11,7 @@ require "time"
 require "uri"
 require "yaml"
 require "digest"
+require_relative "safe_network"
 
 # Checks external URLs declared in _data/sites.yml. It deliberately has no gem
 # dependencies so it can run in GitHub Actions' stock Ruby installation.
@@ -21,10 +22,14 @@ class UrlCheck
   TRANSIENT_STATUSES = (500..599).to_a + [408, 425, 429]
   HEAD_FALLBACK_STATUSES = [405, 501]
 
-  def initialize(timeout: DEFAULT_TIMEOUT, retries: DEFAULT_RETRIES, http: Net::HTTP)
+  def initialize(timeout: DEFAULT_TIMEOUT, retries: DEFAULT_RETRIES, http: Net::HTTP, resolver: Resolv)
+    raise ArgumentError, "timeout must be greater than zero" unless timeout.is_a?(Numeric) && timeout.positive?
+    raise ArgumentError, "retries must be zero or greater" unless retries.is_a?(Integer) && retries >= 0
+
     @timeout = timeout
     @retries = retries
     @http = http
+    @resolver = resolver
   end
 
   def self.normalize(raw_url)
@@ -69,7 +74,7 @@ class UrlCheck
     category = category_for(status, redirects)
     result(entry, normalized, final_url, category, status: status, method: method,
                                                     redirects: redirects, attempts: attempts)
-  rescue URI::InvalidURIError => error
+  rescue URI::InvalidURIError, ArgumentError => error
     result(entry, entry["url"], entry["url"], "invalid_url", error: error.message)
   rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "timeout", error: error.message)
@@ -122,6 +127,7 @@ class UrlCheck
 
   def perform(url, method)
     uri = URI.parse(url)
+    SafeNetwork.resolve_public!(uri.host, resolver: @resolver)
     @http.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: @timeout, read_timeout: @timeout) do |http|
       request = method == "HEAD" ? Net::HTTP::Head.new(uri) : Net::HTTP::Get.new(uri)
       request["User-Agent"] = "kanjian-la-url-check/1.0"
