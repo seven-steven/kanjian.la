@@ -3,14 +3,6 @@ name: Validate navigation content
 on:
   pull_request:
     branches: [jekyll]
-    paths:
-      - _data/sites.yml
-      - assets/image/logo/**
-      - scripts/site_data.rb
-      - scripts/check_urls.rb
-      - scripts/fetch_logo.rb
-      - test/**
-      - .github/workflows/content-validate.yml
   workflow_dispatch:
 
 permissions:
@@ -27,7 +19,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
-          ruby-version: '3.1'
+          ruby-version: "3.1"
           bundler-cache: false
       - name: Run every Ruby test file
         run: |
@@ -42,5 +34,5 @@ jobs:
             --volume "$GITHUB_WORKSPACE:/srv/jekyll" \
             --workdir /srv/jekyll \
             --entrypoint /bin/sh \
-            jekyll/jekyll:4.2.0 \
-            -lc 'bundle install && bundle exec jekyll build'
+            jekyll/builder:4.2.0 \
+            -lc 'jekyll build --future'

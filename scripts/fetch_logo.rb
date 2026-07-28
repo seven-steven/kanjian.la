@@ -33,9 +33,16 @@ module FetchLogo
   end
 
   def download(uri, output, redirects:, resolver:, http:)
-    SafeNetwork.validate_uri!(uri, resolver: resolver)
+    addresses = SafeNetwork.resolve_public!(uri.host, resolver: resolver)
     response = nil
-    http.start(uri.host, uri.port, use_ssl: true, open_timeout: 10, read_timeout: 20) do |client|
+    http.start(
+      uri.host,
+      uri.port,
+      use_ssl: true,
+      ipaddr: addresses.first,
+      open_timeout: 10,
+      read_timeout: 20
+    ) do |client|
       client.request(Net::HTTP::Get.new(uri.request_uri, { "User-Agent" => "kanjian.la logo fetcher" })) do |result|
         response = result
         break unless result.is_a?(Net::HTTPSuccess)
@@ -87,17 +94,18 @@ module FetchLogo
 end
 
 if $PROGRAM_NAME == __FILE__
-  options = { output: nil }
+  options = { name: nil }
   OptionParser.new do |parser|
-    parser.banner = "Usage: ruby scripts/fetch_logo.rb URL --output BASENAME"
-    parser.on("-o", "--output BASENAME", "Safe basename under assets/image/logo") { |name| options[:output] = name }
+    parser.banner = "Usage: ruby scripts/fetch_logo.rb URL --name BASENAME"
+    parser.on("-n", "--name BASENAME", "Safe basename under assets/image/logo") { |name| options[:name] = name }
   end.parse!
   url = ARGV.shift
   abort "error: URL is required" unless url
-  abort "error: --output is required" unless options[:output]
+  abort "error: unexpected arguments" unless ARGV.empty?
+  abort "error: --name is required" unless options[:name]
 
   begin
-    puts FetchLogo.fetch(url, options[:output])
+    puts FetchLogo.fetch(url, options[:name])
   rescue ArgumentError, URI::InvalidURIError, Net::OpenTimeout, Net::ReadTimeout, SocketError => error
     warn "error: #{error.message}"
     exit 1

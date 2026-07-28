@@ -127,8 +127,15 @@ class UrlCheck
 
   def perform(url, method)
     uri = URI.parse(url)
-    SafeNetwork.resolve_public!(uri.host, resolver: @resolver)
-    @http.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: @timeout, read_timeout: @timeout) do |http|
+    addresses = SafeNetwork.resolve_public!(uri.host, resolver: @resolver)
+    @http.start(
+      uri.host,
+      uri.port,
+      use_ssl: uri.scheme == "https",
+      ipaddr: addresses.first,
+      open_timeout: @timeout,
+      read_timeout: @timeout
+    ) do |http|
       request = method == "HEAD" ? Net::HTTP::Head.new(uri) : Net::HTTP::Get.new(uri)
       request["User-Agent"] = "kanjian-la-url-check/1.0"
       http.request(request)

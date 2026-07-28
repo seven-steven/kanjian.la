@@ -16,7 +16,10 @@ Dir.chdir(root)
 changed, status = Open3.capture2e("git", "diff", "--name-only", options[:base])
 abort "error: cannot compare against #{options[:base]}" unless status.success?
 
-paths = changed.lines.map(&:strip).reject(&:empty?).sort
+untracked, untracked_status = Open3.capture2e("git", "ls-files", "--others", "--exclude-standard")
+abort "error: cannot list untracked files" unless untracked_status.success?
+
+paths = (changed.lines + untracked.lines).map(&:strip).reject(&:empty?).uniq.sort
 abort "error: no changes against #{options[:base]}" if paths.empty?
 
 allowed = lambda do |path|
@@ -30,8 +33,16 @@ unless rejected.empty?
 end
 
 whitespace, whitespace_status = Open3.capture2e("git", "diff", "--check", options[:base])
-unless whitespace_status.success?
-  warn whitespace
+untracked_whitespace = untracked.lines.map(&:strip).reject(&:empty?).filter_map do |path|
+  next unless path == "_data/sites.yml" && File.file?(path)
+
+  File.foreach(path).with_index(1).filter_map do |line, line_number|
+    "#{path}:#{line_number}: trailing whitespace" if line.match?(/[ \t]+\r?\n\z/)
+  end
+end.flatten
+unless whitespace_status.success? && untracked_whitespace.empty?
+  warn whitespace unless whitespace.empty?
+  untracked_whitespace.each { |message| warn message }
   exit 1
 end
 

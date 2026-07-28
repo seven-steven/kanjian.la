@@ -8,7 +8,7 @@ The triggering Issue number and its submitted form fields are supplied by the wo
 - `update`: use `locate_name` to find exactly one record, then update only fields explicitly supplied by the Issue.
 - `remove`: use `locate_name` to find exactly one record and remove it.
 
-A logo is optional. Only if `logo_url` is a public HTTPS URL with a safe single filename, download exactly one logo with `ruby scripts/fetch_logo.rb URL --name BASENAME` directly under `assets/image/logo/`. Do not infer a logo URL, overwrite unrelated logos, or create nested paths.
+A logo filename is required for `add` and optional for `update`. Use the submitted safe `logo_name`; it must refer to a direct child of `assets/image/logo/`. Only if `logo_url` is also a public HTTPS URL, download exactly that logo with `ruby scripts/fetch_logo.rb URL --name BASENAME`. Do not infer a logo URL or filename, overwrite unrelated logos, or create nested paths.
 
 Modify only `_data/sites.yml` and, if required, one direct child of `assets/image/logo/`. Do not edit workflow files, configuration, dependencies, templates, or any other path. Do not read secrets or credentials. Do not invoke `git`, `gh`, commits, pushes, pull-request creation, Issue comments, tests, validators, or diff-audit commands. Leave all validation, auditing, commit, push, PR creation, and failure reporting to the workflow's deterministic post-processing.
 

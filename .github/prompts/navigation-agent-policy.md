@@ -22,8 +22,8 @@ Do not change workflows, deployment configuration, project dependencies, site te
 - Honor `operation` as `add`, `update`, or `remove`.
 - For `update` and `remove`, locate exactly one existing record by the submitted `locate_name`; stop if it is missing or ambiguous.
 - For `add`, create one record only; stop if it duplicates an existing name or URL.
-- Add or update only submitted fields. A logo is optional: fetch it only when the Issue supplies a public HTTPS `logo_url` with a safe basename, using `ruby scripts/fetch_logo.rb URL --name BASENAME`.
-- Never infer a logo URL, overwrite unrelated logos, or write nested paths.
+- Add or update only submitted fields. `logo_name` is required for `add` and optional for `update`; it must be a safe direct child filename. Fetch it only when the Issue also supplies a public HTTPS `logo_url`, using `ruby scripts/fetch_logo.rb URL --name BASENAME`.
+- Never infer a logo URL or filename, overwrite unrelated logos, or write nested paths.
 
 ## Secrets and deployment
 

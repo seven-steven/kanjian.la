@@ -3,6 +3,7 @@ description: 申请新增、更新或移除导航站点；仅仓库所有者创�
 title: "[导航] "
 labels:
   - navigation-request
+  - needs-owner-review
 body:
   - type: markdown
     attributes:
@@ -24,7 +25,7 @@ body:
     id: locate_name
     attributes:
       label: 定位名称
-      description: 更新或移除时，填写 `_data/sites.yml` 中现有条目的精确 `name`；新增时留空。
+      description: 更新或移除时，填写 `_data/sites.yml` 中现有条目的精确 `title`；新增时留空。
       placeholder: 示例：Example
     validations:
       required: false
@@ -56,6 +57,14 @@ body:
     attributes:
       label: 简介
       description: 新增或更新时填写简洁说明；不要包含凭据、TOKEN 或其他敏感信息。
+    validations:
+      required: false
+  - type: input
+    id: logo_name
+    attributes:
+      label: Logo 文件名
+      description: 新增时必填，更新时按需填写；必须是 `assets/image/logo/` 下的安全单层文件名。若同时提供 Logo URL，扩展名必须与图片类型匹配。
+      placeholder: example.com.png
     validations:
       required: false
   - type: input

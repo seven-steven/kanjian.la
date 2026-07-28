@@ -3,5 +3,6 @@
 /.github/ISSUE_TEMPLATE/ @Seven-Steven
 /.github/workflows/ @Seven-Steven
 /.github/prompts/ @Seven-Steven
+/_config.yml @Seven-Steven
 /_data/sites.yml @Seven-Steven
 /assets/image/logo/ @Seven-Steven

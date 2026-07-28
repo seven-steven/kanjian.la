@@ -30,15 +30,24 @@ jobs:
         with:
           ref: jekyll
           fetch-depth: 0
+          persist-credentials: false
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
-          ruby-version: '3.1'
+          ruby-version: "3.1"
           bundler-cache: false
       - name: Create deterministic agent branch
+        env:
+          BRANCH: agent/issue-${{ github.event.issue.number }}
         run: |
           set -euo pipefail
-          git switch --create "agent/issue-${{ github.event.issue.number }}"
+          expected=''
+          if git ls-remote --exit-code origin "refs/heads/$BRANCH" >/tmp/agent-branch-ref 2>/dev/null; then
+            expected="$(cut -f1 /tmp/agent-branch-ref)"
+          fi
+          printf 'AGENT_BRANCH=%s\n' "$BRANCH" >> "$GITHUB_ENV"
+          printf 'EXPECTED_REMOTE_SHA=%s\n' "$expected" >> "$GITHUB_ENV"
+          git switch --create "$BRANCH"
       - name: Run Claude Code Action in the working tree
         id: claude
         uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b
@@ -67,8 +76,8 @@ jobs:
             `ruby scripts/fetch_logo.rb URL --name BASENAME`. Do not invoke git or gh, run
             tests or validators, commit, push, create a PR, edit an Issue, or modify any
             other path. Leave all validation and delivery to the workflow after you finish.
-          use_sticky_comment: 'false'
-          display_report: 'false'
+          use_sticky_comment: "false"
+          display_report: "false"
       - name: Run project tests
         run: |
           set -euo pipefail
@@ -79,33 +88,63 @@ jobs:
         run: |
           set -euo pipefail
           ruby scripts/check_agent_diff.rb --base origin/jekyll
-          git diff --check origin/jekyll...HEAD
+          git diff --check origin/jekyll
+          git diff --cached --check
       - name: Commit deterministic change
         run: |
           set -euo pipefail
-          git diff --quiet origin/jekyll...HEAD && {
+          git status --porcelain=v1 --untracked-files=all | grep -q . || {
             printf 'No permitted navigation change was produced.\n' >&2
             exit 1
           }
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'navigation-agent[bot]'
+          git config user.email 'navigation-agent[bot]@users.noreply.github.com'
           git add _data/sites.yml assets/image/logo/
           git diff --cached --quiet && exit 1
           git commit -m 'chore(navigation): process issue #${{ github.event.issue.number }}'
       - name: Push agent branch
-        run: git push --set-upstream origin "agent/issue-${{ github.event.issue.number }}"
-      - name: Create or update pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.NAVIGATION_BOT_TOKEN }}
         run: |
           set -euo pipefail
+          test -n "$GH_TOKEN" || {
+            printf 'NAVIGATION_BOT_TOKEN is required for delivery.\n' >&2
+            exit 1
+          }
+          gh auth setup-git
+          if [[ -n "$EXPECTED_REMOTE_SHA" ]]; then
+            current="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$AGENT_BRANCH" --jq '.object.sha')"
+            test "$current" = "$EXPECTED_REMOTE_SHA" || {
+              printf 'Remote agent branch changed during this run.\n' >&2
+              exit 1
+            }
+            git push --force-with-lease="refs/heads/$AGENT_BRANCH:$EXPECTED_REMOTE_SHA" origin "HEAD:$AGENT_BRANCH"
+          else
+            git push origin "HEAD:$AGENT_BRANCH"
+          fi
+      - name: Create or update pull request
+        env:
+          GH_TOKEN: ${{ secrets.NAVIGATION_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN" || {
+            printf 'NAVIGATION_BOT_TOKEN is required for PR creation.\n' >&2
+            exit 1
+          }
           title='chore(navigation): process issue #${{ github.event.issue.number }}'
-          branch='agent/issue-${{ github.event.issue.number }}'
+          branch="$AGENT_BRANCH"
           if gh pr view "$branch" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh pr edit "$branch" --repo "$GITHUB_REPOSITORY" --title "$title" --body "Closes #${{ github.event.issue.number }}"
           else
             gh pr create --repo "$GITHUB_REPOSITORY" --base jekyll --head "$branch" --title "$title" --body "Closes #${{ github.event.issue.number }}"
           fi
+      - name: Mark request delivered
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+            --remove-label 'needs-owner-review' --add-label 'agent:completed'
       - name: Report deterministic failure
         if: failure()
         env:
