@@ -140,18 +140,19 @@ CI 还会使用 `jekyll/builder:4.2.0` 容器执行 `jekyll build --future`，�
 
 请在仓库 Actions 的 Variables / Secrets 中配置占位符对应的值，不要将真实凭据写入仓库、Issue、PR 或 README：
 
-| 位置           | 名称                                  | 用途                                               |
-| -------------- | ------------------------------------- | -------------------------------------------------- |
-| Variable       | `NAVIGATION_ANTHROPIC_BASE_URL`       | Anthropic Messages endpoint 的基础地址             |
-| Variable       | `NAVIGATION_ANTHROPIC_MODEL`          | 导航 Agent 使用的 Claude 模型                      |
-| Secret         | `NAVIGATION_ANTHROPIC_AUTH_TOKEN`     | Bearer 认证令牌；同时作为 Claude Action 的认证输入 |
-| Secret（可选） | `NAVIGATION_ANTHROPIC_CUSTOM_HEADERS` | Provider 所需的附加请求头                          |
+| 位置           | 名称                                  | 用途                                                                                                                         |
+| -------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Variable       | `NAVIGATION_ANTHROPIC_BASE_URL`       | Anthropic Messages endpoint 的基础地址                                                                                       |
+| Variable       | `NAVIGATION_ANTHROPIC_MODEL`          | 导航 Agent 使用的 Claude 模型                                                                                                |
+| Secret         | `NAVIGATION_ANTHROPIC_AUTH_TOKEN`     | Bearer 认证令牌；同时传入 Action 的启动认证输入，但实际网关认证由 `ANTHROPIC_AUTH_TOKEN` 生成 `Authorization: Bearer` Header |
+| Secret（可选） | `NAVIGATION_ANTHROPIC_CUSTOM_HEADERS` | Provider 所需的附加请求头                                                                                                    |
 
-交付分支和 PR 不再使用 `NAVIGATION_BOT_TOKEN`。改用 GitHub App installation token：在 GitHub 中创建并安装一个仅可访问本仓库的 App，生成私钥，并将 App 的 Client ID 与私钥分别保存为 `NAVIGATION_APP_CLIENT_ID` 和 `NAVIGATION_APP_PRIVATE_KEY`。工作流通过固定版本的 `actions/create-github-app-token` 创建短期 installation token，仅用于推送 `agent/issue-<编号>` 分支及创建/更新 PR。
+交付分支和 PR 不再使用 `NAVIGATION_BOT_TOKEN`。改用 GitHub App installation token：在 GitHub 中创建并安装一个仅可访问本仓库的 App，生成私钥，并将 App 的 Client ID 与私钥分别保存为 `NAVIGATION_APP_CLIENT_ID` 和 `NAVIGATION_APP_PRIVATE_KEY`。工作流通过固定版本的 `actions/create-github-app-token` 创建短期 installation token，供 Claude Action 读取 Issue 上下文，并用于推送 `agent/issue-<编号>` 分支及创建/更新 PR。
 
 该 GitHub App 的最小仓库权限为：
 
-- **Contents: Read and write**：推送 Agent 分支；
+- **Contents: Read and write**：读取仓库并推送 Agent 分支；
+- **Issues: Read-only**：向 Claude Action 提供已批准 Issue 的上下文；
 - **Pull requests: Read and write**：创建或更新 PR。
 
 不要为这个 App 授予超出上述用途的权限。现有 `TOKEN` 不属于导航 Agent 凭据，仍只用于部署工作流将站点数据同步至 `seven-steven/webstack-jekyll`（Webstack sync）。

@@ -5,8 +5,8 @@ on:
     types: [labeled]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
   issues: write
 
 concurrency:
@@ -55,6 +55,7 @@ jobs:
           client-id: ${{ secrets.NAVIGATION_APP_CLIENT_ID }}
           private-key: ${{ secrets.NAVIGATION_APP_PRIVATE_KEY }}
           permission-contents: write
+          permission-issues: read
           permission-pull-requests: write
       - name: Run Claude Code Action in the working tree
         id: claude
@@ -66,7 +67,7 @@ jobs:
         uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b
         with:
           anthropic_api_key: ${{ secrets.NAVIGATION_ANTHROPIC_AUTH_TOKEN }}
-          github_token: ${{ github.token }}
+          github_token: ${{ steps.app-token.outputs.token }}
           settings: .github/claude-navigation-settings.json
           label_trigger: agent:approved
           claude_args: >-
