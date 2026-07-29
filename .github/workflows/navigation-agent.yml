@@ -48,11 +48,24 @@ jobs:
           printf 'AGENT_BRANCH=%s\n' "$BRANCH" >> "$GITHUB_ENV"
           printf 'EXPECTED_REMOTE_SHA=%s\n' "$expected" >> "$GITHUB_ENV"
           git switch --create "$BRANCH"
+      - name: Create current-repository GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.NAVIGATION_APP_ID }}
+          private-key: ${{ secrets.NAVIGATION_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
       - name: Run Claude Code Action in the working tree
         id: claude
+        env:
+          ANTHROPIC_BASE_URL: ${{ vars.NAVIGATION_ANTHROPIC_BASE_URL }}
+          ANTHROPIC_MODEL: ${{ vars.NAVIGATION_ANTHROPIC_MODEL }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.NAVIGATION_ANTHROPIC_AUTH_TOKEN }}
+          ANTHROPIC_CUSTOM_HEADERS: ${{ secrets.NAVIGATION_ANTHROPIC_CUSTOM_HEADERS }}
         uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          anthropic_api_key: ${{ secrets.NAVIGATION_ANTHROPIC_AUTH_TOKEN }}
           github_token: ${{ github.token }}
           settings: .github/claude-navigation-settings.json
           label_trigger: agent:approved
@@ -104,11 +117,11 @@ jobs:
           git commit -m 'chore(navigation): process issue #${{ github.event.issue.number }}'
       - name: Push agent branch
         env:
-          GH_TOKEN: ${{ secrets.NAVIGATION_BOT_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
           test -n "$GH_TOKEN" || {
-            printf 'NAVIGATION_BOT_TOKEN is required for delivery.\n' >&2
+            printf 'GitHub App installation token is required for delivery.\n' >&2
             exit 1
           }
           gh auth setup-git
@@ -124,11 +137,11 @@ jobs:
           fi
       - name: Create or update pull request
         env:
-          GH_TOKEN: ${{ secrets.NAVIGATION_BOT_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
           test -n "$GH_TOKEN" || {
-            printf 'NAVIGATION_BOT_TOKEN is required for PR creation.\n' >&2
+            printf 'GitHub App installation token is required for PR creation.\n' >&2
             exit 1
           }
           title='chore(navigation): process issue #${{ github.event.issue.number }}'
