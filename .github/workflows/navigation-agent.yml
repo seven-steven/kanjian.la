@@ -60,13 +60,13 @@ jobs:
       - name: Run Claude Code Action in the working tree
         id: claude
         env:
-          ANTHROPIC_BASE_URL: ${{ vars.NAVIGATION_ANTHROPIC_BASE_URL }}
-          ANTHROPIC_MODEL: ${{ vars.NAVIGATION_ANTHROPIC_MODEL }}
-          ANTHROPIC_AUTH_TOKEN: ${{ secrets.NAVIGATION_ANTHROPIC_AUTH_TOKEN }}
-          ANTHROPIC_CUSTOM_HEADERS: ${{ secrets.NAVIGATION_ANTHROPIC_CUSTOM_HEADERS }}
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
+          ANTHROPIC_CUSTOM_HEADERS: ${{ secrets.ANTHROPIC_CUSTOM_HEADERS }}
         uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b
         with:
-          anthropic_api_key: ${{ secrets.NAVIGATION_ANTHROPIC_AUTH_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
           github_token: ${{ steps.app-token.outputs.token }}
           settings: .github/claude-navigation-settings.json
           label_trigger: agent:approved
