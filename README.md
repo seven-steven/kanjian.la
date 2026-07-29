@@ -58,41 +58,110 @@ Since the author is new to front\-end development and wants to learn various nat
 1. 进入代码目录 `cd kanjian.la`
 1. 使用 Docker 运行代码
 
-    ```bash
-    docker run -it \
-    --rm \
-    -v=$PWD:/srv/jekyll \
-    -p 4000:4000 \
-    jekyll/jekyll:4 jekyll serve
-    ```
+   ```bash
+   docker run -it \
+   --rm \
+   -v=$PWD:/srv/jekyll \
+   -p 4000:4000 \
+   jekyll/jekyll:4 jekyll serve
+   ```
 
 1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
 
 #### \[目录结构\](https://jekyllrb.com/docs/structure/)
 
-  ```text
-  ├── assets    站点静态文件
-  │   ├── css     站点 CSS 样式目录
-  │   └── image     站点图片
-  │            └── logo     导航站点 logo 文件目录
-  ├── _config.yml     网站配置
-  ├── _data
-  │   └── sites.yml     站点数据
-  ├── Gemfile     ruby 依赖定义文件
-  ├── _includes     页面模板
-  ├── index.html      首页
-  ├── _layouts      页面布局
-  │   ├── default.html      默认布局
-  │   └── index.html      首页布局
-  ├── README.md     项目说明
-  └── _site     编译文件目录，可用于发布的静态文件
-  ```
+```text
+├── assets    站点静态文件
+│   ├── css     站点 CSS 样式目录
+│   └── image     站点图片
+│            └── logo     导航站点 logo 文件目录
+├── _config.yml     网站配置
+├── _data
+│   └── sites.yml     站点数据
+├── Gemfile     ruby 依赖定义文件
+├── _includes     页面模板
+├── index.html      首页
+├── _layouts      页面布局
+│   ├── default.html      默认布局
+│   └── index.html      首页布局
+├── README.md     项目说明
+└── _site     编译文件目录，可用于发布的静态文件
+```
 
-通常情况下，只需关注 \`\_config.yml\`、\`data/sites.yml\` 文件以及 \`assets/image/logo\` 目录。
+通常情况下，只需关注 `_config.yml`、`_data/sites.yml` 文件以及 `assets/image/logo` 目录。
 
 - `_config.yml` 文件是站点的配置信息，包括站点名称、描述、favicon 等信息
-- `data/sites.yml` 文件是站点内容配置文件，网站的所有内容都是依照这个文件编译生成
-- `assets/image/logo` 目录用于存放导航站点 logo，然后被 `data/sites.yml` 引用
+- `_data/sites.yml` 文件是站点内容配置文件，网站的所有内容都是依照这个文件编译生成
+- `assets/image/logo` 目录用于存放导航站点 logo，然后被 `_data/sites.yml` 引用
+
+### 导航维护自动化
+
+仓库已实现两类导航维护自动化；自动化的目标是减少重复操作，不替代维护者审核。
+
+#### URL 巡检与 Issue 生命周期
+
+- `.github/workflows/url-check.yml` 每日 UTC 03:23 运行，也可在 Actions 页面通过 `workflow_dispatch` 手动运行；相关数据、检查脚本或工作流变更推送时也会触发。
+- 巡检会先执行 URL 检查单元测试，再以超时 10 秒、重试 2 次检查 `_data/sites.yml` 中的外部 URL。
+- 每个被检查 URL 以稳定键关联一个 Issue；失败时创建或更新同一个 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。重复 Issue 会保留最早的一项并关闭其余项。
+- URL 恢复可访问时，自动追加恢复说明并关闭对应 Issue；URL 已从导航移除时，也会追加说明并关闭对应 Issue。401、403、429 被视为可访问但受限，不会作为失效处理。
+
+#### 维护者申请到 PR 的流程
+
+1. 仓库所有者使用“导航收录申请”Issue Form 提交一个 `add`、`update` 或 `remove` 请求。表单初始带有 `navigation-request` 和 `needs-owner-review` 标签。
+2. 所有者核对请求后手动添加 `agent:approved`。只有 Issue 仍为 open、由仓库所有者创建，并同时具有 `navigation-request` 与 `agent:approved` 标签时，导航 Agent 才会启动。
+3. Claude Code Action 把 Issue 视为不可信输入，只执行一个已批准的操作：最小化修改 `_data/sites.yml`；只有明确提供公开 HTTPS Logo URL 时，才可额外下载一个位于 `assets/image/logo/` 直接子路径的 Logo。
+4. Action 完成后，工作流以确定性步骤依次运行 Ruby 测试、`ruby scripts/validate_sites.rb`、`ruby scripts/check_agent_diff.rb --base origin/jekyll` 与 Git diff 检查；Agent 本身无权执行这些验证、Git/GitHub 操作或读取凭据。
+5. 验证通过后，工作流提交并推送固定分支 `agent/issue-<Issue 编号>`，创建或更新以 `jekyll` 为基准的 PR；交付完成后申请 Issue 的标签从 `needs-owner-review` 改为 `agent:completed`。PR 仍须由所有者按仓库治理规则审核后合并。
+
+本地复现验证可运行：
+
+```bash
+# 执行所有 Ruby 测试
+find test -type f -name '*_test.rb' -print0 | sort -z | xargs -0 -r -n1 ruby
+
+# 仅检查 URL 检查器
+ruby -Itest test/check_urls_test.rb
+
+# 校验导航数据
+ruby scripts/validate_sites.rb
+
+# 在 Agent 分支审计允许的差异
+ruby scripts/check_agent_diff.rb --base origin/jekyll
+
+# 构建 Jekyll 站点
+jekyll build --future
+```
+
+CI 还会使用 `jekyll/builder:4.2.0` 容器执行 `jekyll build --future`，以与部署构建保持一致。
+
+#### Claude Provider 与凭据
+
+导航 Agent 的 Claude Provider 使用 Anthropic **Messages endpoint**，通过 `Authorization: Bearer` 认证；不使用 OpenAI 兼容的 `/chat/completions` endpoint，也不将其用于 Claude Code Action。
+
+请在仓库 Actions 的 Variables / Secrets 中配置占位符对应的值，不要将真实凭据写入仓库、Issue、PR 或 README：
+
+| 位置           | 名称                                  | 用途                                               |
+| -------------- | ------------------------------------- | -------------------------------------------------- |
+| Variable       | `NAVIGATION_ANTHROPIC_BASE_URL`       | Anthropic Messages endpoint 的基础地址             |
+| Variable       | `NAVIGATION_ANTHROPIC_MODEL`          | 导航 Agent 使用的 Claude 模型                      |
+| Secret         | `NAVIGATION_ANTHROPIC_AUTH_TOKEN`     | Bearer 认证令牌；同时作为 Claude Action 的认证输入 |
+| Secret（可选） | `NAVIGATION_ANTHROPIC_CUSTOM_HEADERS` | Provider 所需的附加请求头                          |
+
+交付分支和 PR 不再使用 `NAVIGATION_BOT_TOKEN`。改用 GitHub App installation token：在 GitHub 中创建并安装一个仅可访问本仓库的 App，生成私钥，并将 App 的 Client ID 与私钥分别保存为 `NAVIGATION_APP_CLIENT_ID` 和 `NAVIGATION_APP_PRIVATE_KEY`。工作流通过固定版本的 `actions/create-github-app-token` 创建短期 installation token，仅用于推送 `agent/issue-<编号>` 分支及创建/更新 PR。
+
+该 GitHub App 的最小仓库权限为：
+
+- **Contents: Read and write**：推送 Agent 分支；
+- **Pull requests: Read and write**：创建或更新 PR。
+
+不要为这个 App 授予超出上述用途的权限。现有 `TOKEN` 不属于导航 Agent 凭据，仍只用于部署工作流将站点数据同步至 `seven-steven/webstack-jekyll`（Webstack sync）。
+
+#### 治理与合并保护
+
+- `.github/CODEOWNERS` 要求 `@Seven-Steven` 审核 `.github/`、Issue Form、工作流、Agent 提示词、`_config.yml`、`_data/sites.yml` 与 `assets/image/logo/`。
+- 面向 `jekyll` 的 Agent PR 会运行 `Enforce navigation agent PR scope`：分支名必须为 `agent/issue-<编号>`，来源与目标均为本仓库，关联 Issue 必须仍满足所有者、`navigation-request` 和 `agent:approved` 条件，且改动仅可涉及 `_data/sites.yml` 和直接子级 Logo 文件。
+- 面向 `jekyll` 的内容验证检查为 `Validate navigation data`，包含全部 Ruby 测试、站点数据校验与 Jekyll Docker 构建；这是 Agent PR 需要通过的确定性检查。
+- `jekyll` 分支的 ruleset / required checks 应要求所有者的 CODEOWNERS 审批，并要求上述 `Enforce navigation agent PR scope` 与 `Validate navigation data` 检查通过后才能合并。请在 GitHub 仓库设置中保持这些保护启用。
 
 ### 部署
 
@@ -111,28 +180,29 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    - **构建输出目录**: `_site`
 5. 保存并部署
 
-如需详细的部署指南和故障排查步骤，请参阅 \[Cloudflare Pages 部署文档\](./CLOUDFLARE\_DEPLOYMENT.md)。
+如需详细的部署指南和故障排查步骤，请参阅 \[Cloudflare Pages 部署文档\](./CLOUDFLARE_DEPLOYMENT.md)。
 
 #### 手动部署到其他服务器
 
 1. 使用 Docker 编译代码
 
-    ```bash
-    docker run --rm -it \
-      -v ${PWD}:/srv/jekyll \
-      -v ${PWD}/_site:/srv/jekyll/_site \
-      jekyll/builder:4 /bin/bash -c '
-        gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
-        bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
-        bundle config --delete "mirror.https://rubygems.org" && \
-        jekyll build --future'
-    ```
+   ```bash
+   docker run --rm -it \
+     -v ${PWD}:/srv/jekyll \
+     -v ${PWD}/_site:/srv/jekyll/_site \
+     jekyll/builder:4 /bin/bash -c '
+       gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
+       bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
+       bundle config --delete "mirror.https://rubygems.org" && \
+       jekyll build --future'
+   ```
 
 1. 发布 `_site` 目录到服务器
 
 ## 编程历程与心得体会
 
 一、初识编程：从迷茫到入门
+
 1. 起步阶段
    \- 选择第一门编程语言（如Python/Java/C\+\+）
    \- 通过在线教程和书籍建立基础概念
@@ -144,6 +214,7 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    \- 学习使用开发工具和版本控制
 
 二、技能提升：项目实践与突破
+
 1. 第一个完整项目
    \- 从需求分析到代码实现的全过程
    \- 遇到的技术难题及解决方案
@@ -155,6 +226,7 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    \- 技术栈的扩展与专精领域形成
 
 三、思维转变：从码农到工程师
+
 1. 工程化思维
    \- 从实现功能到考虑可维护性
    \- 性能优化与系统设计的平衡
@@ -166,6 +238,7 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    \- 技术选型的决策思路
 
 四、职业发展：持续成长之路
+
 1. 工作实践
    \- 从学生项目到企业级开发的转变
    \- 敏捷开发与项目管理的体验
@@ -177,6 +250,7 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    \- 跨界学习与软技能提升
 
 五、心得感悟
+
 1. 编程哲学
    \- 代码如诗：简洁优雅的追求
    \- 工匠精神：对质量的执着
@@ -188,6 +262,7 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
    \- 保持好奇心与探索精神
 
 六、未来展望
+
 1. 技术趋势
    \- 人工智能与编程的结合
    \- 云原生与分布式系统
@@ -222,15 +297,15 @@ Cloudflare Pages 提供了一项免费、快速且易于使用的静态网站托
 1. 尽可能引入少的静态资源，尽量按需引入。能够显著提升页面加载速度。
 1. 无法直接使用 `backdrop-filter` 属性同时对父子元素创建模糊效果，受 [解决父级使用backdrop-filter后，子级再使用不生效](https://ylface.com/course/2821.html) 启发，使用下面的代码解决了问题。
 
-  ```css
-  .blur::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    -webkit-backdrop-filter: blur(.1rem);
-    backdrop-filter: blur(.1rem);
-  }
-  ```
+```css
+.blur::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(0.1rem);
+  backdrop-filter: blur(0.1rem);
+}
+```
