@@ -79,5 +79,9 @@ jobs:
           git config user.name 'seven-steven'
           git config user.email 'seven@diqigan.cn'
           git add -A .
+          if git diff --cached --quiet; then
+            echo "No synchronized changes to commit."
+            exit 0
+          fi
           git commit -F ../commit-message
           git push

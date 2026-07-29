@@ -158,7 +158,7 @@ class UrlCheck
       "normalized_url" => normalized,
       "final_url" => final_url,
       "category" => category
-    ).merge(details)
+    ).merge(details.transform_keys(&:to_s))
   end
 end
 
