@@ -147,7 +147,7 @@ CI 还会使用 `jekyll/builder:4.2.0` 容器执行 `jekyll build --future`，�
 | Secret         | `ANTHROPIC_AUTH_TOKEN`     | Bearer 认证令牌；同时传入 Action 的启动认证输入，但实际网关认证由该变量生成 `Authorization: Bearer` Header |
 | Secret（可选） | `ANTHROPIC_CUSTOM_HEADERS` | Provider 所需的附加请求头                                                                                  |
 
-交付分支和 PR 不再使用 `NAVIGATION_BOT_TOKEN`。改用 GitHub App installation token：在 GitHub 中创建并安装一个仅可访问本仓库的 App，生成私钥，并将 App 的 Client ID 与私钥分别保存为 `NAVIGATION_APP_CLIENT_ID` 和 `NAVIGATION_APP_PRIVATE_KEY`。工作流通过固定版本的 `actions/create-github-app-token` 创建短期 installation token，供 Claude Action 读取 Issue 上下文，并用于推送 `agent/issue-<编号>` 分支及创建/更新 PR。
+交付分支和 PR 不再使用 `NAVIGATION_BOT_TOKEN`。改用 GitHub App installation token：先在 GitHub 创建 App；创建完成后进入该 App 的 **Install App**（或 **Configure**）页面，在安装时选择 **Only select repositories**，仅选择 `seven-steven/kanjian.la`，不要选择 **All repositories**。随后生成私钥，并将 App 的 Client ID 与私钥分别保存为 `NAVIGATION_APP_CLIENT_ID` 和 `NAVIGATION_APP_PRIVATE_KEY`。工作流通过固定版本的 `actions/create-github-app-token` 创建短期 installation token，供 Claude Action 读取 Issue 上下文，并用于推送 `agent/issue-<编号>` 分支及创建/更新 PR。
 
 该 GitHub App 的最小仓库权限为：
 
