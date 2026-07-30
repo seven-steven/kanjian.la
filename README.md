@@ -99,7 +99,9 @@
 - `.github/workflows/url-check.yml` 每日 UTC 03:23 运行，也可在 Actions 页面通过 `workflow_dispatch` 手动运行；相关数据、检查脚本或工作流变更推送时也会触发。
 - 巡检会先执行 URL 检查单元测试，再以超时 10 秒、重试 2 次检查 `_data/sites.yml` 中的外部 URL。
 - 每个被检查 URL 以稳定键关联一个 Issue；失败时创建或更新同一个 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。重复 Issue 会保留最早的一项并关闭其余项。
-- URL 恢复可访问时，自动追加恢复说明并关闭对应 Issue；URL 已从导航移除时，也会追加说明并关闭对应 Issue。401、403、429 被视为可访问但受限，不会作为失效处理。
+- Issue 会记录连续失败次数。仅 `main` URL 连续失败 3 次后才进入可批准状态；仓库所有者可添加 `agent:approved`，由确定性工作流重新检查当前 URL 和当前导航数据。只有仍不健康且恰好匹配一个导航条目时，工作流才删除该条目并创建 PR；icon URL、已恢复 URL、次数不足、缺失或多重匹配均不修改数据。
+- URL 移除不调用 Claude，也不猜测替代 URL；Claude Code Action 仍仅处理所有者通过导航 Issue Form 提交的明确 add/update/remove 请求。
+- URL 恢复可访问时，自动追加恢复说明并关闭对应 Issue；URL 已从导航移除时，也会追加说明并关闭对应 Issue。401、403、429 被视为可访问但受限，不会作为失效处理。URL 移除 PR 由所有者审核合并后，`jekyll` push 会自动部署 Pages、同步 Webstack，并再次巡检以关闭原 Issue。
 
 #### 维护者申请到 PR 的流程
 
@@ -156,7 +158,7 @@ CI 还会使用 `jekyll/builder:4.2.0` 容器执行 `jekyll build --future`，�
 #### 治理与合并保护
 
 - `.github/CODEOWNERS` 要求 `@Seven-Steven` 审核 `.github/`、Issue Form、工作流、Agent 提示词、`_config.yml`、`_data/sites.yml` 与 `assets/image/logo/`。
-- 面向 `jekyll` 的 Agent PR 会运行 `Enforce navigation agent PR scope`：分支名必须为 `agent/issue-<编号>`，来源与目标均为本仓库，关联 Issue 必须仍满足所有者、`navigation-request` 和 `agent:approved` 条件，且改动仅可涉及 `_data/sites.yml` 和直接子级 Logo 文件。
+- 面向 `jekyll` 的 Agent PR 会运行 `Enforce navigation agent PR scope`：人工导航分支使用 `agent/issue-<编号>`，URL 移除分支使用 `agent/url-check-issue-<编号>`；两者都必须来自本仓库并关联仍获批准的 Issue。人工导航 PR 仅可修改 `_data/sites.yml` 和直接子级 Logo，URL 移除 PR 仅可修改 `_data/sites.yml`。
 - 面向 `jekyll` 的内容验证检查为 `Validate navigation data`，包含全部 Ruby 测试、站点数据校验与 Jekyll Docker 构建；这是 Agent PR 需要通过的确定性检查。
 - `jekyll` 分支的 ruleset / required checks 应要求所有者的 CODEOWNERS 审批，并要求上述 `Enforce navigation agent PR scope` 与 `Validate navigation data` 检查通过后才能合并。请在 GitHub 仓库设置中保持这些保护启用。
 

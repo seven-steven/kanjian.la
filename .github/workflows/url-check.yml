@@ -41,10 +41,38 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const { results } = JSON.parse(fs.readFileSync(process.env.RESULTS_FILE, 'utf8'));
+            const payload = JSON.parse(fs.readFileSync(process.env.RESULTS_FILE, 'utf8'));
+            const { results } = payload;
+            const checkedAt = payload.checked_at;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const markerFor = (key) => `<!-- url-check:${key} -->`;
+            const statePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/;
+            const stateFor = (issue, key, item) => {
+              const match = issue?.body?.match(statePattern);
+              if (!match) return 1;
+              try {
+                const state = JSON.parse(match[1]);
+                const matches = state.v === 1 && state.key === key &&
+                  state.kind === item.kind && state.normalized_url === item.normalized_url &&
+                  Number.isInteger(state.consecutive_failures) && state.consecutive_failures > 0;
+                return matches ? state.consecutive_failures + 1 : 1;
+              } catch (_error) {
+                return 1;
+              }
+            };
+            const stateMarkerFor = (key, item, consecutiveFailures) => `<!-- url-check-state:${JSON.stringify({
+              v: 1,
+              key,
+              kind: item.kind,
+              normalized_url: item.normalized_url,
+              consecutive_failures: consecutiveFailures,
+              checked_at: checkedAt,
+              run_id: String(context.runId),
+              category: item.category,
+              status: item.status ?? null,
+              error: item.error ?? null
+            })} -->`;
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${context.runId}`;
             const requiredLabels = [
               ['url-check', 'd73a4a'],
@@ -57,24 +85,36 @@ jobs:
             const references = (items) => items.map((item) =>
               `- \`${item.path || 'unknown path'}\` — ${item.title || '(untitled)'} (${item.kind}): ${item.url}`
             ).join('\n');
-            const failureBody = (key, items) => {
-              const primary = items[0];
+            const failureBody = (key, items, consecutiveFailures) => {
+              const primary = items.find((item) => !isHealthy(item)) || items[0];
+              const approval = primary.kind === 'main' && consecutiveFailures >= 3
+                ? 'Eligible for owner approval: add the `agent:approved` label to create a removal PR.'
+                : 'Automatic removal requires a main URL to fail 3 consecutive checks.';
               return [
                 markerFor(key),
+                stateMarkerFor(key, primary, consecutiveFailures),
                 'Automated URL check detected a failure.',
                 '',
                 '## References',
                 references(items),
                 '',
                 '## Latest result',
+                `- Consecutive failures: ${consecutiveFailures}/3`,
                 `- Category: ${primary.category}`,
                 `- Status: ${primary.status ?? 'n/a'}`,
                 `- Error: ${primary.error ?? 'n/a'}`,
                 `- Normalized URL: ${primary.normalized_url}`,
                 `- Final URL: ${primary.final_url ?? 'n/a'}`,
                 '',
+                approval,
+                '',
                 `[View this Actions run](${runUrl})`
               ].join('\n');
+            };
+            const resetFailureState = async (issue) => {
+              if (!issue?.body?.match(statePattern)) return;
+              const body = issue.body.replace(statePattern, '').replace(/\n{3,}/g, '\n\n').trim();
+              await github.rest.issues.update({ owner, repo, issue_number: issue.number, body });
             };
             const commentAndClose = async (issue, comment, alwaysComment = false) => {
               if (!issue) return;
@@ -97,7 +137,7 @@ jobs:
 
             const issues = (await github.paginate(github.rest.issues.listForRepo, {
               owner, repo, state: 'all', per_page: 100, labels: 'url-check'
-            })).filter((issue) => !issue.pull_request);
+            })).filter((issue) => !issue.pull_request && issue.user?.login === 'github-actions[bot]');
             const currentByKey = new Map();
             for (const item of results) {
               const grouped = currentByKey.get(item.key) || [];
@@ -106,11 +146,23 @@ jobs:
             }
             const issuesByKey = new Map();
             for (const issue of issues) {
-              const marker = issue.body?.match(/<!-- url-check:([a-f0-9]+) -->/);
-              if (!marker) continue;
-              const grouped = issuesByKey.get(marker[1]) || [];
+              const markers = [...(issue.body || '').matchAll(/<!-- url-check:([a-f0-9]{20}) -->/g)];
+              const states = [...(issue.body || '').matchAll(statePattern)];
+              if (markers.length !== 1 || states.length > 1) continue;
+              const key = markers[0][1];
+              if (states.length === 1) {
+                try {
+                  const state = JSON.parse(states[0][1]);
+                  if (state.v !== 1 || state.key !== key ||
+                      !['main', 'icon'].includes(state.kind) ||
+                      typeof state.normalized_url !== 'string') continue;
+                } catch (_error) {
+                  continue;
+                }
+              }
+              const grouped = issuesByKey.get(key) || [];
               grouped.push(issue);
-              issuesByKey.set(marker[1], grouped);
+              issuesByKey.set(key, grouped);
             }
 
             const issueMap = new Map();
@@ -139,6 +191,7 @@ jobs:
             for (const [key, items] of currentByKey) {
               const issue = issueMap.get(key);
               if (items.every(isHealthy)) {
+                await resetFailureState(issue);
                 await commentAndClose(
                   issue,
                   `URL check recovered; the URL is reachable again.\n\n[View this Actions run](${runUrl})`
@@ -146,7 +199,9 @@ jobs:
                 continue;
               }
 
-              const body = failureBody(key, items);
+              const primary = items.find((item) => !isHealthy(item)) || items[0];
+              const consecutiveFailures = stateFor(issue, key, primary);
+              const body = failureBody(key, items, consecutiveFailures);
               if (issue) {
                 await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'open', body });
               } else {

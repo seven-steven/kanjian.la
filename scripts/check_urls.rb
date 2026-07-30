@@ -45,6 +45,17 @@ class UrlCheck
     uri.to_s
   end
 
+  def self.key_for(kind, url)
+    normalized = normalize(url)
+    Digest::SHA256.hexdigest("#{kind}:#{normalized}")[0, 20]
+  rescue URI::InvalidURIError
+    Digest::SHA256.hexdigest("#{kind}:#{url}")[0, 20]
+  end
+
+  def self.healthy?(result)
+    %w[ok redirect].include?(result["category"]) || [401, 403, 429].include?(result["status"].to_i)
+  end
+
   def self.entries(data, path = [])
     case data
     when Array
@@ -152,9 +163,9 @@ class UrlCheck
   end
 
   def result(entry, normalized, final_url, category, details = {})
-    key_source = "#{entry.fetch("kind")}:#{normalized}"
+    key = self.class.key_for(entry.fetch("kind"), normalized)
     entry.merge(
-      "key" => Digest::SHA256.hexdigest(key_source)[0, 20],
+      "key" => key,
       "normalized_url" => normalized,
       "final_url" => final_url,
       "category" => category

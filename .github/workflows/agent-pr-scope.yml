@@ -14,6 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - name: Check out pull request
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: "3.1"
+          bundler-cache: false
       - name: Validate agent pull request through GitHub API
         env:
           GH_TOKEN: ${{ github.token }}
@@ -25,7 +32,15 @@ jobs:
           pr_json="$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER")"
           head_ref="$(jq -r '.head.ref' <<<"$pr_json")"
 
-          if [[ ! "$head_ref" =~ ^agent/issue-[1-9][0-9]*$ ]]; then
+          if [[ "$head_ref" =~ ^agent/issue-([1-9][0-9]*)$ ]]; then
+            request_type='navigation'
+            issue_number="${BASH_REMATCH[1]}"
+            expected_title="chore(navigation): process issue #$issue_number"
+          elif [[ "$head_ref" =~ ^agent/url-check-issue-([1-9][0-9]*)$ ]]; then
+            request_type='url-check'
+            issue_number="${BASH_REMATCH[1]}"
+            expected_title="chore(navigation): remove failed URL from issue #$issue_number"
+          else
             printf 'Non-agent PR; scope validation skipped.\n'
             exit 0
           fi
@@ -35,12 +50,37 @@ jobs:
           test "$(jq -r '.head.repo.full_name' <<<"$pr_json")" = "$REPOSITORY"
           test "$(jq -r '.head.repo.owner.login' <<<"$pr_json")" = "$REPOSITORY_OWNER"
 
-          issue_number="${head_ref#agent/issue-}"
-          test "$(jq -r '.title' <<<"$pr_json")" = "chore(navigation): process issue #$issue_number"
+          test "$(jq -r '.title' <<<"$pr_json")" = "$expected_title"
           issue_json="$(gh api "repos/$REPOSITORY/issues/$issue_number")"
-          test "$(jq -r '.user.login' <<<"$issue_json")" = "$REPOSITORY_OWNER"
-          jq -e '.labels | any(.name == "navigation-request")' <<<"$issue_json" >/dev/null
+          test "$(jq -r '.state' <<<"$issue_json")" = 'open'
           jq -e '.labels | any(.name == "agent:approved")' <<<"$issue_json" >/dev/null
+          if [[ "$request_type" == 'navigation' ]]; then
+            test "$(jq -r '.user.login' <<<"$issue_json")" = "$REPOSITORY_OWNER"
+            jq -e '.labels | any(.name == "navigation-request")' <<<"$issue_json" >/dev/null
+          else
+            test "$(jq -r '.user.login' <<<"$issue_json")" = 'github-actions[bot]'
+            jq -e '.labels | any(.name == "url-check")' <<<"$issue_json" >/dev/null
+            jq -e '.labels | any(.name == "automated")' <<<"$issue_json" >/dev/null
+            jq -e '.body | test("(?m)^<!-- url-check:[a-f0-9]{20} -->$")' <<<"$issue_json" >/dev/null
+            jq -e '.body | test("(?m)^<!-- url-check-state:\\{.*\\} -->$")' <<<"$issue_json" >/dev/null
+            printf '%s' "$(jq -r '.body' <<<"$issue_json")" > /tmp/url-issue-body
+            gh api "repos/$REPOSITORY/contents/_data/sites.yml?ref=jekyll" --jq '.content' | tr -d '\n' | base64 --decode > /tmp/base-sites.yml
+            cp _data/sites.yml /tmp/pr-sites.yml
+            ruby -I. -r ./scripts/remove_failed_url -e '
+              class ScopeChecker
+                def check(_entry)
+                  { "category" => "client_error", "status" => 404 }
+                end
+              end
+              result = UrlRemovalProcessor.new(
+                issue_body: File.read("/tmp/url-issue-body"),
+                sites_path: "/tmp/base-sites.yml",
+                checker: ScopeChecker.new
+              ).call
+              abort result.fetch("message") unless result.fetch("result") == "removed"
+            '
+            cmp /tmp/base-sites.yml /tmp/pr-sites.yml
+          fi
 
           gh api --paginate "repos/$REPOSITORY/pulls/$PR_NUMBER/files?per_page=100" \
             --jq '.[].filename' > /tmp/changed-files
@@ -49,6 +89,10 @@ jobs:
             case "$path" in
               _data/sites.yml) ;;
               assets/image/logo/*)
+                if [[ "$request_type" == 'url-check' ]]; then
+                  printf 'URL removal PR may not change a logo: %s\n' "$path" >&2
+                  exit 1
+                fi
                 test "${path#assets/image/logo/}" = "$(basename "$path")" || {
                   printf 'Agent logo must be a direct child: %s\n' "$path" >&2
                   exit 1

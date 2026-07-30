@@ -32,6 +32,14 @@ class UrlCheckTest < Minitest::Test
     assert_equal first["key"], second["key"]
   end
 
+  def test_exposes_shared_key_and_healthy_helpers
+    assert_equal UrlCheck.key_for("main", "https://example.com/"), UrlCheck.key_for("main", "HTTPS://EXAMPLE.COM:443/#fragment")
+    refute_equal UrlCheck.key_for("main", "https://example.com/"), UrlCheck.key_for("icon", "https://example.com/")
+    assert UrlCheck.healthy?("category" => "ok")
+    assert UrlCheck.healthy?("category" => "client_error", "status" => 401)
+    refute UrlCheck.healthy?("category" => "client_error", "status" => 404)
+  end
+
   def test_rejects_non_public_destination_before_request
     result = UrlCheck.new(resolver: Resolver.new(["127.0.0.1"])).check(entry("http://example.test"))
     assert_equal "invalid_url", result["category"]
