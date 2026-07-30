@@ -30,6 +30,7 @@ class UrlIssueStateTest < Minitest::Test
     rendered = UrlIssueState.render_state(state)
 
     assert_raises(UrlIssueState::InvalidState) { UrlIssueState.parse_issue(rendered) }
+    assert_raises(UrlIssueState::InvalidState) { UrlIssueState.parse_issue(marker) }
     assert_raises(UrlIssueState::InvalidState) { UrlIssueState.parse_issue("#{marker}\n#{marker}\n#{rendered}") }
     assert_raises(UrlIssueState::InvalidState) { UrlIssueState.parse_issue("#{marker}\n#{rendered}\n#{rendered}") }
   end

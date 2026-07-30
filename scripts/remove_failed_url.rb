@@ -150,7 +150,10 @@ if $PROGRAM_NAME == __FILE__
     checker: UrlCheck.new(timeout: options[:timeout], retries: options[:retries])
   ).call
   $stdout.write(JSON.generate(output) + "\n")
-  rescue UrlIssueState::InvalidState, OptionParser::ParseError, RuntimeError, Errno::ENOENT => error
+  rescue UrlIssueState::InvalidState => error
+  $stdout.write(JSON.generate("result" => "not_removed", "message" => error.message) + "\n")
+  exit 0
+  rescue OptionParser::ParseError, RuntimeError, Errno::ENOENT => error
   $stdout.write(JSON.generate("result" => "error", "message" => error.message) + "\n")
   exit 1
   end

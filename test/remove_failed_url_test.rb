@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
+require "open3"
 require "tmpdir"
 require "yaml"
 require_relative "../scripts/remove_failed_url"
@@ -126,5 +127,47 @@ class UrlRemovalProcessorTest < Minitest::Test
       end
       assert_equal before, File.binread(path)
     end
+  end
+end
+
+class UrlRemovalCliExitCodeTest < Minitest::Test
+  SCRIPT = File.expand_path("../scripts/remove_failed_url.rb", __dir__)
+
+  def setup
+    @data = [{ "name" => "Category", "links" => [
+      { "title" => "Keep", "url" => "https://example.org/", "logo" => "keep.svg" }
+    ] }]
+  end
+
+  def test_invalid_state_is_not_removed_and_exits_zero
+    # Reproduces a legacy issue body: a single URL marker but no url-check-state marker.
+    body = "<!-- url-check:22ba0cb0d5340770cdf1 -->\nAutomated URL check detected a failure."
+
+    Dir.mktmpdir do |directory|
+      sites = File.join(directory, "sites.yml")
+      input = File.join(directory, "issue-body")
+      File.write(sites, YAML.dump(@data))
+      File.write(input, body)
+
+      output, status = run_cli("--input", input, "--sites", sites)
+
+      assert status.success?, "expected exit 0, got #{status.exitstatus}: #{output}"
+      parsed = JSON.parse(output)
+      assert_equal "not_removed", parsed.fetch("result")
+      assert_equal "expected exactly one URL check state", parsed.fetch("message")
+      assert_equal YAML.dump(@data), File.binread(sites)
+    end
+  end
+
+  def test_missing_input_argument_exits_one
+    output, status = run_cli("--sites", "/dev/null")
+
+    refute status.success?, "expected non-zero exit, got success: #{output}"
+    assert_equal "error", JSON.parse(output).fetch("result")
+  end
+
+  def run_cli(*args)
+    stdout, _stderr, status = Open3.capture3("ruby", SCRIPT, *args)
+    [stdout, status]
   end
 end
