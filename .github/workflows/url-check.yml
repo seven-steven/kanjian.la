@@ -47,9 +47,10 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const markerFor = (key) => `<!-- url-check:${key} -->`;
-            const statePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/;
+            const statePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/g;
+            const stateCapturePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/;
             const stateFor = (issue, key, item) => {
-              const match = issue?.body?.match(statePattern);
+              const match = issue?.body?.match(stateCapturePattern);
               if (!match) return 1;
               try {
                 const state = JSON.parse(match[1]);
@@ -112,7 +113,7 @@ jobs:
               ].join('\n');
             };
             const resetFailureState = async (issue) => {
-              if (!issue?.body?.match(statePattern)) return;
+              if (!issue?.body?.match(stateCapturePattern)) return;
               const body = issue.body.replace(statePattern, '').replace(/\n{3,}/g, '\n\n').trim();
               await github.rest.issues.update({ owner, repo, issue_number: issue.number, body });
             };
