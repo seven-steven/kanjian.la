@@ -41,12 +41,20 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const crypto = require('crypto');
             const payload = JSON.parse(fs.readFileSync(process.env.RESULTS_FILE, 'utf8'));
             const { results } = payload;
             const checkedAt = payload.checked_at;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const markerFor = (key) => `<!-- url-check:${key} -->`;
+            // Mirrors the Ruby UrlCheck.key_for fallback: when normalize could not
+            // canonicalize a URL (previously the case for Internationalized Domain
+            // Names), the key was derived from the raw URL string. After IDN
+            // support landed, those URLs canonicalize to Punycode and produce a
+            // different key, so legacy issues are matched via this fallback key.
+            const legacyKeyFor = (kind, rawUrl) =>
+              crypto.createHash('sha256').update(`${kind}:${rawUrl}`).digest('hex').slice(0, 20);
             const statePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/g;
             const stateCapturePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/;
             const stateFor = (issue, key, item) => {
@@ -188,6 +196,26 @@ jobs:
               }
             }
 
+            // Migrate issues that were filed under a legacy raw-URL key (before IDN
+            // support) to their current canonical Punycode key. A canonical key is
+            // only allowed to claim a legacy issue when it has no direct issue yet,
+            // so direct matches always win over migration. Each canonical key
+            // probes the legacy keys of every URL it groups, since several raw
+            // URLs can canonicalize to the same Punycode key.
+            const migratedIssueNumbers = new Set();
+            for (const [canonicalKey, items] of currentByKey) {
+              if (issueMap.has(canonicalKey)) continue;
+              const legacyKeys = new Set(items.map((item) => legacyKeyFor(item.kind, item.url)));
+              legacyKeys.delete(canonicalKey);
+              const claim = [...legacyKeys]
+                .map((lk) => issueMap.get(lk))
+                .find((candidate) => candidate && !migratedIssueNumbers.has(candidate.number));
+              if (!claim) continue;
+              issueMap.set(canonicalKey, claim);
+              for (const lk of legacyKeys) issueMap.delete(lk);
+              migratedIssueNumbers.add(claim.number);
+            }
+
             for (const [key, issue] of issueMap) {
               if (!currentByKey.has(key)) {
                 await commentAndClose(
@@ -199,16 +227,21 @@ jobs:
 
             for (const [key, items] of currentByKey) {
               const issue = issueMap.get(key);
+              const wasMigrated = issue && migratedIssueNumbers.has(issue.number);
               if (items.every(isHealthy)) {
                 await resetFailureState(issue);
-                await commentAndClose(
-                  issue,
-                  `URL check recovered; the URL is reachable again.\n\n[View this Actions run](${runUrl})`
-                );
+                const recoveryNote = wasMigrated
+                  ? `URL check recovered; the URL is reachable again. This issue was matched via its legacy Unicode-URL key after IDN (Punycode) canonicalization.\n\n[View this Actions run](${runUrl})`
+                  : `URL check recovered; the URL is reachable again.\n\n[View this Actions run](${runUrl})`;
+                await commentAndClose(issue, recoveryNote);
                 continue;
               }
 
               const primary = items.find((item) => !isHealthy(item)) || items[0];
+              // stateFor compares the stored state against the canonical key and
+              // Punycode normalized_url; a migrated issue's legacy state never
+              // matches, so its failure count correctly restarts at 1 instead of
+              // inheriting the spurious invalid_url tally from before the fix.
               const consecutiveFailures = stateFor(issue, key, primary);
               const body = failureBody(key, items, consecutiveFailures);
               if (issue) {

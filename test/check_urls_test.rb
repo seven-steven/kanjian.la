@@ -5,7 +5,10 @@ require_relative "../scripts/check_urls"
 
 class UrlCheckTest < Minitest::Test
   Resolver = Struct.new(:addresses) do
-    def getaddresses(_host)
+    attr_reader :resolved_hosts
+
+    def getaddresses(host)
+      (@resolved_hosts ||= []) << host
       addresses
     end
   end
@@ -126,5 +129,55 @@ class UrlCheckTest < Minitest::Test
     assert_raises(ArgumentError) { UrlCheck.new(timeout: 0) }
     assert_raises(ArgumentError) { UrlCheck.new(retries: -1) }
     UrlCheck.new(timeout: 0.1, retries: 0)
+  end
+
+  def test_normalizes_internationalized_domain_name_to_punycode
+    assert_equal "https://xn--rhqp87dfoiv9a830g.com/", UrlCheck.normalize("https://楚门的世界.com")
+    assert_equal "https://xn--wcv59z.com/", UrlCheck.normalize("https://教父.com")
+  end
+
+  def test_normalize_is_idempotent_for_internationalized_domain
+    normalized = UrlCheck.normalize("https://楚门的世界.com")
+    assert_equal normalized, UrlCheck.normalize(normalized)
+  end
+
+  def test_normalizes_mixed_ascii_and_unicode_label
+    assert_equal "https://xn--mnchen-3ya.de/", UrlCheck.normalize("https://münchen.de")
+    assert_equal "https://xn--caf-dma.example/", UrlCheck.normalize("https://café.example")
+  end
+
+  def test_normalize_preserves_port_and_userinfo_for_idn_host
+    assert_equal(
+      "https://xn--rhqp87dfoiv9a830g.com:8080/path",
+      UrlCheck.normalize("https://楚门的世界.com:8080/path")
+    )
+    assert_equal(
+      "https://user:pass@xn--rhqp87dfoiv9a830g.com/",
+      UrlCheck.normalize("https://user:pass@楚门的世界.com/")
+    )
+  end
+
+  def test_normalize_preserves_plain_ascii_authority
+    assert_equal "http://example.com/", UrlCheck.normalize("HTTP://EXAMPLE.COM:80")
+    assert_equal "https://example.com/path?x=1", UrlCheck.normalize("HTTPS://EXAMPLE.COM:443/path?x=1#section")
+  end
+
+  def test_check_reaches_real_request_for_internationalized_domain
+    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [])
+    resolver = Resolver.new(["93.184.216.34"])
+    result = UrlCheck.new(http: http, resolver: resolver).check(entry("https://楚门的世界.com"))
+
+    assert_equal "ok", result["category"]
+    assert_equal 200, result["status"]
+    assert_equal "https://xn--rhqp87dfoiv9a830g.com/", result["normalized_url"]
+    assert_equal %w[HEAD], http.methods
+    assert_equal ["xn--rhqp87dfoiv9a830g.com"], resolver.resolved_hosts
+  end
+
+  def test_key_for_collapses_unicode_and_punycode_forms
+    assert_equal(
+      UrlCheck.key_for("icon", "https://楚门的世界.com"),
+      UrlCheck.key_for("icon", "https://xn--rhqp87dfoiv9a830g.com/")
+    )
   end
 end
