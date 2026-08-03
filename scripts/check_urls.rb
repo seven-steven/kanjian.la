@@ -57,26 +57,40 @@ class UrlCheck
   end
 
   def self.entries(data, path = [])
+    collect_entries(data, path, "category_path" => [], "site_title" => nil, "site_url" => nil)
+  end
+
+  def self.collect_entries(data, path, context)
     case data
     when Array
-      data.flat_map.with_index { |item, index| entries(item, path + [index]) }
+      data.flat_map.with_index { |item, index| collect_entries(item, path + [index], context) }
     when Hash
       result = []
+      derived = context.dup
+      if data["name"].is_a?(String) && (data.key?("links") || data.key?("sub"))
+        derived["category_path"] = derived["category_path"] + [data["name"]]
+      end
+      derived["site_title"] = data["title"] if path[-2] == "links"
+      derived["site_url"] = data["url"] if path[-2] == "links" && data["url"].is_a?(String)
       if data["url"].is_a?(String) && data["url"].match?(%r{\Ahttps?://}i)
         kind = path.include?("icons") ? "icon" : "main"
         result << {
           "url" => data["url"], "kind" => kind, "title" => data["title"],
-          "path" => (path + ["url"]).join(".")
+          "path" => (path + ["url"]).join("."),
+          "site_title" => derived["site_title"],
+          "site_url" => derived["site_url"],
+          "site_category" => derived["category_path"].join(" / ")
         }
       end
       data.each do |key, value|
-        result.concat(entries(value, path + [key])) if value.is_a?(Array) || value.is_a?(Hash)
+        result.concat(collect_entries(value, path + [key], derived)) if value.is_a?(Array) || value.is_a?(Hash)
       end
       result
     else
       []
     end
   end
+  private_class_method :collect_entries
 
   def check(entry)
     normalized = self.class.normalize(entry.fetch("url"))

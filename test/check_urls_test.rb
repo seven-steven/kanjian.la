@@ -36,6 +36,37 @@ class UrlCheckTest < Minitest::Test
     assert_equal ["https://example.com", "http://example.org/docs"], entries.map { |item| item["url"] }
   end
 
+  def test_entries_carry_site_metadata_for_top_level_category
+    data = [{ "name" => "开源应用", "links" => [{ "title" => "Alist", "url" => "https://alist.nn.ci/", "icons" => { "info" => [{ "title" => "Demo", "url" => "https://al.nn.ci/" }] } }] }]
+    main, icon = UrlCheck.entries(data)
+
+    assert_equal "main", main["kind"]
+    assert_equal "Alist", main["site_title"]
+    assert_equal "https://alist.nn.ci/", main["site_url"]
+    assert_equal "开源应用", main["site_category"]
+    assert_equal "0.links.0.url", main["path"]
+
+    assert_equal "icon", icon["kind"]
+    assert_equal "Demo", icon["title"]
+    assert_equal "Alist", icon["site_title"]
+    assert_equal "https://alist.nn.ci/", icon["site_url"]
+    assert_equal "开源应用", icon["site_category"]
+    assert_equal "0.links.0.icons.info.0.url", icon["path"]
+  end
+
+  def test_entries_accumulate_category_path_across_sub_sections
+    data = [{ "name" => "开发资源", "sub" => [{ "name" => "在线工具", "links" => [{ "title" => "Bento", "url" => "https://bento.me/", "icons" => { "info" => [{ "title" => "文档", "url" => "https://docs.bento.me/" }] } }] }] }]
+    main, icon = UrlCheck.entries(data)
+
+    assert_equal "开发资源 / 在线工具", main["site_category"]
+    assert_equal "开发资源 / 在线工具", icon["site_category"]
+    assert_equal "Bento", icon["site_title"]
+    assert_equal "https://bento.me/", icon["site_url"]
+    assert_equal "文档", icon["title"]
+    assert_equal "0.sub.0.links.0.url", main["path"]
+    assert_equal "0.sub.0.links.0.icons.info.0.url", icon["path"]
+  end
+
   def test_invalid_url_has_deterministic_key
     first = UrlCheck.new.check(entry("ftp://example.com"))
     second = UrlCheck.new.check(entry("ftp://example.com"))
@@ -55,6 +86,16 @@ class UrlCheckTest < Minitest::Test
     result = UrlCheck.new(resolver: Resolver.new(["127.0.0.1"])).check(entry("http://example.test"))
     assert_equal "invalid_url", result["category"]
     assert_match(/non-public/, result["error"])
+  end
+
+  def test_check_preserves_site_metadata_in_result
+    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [])
+    rich = entry("https://example.com").merge("site_title" => "Site", "site_url" => "https://example.com", "site_category" => "Tools")
+    result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"])).check(rich)
+
+    assert_equal "Site", result["site_title"]
+    assert_equal "https://example.com", result["site_url"]
+    assert_equal "Tools", result["site_category"]
   end
 
   def test_falls_back_to_get_when_head_returns_not_found

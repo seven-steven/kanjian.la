@@ -83,9 +83,17 @@ jobs:
             const accessibleStatuses = new Set([401, 403, 429]);
             const isHealthy = (item) =>
               ['ok', 'redirect'].includes(item.category) || accessibleStatuses.has(item.status);
-            const references = (items) => items.map((item) =>
-              `- \`${item.path || 'unknown path'}\` — ${item.title || '(untitled)'} (${item.kind}): ${item.url}`
-            ).join('\n');
+            const referenceFor = (item) => {
+              const head = `- \`${item.path || 'unknown path'}\` — ${item.title || '(untitled)'} (${item.kind}): ${item.url}`;
+              const category = item.site_category || '(unknown category)';
+              if (item.kind === 'icon') {
+                const site = item.site_title || '(unknown site)';
+                const main = item.site_url ? `（主链接：${item.site_url}）` : '';
+                return `${head}\n  - 属于站点：${site}${main}\n  - 分类：${category}`;
+              }
+              return `${head}\n  - 站点：${item.site_title || item.title || '(untitled)'}\n  - 分类：${category}`;
+            };
+            const references = (items) => items.map(referenceFor).join('\n');
             const failureBody = (key, items, consecutiveFailures) => {
               const primary = items.find((item) => !isHealthy(item)) || items[0];
               const approval = primary.kind === 'main' && consecutiveFailures >= 3
