@@ -19,7 +19,7 @@ class UrlRemovalProcessor
   def call
     state = UrlIssueState.parse_issue(@issue_body)
     return no_op("URL is not a main navigation entry") unless state.fetch("kind") == "main"
-    return no_op("URL has fewer than three consecutive failures") unless state.fetch("consecutive_failures") >= 3
+    return no_op("URL has fewer than #{UrlIssueState::FAILURE_THRESHOLD} consecutive failures") unless state.fetch("consecutive_failures") >= UrlIssueState::FAILURE_THRESHOLD
 
     source = File.binread(@sites_path)
     data = YAML.safe_load(source, permitted_classes: [], aliases: false)

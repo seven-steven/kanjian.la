@@ -98,8 +98,8 @@
 
 - `.github/workflows/url-check.yml` 每日 UTC 03:23 运行，也可在 Actions 页面通过 `workflow_dispatch` 手动运行；相关数据、检查脚本或工作流变更推送时也会触发。
 - 巡检会先执行 URL 检查单元测试，再以超时 10 秒、重试 2 次检查 `_data/sites.yml` 中的外部 URL。
-- 每个被检查 URL 以稳定键关联一个 Issue；失败时创建或更新同一个 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。重复 Issue 会保留最早的一项并关闭其余项。
-- Issue 会记录连续失败次数。仅 `main` URL 连续失败 3 次后才进入可批准状态；仓库所有者可添加 `agent:approved`，由确定性工作流重新检查当前 URL 和当前导航数据。只有仍不健康且恰好匹配一个导航条目时，工作流才删除该条目并创建 PR；icon URL、已恢复 URL、次数不足、缺失或多重匹配均不修改数据。
+- 每个被检查 URL 以稳定键关联一个 Issue；同一 URL 连续失败达到阈值（见下）才会创建或更新 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。重复 Issue 会保留最早的一项并关闭其余项。
+- Issue 会记录连续失败次数。第 1–4 次连续失败由 Actions cache 进行 best-effort 计数（不会创建 Issue）；仅 `main` URL 连续失败 5 次后才创建 Issue 并进入可批准状态。cache 是尽力而为，丢失只会让未达阈值的失败重新计数、推迟 Issue 创建，不会提前创建或删除链接。仓库所有者可添加 `agent:approved`，由确定性工作流重新检查当前 URL 和当前导航数据。只有仍不健康且恰好匹配一个导航条目时，工作流才删除该条目并创建 PR；icon URL、已恢复 URL、次数不足、缺失或多重匹配均不修改数据。
 - URL 移除不调用 Claude，也不猜测替代 URL；Claude Code Action 仍仅处理所有者通过导航 Issue Form 提交的明确 add/update/remove 请求。
 - URL 恢复可访问时，自动追加恢复说明并关闭对应 Issue；URL 已从导航移除时，也会追加说明并关闭对应 Issue。401、403、429 被视为可访问但受限，不会作为失效处理。URL 移除 PR 由所有者审核合并后，`jekyll` push 会自动部署 Pages、同步 Webstack，并再次巡检以关闭原 Issue。
 

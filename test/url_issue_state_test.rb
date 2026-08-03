@@ -4,6 +4,12 @@ require "minitest/autorun"
 require_relative "../scripts/url_issue_state"
 
 class UrlIssueStateTest < Minitest::Test
+  def test_threshold_constant_matches_the_workflow_gating_value
+    # Mirrors FAILURE_THRESHOLD in .github/scripts/url_failure_counter.js and the
+    # "Synchronize per-URL issues" inline script. Bump all three together.
+    assert_equal 5, UrlIssueState::FAILURE_THRESHOLD
+  end
+
   def current(overrides = {})
     {
       "key" => UrlCheck.key_for("main", "https://example.com/"),

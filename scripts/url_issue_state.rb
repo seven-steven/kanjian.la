@@ -8,6 +8,10 @@ require_relative "check_urls"
 # Defines the machine-readable state embedded in URL check issues.
 module UrlIssueState
   VERSION = 1
+  # A main URL must fail this many consecutive checks before its issue becomes
+  # eligible for owner-approved removal. Mirrors the gating constant used by the
+  # URL check workflow's issue synchronization step; keep them in sync.
+  FAILURE_THRESHOLD = 5
   KEY_PATTERN = /\A[a-f0-9]{20}\z/
   MARKER_PATTERN = /<!-- url-check:([a-f0-9]{20}) -->/
   STATE_PATTERN = /<!-- url-check-state:(.*?) -->/m

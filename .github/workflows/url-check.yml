@@ -8,7 +8,13 @@ on:
     paths:
       - "_data/sites.yml"
       - "scripts/check_urls.rb"
+      - "scripts/url_issue_state.rb"
+      - "scripts/remove_failed_url.rb"
       - "test/check_urls_test.rb"
+      - "test/url_issue_state_test.rb"
+      - "test/remove_failed_url_test.rb"
+      - ".github/scripts/url_failure_counter.js"
+      - ".github/scripts/url_failure_counter.test.js"
       - ".github/workflows/url-check.yml"
 
 permissions:
@@ -26,22 +32,43 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Restore failure counter cache
+        id: failure-cache
+        uses: actions/cache/restore@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        with:
+          path: .url-check-state/
+          # run_id+run_attempt make every save key unique; the ref-scoped prefix
+          # restores the most recent successful snapshot for this branch.
+          # schedule and push both run on the default branch, so they share one
+          # counter chain; other branches are isolated by ref and cannot pollute it.
+          key: url-check-failure-state-v1-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            url-check-failure-state-v1-${{ github.ref }}-
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
         with:
           ruby-version: "3.1"
       - name: Run URL checker unit tests
         run: ruby -Itest test/check_urls_test.rb
+      - name: Run failure counter unit tests
+        run: node --test .github/scripts/url_failure_counter.test.js
       - name: Check external URLs
         run: ruby scripts/check_urls.rb --output url-check.json --timeout 10 --retries 2
       - name: Synchronize per-URL issues
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v7.0.1
         env:
           RESULTS_FILE: url-check.json
+          FAILURE_STATE_FILE: .url-check-state/failure-counts.json
         with:
           script: |
             const fs = require('fs');
+            const path = require('path');
             const crypto = require('crypto');
+            // Pure, unit-tested failure-counter logic. Lives in
+            // .github/scripts/url_failure_counter.js so the issue/cache priority
+            // and threshold gating can be tested without GitHub API access.
+            const counter = require(path.join(process.env.GITHUB_WORKSPACE, '.github', 'scripts', 'url_failure_counter.js'));
+            const { FAILURE_THRESHOLD } = counter;
             const payload = JSON.parse(fs.readFileSync(process.env.RESULTS_FILE, 'utf8'));
             const { results } = payload;
             const checkedAt = payload.checked_at;
@@ -57,19 +84,28 @@ jobs:
               crypto.createHash('sha256').update(`${kind}:${rawUrl}`).digest('hex').slice(0, 20);
             const statePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/g;
             const stateCapturePattern = /<!-- url-check-state:(\{[^\n]*\}) -->/;
-            const stateFor = (issue, key, item) => {
-              const match = issue?.body?.match(stateCapturePattern);
-              if (!match) return 1;
+            // Load the durable failure counter (Actions cache). Issues are only
+            // created once a URL fails FAILURE_THRESHOLD consecutive checks, so
+            // counts 1..FAILURE_THRESHOLD-1 live here, outside any issue body.
+            // A missing or corrupt cache degrades gracefully: those sub-threshold
+            // counts restart at 1, which only delays issue creation — it never
+            // creates an issue early or removes a link.
+            const loadFailureCache = () => {
+              const file = process.env.FAILURE_STATE_FILE;
+              if (!fs.existsSync(file)) return counter.createEmptyDocument();
               try {
-                const state = JSON.parse(match[1]);
-                const matches = state.v === 1 && state.key === key &&
-                  state.kind === item.kind && state.normalized_url === item.normalized_url &&
-                  Number.isInteger(state.consecutive_failures) && state.consecutive_failures > 0;
-                return matches ? state.consecutive_failures + 1 : 1;
-              } catch (_error) {
-                return 1;
+                return counter.loadDocument(fs.readFileSync(file, 'utf8'));
+              } catch (error) {
+                core.warning(`failure counter cache ignored (${error.message}); sub-threshold counts restart at 1`);
+                return counter.createEmptyDocument();
               }
             };
+            const writeFailureCache = (doc) => {
+              const file = process.env.FAILURE_STATE_FILE;
+              fs.mkdirSync(path.dirname(file), { recursive: true });
+              fs.writeFileSync(file, counter.serializeDocument(doc));
+            };
+            const failureCache = loadFailureCache();
             const stateMarkerFor = (key, item, consecutiveFailures) => `<!-- url-check-state:${JSON.stringify({
               v: 1,
               key,
@@ -104,9 +140,9 @@ jobs:
             const references = (items) => items.map(referenceFor).join('\n');
             const failureBody = (key, items, consecutiveFailures) => {
               const primary = items.find((item) => !isHealthy(item)) || items[0];
-              const approval = primary.kind === 'main' && consecutiveFailures >= 3
+              const approval = primary.kind === 'main' && consecutiveFailures >= FAILURE_THRESHOLD
                 ? 'Eligible for owner approval: add the `agent:approved` label to create a removal PR.'
-                : 'Automatic removal requires a main URL to fail 3 consecutive checks.';
+                : `Automatic removal requires a main URL to fail ${FAILURE_THRESHOLD} consecutive checks.`;
               return [
                 markerFor(key),
                 stateMarkerFor(key, primary, consecutiveFailures),
@@ -116,7 +152,7 @@ jobs:
                 references(items),
                 '',
                 '## Latest result',
-                `- Consecutive failures: ${consecutiveFailures}/3`,
+                `- Consecutive failures: ${consecutiveFailures}/${FAILURE_THRESHOLD}`,
                 `- Category: ${primary.category}`,
                 `- Status: ${primary.status ?? 'n/a'}`,
                 `- Error: ${primary.error ?? 'n/a'}`,
@@ -218,6 +254,7 @@ jobs:
 
             for (const [key, issue] of issueMap) {
               if (!currentByKey.has(key)) {
+                counter.removeFailure(failureCache, key);
                 await commentAndClose(
                   issue,
                   `This URL has been removed from navigation and is no longer checked.\n\n[View this Actions run](${runUrl})`
@@ -229,6 +266,7 @@ jobs:
               const issue = issueMap.get(key);
               const wasMigrated = issue && migratedIssueNumbers.has(issue.number);
               if (items.every(isHealthy)) {
+                counter.removeFailure(failureCache, key);
                 await resetFailureState(issue);
                 const recoveryNote = wasMigrated
                   ? `URL check recovered; the URL is reachable again. This issue was matched via its legacy Unicode-URL key after IDN (Punycode) canonicalization.\n\n[View this Actions run](${runUrl})`
@@ -238,11 +276,31 @@ jobs:
               }
 
               const primary = items.find((item) => !isHealthy(item)) || items[0];
-              // stateFor compares the stored state against the canonical key and
-              // Punycode normalized_url; a migrated issue's legacy state never
-              // matches, so its failure count correctly restarts at 1 instead of
-              // inheriting the spurious invalid_url tally from before the fix.
-              const consecutiveFailures = stateFor(issue, key, primary);
+              // Count priority: a matching issue state marker wins (issues have
+              // reached the threshold and carry the authoritative tally), then a
+              // matching durable cache entry (counts 1..FAILURE_THRESHOLD-1 live
+              // here before any issue exists), then a fresh count of 1. A migrated
+              // issue's legacy state never matches, so its count restarts at 1
+              // instead of inheriting the spurious invalid_url tally from before
+              // the IDN fix.
+              const { count: consecutiveFailures, source } =
+                counter.nextFailureCount({ issue, doc: failureCache, key, item: primary });
+              counter.setFailure(failureCache, key, primary, consecutiveFailures);
+              core.info(`URL key ${key}: consecutive failures=${consecutiveFailures}/${FAILURE_THRESHOLD} (source=${source})`);
+
+              // Below the threshold: keep the count only in the cache and do not
+              // create or reopen an issue. A pre-existing (legacy) issue is kept
+              // in sync with the current tally but is not reopened until the
+              // threshold is met.
+              if (consecutiveFailures < FAILURE_THRESHOLD) {
+                if (issue && issue.state === 'open') {
+                  await github.rest.issues.update({
+                    owner, repo, issue_number: issue.number, body: failureBody(key, items, consecutiveFailures)
+                  });
+                }
+                continue;
+              }
+
               const body = failureBody(key, items, consecutiveFailures);
               if (issue) {
                 await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'open', body });
@@ -257,3 +315,20 @@ jobs:
                 issueMap.set(key, created.data);
               }
             }
+
+            // Persist the updated counter: drop targets that are healthy or no
+            // longer in the navigation, then write the full snapshot. The cache
+            // save step runs only after this script completes successfully.
+            counter.pruneStale(failureCache, new Set(currentByKey.keys()));
+            writeFailureCache(failureCache);
+      - name: Save failure counter cache
+        # Only persist after a fully successful sync. A partial run (URL check
+        # failure or an API error mid-sync) must not write a half-advanced
+        # counter snapshot; the previous complete snapshot stays authoritative.
+        # cache-hit == 'true' means the exact run-scoped key already exists, so
+        # the save action would no-op anyway; skip it explicitly.
+        if: success() && steps.failure-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        with:
+          path: .url-check-state/
+          key: ${{ steps.failure-cache.outputs.cache-primary-key }}

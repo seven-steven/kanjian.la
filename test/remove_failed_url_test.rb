@@ -24,7 +24,7 @@ class UrlRemovalProcessorTest < Minitest::Test
     ]
   end
 
-  def state(count: 3, kind: "main", url: "https://example.com/")
+  def state(count: UrlIssueState::FAILURE_THRESHOLD, kind: "main", url: "https://example.com/")
     current = {
       "key" => UrlCheck.key_for(kind, url), "kind" => kind, "normalized_url" => url,
       "checked_at" => "2026-07-30T12:00:00Z", "run_id" => "123",
@@ -88,7 +88,7 @@ class UrlRemovalProcessorTest < Minitest::Test
 
   def test_no_op_conditions_do_not_modify_the_file
     cases = [
-      [state(count: 2), { "category" => "server_error", "status" => 503 }],
+      [state(count: UrlIssueState::FAILURE_THRESHOLD - 1), { "category" => "server_error", "status" => 503 }],
       [state(kind: "icon"), { "category" => "server_error", "status" => 503 }],
       [state, { "category" => "ok", "status" => 200 }],
       [state, { "category" => "client_error", "status" => 401 }],
@@ -105,6 +105,15 @@ class UrlRemovalProcessorTest < Minitest::Test
         assert_equal "not_removed", output.fetch("result")
         assert_equal before, File.binread(path)
       end
+    end
+  end
+
+  def test_sub_threshold_failure_message_mentions_the_threshold
+    with_sites do |path|
+      output = processor(path, value: state(count: UrlIssueState::FAILURE_THRESHOLD - 1)).call
+
+      assert_equal "not_removed", output.fetch("result")
+      assert_includes output.fetch("message"), UrlIssueState::FAILURE_THRESHOLD.to_s
     end
   end
 

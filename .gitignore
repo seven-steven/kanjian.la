@@ -8,3 +8,6 @@ Gemfile.lock
 .vscode
 .claude/worktrees/
 .playwright-mcp/
+
+# Actions cache snapshot for sub-threshold URL failure counts (see url-check workflow)
+.url-check-state/
