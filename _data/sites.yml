@@ -491,7 +491,6 @@
             info:
               - icon: ri-book-2-line
                 title: Document
-                url: midjourney.com.svg
         - title: DreamStudio
           url: https://beta.dreamstudio.ai/
           description: 高质量 AI 绘图
@@ -1111,7 +1110,7 @@
         - title: SendWin
           url: https://chrome.google.com/webstore/detail/nbnjpdfblnfaniloehlfjkdfclljcgfn
           description: 用一个浏览器访问多个账户
-          logo:
+          logo: send.win.png
           icons:
             status:
               - icon: ri-send-plane-fill
@@ -1225,7 +1224,6 @@
                 url: https://www.aria2e.ga/
               - icon: ri-github-fill
                 title: Github
-                url: chrome-extension-aria2-for-chrome.svg
         - title: Web Scraper
           url: https://chrome.google.com/webstore/detail/web-scraper/jnhgnonknehpejjnehehllkliplmbmhn
           description: 一个网页爬虫扩展
@@ -1730,7 +1728,6 @@
                 url: https://bytedance.feishu.cn/wiki/wikcnrOVHCJQ4V3a7mDvmLjrePf#KNxVYO
               - icon: ri-github-fill
                 name: github
-                url: iconpark.oceanengine.com.svg
         - title: iconmonstr
           url: https://iconmonstr.com/
           description: 德国团队出品的完全免费的图标库
@@ -1802,7 +1799,6 @@
             info:
               - icon: ri-book-2-line
                 title: Document
-                url: icon-sets.iconify.design.svg
         - title: Emoji 大全
           url: https://piliapp.com/emoji/list/
           description: 表情符号大全
@@ -2233,7 +2229,7 @@
         - title: Webhook.site
           url: https://webhook.site/
           description: 实时调测、转换、自动化处理 Webhook、HTTP 请求和电子邮件
-          logo:
+          logo: webhook.site.png
           icons:
             status:
             info:
@@ -2867,7 +2863,6 @@
             info:
               - icon: ri-github-fill
                 title: Github
-                url: elastic-view.cn.svg
         - title: Java Decompiler
           url: https://java-decompiler.github.io/
           description: Java 反编译工具
@@ -3255,7 +3250,7 @@
   sub:
     - name: 便民服务
       links:
-        - title: 12306
+        - title: "12306"
           url: https://www.12306.cn/
           description: 中国铁路 12306，买火车票认准这个网站
           logo: 12306.cn.ico

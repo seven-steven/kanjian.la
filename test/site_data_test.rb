@@ -22,6 +22,16 @@ class SiteDataTest < Minitest::Test
     refute SiteData.valid_http_url?("ftp://example.com")
   end
 
+  def test_validates_internationalized_domain_names
+    # Unicode IDN and its Punycode form must both be accepted.
+    assert SiteData.valid_http_url?("https://教父.com")
+    assert SiteData.valid_http_url?("https://xn--wcv59z.com")
+
+    # A bare filename is not a URL, regardless of IDN support.
+    refute SiteData.valid_http_url?("midjourney.com.svg")
+    refute SiteData.valid_http_url?("")
+  end
+
   def test_rejects_unsafe_logo_names
     assert SiteData.safe_logo_name?("example.svg")
     refute SiteData.safe_logo_name?("../example.svg")

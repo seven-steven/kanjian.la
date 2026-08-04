@@ -2,6 +2,7 @@
 
 require "yaml"
 require "uri"
+require_relative "punycode"
 
 module SiteData
   Site = Struct.new(:category, :title, :url, :description, :logo, :icons, :source, keyword_init: true)
@@ -56,7 +57,8 @@ module SiteData
   end
 
   def valid_http_url?(value)
-    uri = URI.parse(value.to_s)
+    ascii_url = Punycode.ascii_host_url(value.to_s)
+    uri = URI.parse(ascii_url)
     uri.is_a?(URI::HTTP) && !uri.host.nil? && !uri.host.empty?
   rescue URI::InvalidURIError
     false

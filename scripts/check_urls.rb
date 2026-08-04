@@ -12,6 +12,7 @@ require "uri"
 require "yaml"
 require "digest"
 require_relative "safe_network"
+require_relative "punycode"
 
 # Checks external URLs declared in _data/sites.yml. It deliberately has no gem
 # dependencies so it can run in GitHub Actions' stock Ruby installation.
@@ -32,90 +33,11 @@ class UrlCheck
     @resolver = resolver
   end
 
-  # RFC 3492 Bootstring parameters for Punycode encoding.
-  PUNYCODE_BASE = 36
-  PUNYCODE_TMIN = 1
-  PUNYCODE_TMAX = 26
-  PUNYCODE_SKEW = 38
-  PUNYCODE_DAMP = 700
-  PUNYCODE_INITIAL_BIAS = 72
-  PUNYCODE_INITIAL_N = 128
-
-  # Encodes a single Unicode domain label to its ASCII Punycode payload (without
-  # the "xn--" prefix). Pure-Ruby RFC 3492 so the checker stays gem-free.
-  def self.punycode_encode_label(input)
-    input = input.to_s
-    output = +""
-    basic_chars = input.each_char.select { |char| char.ord < PUNYCODE_INITIAL_N }
-    basic = basic_chars.length
-    output << basic_chars.join
-    output << "-" if basic.positive?
-    n = PUNYCODE_INITIAL_N
-    delta = 0
-    bias = PUNYCODE_INITIAL_BIAS
-    handled = basic
-    input_len = input.length
-    while handled < input_len
-      next_codepoint = input.each_char.map(&:ord).select { |codepoint| codepoint >= n }.min
-      delta += (next_codepoint - n) * (handled + 1)
-      n = next_codepoint
-      input.each_char do |char|
-        codepoint = char.ord
-        next delta += 1 if codepoint < n
-        next unless codepoint == n
-
-        q = delta
-        k = PUNYCODE_BASE
-        loop do
-          t = k <= bias ? PUNYCODE_TMIN : (k >= bias + PUNYCODE_TMAX ? PUNYCODE_TMAX : k - bias)
-          break if q < t
-
-          output << punycode_digit(t + (q - t) % (PUNYCODE_BASE - t))
-          q = (q - t) / (PUNYCODE_BASE - t)
-          k += PUNYCODE_BASE
-        end
-        output << punycode_digit(q)
-        bias = punycode_adapt(delta, handled + 1, handled == basic)
-        delta = 0
-        handled += 1
-      end
-      delta += 1
-      n += 1
-    end
-    output
-  end
-
-  def self.punycode_digit(digit)
-    (digit + (digit < 26 ? 97 : 22)).chr
-  end
-  private_class_method :punycode_digit
-
-  def self.punycode_adapt(delta, num_points, first_time)
-    delta = first_time ? delta / PUNYCODE_DAMP : delta / 2
-    delta += delta / num_points
-    k = 0
-    while delta > ((PUNYCODE_BASE - PUNYCODE_TMIN) * PUNYCODE_TMAX) / 2
-      delta /= PUNYCODE_BASE - PUNYCODE_TMIN
-      k += PUNYCODE_BASE
-    end
-    k + (PUNYCODE_BASE - PUNYCODE_TMIN + 1) * delta / (delta + PUNYCODE_SKEW)
-  end
-  private_class_method :punycode_adapt
-
-  # Encodes an Internationalized Domain Name host to ASCII (Punycode). Each
-  # dot-separated label is encoded only if it contains non-ASCII characters,
-  # producing "xn--<payload>"; pure-ASCII labels and bracketed IPv6 hosts are
-  # returned unchanged so the method is a no-op for ordinary hosts.
-  def self.punycode_encode_host(host)
-    return host if host.nil? || host.empty?
-    return host if host.start_with?("[") # IPv6 literal
-    host.split(".").map do |label|
-      label.ascii_only? ? label : "xn--#{punycode_encode_label(label)}"
-    end.join(".")
-  end
-
+  # RFC 3492 Punycode encoding and IDN authority normalization live in the
+  # shared Punycode module (scripts/punycode.rb), used here and by the
+  # site-data validator so Internationalized Domain Names are handled uniformly.
   def self.normalize(raw_url)
-    ascii_url = ascii_host_url(raw_url.to_s.strip)
+    ascii_url = Punycode.ascii_host_url(raw_url.to_s.strip)
     uri = URI.parse(ascii_url)
     raise URI::InvalidURIError, "URL must use http or https" unless %w[http https].include?(uri.scheme&.downcase)
     raise URI::InvalidURIError, "URL must include a host" if uri.host.nil? || uri.host.empty?
@@ -126,44 +48,6 @@ class UrlCheck
     uri.path = "/" if uri.path.nil? || uri.path.empty?
     uri.port = nil if (uri.scheme == "http" && uri.port == 80) || (uri.scheme == "https" && uri.port == 443)
     uri.to_s
-  end
-
-  # Replaces the host portion of a raw URL with its ASCII (Punycode) form so
-  # that URI.parse can accept Internationalized Domain Names. Only the authority
-  # host is touched; userinfo, port, path, query and fragment are preserved. If
-  # the URL has no scheme the input is returned unchanged and left to URI.parse
-  # to reject.
-  def self.ascii_host_url(raw_url)
-    scheme_match = raw_url.match(/\A([a-zA-Z][a-zA-Z0-9+.\-]*):\/\/(.*)\z/m)
-    return raw_url unless scheme_match
-
-    scheme = scheme_match[1]
-    rest = scheme_match[2]
-    authority_boundary = rest.index(/[\/?#]/)
-    authority = authority_boundary ? rest[0...authority_boundary] : rest
-    suffix = authority_boundary ? rest[authority_boundary..] : ""
-
-    userinfo, host_and_port = authority.split("@", 2)
-    if host_and_port.nil?
-      host_and_port = userinfo
-      userinfo = nil
-    end
-
-    # Separate the host from an optional port, taking care not to split on dots
-    # inside an IPv6 literal like [::1]:8080.
-    if host_and_port.start_with?("[")
-      close = host_and_port.index("]")
-      host = close ? host_and_port[0..close] : host_and_port
-      remainder = close ? host_and_port[(close + 1)..] : ""
-      port = remainder.start_with?(":") ? remainder : nil
-    else
-      host, port_part = host_and_port.split(":", 2)
-      port = port_part && !port_part.empty? ? ":#{port_part}" : nil
-    end
-
-    ascii_host = punycode_encode_host(host)
-    encoded_authority = [userinfo && "#{userinfo}@", ascii_host, port].compact.join
-    "#{scheme}://#{encoded_authority}#{suffix}"
   end
 
   def self.key_for(kind, url)
