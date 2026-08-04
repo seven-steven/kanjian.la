@@ -61,6 +61,28 @@ class UrlRemovalProcessorTest < Minitest::Test
     end
   end
 
+  # Failures whose status is nil (timeout, network_error, invalid_url) must be
+  # removable too: the URL checker emits them without an HTTP status, and they
+  # are exactly the persistent-failure categories that url-check.yml files
+  # removal issues for. Reproduces issue #71 (a URL timing out for 8 checks).
+  def test_removes_persistently_failing_url_without_an_http_status
+    failure_results = [
+      { "category" => "timeout", "status" => nil, "error" => "execution expired" },
+      { "category" => "network_error", "status" => nil, "error" => "host did not resolve" },
+      { "category" => "invalid_url", "status" => nil, "error" => "bad URI" }
+    ]
+
+    failure_results.each do |result|
+      with_sites do |path|
+        output = processor(path, result: result).call
+
+        assert_equal "removed", output.fetch("result"), "expected #{result["category"]} to be removed"
+        links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
+        assert_equal ["Keep"], links.map { |link| link.fetch("title") }
+      end
+    end
+  end
+
   def test_preserves_all_non_target_bytes_when_removing_a_record
     source = <<~YAML
       - name: "Category"
@@ -92,8 +114,6 @@ class UrlRemovalProcessorTest < Minitest::Test
       [state(kind: "icon"), { "category" => "server_error", "status" => 503 }],
       [state, { "category" => "ok", "status" => 200 }],
       [state, { "category" => "client_error", "status" => 401 }],
-      [state, { "category" => "network_error", "status" => nil, "error" => "host did not resolve" }],
-      [state, { "category" => "timeout", "status" => nil, "error" => "execution expired" }],
       [state, RuntimeError.new("network unavailable")]
     ]
 
