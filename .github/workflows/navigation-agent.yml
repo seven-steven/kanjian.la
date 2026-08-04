@@ -243,16 +243,20 @@ jobs:
         if: steps.removal.outputs.result == 'removed'
         run: |
           set -euo pipefail
+          # check_agent_diff.rb already constrains changes to _data/sites.yml
+          # plus direct children of assets/image/logo/ (the removal PR may now
+          # also delete the removed entry's orphaned logo, when no other entry
+          # references it). The per-PR "at most one logo, and it must be the
+          # deterministic orphan" rule is enforced by agent-pr-scope.yml.
           ruby scripts/check_agent_diff.rb --base origin/jekyll
           git diff --check origin/jekyll
-          test "$(git diff --name-only origin/jekyll | tr -d '\r')" = '_data/sites.yml'
       - name: Commit deterministic URL removal
         if: steps.removal.outputs.result == 'removed'
         run: |
           set -euo pipefail
           git config user.name 'navigation-agent[bot]'
           git config user.email 'navigation-agent[bot]@users.noreply.github.com'
-          git add _data/sites.yml
+          git add _data/sites.yml assets/image/logo/
           git diff --cached --quiet && exit 1
           git commit -m 'chore(navigation): remove failed URL from issue #${{ github.event.issue.number }}'
       - name: Create current-repository GitHub App token

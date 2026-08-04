@@ -66,7 +66,18 @@ jobs:
             printf '%s' "$(jq -r '.body' <<<"$issue_json")" > /tmp/url-issue-body
             gh api "repos/$REPOSITORY/contents/_data/sites.yml?ref=jekyll" --jq '.content' | tr -d '\n' | base64 --decode > /tmp/base-sites.yml
             cp _data/sites.yml /tmp/pr-sites.yml
-            ruby -I. -r ./scripts/remove_failed_url -e '
+            # Replay the deterministic removal against the BASE sites.yml in an
+            # isolated logo directory. Logo filenames are seeded from the BASE
+            # (jekyll) revision — NOT the PR checkout, which has already deleted
+            # the orphaned logo — so the processor's "does this logo file exist"
+            # decision matches navigation-agent.yml, which runs against ref:jekyll.
+            # The captured removed_logo is the single logo (if any) a URL-removal
+            # PR is allowed to delete.
+            scope_logo_dir="$(mktemp -d)"
+            gh api --paginate "repos/$REPOSITORY/contents/assets/image/logo?ref=jekyll" \
+              --jq '.[] | select(.type == "file") | .name' 2>/dev/null |
+              while IFS= read -r name; do : >"$scope_logo_dir/$name"; done
+            expected_removed_logo="$(ruby -I. -r ./scripts/remove_failed_url -e '
               class ScopeChecker
                 def check(_entry)
                   { "category" => "client_error", "status" => 404 }
@@ -75,28 +86,49 @@ jobs:
               result = UrlRemovalProcessor.new(
                 issue_body: File.read("/tmp/url-issue-body"),
                 sites_path: "/tmp/base-sites.yml",
+                logo_dir: "'"$scope_logo_dir"'",
                 checker: ScopeChecker.new
               ).call
               abort result.fetch("message") unless result.fetch("result") == "removed"
-            '
+              print result["removed_logo"].to_s
+            ')"
             cmp /tmp/base-sites.yml /tmp/pr-sites.yml
           fi
 
+          # Pull each changed file with its GitHub status (added/removed/modified)
+          # so URL-removal PRs can be constrained to at most one logo DELETION.
           gh api --paginate "repos/$REPOSITORY/pulls/$PR_NUMBER/files?per_page=100" \
-            --jq '.[].filename' > /tmp/changed-files
+            --jq '.[] | "\(.status)\t\(.filename)"' > /tmp/changed-files
           test -s /tmp/changed-files
-          while IFS= read -r path; do
+          # URL-removal PRs may delete only the single orphan logo the processor
+          # computed (if any); every other logo change is rejected. Navigation
+          # PRs still allow adds/edits of direct logo children.
+          expected_removed_logo="${expected_removed_logo-}"
+          url_logo_deletions=0
+          while IFS=$'\t' read -r status path; do
             case "$path" in
               _data/sites.yml) ;;
               assets/image/logo/*)
-                if [[ "$request_type" == 'url-check' ]]; then
-                  printf 'URL removal PR may not change a logo: %s\n' "$path" >&2
-                  exit 1
-                fi
                 test "${path#assets/image/logo/}" = "$(basename "$path")" || {
                   printf 'Agent logo must be a direct child: %s\n' "$path" >&2
                   exit 1
                 }
+                if [[ "$request_type" == 'url-check' ]]; then
+                  logo_name="${path#assets/image/logo/}"
+                  if [[ "$status" != 'removed' ]]; then
+                    printf 'URL removal PR may only delete a logo, not %s it: %s\n' "$status" "$path" >&2
+                    exit 1
+                  fi
+                  if [[ -z "$expected_removed_logo" ]]; then
+                    printf 'URL removal PR deleted a logo the processor did not orphan: %s\n' "$path" >&2
+                    exit 1
+                  fi
+                  if [[ "$logo_name" != "$expected_removed_logo" ]]; then
+                    printf 'URL removal PR deleted the wrong logo: %s (expected %s)\n' "$logo_name" "$expected_removed_logo" >&2
+                    exit 1
+                  fi
+                  url_logo_deletions=$((url_logo_deletions + 1))
+                fi
                 ;;
               *)
                 printf 'Disallowed agent PR path: %s\n' "$path" >&2
@@ -104,3 +136,7 @@ jobs:
                 ;;
             esac
           done < /tmp/changed-files
+          if [[ "$request_type" == 'url-check' && "$url_logo_deletions" -gt 1 ]]; then
+            printf 'URL removal PR may delete at most one logo; found %s.\n' "$url_logo_deletions" >&2
+            exit 1
+          fi

@@ -81,6 +81,7 @@ class UrlCheck
         kind = path.include?("icons") ? "icon" : "main"
         result << {
           "url" => data["url"], "kind" => kind, "title" => data["title"],
+          "logo" => data["logo"],
           "path" => (path + ["url"]).join("."),
           "site_title" => derived["site_title"],
           "site_url" => derived["site_url"],

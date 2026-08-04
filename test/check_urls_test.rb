@@ -40,13 +40,14 @@ class UrlCheckTest < Minitest::Test
   end
 
   def test_entries_carry_site_metadata_for_top_level_category
-    data = [{ "name" => "开源应用", "links" => [{ "title" => "Alist", "url" => "https://alist.nn.ci/", "icons" => { "info" => [{ "title" => "Demo", "url" => "https://al.nn.ci/" }] } }] }]
+    data = [{ "name" => "开源应用", "links" => [{ "title" => "Alist", "url" => "https://alist.nn.ci/", "logo" => "alist.nn.ci.svg", "icons" => { "info" => [{ "title" => "Demo", "url" => "https://al.nn.ci/" }] } }] }]
     main, icon = UrlCheck.entries(data)
 
     assert_equal "main", main["kind"]
     assert_equal "Alist", main["site_title"]
     assert_equal "https://alist.nn.ci/", main["site_url"]
     assert_equal "开源应用", main["site_category"]
+    assert_equal "alist.nn.ci.svg", main["logo"]
     assert_equal "0.links.0.url", main["path"]
 
     assert_equal "icon", icon["kind"]

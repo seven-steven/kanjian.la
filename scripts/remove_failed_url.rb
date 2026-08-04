@@ -6,13 +6,26 @@ require "optparse"
 require "tempfile"
 require "yaml"
 require_relative "check_urls"
+require_relative "site_data"
 require_relative "url_issue_state"
 
 # Removes one persistently failing main URL after an atomic local preflight.
 class UrlRemovalProcessor
-  def initialize(issue_body:, sites_path:, checker: UrlCheck.new)
+  # Resolved from the script location so the default does not depend on the
+  # caller's working directory. Overridable via `logo_dir:` / `--logo-dir` for
+  # tests and the scope-check workflow, which must run against an isolated
+  # directory rather than the live checkout.
+  DEFAULT_LOGO_DIR = File.expand_path("../assets/image/logo", __dir__)
+
+  # Raised when a site record was removed but its now-orphaned logo file could
+  # not be deleted. Distinct from the generic `rescue StandardError` so the
+  # post-write failure is not swallowed into a misleading "not_removed".
+  LogoRemovalError = Class.new(StandardError)
+
+  def initialize(issue_body:, sites_path:, logo_dir: DEFAULT_LOGO_DIR, checker: UrlCheck.new)
     @issue_body = issue_body
     @sites_path = sites_path
+    @logo_dir = File.expand_path(logo_dir)
     @checker = checker
   end
 
@@ -33,7 +46,13 @@ class UrlRemovalProcessor
     updated = remove_record(source, entry.fetch("path"))
     verify_removal!(updated, state)
     atomic_write(updated)
-    { "result" => "removed", "message" => "removed persistently failing URL", "path" => entry.fetch("path") }
+    removed_logo = remove_orphaned_logo(entry["logo"])
+    { "result" => "removed", "message" => "removed persistently failing URL",
+      "path" => entry.fetch("path"), "removed_logo" => removed_logo }
+  rescue LogoRemovalError => error
+    # sites.yml was already written; a post-write logo failure must surface as an
+    # error rather than degrading to a misleading "not_removed".
+    raise RuntimeError, error.message
   rescue UrlIssueState::InvalidState => error
     raise error
   rescue Psych::Exception, Errno::ENOENT, ArgumentError => error
@@ -122,6 +141,32 @@ class UrlRemovalProcessor
     raise ArgumentError, "target remains after removal" unless remaining.empty?
   end
 
+  # Deletes the removed entry's logo file iff it is no longer referenced by any
+  # other entry in the (already rewritten) sites.yml. Re-reads the file from
+  # disk so the judgment reflects the post-removal state. A shared logo (e.g.
+  # github.com.svg) is always preserved; only a true orphan is deleted.
+  #
+  # Returns the logo filename when a file was deleted, nil otherwise (shared,
+  # missing, unsafe name, or no logo). A missing file is idempotent (nil); a
+  # file that exists but cannot be deleted raises so the workflow fails loudly.
+  def remove_orphaned_logo(logo)
+    return nil unless SiteData.safe_logo_name?(logo)
+
+    data = YAML.safe_load_file(@sites_path, permitted_classes: [], aliases: false)
+    return nil if referenced_logos(data).include?(logo)
+
+    File.delete(File.join(@logo_dir, logo))
+    logo
+  rescue Errno::ENOENT
+    nil
+  rescue SystemCallError => error
+    raise LogoRemovalError, "entry removed, but logo #{logo.inspect} could not be deleted: #{error.message}"
+  end
+
+  def referenced_logos(data)
+    SiteData.sites(data).filter_map(&:logo)
+  end
+
   def atomic_write(content)
     directory = File.dirname(File.expand_path(@sites_path))
     Tempfile.create([".sites", ".yml"], directory) do |file|
@@ -139,11 +184,19 @@ end
 
 if $PROGRAM_NAME == __FILE__
   begin
-    options = { sites: "_data/sites.yml", timeout: UrlCheck::DEFAULT_TIMEOUT, retries: UrlCheck::DEFAULT_RETRIES }
+    options = {
+      sites: "_data/sites.yml",
+      logo_dir: UrlRemovalProcessor::DEFAULT_LOGO_DIR,
+      timeout: UrlCheck::DEFAULT_TIMEOUT,
+      retries: UrlCheck::DEFAULT_RETRIES
+    }
   OptionParser.new do |parser|
     parser.banner = "Usage: ruby scripts/remove_failed_url.rb --input ISSUE_BODY [options]"
     parser.on("--input PATH", "Issue body file") { |value| options[:input] = value }
     parser.on("--sites PATH", "YAML site data (default: _data/sites.yml)") { |value| options[:sites] = value }
+    parser.on("--logo-dir PATH", "Logo directory to prune orphans from (default: assets/image/logo)") do |value|
+      options[:logo_dir] = value
+    end
     parser.on("--timeout SECONDS", Integer, "Per-request timeout") { |value| options[:timeout] = value }
     parser.on("--retries COUNT", Integer, "Retries after first transient failure") { |value| options[:retries] = value }
   end.parse!
@@ -154,6 +207,7 @@ if $PROGRAM_NAME == __FILE__
   output = UrlRemovalProcessor.new(
     issue_body: body,
     sites_path: options[:sites],
+    logo_dir: options[:logo_dir],
     checker: UrlCheck.new(timeout: options[:timeout], retries: options[:retries])
   ).call
   $stdout.write(JSON.generate(output) + "\n")

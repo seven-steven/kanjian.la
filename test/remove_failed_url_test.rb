@@ -39,23 +39,29 @@ class UrlRemovalProcessorTest < Minitest::Test
     "#{UrlIssueState.render_marker(value.fetch("key"))}\n#{UrlIssueState.render_state(value)}"
   end
 
-  def with_sites(content: YAML.dump(@data))
+  def with_sites(content: YAML.dump(@data), logos: {})
     Dir.mktmpdir do |directory|
       path = File.join(directory, "sites.yml")
+      logo_dir = File.join(directory, "logos")
+      Dir.mkdir(logo_dir)
       File.write(path, content)
-      yield path
+      logos.each { |name, body| File.binwrite(File.join(logo_dir, name), body) }
+      yield path, logo_dir
     end
   end
 
-  def processor(path, value: state, result: { "category" => "server_error", "status" => 503 })
-    UrlRemovalProcessor.new(issue_body: issue_body(value), sites_path: path, checker: Checker.new(result))
+  def processor(path, logo_dir:, value: state, result: { "category" => "server_error", "status" => 503 })
+    UrlRemovalProcessor.new(issue_body: issue_body(value), sites_path: path, logo_dir: logo_dir, checker: Checker.new(result))
   end
 
   def test_removes_the_single_persistently_unhealthy_main_entry
-    with_sites do |path|
-      output = processor(path).call
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
 
       assert_equal "removed", output.fetch("result")
+      # The default fixture creates no logo file, so the orphan deletion is a
+      # no-op; removed_logo stays nil rather than failing the removal.
+      assert_nil output.fetch("removed_logo")
       links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
       assert_equal ["Keep"], links.map { |link| link.fetch("title") }
     end
@@ -73,8 +79,8 @@ class UrlRemovalProcessorTest < Minitest::Test
     ]
 
     failure_results.each do |result|
-      with_sites do |path|
-        output = processor(path, result: result).call
+      with_sites do |path, logo_dir|
+        output = processor(path, logo_dir: logo_dir, result: result).call
 
         assert_equal "removed", output.fetch("result"), "expected #{result["category"]} to be removed"
         links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
@@ -96,8 +102,8 @@ class UrlRemovalProcessorTest < Minitest::Test
             logo: keep.svg
     YAML
 
-    with_sites(content: source) do |path|
-      output = processor(path).call
+    with_sites(content: source) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
 
       assert_equal "removed", output.fetch("result")
       target = "    - title: \"Remove\"\n" \
@@ -118,9 +124,9 @@ class UrlRemovalProcessorTest < Minitest::Test
     ]
 
     cases.each do |value, result|
-      with_sites do |path|
+      with_sites do |path, logo_dir|
         before = File.binread(path)
-        output = processor(path, value: value, result: result).call
+        output = processor(path, logo_dir: logo_dir, value: value, result: result).call
 
         assert_equal "not_removed", output.fetch("result")
         assert_equal before, File.binread(path)
@@ -129,8 +135,8 @@ class UrlRemovalProcessorTest < Minitest::Test
   end
 
   def test_sub_threshold_failure_message_mentions_the_threshold
-    with_sites do |path|
-      output = processor(path, value: state(count: UrlIssueState::FAILURE_THRESHOLD - 1)).call
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: state(count: UrlIssueState::FAILURE_THRESHOLD - 1)).call
 
       assert_equal "not_removed", output.fetch("result")
       assert_includes output.fetch("message"), UrlIssueState::FAILURE_THRESHOLD.to_s
@@ -139,9 +145,9 @@ class UrlRemovalProcessorTest < Minitest::Test
 
   def test_ambiguous_current_entries_do_not_modify_the_file
     @data.first.fetch("links") << { "title" => "Duplicate", "url" => "https://example.com/", "logo" => "duplicate.svg" }
-    with_sites do |path|
+    with_sites do |path, logo_dir|
       before = File.binread(path)
-      output = processor(path).call
+      output = processor(path, logo_dir: logo_dir).call
 
       assert_equal "not_removed", output.fetch("result")
       assert_equal before, File.binread(path)
@@ -149,12 +155,74 @@ class UrlRemovalProcessorTest < Minitest::Test
   end
 
   def test_invalid_protocol_raises_without_modifying_the_file
-    with_sites do |path|
+    with_sites do |path, logo_dir|
       before = File.binread(path)
       assert_raises(UrlIssueState::InvalidState) do
-        UrlRemovalProcessor.new(issue_body: "not a protocol", sites_path: path, checker: Checker.new({})).call
+        UrlRemovalProcessor.new(issue_body: "not a protocol", sites_path: path, logo_dir: logo_dir, checker: Checker.new({})).call
       end
       assert_equal before, File.binread(path)
+    end
+  end
+
+  def test_removes_an_unreferenced_logo_after_removing_its_only_entry
+    with_sites(logos: { "remove.svg" => "svg", "keep.svg" => "keep" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_equal "remove.svg", output.fetch("removed_logo")
+      refute File.exist?(File.join(logo_dir, "remove.svg"))
+      assert File.exist?(File.join(logo_dir, "keep.svg"))
+      links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
+      assert_equal ["Keep"], links.map { |link| link.fetch("title") }
+    end
+  end
+
+  def test_preserves_a_logo_still_referenced_by_another_entry
+    # The surviving entry also points at remove.svg, so it is shared and must
+    # not be deleted even though the removed entry was its first referencer.
+    @data.first.fetch("links").last["logo"] = "remove.svg"
+    with_sites(logos: { "remove.svg" => "svg" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_nil output.fetch("removed_logo")
+      assert File.file?(File.join(logo_dir, "remove.svg"))
+      remaining = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
+      assert_equal ["Keep"], remaining.map { |link| link.fetch("title") }
+      assert_equal "remove.svg", remaining.first.fetch("logo")
+    end
+  end
+
+  def test_removes_entry_when_its_unreferenced_logo_file_is_already_missing
+    with_sites(logos: { "keep.svg" => "keep" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_nil output.fetch("removed_logo")
+      refute File.exist?(File.join(logo_dir, "remove.svg"))
+      assert File.file?(File.join(logo_dir, "keep.svg"))
+      links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
+      assert_equal ["Keep"], links.map { |link| link.fetch("title") }
+    end
+  end
+
+  def test_raises_when_an_existing_unreferenced_logo_cannot_be_deleted
+    with_sites do |path, logo_dir|
+      # Make the logo path a non-empty directory: File.delete on a non-empty
+      # directory raises Errno::ENOTEMPTY (a SystemCallError, not ENOENT), so
+      # the post-write failure surfaces as an error instead of being swallowed
+      # into a misleading "not_removed". No mocking — real filesystem behavior.
+      logo_path = File.join(logo_dir, "remove.svg")
+      Dir.mkdir(logo_path)
+      File.write(File.join(logo_path, "occupant"), "blocks deletion")
+
+      error = assert_raises(RuntimeError) { processor(path, logo_dir: logo_dir).call }
+      assert_includes error.message, "remove.svg"
+
+      # The site record is still removed (sites.yml was written before the logo step).
+      links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
+      assert_equal ["Keep"], links.map { |link| link.fetch("title") }
+      assert File.directory?(logo_path)
     end
   end
 end
