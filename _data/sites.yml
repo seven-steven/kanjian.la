@@ -216,16 +216,6 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
-        - title: 番茄土豆
-          url: https://pomotodo.com/
-          description: 极简的番茄钟
-          logo: pomotodo.com.svg
-          icons:
-            status:
-            info:
-              - icon: ri-exchange-line
-                title: Pomofocus
-                url: https://pomofocus.io/
         - title: AmyMind
           url: https://amymind.com/
           description: 打开即用的思维导图和画板工具
