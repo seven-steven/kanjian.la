@@ -31,6 +31,8 @@ jobs:
         run: |
           set -euo pipefail
           docker run --rm \
-            -v "$GITHUB_WORKSPACE:/srv/jekyll" \
-            -v "$GITHUB_WORKSPACE/_site:/srv/jekyll/_site" \
-            jekyll/builder:4.2.0 /bin/bash -c 'chmod 777 /srv/jekyll && command -v jekyll && jekyll --version && jekyll build --future'
+            --volume "$GITHUB_WORKSPACE:/srv/jekyll" \
+            --workdir /srv/jekyll \
+            --entrypoint /bin/sh \
+            jekyll/builder:4.2.0 \
+            -lc 'jekyll build --future'
