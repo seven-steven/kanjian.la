@@ -137,6 +137,7 @@ jobs:
             git push origin "HEAD:$AGENT_BRANCH"
           fi
       - name: Create or update pull request
+        id: navigation-pr
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
@@ -152,20 +153,42 @@ jobs:
           else
             gh pr create --repo "$GITHUB_REPOSITORY" --base jekyll --head "$branch" --title "$title" --body "Closes #${{ github.event.issue.number }}"
           fi
+      - name: Ensure completed label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! gh api "repos/$GITHUB_REPOSITORY/labels/agent%3Acompleted" >/dev/null 2>&1; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/labels" \
+              -f name='agent:completed' -f color='0e8a16' >/dev/null ||
+              gh api "repos/$GITHUB_REPOSITORY/labels/agent%3Acompleted" >/dev/null
+          fi
       - name: Mark request delivered
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
-            --remove-label 'needs-owner-review' --add-label 'agent:completed'
-      - name: Report deterministic failure
-        if: failure()
+          labels="$(gh issue view '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" --json labels --jq '[.labels[].name]')"
+          node .github/scripts/navigation_issue_labels.js delivered-labels "$labels" navigation-request \
+            > /tmp/navigation-delivered-labels.json
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }}" \
+            --input /tmp/navigation-delivered-labels.json >/dev/null
+      - name: Report delivered PR label finalization failure
+        if: failure() && steps.navigation-pr.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           gh issue comment '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
-            --body 'Navigation automation stopped before delivery. The deterministic workflow validation, scope audit, commit, push, or pull-request step failed; review this run for details.'
+            --body "$(node .github/scripts/navigation_issue_labels.js failure-message after-delivery)"
+      - name: Report deterministic failure
+        if: failure() && steps.navigation-pr.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh issue comment '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+            --body "$(node .github/scripts/navigation_issue_labels.js failure-message before-delivery)"
 
   remove-approved-failed-url:
     if: >-
@@ -288,6 +311,7 @@ jobs:
             git push origin "HEAD:$AGENT_BRANCH"
           fi
       - name: Create or update URL removal pull request
+        id: url-removal-pr
         if: steps.removal.outputs.result == 'removed'
         env:
           GH_TOKEN: ${{ steps.url-app-token.outputs.token }}
@@ -300,18 +324,41 @@ jobs:
           else
             gh pr create --repo "$GITHUB_REPOSITORY" --base jekyll --head "$branch" --title "$title" --body "Closes #${{ github.event.issue.number }}"
           fi
+      - name: Ensure completed label exists
+        if: steps.removal.outputs.result == 'removed'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! gh api "repos/$GITHUB_REPOSITORY/labels/agent%3Acompleted" >/dev/null 2>&1; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/labels" \
+              -f name='agent:completed' -f color='0e8a16' >/dev/null ||
+              gh api "repos/$GITHUB_REPOSITORY/labels/agent%3Acompleted" >/dev/null
+          fi
       - name: Mark URL removal delivered
         if: steps.removal.outputs.result == 'removed'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
-            --remove-label 'needs-review' --add-label 'agent:completed'
-      - name: Report URL removal failure
-        if: failure()
+          labels="$(gh issue view '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" --json labels --jq '[.labels[].name]')"
+          node .github/scripts/navigation_issue_labels.js delivered-labels "$labels" url-removal \
+            > /tmp/navigation-delivered-labels.json
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }}" \
+            --input /tmp/navigation-delivered-labels.json >/dev/null
+      - name: Report delivered URL removal PR label finalization failure
+        if: failure() && steps.url-removal-pr.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           gh issue comment '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
-            --body 'Approved URL removal stopped before delivery; review this Actions run for the failed preflight, validation, commit, push, or pull-request step.'
+            --body "$(node .github/scripts/navigation_issue_labels.js failure-message after-delivery)"
+      - name: Report URL removal failure
+        if: failure() && steps.url-removal-pr.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh issue comment '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+            --body "$(node .github/scripts/navigation_issue_labels.js failure-message before-delivery)"
