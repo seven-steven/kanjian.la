@@ -74,7 +74,7 @@ jobs:
           git log -1 --pretty=format:%s > ../commit-message
           cd ..
           rsync -a source/_data/sites.yml target/_data/webstack.yml
-          rsync -a source/assets/image/logo/* target/assets/images/logos/
+          rsync -a --delete source/assets/image/logo/ target/assets/images/logos/
           cd target
           git config user.name 'seven-steven'
           git config user.email 'seven@diqigan.cn'
