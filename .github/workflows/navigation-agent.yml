@@ -168,11 +168,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          labels="$(gh issue view '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" --json labels --jq '[.labels[].name]')"
-          node .github/scripts/navigation_issue_labels.js delivered-labels "$labels" navigation-request \
-            > /tmp/navigation-delivered-labels.json
-          gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }}" \
-            --input /tmp/navigation-delivered-labels.json >/dev/null
+          while IFS= read -r label; do
+            gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+              --add-label "$label"
+          done < <(node .github/scripts/navigation_issue_labels.js labels navigation-request add)
+          while IFS= read -r label; do
+            gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+              --remove-label "$label"
+          done < <(node .github/scripts/navigation_issue_labels.js labels navigation-request remove)
       - name: Report delivered PR label finalization failure
         if: failure() && steps.navigation-pr.outcome == 'success'
         env:
@@ -341,11 +344,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          labels="$(gh issue view '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" --json labels --jq '[.labels[].name]')"
-          node .github/scripts/navigation_issue_labels.js delivered-labels "$labels" url-removal \
-            > /tmp/navigation-delivered-labels.json
-          gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }}" \
-            --input /tmp/navigation-delivered-labels.json >/dev/null
+          while IFS= read -r label; do
+            gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+              --add-label "$label"
+          done < <(node .github/scripts/navigation_issue_labels.js labels url-removal add)
+          while IFS= read -r label; do
+            gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
+              --remove-label "$label"
+          done < <(node .github/scripts/navigation_issue_labels.js labels url-removal remove)
       - name: Report delivered URL removal PR label finalization failure
         if: failure() && steps.url-removal-pr.outcome == 'success'
         env:

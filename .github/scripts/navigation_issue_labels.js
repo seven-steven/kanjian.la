@@ -2,12 +2,14 @@
 
 const DELIVERY_LABELS = Object.freeze({
   'navigation-request': Object.freeze({
+    add: Object.freeze(['agent:completed']),
     remove: Object.freeze(['needs-owner-review']),
-    add: Object.freeze(['agent:completed'])
+    preserved: Object.freeze(['agent:approved'])
   }),
   'url-removal': Object.freeze({
+    add: Object.freeze(['agent:completed']),
     remove: Object.freeze(['needs-review']),
-    add: Object.freeze(['agent:completed'])
+    preserved: Object.freeze(['agent:approved'])
   })
 });
 
@@ -17,21 +19,21 @@ const FAILURE_MESSAGES = Object.freeze({
 });
 
 /**
- * Returns the complete final label set for a delivered navigation request.
+ * Returns the safe, label-specific delivery transition for a navigation path.
+ * Labels are added before pending-review labels are removed so a failed removal
+ * leaves the delivered state visible without discarding concurrent label edits.
  *
  * @param {'navigation-request'|'url-removal'} path Delivery workflow path.
- * @param {string[]} currentLabels Current issue label names.
- * @returns {string[]} Final issue labels.
+ * @returns {{add: string[], remove: string[], preserved: string[]}} Label transition.
  */
-function deliveredLabels(path, currentLabels) {
+function deliveryLabelTransition(path) {
   const transition = DELIVERY_LABELS[path];
   if (!transition) throw new Error(`unknown navigation delivery path: ${path}`);
-  if (!Array.isArray(currentLabels) || currentLabels.some((label) => typeof label !== 'string')) {
-    throw new Error('current labels must be an array of strings');
-  }
-
-  const remove = new Set(transition.remove);
-  return [...new Set([...currentLabels.filter((label) => !remove.has(label)), ...transition.add])];
+  return {
+    add: [...transition.add],
+    remove: [...transition.remove],
+    preserved: [...transition.preserved]
+  };
 }
 
 /**
@@ -45,26 +47,14 @@ function failureMessage(prDelivered) {
 }
 
 if (require.main === module) {
-  const [command, argument] = process.argv.slice(2);
-  if (command === 'delivered-labels') {
-    let currentLabels;
-    try {
-      currentLabels = JSON.parse(argument);
-    } catch (error) {
-      throw new Error(`invalid current label JSON: ${error.message}`);
-    }
-    process.stdout.write(JSON.stringify({ labels: deliveredLabels(process.argv[4], currentLabels) }));
-  } else if (command === 'failure-message') {
-    if (argument !== 'before-delivery' && argument !== 'after-delivery') {
-      throw new Error(`unknown navigation failure stage: ${argument}`);
-    }
-    process.stdout.write(failureMessage(argument === 'after-delivery'));
-  } else {
-    throw new Error(`unknown navigation label helper command: ${command}`);
+  const [command, path, operation] = process.argv.slice(2);
+  if (command !== 'labels' || !['add', 'remove'].includes(operation)) {
+    throw new Error('usage: navigation_issue_labels.js labels PATH (add|remove)');
   }
+  process.stdout.write(`${deliveryLabelTransition(path)[operation].join('\n')}\n`);
 }
 
 module.exports = {
-  deliveredLabels,
+  deliveryLabelTransition,
   failureMessage
 };
