@@ -403,7 +403,7 @@
               - icon: ri-send-plane-fill
                 title: 国际互联网
         - title: Gemini
-          url: https://gemini.google.com/app/
+          url: https://gemini.google.com/
           description: DeepResearch 很不错
           logo: gemini.google.com.svg
           icons:
