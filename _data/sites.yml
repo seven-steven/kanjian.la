@@ -2788,9 +2788,6 @@
               - icon: ri-book-2-line
                 title: Document
                 url: https://mybatis.org/mybatis-3/index.html
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://mybatis.org/mybatis-3/zh/index.html
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/mybatis/mybatis-3
