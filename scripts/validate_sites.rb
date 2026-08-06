@@ -43,7 +43,7 @@ sites.each do |site|
   when Array
     warnings << "#{label}: legacy icons array; use status/info mapping"
   when Hash
-    unknown = site.icons.keys - ["status", "info"]
+    unknown = site.icons.keys - SiteData::ICON_KINDS
     errors << "#{label}: unsupported icons keys #{unknown.join(", ")}" unless unknown.empty?
     site.icons.each do |kind, icons|
       next if icons.nil?
@@ -54,11 +54,22 @@ sites.each do |site|
       icons.each_with_index do |icon, index|
         unless icon.is_a?(Hash) && icon["icon"].is_a?(String) && !icon["icon"].empty?
           errors << "#{label}: icons.#{kind}[#{index}] missing icon"
+          next
         end
-        if icon.is_a?(Hash) && icon.key?("url") && !SiteData.valid_http_url?(icon["url"])
+        if icon.key?("url") && !SiteData.valid_http_url?(icon["url"])
           errors << "#{label}: icons.#{kind}[#{index}] invalid url #{icon["url"].inspect}"
         end
+        next unless kind == "info" && SiteData.replacement_profile?(icon)
+
+        unless SiteData.valid_replacement_profile?(icon, old_url: site.url, logos: options[:logos])
+          errors << "#{label}: icons.info[#{index}] invalid replacement profile"
+        end
       end
+      complete_replacements = Array(site.icons["info"]).select { |icon| SiteData.replacement_profile?(icon) }
+      valid_replacements = complete_replacements.count do |icon|
+        SiteData.valid_replacement_profile?(icon, old_url: site.url, logos: options[:logos])
+      end
+      warnings << "#{label}: ambiguous replacement profiles" if valid_replacements > 1
     end
   else
     errors << "#{label}: icons must be a mapping"

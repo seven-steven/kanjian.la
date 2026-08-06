@@ -8,7 +8,9 @@ require_relative "../scripts/remove_failed_url"
 
 class UrlRemovalProcessorTest < Minitest::Test
   Checker = Struct.new(:result) do
-    def check(_entry)
+    def check(entry)
+      return result.call(entry) if result.respond_to?(:call)
+
       raise result if result.is_a?(Exception)
 
       result
@@ -52,6 +54,89 @@ class UrlRemovalProcessorTest < Minitest::Test
 
   def processor(path, logo_dir:, value: state, result: { "category" => "server_error", "status" => 503 })
     UrlRemovalProcessor.new(issue_body: issue_body(value), sites_path: path, logo_dir: logo_dir, checker: Checker.new(result))
+  end
+
+  def test_promotes_a_single_healthy_complete_info_replacement
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Old", "url" => "https://example.com/", "description" => "Old site", "logo" => "old.svg",
+          "icons" => { "status" => [{ "icon" => "ri-book-3-line", "title" => "Old status" }], "info" => [
+            { "icon" => "ri-exchange-line", "title" => "New", "url" => "https://new.example.com/",
+              "description" => "New site", "logo" => "new.svg", "icons" => { "info" => [{ "icon" => "ri-book-2-line", "title" => "Docs", "url" => "https://docs.new.example.com/" }] } }
+          ] } }
+      ] }
+    ]
+    healthy_replacement = lambda { |entry| entry["url"] == "https://new.example.com/" ? { "category" => "ok", "status" => 200 } : { "category" => "server_error", "status" => 503 } }
+    with_sites(logos: { "old.svg" => "old", "new.svg" => "new" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, result: healthy_replacement).call
+
+      assert_equal "promoted", output.fetch("result")
+      assert_equal "https://example.com/", output.fetch("old_url")
+      assert_equal "https://new.example.com/", output.fetch("new_url")
+      assert_equal "Old", output.fetch("old_title")
+      assert_equal "New", output.fetch("new_title")
+      assert_equal "old.svg", output.fetch("old_logo")
+      assert_equal "new.svg", output.fetch("new_logo")
+      assert_equal "old.svg", output.fetch("removed_logo")
+      link = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links").first
+      assert_equal({ "title" => "New", "url" => "https://new.example.com/", "description" => "New site", "logo" => "new.svg", "icons" => { "info" => [{ "icon" => "ri-book-2-line", "title" => "Docs", "url" => "https://docs.new.example.com/" }] } }, link)
+      refute File.exist?(File.join(logo_dir, "old.svg"))
+      assert File.file?(File.join(logo_dir, "new.svg"))
+    end
+  end
+
+  def test_removes_main_entry_when_replacement_is_incomplete_ambiguous_or_unhealthy
+    cases = [
+      [{ "icon" => "ri-exchange-line", "title" => "New", "url" => "https://new.example.com/" }],
+      [{ "icon" => "ri-exchange-line", "title" => "New", "url" => "https://new.example.com/", "description" => "New", "logo" => "new.svg" },
+       { "icon" => "ri-exchange-line", "title" => "Other", "url" => "https://other.example.com/", "description" => "Other", "logo" => "other.svg" }],
+      [{ "icon" => "ri-exchange-line", "title" => "New", "url" => "https://new.example.com/", "description" => "New", "logo" => "new.svg" }]
+    ]
+    cases.each_with_index do |icons, index|
+      @data.first.fetch("links").first["icons"] = { "info" => icons }
+      result = if index == 2
+        lambda { |entry| entry["url"] == "https://example.com/" ? { "category" => "server_error", "status" => 503 } : { "category" => "server_error", "status" => 503 } }
+      else
+        lambda { |entry| entry["url"] == "https://example.com/" ? { "category" => "server_error", "status" => 503 } : { "category" => "ok", "status" => 200 } }
+      end
+      with_sites(logos: { "new.svg" => "new", "other.svg" => "other" }) do |path, logo_dir|
+        output = processor(path, logo_dir: logo_dir, result: result).call
+
+        assert_equal "removed", output.fetch("result")
+      end
+    end
+  end
+
+  def test_removes_main_entry_when_replacement_url_normalizes_to_the_old_url
+    equivalent_urls = [
+      "HTTPS://EXAMPLE.com:443#fragment",
+      "https://EXAMPLE.com:443#fragment",
+      "https://example.com:443/#fragment",
+      "https://example.com/#fragment"
+    ]
+    equivalent_urls.each do |url|
+      @data.first.fetch("links").first["icons"] = { "info" => [
+        { "icon" => "ri-exchange-line", "title" => "Same", "url" => url,
+          "description" => "Same site", "logo" => "new.svg" }
+      ] }
+      with_sites(logos: { "new.svg" => "new" }) do |path, logo_dir|
+        output = processor(path, logo_dir: logo_dir).call
+
+        assert_equal "removed", output.fetch("result"), url
+      end
+    end
+  end
+
+  def test_ignores_exchange_icons_outside_direct_info_candidates
+    @data.first.fetch("links").first["icons"] = {
+      "status" => [{ "icon" => "ri-exchange-line", "title" => "Status", "url" => "https://new.example.com/", "description" => "New", "logo" => "new.svg" }],
+      "info" => [{ "icon" => "ri-book-2-line", "title" => "Info", "url" => "https://new.example.com/", "description" => "New", "logo" => "new.svg" }]
+    }
+    with_sites(logos: { "new.svg" => "new" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir).call
+
+      assert_equal "removed", output.fetch("result")
+    end
   end
 
   def test_removes_the_single_persistently_unhealthy_main_entry

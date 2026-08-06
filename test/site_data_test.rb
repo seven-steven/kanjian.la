@@ -10,7 +10,7 @@ class SiteDataTest < Minitest::Test
   def test_reads_nested_sites
     sites = SiteData.read(File.join(FIXTURES, "sites.yml"))
 
-    assert_equal 2, sites.length
+    assert_equal 3, sites.length
     assert_equal ["测试分类"], sites.first.category
     assert_equal "标准站点", sites.first.title
     assert_equal "https://example.com/", sites.first.url
@@ -30,6 +30,12 @@ class SiteDataTest < Minitest::Test
     # A bare filename is not a URL, regardless of IDN support.
     refute SiteData.valid_http_url?("midjourney.com.svg")
     refute SiteData.valid_http_url?("")
+  end
+
+  def test_normalizes_http_urls_like_url_check
+    assert_equal "https://example.com/?source=test", SiteData.normalize_http_url(" HTTPS://EXAMPLE.com:443?source=test#fragment ")
+    assert_equal "http://example.com/", SiteData.normalize_http_url("http://EXAMPLE.com:80#fragment")
+    assert_equal "https://example.com:8443/", SiteData.normalize_http_url("https://EXAMPLE.com:8443#fragment")
   end
 
   def test_rejects_unsafe_logo_names

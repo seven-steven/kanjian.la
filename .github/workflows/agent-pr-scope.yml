@@ -39,7 +39,6 @@ jobs:
           elif [[ "$head_ref" =~ ^agent/url-check-issue-([1-9][0-9]*)$ ]]; then
             request_type='url-check'
             issue_number="${BASH_REMATCH[1]}"
-            expected_title="chore(navigation): remove failed URL from issue #$issue_number"
           else
             printf 'Non-agent PR; scope validation skipped.\n'
             exit 0
@@ -50,14 +49,28 @@ jobs:
           test "$(jq -r '.head.repo.full_name' <<<"$pr_json")" = "$REPOSITORY"
           test "$(jq -r '.head.repo.owner.login' <<<"$pr_json")" = "$REPOSITORY_OWNER"
 
-          test "$(jq -r '.title' <<<"$pr_json")" = "$expected_title"
           issue_json="$(gh api "repos/$REPOSITORY/issues/$issue_number")"
           test "$(jq -r '.state' <<<"$issue_json")" = 'open'
           jq -e '.labels | any(.name == "agent:approved")' <<<"$issue_json" >/dev/null
           if [[ "$request_type" == 'navigation' ]]; then
+            test "$(jq -r '.title' <<<"$pr_json")" = "$expected_title"
             test "$(jq -r '.user.login' <<<"$issue_json")" = "$REPOSITORY_OWNER"
             jq -e '.labels | any(.name == "navigation-request")' <<<"$issue_json" >/dev/null
           else
+            expected_removed_logo=''
+            pr_title="$(jq -r '.title' <<<"$pr_json")"
+            case "$pr_title" in
+              "chore(navigation): promote replacement for URL issue #$issue_number")
+                expected_outcome='promoted'
+                ;;
+              "chore(navigation): remove failed URL from issue #$issue_number")
+                expected_outcome='removed'
+                ;;
+              *)
+                printf 'Unexpected URL-check PR title: %s\n' "$pr_title" >&2
+                exit 1
+                ;;
+            esac
             test "$(jq -r '.user.login' <<<"$issue_json")" = 'github-actions[bot]'
             jq -e '.labels | any(.name == "url-check")' <<<"$issue_json" >/dev/null
             jq -e '.labels | any(.name == "automated")' <<<"$issue_json" >/dev/null
@@ -66,32 +79,56 @@ jobs:
             printf '%s' "$(jq -r '.body' <<<"$issue_json")" > /tmp/url-issue-body
             gh api "repos/$REPOSITORY/contents/_data/sites.yml?ref=jekyll" --jq '.content' | tr -d '\n' | base64 --decode > /tmp/base-sites.yml
             cp _data/sites.yml /tmp/pr-sites.yml
-            # Replay the deterministic removal against the BASE sites.yml in an
-            # isolated logo directory. Logo filenames are seeded from the BASE
-            # (jekyll) revision — NOT the PR checkout, which has already deleted
-            # the orphaned logo — so the processor's "does this logo file exist"
-            # decision matches navigation-agent.yml, which runs against ref:jekyll.
-            # The captured removed_logo is the single logo (if any) a URL-removal
-            # PR is allowed to delete.
+            # Replay the deterministic delivery against the BASE sites.yml in an
+            # isolated logo directory. The PR title fixes which deterministic
+            # checker scenario applies: promotion keeps replacement candidates
+            # healthy; removal keeps them unhealthy. In either scenario the
+            # Issue-marked URL remains a 404. Base logo names make the replay's
+            # orphan decision match navigation-agent.yml.
             scope_logo_dir="$(mktemp -d)"
-            gh api --paginate "repos/$REPOSITORY/contents/assets/image/logo?ref=jekyll" \
-              --jq '.[] | select(.type == "file") | .name' 2>/dev/null |
-              while IFS= read -r name; do : >"$scope_logo_dir/$name"; done
-            expected_removed_logo="$(ruby -I. -r ./scripts/remove_failed_url -e '
+            git fetch --no-tags origin jekyll
+            git ls-tree -r --name-only origin/jekyll -- assets/image/logo/ |
+              while IFS= read -r path; do
+                name="${path#assets/image/logo/}"
+                test "$name" = "$(basename "$name")" || continue
+                : >"$scope_logo_dir/$name"
+              done
+            expected_delivery_logo="$(EXPECTED_OUTCOME="$expected_outcome" ruby -I. -r ./scripts/remove_failed_url -e '
               class ScopeChecker
-                def check(_entry)
-                  { "category" => "client_error", "status" => 404 }
+                def initialize(state, expected_outcome)
+                  @state = state
+                  @expected_outcome = expected_outcome
+                end
+
+                def check(entry)
+                  normalized = UrlCheck.normalize(entry.fetch("url"))
+                  if entry.fetch("kind") == @state.fetch("kind") &&
+                     normalized == @state.fetch("normalized_url") &&
+                     UrlCheck.key_for(entry.fetch("kind"), normalized) == @state.fetch("key")
+                    { "category" => "client_error", "status" => 404 }
+                  elsif @expected_outcome == "promoted"
+                    { "category" => "ok", "status" => 200 }
+                  else
+                    { "category" => "client_error", "status" => 404 }
+                  end
+                rescue URI::InvalidURIError
+                  { "category" => "invalid_url", "status" => nil }
                 end
               end
+              issue_body = File.read("/tmp/url-issue-body")
+              state = UrlIssueState.parse_issue(issue_body)
+              expected_outcome = ENV.fetch("EXPECTED_OUTCOME")
               result = UrlRemovalProcessor.new(
-                issue_body: File.read("/tmp/url-issue-body"),
+                issue_body: issue_body,
                 sites_path: "/tmp/base-sites.yml",
                 logo_dir: "'"$scope_logo_dir"'",
-                checker: ScopeChecker.new
+                checker: ScopeChecker.new(state, expected_outcome)
               ).call
-              abort result.fetch("message") unless result.fetch("result") == "removed"
-              print result["removed_logo"].to_s
+              outcome = result.fetch("result")
+              abort result.fetch("message") unless outcome == expected_outcome
+              print result.fetch("removed_logo", "")
             ')"
+            expected_removed_logo="$expected_delivery_logo"
             cmp /tmp/base-sites.yml /tmp/pr-sites.yml
           fi
 

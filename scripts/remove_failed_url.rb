@@ -45,12 +45,20 @@ class UrlRemovalProcessor
     result = @checker.check(entry)
     return no_op("URL recovered or could not be confirmed unhealthy") unless confirmed_failure?(result)
 
-    updated = remove_record(source, entry.fetch("path"))
+    updated, promotion = if state.fetch("kind") == "main"
+      promote_or_remove(source, data, entry)
+    else
+      [remove_record(source, entry.fetch("path")), nil]
+    end
     verify_removal!(updated, state)
     atomic_write(updated)
     removed_logo = remove_orphaned_logo(entry["logo"])
-    { "result" => "removed", "message" => "removed persistently failing URL",
-      "path" => entry.fetch("path"), "removed_logo" => removed_logo }
+    if promotion
+      promotion.merge("removed_logo" => removed_logo)
+    else
+      { "result" => "removed", "message" => "removed persistently failing URL",
+        "path" => entry.fetch("path"), "removed_logo" => removed_logo }
+    end
   rescue LogoRemovalError => error
     # sites.yml was already written; a post-write logo failure must surface as an
     # error rather than degrading to a misleading "not_removed".
@@ -92,11 +100,74 @@ class UrlRemovalProcessor
     %w[client_error server_error timeout network_error invalid_url].include?(result["category"])
   end
 
+  def promote_or_remove(source, data, entry)
+    candidates = replacement_candidates(data, entry)
+    return [remove_record(source, entry.fetch("path")), nil] unless candidates.length == 1
+
+    candidate = candidates.first
+    result = @checker.check(candidate.fetch("entry"))
+    return [remove_record(source, entry.fetch("path")), nil] unless UrlCheck.healthy?(result)
+
+    [replace_record(source, entry.fetch("path"), promoted_record(candidate)), promotion_result(entry, candidate)]
+  end
+
+  def replacement_candidates(data, entry)
+    site = site_at_path(data, entry.fetch("path"))
+    return [] unless site.is_a?(Hash) && site["icons"].is_a?(Hash)
+
+    Array(site["icons"]["info"]).filter_map.with_index do |icon, index|
+      next unless SiteData.valid_replacement_profile?(icon, old_url: entry.fetch("url"), logos: @logo_dir)
+
+      { "icon" => icon, "index" => index,
+        "entry" => { "url" => icon["url"], "kind" => "main", "title" => icon["title"], "logo" => icon["logo"] } }
+    end
+  end
+
+  def site_at_path(data, url_path)
+    segments = url_path.split(".")
+    return nil unless segments.pop == "url"
+
+    record_index = Integer(segments.pop)
+    container = segments.reduce(data) { |current, segment| current.is_a?(Array) ? current[Integer(segment)] : current[segment] }
+    container.is_a?(Array) ? container[record_index] : nil
+  rescue TypeError, ArgumentError
+    nil
+  end
+
+  def promoted_record(candidate)
+    icon = candidate.fetch("icon")
+    record = icon.slice("title", "url", "description", "logo")
+    record["icons"] = icon["icons"] if icon.key?("icons")
+    YAML.dump(record).lines.drop(1).join
+  end
+
+  def promotion_result(entry, candidate)
+    icon = candidate.fetch("icon")
+    { "result" => "promoted", "message" => "promoted replacement URL",
+      "path" => entry.fetch("path"), "old_url" => entry.fetch("url"), "new_url" => icon.fetch("url"),
+      "old_title" => entry["title"], "new_title" => icon.fetch("title"),
+      "old_logo" => entry["logo"], "new_logo" => icon.fetch("logo") }
+  end
+
+  def replace_record(source, url_path, replacement)
+    record, following = record_nodes(Psych.parse(source), url_path)
+    lines = source.lines
+    start_line = record.start_line
+    end_line = following ? following.start_line - 1 : record.end_line - 1
+    raise ArgumentError, "invalid record line range" unless start_line && end_line && start_line <= end_line
+
+    indentation = lines[start_line][/\A\s*/]
+    replacement_lines = replacement.lines.each_with_index.map do |line, index|
+      indentation + (index.zero? ? "- " : "  ") + line
+    end
+    lines[0...start_line].join + replacement_lines.join + lines[(end_line + 1)..].to_a.join
+  end
+
   def remove_record(source, url_path)
     record, following = record_nodes(Psych.parse(source), url_path)
     lines = source.lines
     start_line = record.start_line
-    end_line = following ? following.start_line - 1 : record.end_line
+    end_line = following ? following.start_line - 1 : record.end_line - 1
     raise ArgumentError, "invalid record line range" unless start_line && end_line && start_line <= end_line
 
     lines[0...start_line].join + lines[(end_line + 1)..].to_a.join

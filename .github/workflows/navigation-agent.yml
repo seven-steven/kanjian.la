@@ -233,19 +233,19 @@ jobs:
           message="$(jq -r '.message' /tmp/url-removal-result.json)"
           printf 'result=%s\n' "$result" >> "$GITHUB_OUTPUT"
           printf 'message=%s\n' "$message" >> "$GITHUB_OUTPUT"
-      - name: Report skipped removal
-        if: steps.removal.outputs.result != 'removed'
+      - name: Report skipped URL delivery
+        if: steps.removal.outputs.result == 'not_removed'
         env:
           GH_TOKEN: ${{ github.token }}
           MESSAGE: ${{ steps.removal.outputs.message }}
         run: |
           set -euo pipefail
           gh issue comment '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
-            --body "Approved URL removal made no change: $MESSAGE"
+            --body "Approved URL delivery made no change: $MESSAGE"
           gh issue edit '${{ github.event.issue.number }}' --repo "$GITHUB_REPOSITORY" \
             --remove-label 'agent:approved'
-      - name: Create deterministic URL removal branch
-        if: steps.removal.outputs.result == 'removed'
+      - name: Create deterministic URL delivery branch
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         env:
           BRANCH: agent/url-check-issue-${{ github.event.issue.number }}
         run: |
@@ -258,15 +258,15 @@ jobs:
           printf 'EXPECTED_REMOTE_SHA=%s\n' "$expected" >> "$GITHUB_ENV"
           git switch --create "$BRANCH"
       - name: Run project tests
-        if: steps.removal.outputs.result == 'removed'
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         run: |
           set -euo pipefail
           find test -type f -name '*_test.rb' -print0 | sort -z | xargs -0 -r -n1 ruby
       - name: Validate site data
-        if: steps.removal.outputs.result == 'removed'
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         run: ruby scripts/validate_sites.rb
-      - name: Audit URL removal diff
-        if: steps.removal.outputs.result == 'removed'
+      - name: Audit URL delivery diff
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         run: |
           set -euo pipefail
           # check_agent_diff.rb already constrains changes to _data/sites.yml
@@ -276,17 +276,28 @@ jobs:
           # deterministic orphan" rule is enforced by agent-pr-scope.yml.
           ruby scripts/check_agent_diff.rb --base origin/jekyll
           git diff --check origin/jekyll
-      - name: Commit deterministic URL removal
-        if: steps.removal.outputs.result == 'removed'
+      - name: Commit deterministic URL delivery
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         run: |
           set -euo pipefail
           git config user.name 'navigation-agent[bot]'
           git config user.email 'navigation-agent[bot]@users.noreply.github.com'
           git add _data/sites.yml assets/image/logo/
           git diff --cached --quiet && exit 1
-          git commit -m 'chore(navigation): remove failed URL from issue #${{ github.event.issue.number }}'
+          case '${{ steps.removal.outputs.result }}' in
+            promoted)
+              git commit -m 'chore(navigation): promote replacement for URL issue #${{ github.event.issue.number }}'
+              ;;
+            removed)
+              git commit -m 'chore(navigation): remove failed URL from issue #${{ github.event.issue.number }}'
+              ;;
+            *)
+              printf 'Unexpected URL delivery result.\n' >&2
+              exit 1
+              ;;
+          esac
       - name: Create current-repository GitHub App token
-        if: steps.removal.outputs.result == 'removed'
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         id: url-app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
@@ -295,8 +306,8 @@ jobs:
           permission-contents: write
           permission-issues: read
           permission-pull-requests: write
-      - name: Push URL removal branch
-        if: steps.removal.outputs.result == 'removed'
+      - name: Push URL delivery branch
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         env:
           GH_TOKEN: ${{ steps.url-app-token.outputs.token }}
         run: |
@@ -313,14 +324,25 @@ jobs:
           else
             git push origin "HEAD:$AGENT_BRANCH"
           fi
-      - name: Create or update URL removal pull request
+      - name: Create or update URL delivery pull request
         id: url-removal-pr
-        if: steps.removal.outputs.result == 'removed'
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         env:
           GH_TOKEN: ${{ steps.url-app-token.outputs.token }}
         run: |
           set -euo pipefail
-          title='chore(navigation): remove failed URL from issue #${{ github.event.issue.number }}'
+          case '${{ steps.removal.outputs.result }}' in
+            promoted)
+              title='chore(navigation): promote replacement for URL issue #${{ github.event.issue.number }}'
+              ;;
+            removed)
+              title='chore(navigation): remove failed URL from issue #${{ github.event.issue.number }}'
+              ;;
+            *)
+              printf 'Unexpected URL delivery result.\n' >&2
+              exit 1
+              ;;
+          esac
           branch="$AGENT_BRANCH"
           if gh pr view "$branch" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh pr edit "$branch" --repo "$GITHUB_REPOSITORY" --title "$title" --body "Closes #${{ github.event.issue.number }}"
@@ -328,7 +350,7 @@ jobs:
             gh pr create --repo "$GITHUB_REPOSITORY" --base jekyll --head "$branch" --title "$title" --body "Closes #${{ github.event.issue.number }}"
           fi
       - name: Ensure completed label exists
-        if: steps.removal.outputs.result == 'removed'
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -338,8 +360,8 @@ jobs:
               -f name='agent:completed' -f color='0e8a16' >/dev/null ||
               gh api "repos/$GITHUB_REPOSITORY/labels/agent%3Acompleted" >/dev/null
           fi
-      - name: Mark URL removal delivered
-        if: steps.removal.outputs.result == 'removed'
+      - name: Mark URL delivery delivered
+        if: steps.removal.outputs.result == 'removed' || steps.removal.outputs.result == 'promoted'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

@@ -7,3 +7,13 @@
       icons:
         status: invalid
         extra: []
+    - title: 不完整替换
+      url: https://incomplete.example.com/
+      description: 有问题的替换
+      logo: missing.svg
+      icons:
+        info:
+          - icon: ri-exchange-line
+            title: 缺少 logo
+            url: https://new.example.com/
+            description: 不完整

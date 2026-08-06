@@ -16,3 +16,18 @@
       icons:
         - icon: ri-book-3-line
           title: 旧格式
+    - title: 可替换站点
+      url: https://replace.example.com/
+      description: 用于验证替换候选
+      logo: example.svg
+      icons:
+        info:
+          - icon: ri-exchange-line
+            title: 替换站点
+            url: https://replacement.example.com/
+            description: 替换后的条目
+            logo: example.png
+            icons:
+              status:
+                - icon: ri-book-3-line
+                  title: 状态

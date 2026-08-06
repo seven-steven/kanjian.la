@@ -19,6 +19,17 @@ class ValidateSitesTest < Minitest::Test
     end
   end
 
+  def test_allows_ordinary_exchange_icons_with_partial_profile_fields
+    Dir.mktmpdir do |logos|
+      File.write(File.join(logos, "example.svg"), "svg")
+      File.write(File.join(logos, "example.png"), "png")
+      output, status = run_validator("sites.yml", logos)
+
+      assert status.success?, output
+      refute_includes output, "invalid replacement profile"
+    end
+  end
+
   def test_rejects_invalid_data
     Dir.mktmpdir do |logos|
       output, status = run_validator("invalid_sites.yml", logos)
@@ -29,6 +40,7 @@ class ValidateSitesTest < Minitest::Test
       assert_includes output, "invalid logo"
       assert_includes output, "unsupported icons keys extra"
       assert_includes output, "icons.status must be an array"
+      refute_includes output, "invalid replacement profile"
     end
   end
 
