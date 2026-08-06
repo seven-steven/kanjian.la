@@ -196,9 +196,9 @@ Action 不会从网页、搜索结果或 AI 推断替代 URL、简介、Logo 或
 #### URL 巡检与 Issue 生命周期
 
 - `.github/workflows/url-check.yml` 每日 UTC 03:23 运行，也可在 Actions 页面通过 `workflow_dispatch` 手动运行；相关数据、检查脚本或工作流变更推送时也会触发。
-- 巡检会先执行 URL 检查单元测试，再以超时 10 秒、重试 2 次检查 `_data/sites.yml` 中的外部 URL。
-- 每个被检查 URL 以稳定键关联一个 Issue；同一 URL 连续失败达到阈值（见下）才会创建或更新 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。重复 Issue 会保留最早的一项并关闭其余项。
-- Issue 会记录连续失败次数。第 1–4 次连续失败由 Actions cache 进行 best-effort 计数（不会创建 Issue）；`main` 或 `icon` URL 连续失败 5 次后才创建 Issue 并进入可批准状态。cache 是尽力而为，丢失只会让未达阈值的失败重新计数、推迟 Issue 创建，不会提前创建或处理链接。仓库所有者可添加 `agent:approved`，由确定性工作流重新检查当前 URL 和当前导航数据。只有 URL 仍不健康且恰好匹配一个导航条目时才会修改数据：`main` URL 优先提升该条目中唯一、完整且重新检查为可访问的 `ri-exchange-line` 替代站点，否则删除整个站点条目；`icon` URL 仅删除该图标条目（站点本身保留）。已恢复 URL、次数不足、缺失或多重匹配均不修改数据。
+- 巡检会先执行 URL 检查单元测试，再以超时 10 秒、重试 2 次检查 `_data/sites.yml` 中完整的 HTTP 或 HTTPS 外部 URL；HTTP 协议本身不会被视为异常。
+- 每个被检查 URL 以稳定键关联一个 Issue；同一 URL 连续出现明确失效达到阈值（见下）才会创建或更新 Issue，并添加 `url-check`、`automated`、`needs-review` 标签。明确失效仅包括 URL 静态格式错误，以及已收到的非豁免 HTTP 4xx/5xx 响应。重复 Issue 会保留最早的一项并关闭其余项。
+- Issue 会记录连续明确失效次数。第 1–4 次由 Actions cache 进行 best-effort 计数（不会创建 Issue）；`main` 或 `icon` URL 连续明确失效 5 次后才创建 Issue 并进入可批准状态。DNS 解析失败、TLS 验证失败、超时、连接错误，以及因解析到非公网地址而被 SSRF 防护拒绝，都只表示当前巡检环境无法验证：它们会清除连续失效计数，不会创建可批准 Issue，也不能作为删除依据。cache 是尽力而为，丢失只会让未达阈值的失败重新计数、推迟 Issue 创建，不会提前创建或处理链接。仓库所有者可添加 `agent:approved`，由确定性工作流重新检查当前 URL 和当前导航数据。只有 URL 仍为明确失效且恰好匹配一个导航条目时才会修改数据：`main` URL 优先提升该条目中唯一、完整且重新检查为可访问的 `ri-exchange-line` 替代站点，否则删除整个站点条目；`icon` URL 仅删除该图标条目（站点本身保留）。已恢复 URL、巡检环境无法验证、次数不足、缺失或多重匹配均不修改数据。
 - URL 处置不调用 Claude，也不从外部内容猜测替代 URL 或元数据；自动提升只使用 `_data/sites.yml` 中预先声明的完整候选。Claude Code Action 仍仅处理所有者通过导航 Issue Form 提交的明确 add/update/remove 请求。
 - URL 恢复可访问时，自动追加恢复说明并关闭对应 Issue；URL 已从导航移除或被替代时，也会追加说明并关闭对应 Issue。401、403、429 被视为可访问但受限，不会作为失效处理。URL 处置 PR 由所有者审核合并后，`jekyll` push 会自动部署 Pages、同步 Webstack，并再次巡检以关闭原 Issue。
 

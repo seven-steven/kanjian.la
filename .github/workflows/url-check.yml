@@ -8,9 +8,11 @@ on:
     paths:
       - "_data/sites.yml"
       - "scripts/check_urls.rb"
+      - "scripts/safe_network.rb"
       - "scripts/url_issue_state.rb"
       - "scripts/remove_failed_url.rb"
       - "test/check_urls_test.rb"
+      - "test/safe_network_test.rb"
       - "test/url_issue_state_test.rb"
       - "test/remove_failed_url_test.rb"
       - ".github/scripts/url_failure_counter.js"
@@ -43,9 +45,9 @@ jobs:
         uses: actions/cache/restore@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
         with:
           path: .url-check-state/
-          key: url-check-failure-state-v1-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: url-check-failure-state-v2-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            url-check-failure-state-v1-${{ github.ref }}-
+            url-check-failure-state-v2-${{ github.ref }}-
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
         with:
