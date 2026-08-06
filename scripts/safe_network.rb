@@ -18,6 +18,9 @@ module SafeNetwork
     2001:10::/28 2002::/16
   ].map { |range| IPAddr.new(range) }.freeze
 
+  DnsError = Class.new(ArgumentError)
+  UnsafeDestinationError = Class.new(ArgumentError)
+
   module_function
 
   def https_uri!(value)
@@ -39,16 +42,16 @@ module SafeNetwork
 
   def resolve_public!(host, resolver: Resolv)
     addresses = resolver.getaddresses(host)
-    raise ArgumentError, "host did not resolve" if addresses.empty?
+    raise DnsError, "host did not resolve" if addresses.empty?
 
     rejected = addresses.reject { |address| public_ip?(address) }
     unless rejected.empty?
-      raise ArgumentError, "host resolves to a non-public address"
+      raise UnsafeDestinationError, "host resolves to a non-public address"
     end
 
     addresses
   rescue Resolv::ResolvError, SocketError => error
-    raise ArgumentError, "cannot resolve host: #{error.message}"
+    raise DnsError, "cannot resolve host: #{error.message}"
   end
 
   def validate_uri!(uri, resolver: Resolv)

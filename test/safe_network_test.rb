@@ -22,9 +22,26 @@ class SafeNetworkTest < Minitest::Test
   end
 
   def test_rejects_host_when_any_resolved_address_is_non_public
-    error = assert_raises(ArgumentError) do
+    error = assert_raises(SafeNetwork::UnsafeDestinationError) do
       SafeNetwork.resolve_public!("example.test", resolver: Resolver.new(["1.1.1.1", "127.0.0.1"]))
     end
     assert_equal "host resolves to a non-public address", error.message
+  end
+
+  def test_distinguishes_empty_and_failed_dns_resolution
+    empty_error = assert_raises(SafeNetwork::DnsError) do
+      SafeNetwork.resolve_public!("example.test", resolver: Resolver.new([]))
+    end
+    assert_equal "host did not resolve", empty_error.message
+
+    failed_resolver = Object.new
+    def failed_resolver.getaddresses(_host)
+      raise Resolv::ResolvError, "temporary DNS failure"
+    end
+
+    error = assert_raises(SafeNetwork::DnsError) do
+      SafeNetwork.resolve_public!("example.test", resolver: failed_resolver)
+    end
+    assert_match(/cannot resolve host/, error.message)
   end
 end

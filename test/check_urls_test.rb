@@ -13,8 +13,9 @@ class UrlCheckTest < Minitest::Test
     end
   end
 
-  Http = Struct.new(:responses, :methods) do
-    def start(*)
+  Http = Struct.new(:responses, :methods, :starts) do
+    def start(*args)
+      (@starts ||= []) << args
       yield self
     end
 
@@ -88,22 +89,54 @@ class UrlCheckTest < Minitest::Test
 
   def test_rejects_non_public_destination_before_request
     result = UrlCheck.new(resolver: Resolver.new(["127.0.0.1"])).check(entry("http://example.test"))
-    assert_equal "invalid_url", result["category"]
+    assert_equal "unsafe_destination", result["category"]
     assert_match(/non-public/, result["error"])
   end
 
+  def test_classifies_unresolvable_hosts_as_dns_errors
+    result = UrlCheck.new(resolver: Resolver.new([])).check(entry("https://example.test"))
+
+    assert_equal "dns_error", result["category"]
+    assert_match(/did not resolve/, result["error"])
+  end
+
+  def test_classifies_tls_failures_separately
+    http = Object.new
+    def http.start(*)
+      raise OpenSSL::SSL::SSLError, "certificate verify failed"
+    end
+
+    result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"]), retries: 0).check(entry("https://example.com"))
+
+    assert_equal "tls_error", result["category"]
+    assert_match(/certificate verify failed/, result["error"])
+  end
+
   def test_check_preserves_site_metadata_in_result
-    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [])
+    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [], [])
     rich = entry("https://example.com").merge("site_title" => "Site", "site_url" => "https://example.com", "site_category" => "Tools")
     result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"])).check(rich)
 
     assert_equal "Site", result["site_title"]
     assert_equal "https://example.com", result["site_url"]
     assert_equal "Tools", result["site_category"]
+    assert_equal ["example.com", 443], http.starts.first.first(2)
+    assert_equal true, http.starts.first.last.fetch(:use_ssl)
+    assert_equal "93.184.216.34", http.starts.first.last.fetch(:ipaddr)
+  end
+
+  def test_uses_plain_http_with_resolved_address
+    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [], [])
+    result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"])).check(entry("http://example.com/path"))
+
+    assert_equal "ok", result["category"]
+    assert_equal ["example.com", 80], http.starts.first.first(2)
+    assert_equal false, http.starts.first.last.fetch(:use_ssl)
+    assert_equal "93.184.216.34", http.starts.first.last.fetch(:ipaddr)
   end
 
   def test_falls_back_to_get_when_head_returns_not_found
-    http = Http.new([Net::HTTPNotFound.new("1.1", "404", "Not Found"), Net::HTTPOK.new("1.1", "200", "OK")], [])
+    http = Http.new([Net::HTTPNotFound.new("1.1", "404", "Not Found"), Net::HTTPOK.new("1.1", "200", "OK")], [], [])
     result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"])).check(entry("https://example.com"))
 
     assert_equal %w[HEAD GET], http.methods
@@ -116,7 +149,7 @@ class UrlCheckTest < Minitest::Test
 
   def test_does_not_fallback_for_access_restricted_healthy_statuses
     { 401 => Net::HTTPUnauthorized, 403 => Net::HTTPForbidden, 429 => Net::HTTPTooManyRequests }.each do |status, response_class|
-      http = Http.new([response_class.new("1.1", status.to_s, "Restricted")], [])
+      http = Http.new([response_class.new("1.1", status.to_s, "Restricted")], [], [])
       result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"]), retries: 0).check(entry("https://example.com"))
 
       assert_equal ["HEAD"], http.methods
@@ -164,7 +197,7 @@ class UrlCheckTest < Minitest::Test
   end
 
   def test_check_reaches_real_request_for_internationalized_domain
-    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [])
+    http = Http.new([Net::HTTPOK.new("1.1", "200", "OK")], [], [])
     resolver = Resolver.new(["93.184.216.34"])
     result = UrlCheck.new(http: http, resolver: resolver).check(entry("https://楚门的世界.com"))
 

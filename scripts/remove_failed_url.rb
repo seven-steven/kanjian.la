@@ -86,18 +86,12 @@ class UrlRemovalProcessor
     end
   end
 
-  # A URL is a confirmed failure only when it is both unhealthy and in a known
-  # failure category. `healthy?` already excludes ok/redirect and the
-  # access-restricted 401/403/429 (a paywall or rate limit is not a dead site).
-  # The allowlist then admits every category the checker can emit for a genuine
-  # failure — including timeout, network_error and invalid_url, whose status is
-  # nil — so a persistently failing URL is removable regardless of how it
-  # failed. The list is explicit on purpose: an unrecognized category stays
-  # fail-closed (not removed) rather than being silently treated as removable.
+  # Removal is deliberately limited to deterministic static URL syntax failures
+  # and received HTTP 4xx/5xx responses. Transport and execution-environment
+  # failures (DNS, TLS, timeout, network) can be transient and must never cause
+  # a navigation entry to be deleted.
   def confirmed_failure?(result)
-    return false if UrlCheck.healthy?(result)
-
-    %w[client_error server_error timeout network_error invalid_url].include?(result["category"])
+    UrlCheck.deletion_eligible_failure?(result)
   end
 
   def promote_or_remove(source, data, entry)

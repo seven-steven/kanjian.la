@@ -18,6 +18,7 @@ const markerFor = (key) => `<!-- url-check:${key} -->`;
 const legacyKeyFor = (kind, rawUrl) =>
   crypto.createHash('sha256').update(`${kind}:${rawUrl}`).digest('hex').slice(0, 20);
 const isHealthy = (item) => ['ok', 'redirect'].includes(item.category) || ACCESSIBLE_STATUSES.has(item.status);
+const isDeletionEligibleFailure = counter.isDeletionEligibleFailure;
 
 function referenceFor(item) {
   const head = `- \`${item.path || 'unknown path'}\` — ${item.title || '(untitled)'} (${item.kind}): ${item.url}`;
@@ -36,7 +37,7 @@ function failureBody({ key, items, consecutiveFailures, checkedAt, runId, runUrl
     ? 'Eligible for owner approval: add the `agent:approved` label to create a removal PR.'
     : `Automatic removal requires a URL to fail ${counter.FAILURE_THRESHOLD} consecutive checks.`;
   const state = JSON.stringify({
-    v: 1, key, kind: primary.kind, normalized_url: primary.normalized_url,
+    v: counter.ISSUE_STATE_VERSION, key, kind: primary.kind, normalized_url: primary.normalized_url,
     consecutive_failures: consecutiveFailures, checked_at: checkedAt, run_id: String(runId),
     category: primary.category, status: primary.status ?? null, error: primary.error ?? null
   });
@@ -103,6 +104,12 @@ async function synchronizeIssues({ github, core, context, resultsFile, failureSt
     const body = issue.body.replace(STATE_PATTERN, '').replace(/\n{3,}/g, '\n\n').trim();
     await github.rest.issues.update({ owner, repo, issue_number: issue.number, body });
   };
+  const removeActionableLabels = async (issue) => {
+    const labels = new Set((issue?.labels || []).map((label) => typeof label === 'string' ? label : label.name));
+    for (const name of ['needs-review', 'agent:approved']) {
+      if (labels.has(name)) await github.rest.issues.removeLabel({ owner, repo, issue_number: issue.number, name });
+    }
+  };
   const commentAndClose = async (issue, comment, alwaysComment = false) => {
     if (!issue) return;
     if (alwaysComment || issue.state === 'open') {
@@ -130,7 +137,7 @@ async function synchronizeIssues({ github, core, context, resultsFile, failureSt
     if (states.length === 1) {
       try {
         const state = JSON.parse(states[0][1]);
-        if (state.v !== 1 || state.key !== key || !['main', 'icon'].includes(state.kind) || typeof state.normalized_url !== 'string') continue;
+        if (state.v !== counter.ISSUE_STATE_VERSION || state.key !== key || !['main', 'icon'].includes(state.kind) || typeof state.normalized_url !== 'string') continue;
       } catch (_error) { continue; }
     }
     const grouped = issuesByKey.get(key) || [];
@@ -177,7 +184,14 @@ async function synchronizeIssues({ github, core, context, resultsFile, failureSt
       await commentAndClose(issue, note);
       continue;
     }
-    const primary = items.find((item) => !isHealthy(item)) || items[0];
+    const primary = items.find(isDeletionEligibleFailure);
+    if (!primary) {
+      counter.removeFailure(failureCache, key);
+      await resetFailureState(issue);
+      await removeActionableLabels(issue);
+      await commentAndClose(issue, `URL check could not verify this URL's availability. Its failure count has been reset and no removal action will be taken until a subsequent explicit failure is observed.\n\n[View this Actions run](${runUrl})`, true);
+      continue;
+    }
     const { count: consecutiveFailures, source } = counter.nextFailureCount({ issue, doc: failureCache, key, item: primary });
     counter.setFailure(failureCache, key, primary, consecutiveFailures);
     core.info(`URL key ${key}: consecutive failures=${consecutiveFailures}/${counter.FAILURE_THRESHOLD} (source=${source})`);
@@ -200,4 +214,4 @@ async function synchronizeIssues({ github, core, context, resultsFile, failureSt
   writeFailureCache(failureStateFile, failureCache);
 }
 
-module.exports = { REQUIRED_LABELS, isHealthy, legacyKeyFor, referenceFor, failureBody, loadFailureCache, writeFailureCache, ensureRequiredLabels, reconcileRequiredLabels, synchronizeIssues };
+module.exports = { REQUIRED_LABELS, isHealthy, isDeletionEligibleFailure, legacyKeyFor, referenceFor, failureBody, loadFailureCache, writeFailureCache, ensureRequiredLabels, reconcileRequiredLabels, synchronizeIssues };

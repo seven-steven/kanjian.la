@@ -2,7 +2,8 @@
 
 /** Number of consecutive failures required before an issue is actionable. */
 const FAILURE_THRESHOLD = 5;
-const DOCUMENT_VERSION = 1;
+const DOCUMENT_VERSION = 2;
+const ISSUE_STATE_VERSION = 1;
 const STATE_PATTERN = /<!-- url-check-state:(\{.*?\}) -->/g;
 
 /**
@@ -23,6 +24,13 @@ function isObject(value) {
  */
 function isPositiveInteger(count) {
   return Number.isInteger(count) && count > 0;
+}
+
+function isDeletionEligibleFailure(item) {
+  if (!item || typeof item !== 'object') return false;
+  if (item.category === 'invalid_url') return true;
+  return ['client_error', 'server_error'].includes(item.category) &&
+    ![401, 403, 429].includes(item.status);
 }
 
 /**
@@ -113,7 +121,7 @@ function previousIssueCount(issue, key, item) {
 
   try {
     const state = JSON.parse(markers[0][1]);
-    const matches = isObject(state) && state.v === DOCUMENT_VERSION && state.key === key &&
+    const matches = isObject(state) && state.v === ISSUE_STATE_VERSION && state.key === key &&
       state.kind === item?.kind && state.normalized_url === item?.normalized_url &&
       isPositiveInteger(state.consecutive_failures);
     return matches ? state.consecutive_failures : null;
@@ -195,6 +203,9 @@ function serializeDocument(doc) {
 
 module.exports = {
   FAILURE_THRESHOLD,
+  DOCUMENT_VERSION,
+  ISSUE_STATE_VERSION,
+  isDeletionEligibleFailure,
   createEmptyDocument,
   loadDocument,
   matchesTarget,

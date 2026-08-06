@@ -61,6 +61,13 @@ class UrlCheck
     %w[ok redirect].include?(result["category"]) || [401, 403, 429].include?(result["status"].to_i)
   end
 
+  def self.deletion_eligible_failure?(result)
+    return true if result["category"] == "invalid_url"
+    return false if healthy?(result)
+
+    %w[client_error server_error].include?(result["category"])
+  end
+
   def self.entries(data, path = [])
     collect_entries(data, path, "category_path" => [], "site_title" => nil, "site_url" => nil)
   end
@@ -107,9 +114,15 @@ class UrlCheck
                                                     redirects: redirects, attempts: attempts)
   rescue URI::InvalidURIError, ArgumentError => error
     result(entry, entry["url"], entry["url"], "invalid_url", error: error.message)
+  rescue SafeNetwork::DnsError => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "dns_error", error: error.message)
+  rescue SafeNetwork::UnsafeDestinationError => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "unsafe_destination", error: error.message)
+  rescue OpenSSL::SSL::SSLError => error
+    result(entry, normalized || entry["url"], normalized || entry["url"], "tls_error", error: error.message)
   rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "timeout", error: error.message)
-  rescue SocketError, Errno::ECONNREFUSED, Errno::ECONNRESET, EOFError, OpenSSL::SSL::SSLError, Net::HTTPBadResponse => error
+  rescue SocketError, Errno::ECONNREFUSED, Errno::ECONNRESET, EOFError, Net::HTTPBadResponse => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "network_error", error: error.message)
   rescue StandardError => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "network_error", error: "#{error.class}: #{error.message}")

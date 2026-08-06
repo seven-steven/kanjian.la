@@ -152,24 +152,42 @@ class UrlRemovalProcessorTest < Minitest::Test
     end
   end
 
-  # Failures whose status is nil (timeout, network_error, invalid_url) must be
-  # removable too: the URL checker emits them without an HTTP status, and they
-  # are exactly the persistent-failure categories that url-check.yml files
-  # removal issues for. Reproduces issue #71 (a URL timing out for 8 checks).
-  def test_removes_persistently_failing_url_without_an_http_status
-    failure_results = [
-      { "category" => "timeout", "status" => nil, "error" => "execution expired" },
-      { "category" => "network_error", "status" => nil, "error" => "host did not resolve" },
-      { "category" => "invalid_url", "status" => nil, "error" => "bad URI" }
-    ]
+  # Only static invalid URLs and received unhealthy HTTP responses are eligible
+  # for deletion. DNS, TLS and transport errors may be environmental/transient.
+  def test_does_not_remove_environmental_failures
+    %w[dns_error unsafe_destination tls_error timeout network_error].each do |category|
+      with_sites do |path, logo_dir|
+        before = File.binread(path)
+        output = processor(path, logo_dir: logo_dir, result: { "category" => category, "status" => nil }).call
 
-    failure_results.each do |result|
+        assert_equal "not_removed", output.fetch("result"), "expected #{category} not to be removed"
+        assert_equal before, File.binread(path)
+      end
+    end
+  end
+
+  def test_removes_static_invalid_url_and_received_unhealthy_http_errors
+    [
+      { "category" => "invalid_url", "status" => nil },
+      { "category" => "client_error", "status" => 404 },
+      { "category" => "server_error", "status" => 503 }
+    ].each do |result|
       with_sites do |path, logo_dir|
         output = processor(path, logo_dir: logo_dir, result: result).call
 
         assert_equal "removed", output.fetch("result"), "expected #{result["category"]} to be removed"
-        links = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links")
-        assert_equal ["Keep"], links.map { |link| link.fetch("title") }
+      end
+    end
+  end
+
+  def test_does_not_remove_healthy_access_restrictions
+    [401, 403, 429].each do |status|
+      with_sites do |path, logo_dir|
+        before = File.binread(path)
+        output = processor(path, logo_dir: logo_dir, result: { "category" => "client_error", "status" => status }).call
+
+        assert_equal "not_removed", output.fetch("result")
+        assert_equal before, File.binread(path)
       end
     end
   end

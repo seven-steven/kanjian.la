@@ -5,6 +5,9 @@ const test = require('node:test');
 
 const {
   FAILURE_THRESHOLD,
+  DOCUMENT_VERSION,
+  ISSUE_STATE_VERSION,
+  isDeletionEligibleFailure,
   createEmptyDocument,
   loadDocument,
   matchesTarget,
@@ -34,7 +37,7 @@ const issueWithState = (state) => ({
 });
 
 const matchingState = (overrides = {}) => ({
-  v: 1,
+  v: ISSUE_STATE_VERSION,
   key: item.key,
   kind: item.kind,
   normalized_url: item.normalized_url,
@@ -43,12 +46,29 @@ const matchingState = (overrides = {}) => ({
 });
 
 test('createEmptyDocument returns the versioned empty failure map', () => {
-  assert.deepEqual(createEmptyDocument(), { v: 1, failures: {} });
+  assert.deepEqual(createEmptyDocument(), { v: DOCUMENT_VERSION, failures: {} });
+});
+
+test('isDeletionEligibleFailure accepts only explicit deletion evidence', () => {
+  assert.equal(isDeletionEligibleFailure({ category: 'invalid_url', status: null }), true);
+  assert.equal(isDeletionEligibleFailure({ category: 'client_error', status: 404 }), true);
+  assert.equal(isDeletionEligibleFailure({ category: 'server_error', status: 503 }), true);
+  for (const item of [
+    { category: 'client_error', status: 401 },
+    { category: 'client_error', status: 403 },
+    { category: 'client_error', status: 429 },
+    { category: 'timeout', status: null },
+    { category: 'network_error', status: null },
+    { category: 'dns_error', status: null },
+    { category: 'tls_error', status: null },
+    { category: 'unsafe_destination', status: null },
+    { category: 'ok', status: 200 }
+  ]) assert.equal(isDeletionEligibleFailure(item), false);
 });
 
 test('loadDocument parses valid documents and rejects malformed documents', () => {
   const document = loadDocument(JSON.stringify({
-    v: 1,
+    v: DOCUMENT_VERSION,
     failures: {
       valid: { kind: 'main', normalized_url: 'https://example.com/', consecutive_failures: 2 },
       invalid: { kind: 'main', normalized_url: 'https://invalid.example/', consecutive_failures: 0 }
@@ -56,14 +76,14 @@ test('loadDocument parses valid documents and rejects malformed documents', () =
   }));
 
   assert.deepEqual(document, {
-    v: 1,
+    v: DOCUMENT_VERSION,
     failures: {
       valid: { kind: 'main', normalized_url: 'https://example.com/', consecutive_failures: 2 }
     }
   });
   assert.throws(() => loadDocument('{'), /invalid cache document JSON:/);
-  assert.throws(() => loadDocument(JSON.stringify({ v: 2, failures: {} })), /unsupported cache document version/);
-  assert.throws(() => loadDocument(JSON.stringify({ v: 1, failures: [] })), /cache document failures must be an object/);
+  assert.throws(() => loadDocument(JSON.stringify({ v: 1, failures: {} })), /unsupported cache document version/);
+  assert.throws(() => loadDocument(JSON.stringify({ v: DOCUMENT_VERSION, failures: [] })), /cache document failures must be an object/);
 });
 
 test('matchesTarget compares the kind and normalized URL', () => {
@@ -76,7 +96,7 @@ test('matchesTarget compares the kind and normalized URL', () => {
 
 test('previousCacheCount returns only a valid matching cache count', () => {
   const document = {
-    v: 1,
+    v: DOCUMENT_VERSION,
     failures: {
       [item.key]: { kind: item.kind, normalized_url: item.normalized_url, consecutive_failures: 4 }
     }
@@ -96,7 +116,7 @@ test('previousIssueCount accepts exactly one valid matching state marker', () =>
   assert.equal(previousIssueCount({ body: '<!-- url-check-state:{broken} -->' }, item.key, item), null);
 
   for (const state of [
-    matchingState({ v: 2 }),
+    matchingState({ v: DOCUMENT_VERSION }),
     matchingState({ key: otherItem.key }),
     matchingState({ kind: 'icon' }),
     matchingState({ normalized_url: otherItem.normalized_url }),
@@ -109,7 +129,7 @@ test('previousIssueCount accepts exactly one valid matching state marker', () =>
 
 test('nextFailureCount prioritizes issue state, then cache state, then a fresh count', () => {
   const cache = {
-    v: 1,
+    v: DOCUMENT_VERSION,
     failures: {
       [item.key]: { kind: item.kind, normalized_url: item.normalized_url, consecutive_failures: 4 }
     }
