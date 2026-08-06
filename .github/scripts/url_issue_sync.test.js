@@ -64,6 +64,34 @@ test('failure body preserves references, state, threshold and action URL', () =>
   assert.match(body, /https:\/\/github.test\/run\/42/);
 });
 
+test('icon failure at threshold is eligible for owner-approved removal', () => {
+  const body = failureBody({
+    key: 'b'.repeat(20),
+    items: [item({ key: 'b'.repeat(20), kind: 'icon', url: 'https://example.com/icon', normalized_url: 'https://example.com/icon', site_url: 'https://example.com/' })],
+    consecutiveFailures: 5,
+    checkedAt: '2026-01-01T00:00:00Z',
+    runId: 42,
+    runUrl: 'https://github.test/run/42'
+  });
+  assert.match(body, /Eligible for owner approval/);
+  assert.doesNotMatch(body, /Automatic removal requires a main URL/);
+});
+
+test('sub-threshold failure is not yet eligible regardless of kind', () => {
+  for (const kind of ['main', 'icon']) {
+    const body = failureBody({
+      key: 'c'.repeat(20),
+      items: [item({ key: 'c'.repeat(20), kind, url: `https://example.com/${kind}`, normalized_url: `https://example.com/${kind}/` })],
+      consecutiveFailures: 4,
+      checkedAt: '2026-01-01T00:00:00Z',
+      runId: 42,
+      runUrl: 'https://github.test/run/42'
+    });
+    assert.match(body, /Automatic removal requires a URL to fail 5 consecutive checks/);
+    assert.doesNotMatch(body, /Eligible for owner approval/);
+  }
+});
+
 test('reconcileRequiredLabels always restores base labels and conditionally adds needs-review', async () => {
   const { github, calls } = mockGithub();
   await reconcileRequiredLabels(github, 'owner', 'repo', { number: 7, labels: [{ name: 'agent:approved' }] }, { actionable: true });

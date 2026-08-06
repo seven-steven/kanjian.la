@@ -9,7 +9,9 @@ require_relative "check_urls"
 require_relative "site_data"
 require_relative "url_issue_state"
 
-# Removes one persistently failing main URL after an atomic local preflight.
+# Removes one persistently failing navigation entry — either a main URL (the
+# whole link record) or a single icon entry (one item of a site's `icons`
+# collection) — after an atomic local preflight.
 class UrlRemovalProcessor
   # Resolved from the script location so the default does not depend on the
   # caller's working directory. Overridable via `logo_dir:` / `--logo-dir` for
@@ -31,7 +33,7 @@ class UrlRemovalProcessor
 
   def call
     state = UrlIssueState.parse_issue(@issue_body)
-    return no_op("URL is not a main navigation entry") unless state.fetch("kind") == "main"
+    return no_op("URL is not a main or icon navigation entry") unless %w[main icon].include?(state.fetch("kind"))
     return no_op("URL has fewer than #{UrlIssueState::FAILURE_THRESHOLD} consecutive failures") unless state.fetch("consecutive_failures") >= UrlIssueState::FAILURE_THRESHOLD
 
     source = File.binread(@sites_path)
@@ -64,8 +66,9 @@ class UrlRemovalProcessor
   private
 
   def matching_entries(data, state)
+    kind = state.fetch("kind")
     UrlCheck.entries(data).select do |entry|
-      next false unless entry["kind"] == "main"
+      next false unless entry["kind"] == kind
 
       normalized = UrlCheck.normalize(entry.fetch("url"))
       normalized == state.fetch("normalized_url") &&
@@ -99,31 +102,47 @@ class UrlRemovalProcessor
     lines[0...start_line].join + lines[(end_line + 1)..].to_a.join
   end
 
+  # Walks the parsed YAML document to the sequence that contains the target
+  # record, then returns `[record, following]` where `record` is the mapping at
+  # `record_index` and `following` is its immediate successor (or nil). The
+  # entry path is the dotted form produced by `UrlCheck.entries`, always ending
+  # in `.url`; peeling `url` and the integer `record_index` leaves the container
+  # path that names the enclosing sequence — e.g. `0.links` for a main link,
+  # `2.sub.6.links.15.icons.info` for a status/info icon, or
+  # `0.links.14.icons` for a legacy icons array.
   def record_nodes(document, url_path)
     segments = url_path.split(".")
     raise ArgumentError, "invalid entry path" unless segments.pop == "url"
 
     record_index = Integer(segments.pop)
-    links_key = segments.pop
-    raise ArgumentError, "invalid entry path" unless links_key == "links"
+    container_path = segments
 
-    node = document.children.first
-    segments.each do |segment|
-      node = if node.is_a?(Psych::Nodes::Sequence)
-               node.children.fetch(Integer(segment))
-             else
-               mapping_value(node, segment)
-             end
-    end
-    node = mapping_value(node, links_key)
-    raise ArgumentError, "links must be a sequence" unless node.is_a?(Psych::Nodes::Sequence)
+    sequence = container_path.empty? ? document.root : walk(document.root, container_path)
+    raise ArgumentError, "navigation container must be a sequence" unless sequence.is_a?(Psych::Nodes::Sequence)
 
-    record = node.children.fetch(record_index)
+    record = sequence.children.fetch(record_index)
     raise ArgumentError, "navigation record must be a mapping" unless record.is_a?(Psych::Nodes::Mapping)
 
-    [record, node.children[record_index + 1]]
+    [record, sequence.children[record_index + 1]]
   rescue IndexError, KeyError
     raise ArgumentError, "entry changed during removal"
+  end
+
+  # Descends one segment at a time. Integer segments index into a sequence's
+  # children; string segments select a mapping value by key. This mirrors how
+  # `UrlCheck.entries` builds paths, so the same path round-trips through the
+  # AST regardless of whether it crosses arrays (`links`, `icons`) or mappings
+  # (`sub`, `info`, `status`).
+  def walk(node, segments)
+    segments.reduce(node) do |current, segment|
+      raise ArgumentError, "expected a YAML node to descend into" if current.nil?
+
+      if current.is_a?(Psych::Nodes::Sequence)
+        current.children.fetch(Integer(segment))
+      else
+        mapping_value(current, segment)
+      end
+    end
   end
 
   def mapping_value(mapping, key)
@@ -163,8 +182,13 @@ class UrlRemovalProcessor
     raise LogoRemovalError, "entry removed, but logo #{logo.inspect} could not be deleted: #{error.message}"
   end
 
+  # Every logo still referenced anywhere in sites.yml — main links and icon
+  # entries alike — so the orphan check is correct whether the removed entry
+  # was a main link (its `logo`) or an icon (an icon mapping may also carry its
+  # own `logo`). Re-read from disk after the rewrite so the judgment reflects
+  # post-removal state.
   def referenced_logos(data)
-    SiteData.sites(data).filter_map(&:logo)
+    UrlCheck.entries(data).filter_map { |entry| entry["logo"] }
   end
 
   def atomic_write(content)

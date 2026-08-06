@@ -32,9 +32,9 @@ function referenceFor(item) {
 
 function failureBody({ key, items, consecutiveFailures, checkedAt, runId, runUrl }) {
   const primary = items.find((item) => !isHealthy(item)) || items[0];
-  const approval = primary.kind === 'main' && consecutiveFailures >= counter.FAILURE_THRESHOLD
+  const approval = consecutiveFailures >= counter.FAILURE_THRESHOLD
     ? 'Eligible for owner approval: add the `agent:approved` label to create a removal PR.'
-    : `Automatic removal requires a main URL to fail ${counter.FAILURE_THRESHOLD} consecutive checks.`;
+    : `Automatic removal requires a URL to fail ${counter.FAILURE_THRESHOLD} consecutive checks.`;
   const state = JSON.stringify({
     v: 1, key, kind: primary.kind, normalized_url: primary.normalized_url,
     consecutive_failures: consecutiveFailures, checked_at: checkedAt, run_id: String(runId),

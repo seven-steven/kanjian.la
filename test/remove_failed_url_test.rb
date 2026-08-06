@@ -89,6 +89,188 @@ class UrlRemovalProcessorTest < Minitest::Test
     end
   end
 
+  def test_removes_a_single_failing_info_icon_leaving_the_site_intact
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/", "logo" => "keep.svg",
+          "icons" => { "info" => [
+            { "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/" },
+            { "icon" => "ri-book-2-line", "title" => "Docs", "url" => "https://docs.example.org/" }
+          ] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_nil output.fetch("removed_logo")
+      link = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links").first
+      # The site itself survives; only the dead icon entry is removed.
+      assert_equal "Site", link.fetch("title")
+      assert_equal "https://example.org/", link.fetch("url")
+      remaining = link.fetch("icons").fetch("info")
+      assert_equal ["Docs"], remaining.map { |icon| icon.fetch("title") }
+    end
+  end
+
+  def test_removes_a_failing_status_icon_entry
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/",
+          "icons" => { "status" => [{ "icon" => "ri-money-circle-line", "title" => "Dead", "url" => "https://dead.example.com/" }] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      link = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links").first
+      # Removing the only status icon leaves the `status:` key with no entries,
+      # which YAML parses back as nil — the site itself is untouched.
+      assert_nil link.fetch("icons").fetch("status")
+    end
+  end
+
+  def test_removes_a_failing_icon_in_a_legacy_icons_array
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/",
+          "icons" => [{ "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/" }] }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      link = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("links").first
+      # The legacy `icons:` array is now empty, which parses back as nil.
+      assert_nil link.fetch("icons")
+    end
+  end
+
+  def test_removing_an_icon_preserves_all_surrounding_bytes
+    source = <<~YAML
+      - name: "Category"
+        links:
+          - title: "Site"
+            url: https://example.org/
+            icons:
+              info:
+                - icon: ri-exchange-line
+                  title: "Dead"
+                  url: https://dead.example.com/
+                - icon: ri-book-2-line # keep this comment
+                  title: Docs
+                  url: https://docs.example.org/
+    YAML
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites(content: source) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      target = "          - icon: ri-exchange-line\n" \
+        "            title: \"Dead\"\n" \
+        "            url: https://dead.example.com/\n"
+      expected = source.sub(target, "").b
+      assert_equal expected, File.binread(path)
+    end
+  end
+
+  def test_removing_an_icon_does_not_delete_a_logo_still_used_by_its_site
+    # The icon shares the site's logo; removing the icon must not orphan it.
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/", "logo" => "shared.svg",
+          "icons" => { "info" => [{ "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/" }] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites(logos: { "shared.svg" => "svg" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_nil output.fetch("removed_logo")
+      assert File.file?(File.join(logo_dir, "shared.svg"))
+    end
+  end
+
+  def test_removing_an_icon_orphans_its_own_unique_logo
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/", "logo" => "site.svg",
+          "icons" => { "info" => [{ "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/", "logo" => "icon-only.svg" }] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites(logos: { "site.svg" => "svg", "icon-only.svg" => "svg" }) do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      assert_equal "icon-only.svg", output.fetch("removed_logo")
+      refute File.exist?(File.join(logo_dir, "icon-only.svg"))
+      assert File.file?(File.join(logo_dir, "site.svg"))
+    end
+  end
+
+  def test_icon_failure_below_threshold_is_not_removed
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/",
+          "icons" => { "info" => [{ "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/" }] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/", count: UrlIssueState::FAILURE_THRESHOLD - 1)
+    with_sites do |path, logo_dir|
+      before = File.binread(path)
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "not_removed", output.fetch("result")
+      assert_equal before, File.binread(path)
+    end
+  end
+
+  def test_ambiguous_icon_entries_do_not_modify_the_file
+    @data = [
+      { "name" => "Category", "links" => [
+        { "title" => "Site", "url" => "https://example.org/",
+          "icons" => { "info" => [
+            { "icon" => "ri-exchange-line", "title" => "First", "url" => "https://dead.example.com/" },
+            { "icon" => "ri-exchange-line", "title" => "Duplicate", "url" => "https://dead.example.com/" }
+          ] } }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites do |path, logo_dir|
+      before = File.binread(path)
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "not_removed", output.fetch("result")
+      assert_equal before, File.binread(path)
+    end
+  end
+
+  def test_removing_an_icon_under_a_sub_section
+    @data = [
+      { "name" => "Top", "sub" => [
+        { "name" => "Inner", "links" => [
+          { "title" => "Site", "url" => "https://example.org/",
+            "icons" => { "info" => [{ "icon" => "ri-exchange-line", "title" => "Dead", "url" => "https://dead.example.com/" }] } }
+        ] }
+      ] }
+    ]
+    icon_state = state(kind: "icon", url: "https://dead.example.com/")
+    with_sites do |path, logo_dir|
+      output = processor(path, logo_dir: logo_dir, value: icon_state).call
+
+      assert_equal "removed", output.fetch("result")
+      link = YAML.safe_load_file(path, permitted_classes: [], aliases: false).first.fetch("sub").first.fetch("links").first
+      assert_nil link.fetch("icons").fetch("info")
+    end
+  end
+
   def test_preserves_all_non_target_bytes_when_removing_a_record
     source = <<~YAML
       - name: "Category"
@@ -117,7 +299,6 @@ class UrlRemovalProcessorTest < Minitest::Test
   def test_no_op_conditions_do_not_modify_the_file
     cases = [
       [state(count: UrlIssueState::FAILURE_THRESHOLD - 1), { "category" => "server_error", "status" => 503 }],
-      [state(kind: "icon"), { "category" => "server_error", "status" => 503 }],
       [state, { "category" => "ok", "status" => 200 }],
       [state, { "category" => "client_error", "status" => 401 }],
       [state, RuntimeError.new("network unavailable")]
