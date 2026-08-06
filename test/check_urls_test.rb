@@ -15,7 +15,7 @@ class UrlCheckTest < Minitest::Test
 
   Http = Struct.new(:responses, :methods, :starts) do
     def start(*args)
-      (@starts ||= []) << args
+      starts << args
       yield self
     end
 
@@ -98,6 +98,7 @@ class UrlCheckTest < Minitest::Test
 
     assert_equal "dns_error", result["category"]
     assert_match(/did not resolve/, result["error"])
+    refute UrlCheck.deletion_eligible_failure?(result)
   end
 
   def test_classifies_tls_failures_separately
