@@ -443,7 +443,7 @@
             info:
               - icon: ri-book-2-line
                 title: 文档
-                url: https://docs.dify.ai/v/zh-hans/getting-started/
+                url: https://docs.dify.ai/zh/quick-start
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/langgenius/dify
