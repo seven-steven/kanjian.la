@@ -2288,9 +2288,6 @@
           logo: min.io.svg
           icons:
             info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://min.io/docs/minio/kubernetes/upstream/
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/minio/minio
