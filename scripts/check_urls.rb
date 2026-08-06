@@ -112,12 +112,12 @@ class UrlCheck
     category = category_for(status, redirects)
     result(entry, normalized, final_url, category, status: status, method: method,
                                                     redirects: redirects, attempts: attempts)
-  rescue URI::InvalidURIError, ArgumentError => error
-    result(entry, entry["url"], entry["url"], "invalid_url", error: error.message)
   rescue SafeNetwork::DnsError => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "dns_error", error: error.message)
   rescue SafeNetwork::UnsafeDestinationError => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "unsafe_destination", error: error.message)
+  rescue URI::InvalidURIError, ArgumentError => error
+    result(entry, entry["url"], entry["url"], "invalid_url", error: error.message)
   rescue OpenSSL::SSL::SSLError => error
     result(entry, normalized || entry["url"], normalized || entry["url"], "tls_error", error: error.message)
   rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => error
