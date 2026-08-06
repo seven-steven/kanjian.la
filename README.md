@@ -54,41 +54,103 @@
 1. 进入代码目录 `cd kanjian.la`
 1. 使用 Docker 运行代码
 
-    ```bash
-    docker run -it \
-    --rm \
-    -v=$PWD:/srv/jekyll \
-    -p 4000:4000 \
-    jekyll/jekyll:4 jekyll serve
-    ```
+   ```bash
+   docker run -it \
+   --rm \
+   -v=$PWD:/srv/jekyll \
+   -p 4000:4000 \
+   jekyll/jekyll:4 jekyll serve
+   ```
 
 1. 访问 [http://localhost:4000](http://localhost:4000) 即可开启实时预览
 
 #### [目录结构](https://jekyllrb.com/docs/structure/)
 
-  ```text
-  ├── assets    站点静态文件
-  │   ├── css     站点 CSS 样式目录
-  │   └── image     站点图片
-  │            └── logo     导航站点 logo 文件目录
-  ├── _config.yml     网站配置
-  ├── _data
-  │   └── sites.yml     站点数据
-  ├── Gemfile     ruby 依赖定义文件
-  ├── _includes     页面模板
-  ├── index.html      首页
-  ├── _layouts      页面布局
-  │   ├── default.html      默认布局
-  │   └── index.html      首页布局
-  ├── README.md     项目说明
-  └── _site     编译文件目录，可用于发布的静态文件
-  ```
+```text
+├── assets    站点静态文件
+│   ├── css     站点 CSS 样式目录
+│   └── image     站点图片
+│            └── logo     导航站点 logo 文件目录
+├── _config.yml     网站配置
+├── _data
+│   └── sites.yml     站点数据
+├── Gemfile     ruby 依赖定义文件
+├── _includes     页面模板
+├── index.html      首页
+├── _layouts      页面布局
+│   ├── default.html      默认布局
+│   └── index.html      首页布局
+├── README.md     项目说明
+└── _site     编译文件目录，可用于发布的静态文件
+```
 
 一般情况下，只需要关注 `_config.yml`, `_data/sites.yml` 文件和 `assets/image/logo` 目录
 
 - `_config.yml` 文件是站点的配置信息，包括站点名称、描述、favicon 等信息
 - `_data/sites.yml` 文件是站点内容配置文件，网站的所有内容都是依照这个文件编译生成
 - `assets/image/logo` 目录用于存放导航站点 logo，然后被 `_data/sites.yml` 引用
+
+#### 站点数据结构与图标语义
+
+导航内容维护在 `_data/sites.yml` 中。顶层分类使用 `name` 和 `icon` 描述分类名称与图标，并通过 `links`（站点列表）或 `sub`（子分类）组织内容。
+
+每个站点条目支持以下字段：
+
+| 字段              | 必填 | 说明                                                                                             |
+| ----------------- | ---- | ------------------------------------------------------------------------------------------------ |
+| `title`           | 是   | 站点显示名称。                                                                                   |
+| `url`             | 是   | 站点主链接，使用完整的 HTTP(S) URL。                                                             |
+| `description`     | 否   | 站点简介，建议用一句话说明主要用途或特色。                                                       |
+| `logo`            | 是   | 站点 Logo 文件名。文件存放在 `assets/image/logo/` 中，此处仅填写文件名，例如 `example.com.svg`。 |
+| `icons`           | 否   | 站点的状态和补充信息图标，由 `status`、`info` 两组图标对象组成。                                 |
+| `icons.*[].icon`  | 是   | Remix Icon 的 class 名称，例如 `ri-github-fill`。                                                |
+| `icons.*[].title` | 否   | 图标的悬停提示和具体语义；同一图标表达多种含义时，以此字段为准。建议填写。                       |
+| `icons.*[].url`   | 否   | 点击图标后打开的相关链接，使用完整的 HTTP(S) URL。                                               |
+
+`status` 表示站点自身的语言、访问或收费状态，显示在 Logo 左侧；`info` 表示与站点相关的项目、文档或其他资源，显示在 Logo 右侧。没有相关图标时可以省略对应分组或整个 `icons` 字段。
+
+```yaml
+- title: 示例站点
+  url: https://example.com/
+  description: 用一句话说明站点用途
+  logo: example.com.svg
+  icons:
+    status:
+      - icon: ri-english-input
+        title: 英文
+      - icon: ri-money-cny-circle-line
+        title: 收费情况
+        url: https://example.com/pricing
+    info:
+      - icon: ri-book-2-line
+        title: 文档
+        url: https://example.com/docs
+      - icon: ri-github-fill
+        title: 开源项目
+        url: https://github.com/example/example
+```
+
+##### 状态图标（`status`）
+
+| 图标                       | 语义                                                                      |
+| -------------------------- | ------------------------------------------------------------------------- |
+| `ri-english-input`         | 站点的主要语言。具体语言通过图标的 `title` 标明。                         |
+| `ri-send-plane-fill`       | 需要国际互联网访问。                                                      |
+| `ri-money-cny-circle-line` | 收费情况，例如收费、免费方案或免费试用；具体情况通过图标的 `title` 标明。 |
+
+##### 信息图标（`info`）
+
+| 图标                  | 语义                                            |
+| --------------------- | ----------------------------------------------- |
+| `ri-github-fill`      | 对应的开源项目或源码仓库。                      |
+| `ri-exchange-line`    | 功能类似的项目或替代方案。                      |
+| `ri-book-2-line`      | 当前 `subject` 的文档站点。                     |
+| `ri-computer-line`    | Demo 或在线演示站点。                           |
+| `ri-home-office-line` | 官方网站。                                      |
+| `ri-sparkling-2-line` | 其他补充信息；具体含义通过图标的 `title` 标明。 |
+| `ri-translate`        | 站点对应的翻译项目或其他语言版本。              |
+
+上述语义表仅适用于站点条目中的 `icons.status` 和 `icons.info`。顶层分类的 `icon` 仅作为分类的视觉标识，不受此表约束。
 
 ### 导航维护自动化
 
@@ -185,16 +247,16 @@ Cloudflare Pages 提供了免费、快速且易用的静态网站托管服务。
 
 1. 使用 Docker 编译代码
 
-    ```bash
-    docker run --rm -it \
-      -v ${PWD}:/srv/jekyll \
-      -v ${PWD}/_site:/srv/jekyll/_site \
-      jekyll/builder:4 /bin/bash -c '
-        gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
-        bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
-        bundle config --delete "mirror.https://rubygems.org" && \
-        jekyll build --future'
-    ```
+   ```bash
+   docker run --rm -it \
+     -v ${PWD}:/srv/jekyll \
+     -v ${PWD}/_site:/srv/jekyll/_site \
+     jekyll/builder:4 /bin/bash -c '
+       gem sources -r https://rubygems.org/ -a https://gems.ruby-china.com/ && \
+       bundle config mirror.https://rubygems.org https://gems.ruby-china.com && \
+       bundle config --delete "mirror.https://rubygems.org" && \
+       jekyll build --future'
+   ```
 
 1. 发布 `_site` 目录到服务器
 
@@ -221,15 +283,15 @@ Cloudflare Pages 提供了免费、快速且易用的静态网站托管服务。
 1. 尽可能引入少的静态资源，尽量按需引入。能够显著提升页面加载速度。
 1. 无法直接使用 `backdrop-filter` 属性同时对父子元素创建模糊效果，受 [解决父级使用backdrop-filter后，子级再使用不生效](https://ylface.com/course/2821.html) 启发，使用下面的代码解决了问题。
 
-  ```css
-  .blur::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    -webkit-backdrop-filter: blur(.1rem);
-    backdrop-filter: blur(.1rem);
-  }
-  ```
+```css
+.blur::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(0.1rem);
+  backdrop-filter: blur(0.1rem);
+}
+```
