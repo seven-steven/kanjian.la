@@ -3384,6 +3384,7 @@
           url: https://xmsoushu.com/#/
           description: 集成了多个搜书平台，可以当成导航网站来用
           logo: xmsoushu.com.svg
+    - name: 游戏资源
       links:
         - title: RuTracker.org
           url: https://rutracker.org/
