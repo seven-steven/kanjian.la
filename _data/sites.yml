@@ -1915,13 +1915,6 @@
           url: https://www.qiuziti.com/
           description: 字体下载、识别与搜索
           logo: qiuziti.com.ico
-        - title: 我的字体
-          url: https://cloud.myfont.bid/
-          description: 在线生成手写字体
-          logo: cloud.myfont.bid.ico
-          icons:
-            status:
-            info:
         - title: Font Converter
           url: https://fontconverter.com/
           description: 字体格式转换
