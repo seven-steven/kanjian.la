@@ -1922,12 +1922,6 @@
           icons:
             status:
             info:
-        - title: Font Converter
-          url: https://fontconverter.com/
-          description: 字体格式转换
-          logo: fontconverter.com.svg
-
-- name: 开发资源
   icon: ri-code-box-line
   sub:
     - name: 编程通识
