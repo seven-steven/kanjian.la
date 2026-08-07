@@ -30,7 +30,7 @@ function isDeletionEligibleFailure(item) {
   if (!item || typeof item !== 'object') return false;
   if (item.category === 'invalid_url') return true;
   return ['client_error', 'server_error'].includes(item.category) &&
-    ![401, 403, 429].includes(item.status);
+    ![401, 403, 412, 429].includes(item.status);
 }
 
 /**

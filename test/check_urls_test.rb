@@ -84,6 +84,7 @@ class UrlCheckTest < Minitest::Test
     refute_equal UrlCheck.key_for("main", "https://example.com/"), UrlCheck.key_for("icon", "https://example.com/")
     assert UrlCheck.healthy?("category" => "ok")
     assert UrlCheck.healthy?("category" => "client_error", "status" => 401)
+    assert UrlCheck.healthy?("category" => "client_error", "status" => 412)
     refute UrlCheck.healthy?("category" => "client_error", "status" => 404)
   end
 
@@ -149,7 +150,7 @@ class UrlCheckTest < Minitest::Test
   end
 
   def test_does_not_fallback_for_access_restricted_healthy_statuses
-    { 401 => Net::HTTPUnauthorized, 403 => Net::HTTPForbidden, 429 => Net::HTTPTooManyRequests }.each do |status, response_class|
+    { 401 => Net::HTTPUnauthorized, 403 => Net::HTTPForbidden, 412 => Net::HTTPPreconditionFailed, 429 => Net::HTTPTooManyRequests }.each do |status, response_class|
       http = Http.new([response_class.new("1.1", status.to_s, "Restricted")], [], [])
       result = UrlCheck.new(http: http, resolver: Resolver.new(["93.184.216.34"]), retries: 0).check(entry("https://example.com"))
 

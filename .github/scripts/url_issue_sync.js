@@ -10,7 +10,7 @@ const REQUIRED_LABELS = [
   ['automated', '1d76db'],
   ['needs-review', 'fbca04']
 ];
-const ACCESSIBLE_STATUSES = new Set([401, 403, 429]);
+const ACCESSIBLE_STATUSES = new Set([401, 403, 412, 429]);
 const STATE_PATTERN = /<!-- url-check-state:(\{[^\n]*\}) -->/g;
 const STATE_CAPTURE_PATTERN = /<!-- url-check-state:(\{[^\n]*\}) -->/;
 

@@ -21,7 +21,12 @@ class UrlCheck
   DEFAULT_RETRIES = 2
   MAX_REDIRECTS = 5
   TRANSIENT_STATUSES = (500..599).to_a + [408, 425, 429]
-  HEAD_FALLBACK_STATUSES = ((400..499).to_a - TRANSIENT_STATUSES - [401, 403]) + [501]
+  # 401/403/412 are "accessible but restricted": they prove the origin answered.
+  # 412 in particular is the WAF/bot-challenge response some origins (e.g. the
+  # NMPA government site) return to automated clients, not evidence the resource
+  # is gone. Like 401/403, they are skipped for HEAD->GET fallback and excluded
+  # from deletion eligibility below.
+  HEAD_FALLBACK_STATUSES = ((400..499).to_a - TRANSIENT_STATUSES - [401, 403, 412]) + [501]
 
   def initialize(timeout: DEFAULT_TIMEOUT, retries: DEFAULT_RETRIES, http: Net::HTTP, resolver: Resolv)
     raise ArgumentError, "timeout must be greater than zero" unless timeout.is_a?(Numeric) && timeout.positive?
@@ -58,7 +63,7 @@ class UrlCheck
   end
 
   def self.healthy?(result)
-    %w[ok redirect].include?(result["category"]) || [401, 403, 429].include?(result["status"].to_i)
+    %w[ok redirect].include?(result["category"]) || [401, 403, 412, 429].include?(result["status"].to_i)
   end
 
   def self.deletion_eligible_failure?(result)
