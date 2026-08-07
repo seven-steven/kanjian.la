@@ -49,7 +49,7 @@ const core = { info() {}, warning() {} };
 test('health handling retains accessible authentication and rate-limit URLs', () => {
   assert.equal(isHealthy(item({ category: 'ok', status: 200 })), true);
   assert.equal(isHealthy(item({ category: 'redirect', status: 301 })), true);
-  for (const status of [401, 403, 429]) assert.equal(isHealthy(item({ category: 'http_error', status })), true);
+  for (const status of [401, 403, 412, 429]) assert.equal(isHealthy(item({ category: 'http_error', status })), true);
   assert.equal(isHealthy(item({ category: 'timeout', status: null })), false);
 });
 
@@ -60,7 +60,7 @@ test('deletion eligibility accepts only explicit failures', () => {
   for (const category of ['timeout', 'network_error', 'dns_error', 'tls_error', 'unsafe_destination']) {
     assert.equal(isDeletionEligibleFailure(item({ category, status: null })), false);
   }
-  for (const status of [401, 403, 429]) {
+  for (const status of [401, 403, 412, 429]) {
     assert.equal(isDeletionEligibleFailure(item({ category: 'client_error', status })), false);
   }
 });

@@ -181,7 +181,7 @@ class UrlRemovalProcessorTest < Minitest::Test
   end
 
   def test_does_not_remove_healthy_access_restrictions
-    [401, 403, 429].each do |status|
+    [401, 403, 412, 429].each do |status|
       with_sites do |path, logo_dir|
         before = File.binread(path)
         output = processor(path, logo_dir: logo_dir, result: { "category" => "client_error", "status" => status }).call

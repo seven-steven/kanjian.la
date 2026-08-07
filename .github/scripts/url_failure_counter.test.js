@@ -56,6 +56,7 @@ test('isDeletionEligibleFailure accepts only explicit deletion evidence', () => 
   for (const item of [
     { category: 'client_error', status: 401 },
     { category: 'client_error', status: 403 },
+    { category: 'client_error', status: 412 },
     { category: 'client_error', status: 429 },
     { category: 'timeout', status: null },
     { category: 'network_error', status: null },
