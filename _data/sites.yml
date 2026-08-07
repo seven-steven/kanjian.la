@@ -740,11 +740,6 @@
           url: https://www.woodo.cn/
           description: 专业演示文档制作工具，PPT模板，协同办公
           logo: woodo.cn.svg
-        - title: PPT BOSS
-          url: https://www.pptboss.com/?inviter=yo039hz2
-          description: PPT 免费在线制作工具
-          logo: pptboss.com.ico
-
     - name: 电脑软件
       links:
         - title: Chrome
