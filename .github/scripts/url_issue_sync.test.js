@@ -157,7 +157,7 @@ test('synchronization reconciles labels on an existing open issue without losing
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
 
-test('an unverifiable result resets evidence, closes its issue, and removes actionable labels', async () => {
+test('an unverifiable result resets evidence, closes its issue silently, and removes actionable labels', async () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'url-issue-sync-'));
   try {
     const current = item({ category: 'timeout', status: null });
@@ -174,9 +174,10 @@ test('an unverifiable result resets evidence, closes its issue, and removes acti
     await synchronizeIssues({ github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
     assert.equal(JSON.parse(fs.readFileSync(stateFile)).failures[current.key], undefined);
     assert.deepEqual(calls.filter(([method]) => method === 'removeLabel').map(([, args]) => args.name), ['needs-review', 'agent:approved']);
-    const bodyUpdate = calls.find(([method, args]) => method === 'update' && typeof args.body === 'string');
-    assert.doesNotMatch(bodyUpdate[1].body, /url-check-state/);
-    assert.match(calls.find(([method]) => method === 'createComment')[1].body, /could not verify/);
+    // Indeterminate results are silent: no comment is posted.
+    assert.equal(calls.some(([method]) => method === 'createComment'), false);
+    // The issue is closed without rewriting its body (no new evidence to record).
+    assert.equal(calls.some(([method, args]) => method === 'update' && args.state === 'closed' && typeof args.body === 'string'), false);
     assert.equal(calls.find(([method, args]) => method === 'update' && args.state === 'closed')[1].issue_number, issue.number);
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
@@ -204,5 +205,91 @@ test('an unverifiable result restarts a subsequent explicit failure at one', asy
     await synchronizeIssues({ github: mock.github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
     assert.equal(JSON.parse(fs.readFileSync(stateFile)).failures[explicit.key].consecutive_failures, 1);
     assert.equal(mock.calls.some(([method]) => method === 'create'), false);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('an indeterminate result does not comment on an already-closed issue', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'url-issue-sync-'));
+  try {
+    const current = item({ category: 'dns_error', status: null, error: 'host did not resolve' });
+    const issue = {
+      number: 31, state: 'closed', user: { login: 'github-actions[bot]' },
+      labels: [{ name: 'url-check' }, { name: 'automated' }],
+      body: `<!-- url-check:${current.key} -->\n<!-- url-check-state:${JSON.stringify({ v: 1, key: current.key, kind: 'main', normalized_url: current.normalized_url, consecutive_failures: 5 })} -->\nDetails`
+    };
+    const resultsFile = path.join(directory, 'results.json');
+    const stateFile = path.join(directory, 'failure-counts.json');
+    fs.writeFileSync(resultsFile, JSON.stringify({ checked_at: '2026-01-01T00:00:00Z', results: [current] }));
+    fs.writeFileSync(stateFile, JSON.stringify({ v: 2, failures: { [current.key]: { kind: current.kind, normalized_url: current.normalized_url, consecutive_failures: 3 } } }));
+    const { github, calls } = mockGithub({ issues: [issue] });
+    await synchronizeIssues({ github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
+    // No comment, no state mutation, no body rewrite on an issue the owner already closed.
+    assert.equal(calls.some(([method]) => method === 'createComment'), false);
+    assert.equal(calls.some(([method, args]) => method === 'update' && args.state === 'closed'), false);
+    assert.equal(calls.some(([method, args]) => method === 'update' && typeof args.body === 'string'), false);
+    assert.equal(JSON.parse(fs.readFileSync(stateFile)).failures[current.key], undefined);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('an indeterminate result on an open issue closes it silently without commenting', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'url-issue-sync-'));
+  try {
+    const current = item({ category: 'timeout', status: null });
+    const issue = {
+      number: 7, state: 'open', user: { login: 'github-actions[bot]' },
+      labels: [{ name: 'url-check' }, { name: 'automated' }, { name: 'needs-review' }],
+      body: `<!-- url-check:${current.key} -->\n<!-- url-check-state:${JSON.stringify({ v: 1, key: current.key, kind: 'main', normalized_url: current.normalized_url, consecutive_failures: 2 })} -->\nDetails`
+    };
+    const resultsFile = path.join(directory, 'results.json');
+    const stateFile = path.join(directory, 'failure-counts.json');
+    fs.writeFileSync(resultsFile, JSON.stringify({ checked_at: '2026-01-01T00:00:00Z', results: [current] }));
+    const { github, calls } = mockGithub({ issues: [issue] });
+    await synchronizeIssues({ github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
+    assert.equal(calls.some(([method]) => method === 'createComment'), false);
+    assert.equal(calls.find(([method, args]) => method === 'update' && args.state === 'closed')[1].issue_number, issue.number);
+    // The close carries no body; any evidence-cleanup update is a separate, body-only call.
+    assert.equal(calls.some(([method, args]) => method === 'update' && args.state === 'closed' && typeof args.body === 'string'), false);
+    assert.deepEqual(calls.filter(([method]) => method === 'removeLabel').map(([, args]) => args.name), ['needs-review']);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('a healthy result after an indeterminate run still recovers and closes', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'url-issue-sync-'));
+  try {
+    const healthy = item({ category: 'ok', status: 200, error: null });
+    const issue = {
+      number: 7, state: 'open', user: { login: 'github-actions[bot]' },
+      labels: [{ name: 'url-check' }, { name: 'automated' }],
+      body: `<!-- url-check:${healthy.key} -->\nDetails (no live state marker after the silent indeterminate close)`
+    };
+    const resultsFile = path.join(directory, 'results.json');
+    const stateFile = path.join(directory, 'failure-counts.json');
+    fs.writeFileSync(resultsFile, JSON.stringify({ checked_at: '2026-01-01T00:00:00Z', results: [healthy] }));
+    const { github, calls } = mockGithub({ issues: [issue] });
+    await synchronizeIssues({ github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
+    assert.match(calls.find(([method]) => method === 'createComment')[1].body, /reachable again/);
+    assert.equal(calls.find(([method, args]) => method === 'update' && args.state === 'closed')[1].issue_number, issue.number);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('an explicit failure after an indeterminate run restarts the count at one', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'url-issue-sync-'));
+  try {
+    const explicit = item({ category: 'server_error', status: 503, error: null });
+    // Issue is open and carries no live count marker (the indeterminate run
+    // stripped it), so the count must restart from 1 rather than resume.
+    const issue = {
+      number: 7, state: 'open', user: { login: 'github-actions[bot]' },
+      labels: [{ name: 'url-check' }, { name: 'automated' }],
+      body: `<!-- url-check:${explicit.key} -->\nDetails`
+    };
+    const resultsFile = path.join(directory, 'results.json');
+    const stateFile = path.join(directory, 'failure-counts.json');
+    fs.writeFileSync(resultsFile, JSON.stringify({ checked_at: '2026-01-01T00:00:00Z', results: [explicit] }));
+    fs.writeFileSync(stateFile, JSON.stringify({ v: 2, failures: {} }));
+    const { github, calls } = mockGithub({ issues: [issue] });
+    await synchronizeIssues({ github, core, context, resultsFile, failureStateFile: stateFile, serverUrl: 'https://github.test' });
+    const bodyUpdate = calls.find(([method, args]) => method === 'update' && typeof args.body === 'string');
+    assert.match(bodyUpdate[1].body, /"consecutive_failures":1/);
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
