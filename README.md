@@ -18,6 +18,13 @@
 - DNS by [CloudFlare](https://cloudflare.com/)
 - ICON Vectorizer by [Vectorizer.AI](https://vectorizer.ai/)
 
+## 分支说明
+
+仓库维护了两条分支，对应站点的两种实现方式：
+
+- `static`：纯静态源站点。网站内容直接写在 `index.html` 与 `assets/` 中，不经过任何构建步骤。
+- `jekyll`：使用 jekyll 模板引擎渲染的站点（默认分支，线上部署来源）。网站内容维护在 `_data/sites.yml`，由 `_layouts/` 与 `_includes/` 下的模板渲染生成。
+
 ## TODO LIST
 
 - [ ] 移动端菜单优化 / 考虑添加返回顶部按钮
