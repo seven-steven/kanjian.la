@@ -186,10 +186,20 @@ async function synchronizeIssues({ github, core, context, resultsFile, failureSt
     }
     const primary = items.find(isDeletionEligibleFailure);
     if (!primary) {
+      // Indeterminate failure (DNS/timeout/network/TLS/unsafe-destination):
+      // neither healthy nor an explicit, deletion-eligible failure. These are
+      // almost always transient or environmental and produce no actionable
+      // signal, so we stay silent. For an open issue we clear the explicit-
+      // failure count, drop the state marker, remove actionable labels, and
+      // close it without commenting. A closed issue is left untouched so the
+      // owner never receives follow-up churn. This stops daily duplicate
+      // notifications on issues the owner has already seen or closed (#31).
       counter.removeFailure(failureCache, key);
-      await resetFailureState(issue);
-      await removeActionableLabels(issue);
-      await commentAndClose(issue, `URL check could not verify this URL's availability. Its failure count has been reset and no removal action will be taken until a subsequent explicit failure is observed.\n\n[View this Actions run](${runUrl})`, true);
+      if (issue && issue.state === 'open') {
+        await resetFailureState(issue);
+        await removeActionableLabels(issue);
+        await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'closed' });
+      }
       continue;
     }
     const { count: consecutiveFailures, source } = counter.nextFailureCount({ issue, doc: failureCache, key, item: primary });
