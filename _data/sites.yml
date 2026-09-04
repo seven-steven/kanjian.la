@@ -2356,6 +2356,18 @@
             info:
               - icon: ri-book-2-line
                 url: https://gofrp.org/
+        - title: Tailcat
+          url: https://tailscale.github.io/tailcat/
+          description: Tailscale 出品的实验性类 netcat 加密传输工具，无需 Tailscale 账号
+          logo: tailcat.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/tailscale/tailcat
         - title: kkFileView
           url: https://kkview.cn/
           description: 主流办公文档的在线预览解决方案
