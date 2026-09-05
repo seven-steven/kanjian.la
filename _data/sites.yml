@@ -460,7 +460,7 @@
         - title: Stable Diffusion 3
           url: https://stablediffusion3.net/
           description: 免费试用 Stable Diffusion 3 在线
-          logo: stablediffusion3.net.ico
+          logo: stablediffusion3.net.png
           icons:
             status:
             info:
@@ -803,7 +803,7 @@
         - title: Geek Uninstaller
           url: https://geekuninstaller.com/download
           description: Windows 下的软件卸载小工具
-          logo: geekuninstaller.com.ico
+          logo: geekuninstaller.com.png
         - title: ScreenToGif
           url: https://www.screentogif.com/
           description: 屏幕、摄像头和画板录像，并有内置编辑器
@@ -861,7 +861,7 @@
         - title: AirDroid
           url: https://www.airdroid.cn/cast/
           description: 高效便捷的投屏和控制工具
-          logo: airdroid.cn-cast.ico
+          logo: airdroid.cn-cast.png
           icons:
             status:
             info:
@@ -888,7 +888,7 @@
         - title: Quicker
           url: http://getquicker.net/
           description: Windows 指尖工具箱
-          logo: getquicker.net.ico
+          logo: getquicker.net.png
         - title: Deskflow
           url: https://github.com/deskflow/deskflow/
           description: 开源跨平台多终端键鼠共享软件
@@ -1483,7 +1483,7 @@
         - title: 标准地图服务系统
           url: http://bzdt.ch.mnr.gov.cn/
           description: 标准地图素材
-          logo: bzdt.ch.mnr.gov.cn.ico
+          logo: bzdt.ch.mnr.gov.cn.png
         - title: 易词云
           url: https://www.yciyun.com/
           description: 词云生成器
@@ -1645,7 +1645,7 @@
         - title: REMIX ICON
           url: https://remixicon.com/
           description: 开源免费图标库
-          logo: remixicon.com.ico
+          logo: remixicon.com.png
           icons:
             info:
               - icon: ri-book-2-line
@@ -2175,7 +2175,7 @@
         - title: httpbin.org
           url: https://httpbin.org/
           description: A simple HTTP Request & Response Service.
-          logo: httpbin.org.ico
+          logo: httpbin.org.png
         - title: Webhook.site
           url: https://webhook.site/
           description: 实时调测、转换、自动化处理 Webhook、HTTP 请求和电子邮件
@@ -2463,7 +2463,7 @@
         - title: W3Schools
           url: https://www.w3schools.cn/
           description: 编程知识学习
-          logo: w3schools.cn.ico
+          logo: w3schools.cn.png
         - title: JavaScript.INFO
           url: https://javascript.info/
           description: 现代 JavaScript 教程
@@ -2771,7 +2771,7 @@
         - title: EasyExcel
           url: https://easyexcel.opensource.alibaba.com/
           description: 一个基于Java的、快速、简洁、解决大文件内存溢出的Excel处理工具
-          logo: easyexcel.opensource.alibaba.com.ico
+          logo: easyexcel.opensource.alibaba.com.png
           icons:
             status:
             info:
@@ -3008,7 +3008,7 @@
         - title: Microsoft Clarity
           url: https://clarity.microsoft.com/
           description: 热度地图、会话录制、访问统计
-          logo: clarity.microsoft.com.ico
+          logo: clarity.microsoft.com.png
           icons:
             status:
             info:
@@ -3309,7 +3309,7 @@
         - title: "12306"
           url: https://www.12306.cn/
           description: 中国铁路 12306，买火车票认准这个网站
-          logo: 12306.cn.ico
+          logo: 12306.cn.png
         - title: 电信用户申诉受理中心
           url: https://yhssglxt.miit.gov.cn/web/userAppeal/
           description: 电信申诉
