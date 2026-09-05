@@ -82,9 +82,10 @@
       description: 为键盘工作者设计的英语肌肉记忆练习工具
       logo: qwerty.kaiyi.cool.svg
       icons:
-        - icon: ri-exchange-line
-          title: Alternative
-          url: https://qwerty.kaiyi.cool/
+        info:
+          - icon: ri-exchange-line
+            title: Alternative
+            url: https://qwerty.kaiyi.cool/
     - title: 下厨房
       url: https://www.xiachufang.com/
       description: 实用菜谱做法与饮食知识
@@ -2372,8 +2373,10 @@
           description: 主流办公文档的在线预览解决方案
           logo: kkfileview.keking.cn.svg
           icons:
-            - icon: ri-github-fill
-              url: https://github.com/kekingcn/kkFileView
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/kekingcn/kkFileView
         - title: Roverr/rtsp-streamH
           logo: github.com.svg
           url: https://github.com/Roverr/rtsp-stream
