@@ -24,7 +24,7 @@ jobs:
       - name: Run every Node test file
         run: |
           set -euo pipefail
-          find .github/scripts -type f -name '*_test.js' -print0 | sort -z | xargs -0 -r node --test
+          find .github/scripts -type f -name '*.test.js' -print0 | sort -z | xargs -0 -r node --test
       - name: Run every Ruby test file
         run: |
           set -euo pipefail

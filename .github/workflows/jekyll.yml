@@ -34,7 +34,7 @@ jobs:
       # see: https://imagemagick.org/
       - name: minify logos
         run: |
-          /bin/bash -c './.github/workflows/minify-pic.sh ./assets/image/logo 32x || true'
+          /bin/bash -c './.github/workflows/minify-pic.sh ./assets/image/logo 64x'
 
       - name: build with jekyll
         run: |
