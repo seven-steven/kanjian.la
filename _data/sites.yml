@@ -1042,6 +1042,9 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/immersive-translate/immersive-translate
+              - icon: ri-exchange-line
+                title: Trancy
+                url: https://www.trancy.org/
         - title: 不背单词查词
           url: https://chrome.google.com/webstore/detail/%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8D%E6%9F%A5%E8%AF%8D/cklfipcjofdnmdolnfngpmokdaejidim
           description: 不背单词查词
