@@ -347,19 +347,15 @@
           url: https://paperswithcode.com/
           description: 最新的机器学习论文，包含代码
           logo: paperswithcode.com.svg
-        - title: Learning Prompt
-          url: https://learningprompt.wiki/
-          description: ChatGPT 和 Midjourney 教程
-          logo: learningprompt.wiki.ico
+        - title: OpenAI API 最佳实践
+          url: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api
+          description: OpenAI 官方 Prompt 工程指南
+          logo: help.openai.com.png
           icons:
             status:
+              - icon: ri-english-input
+                title: 英文
             info:
-              - icon: ri-exchange-line
-                title: OpenAI API 最佳实践
-                url: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/thinkingjimmy/Learning-Prompt
         - title: Artificial Analysis
           url: https://artificialanalysis.ai/
           description: AI 大模型质量、速度与价格评测
