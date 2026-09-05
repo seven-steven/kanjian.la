@@ -1,5 +1,1 @@
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" fill="none">
-<rect x="53" y="58" width="452" height="452" rx="80" fill="white" stroke="#181818" stroke-width="30" stroke-linejoin="round"/>
-<rect x="95" y="90" width="452" height="452" rx="80" fill="#18181B"/>
-<path d="M293.667 220.666C304.723 198.554 336.277 198.554 347.333 220.666L432.308 390.616C444.814 415.628 419.067 443.212 392.87 433.428C363.012 422.277 332.936 412.348 320.5 412.348C308.064 412.348 277.988 422.277 248.13 433.428C221.933 443.212 196.186 415.628 208.692 390.616L293.667 220.666Z" fill="white"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" fill="none" viewBox="0 0 600 600"><rect width="452" height="452" x="53" y="58" fill="#fff" stroke="#181818" stroke-linejoin="round" stroke-width="30" rx="80"/><rect width="452" height="452" x="95" y="90" fill="#18181b" rx="80"/><path fill="#fff" d="M293.667 220.666c11.056-22.112 42.61-22.112 53.666 0l84.975 169.95c12.506 25.012-13.241 52.596-39.438 42.812-29.858-11.151-59.934-21.08-72.37-21.08s-42.512 9.929-72.37 21.08c-26.197 9.784-51.944-17.8-39.438-42.812z"/></svg>
