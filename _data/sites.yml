@@ -2933,7 +2933,7 @@
                 title: Cursor Directory
                 url: https://cursor.directory/
 
-    - name: Skills&Plugins
+    - name: Skill&Plugin
       links:
         - title: Matt Pocock Skills
           url: https://github.com/mattpocock/skills
@@ -3218,15 +3218,6 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/guaguaguaxia/weekly_report
-        - title: 即时AI
-          url: https://js.design/ai
-          description: 即时 AI 生成设计工具，需要排队
-          logo: js.design.svg
-          icons:
-            info:
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://js.design/ai/report
         - title: Hugging Face
           url: https://huggingface.co/
           description: 构建未来的 AI 社区
@@ -3314,6 +3305,67 @@
             status:
               - icon: ri-english-input
                 title: 英文
+            info:
+
+    - name: AI 设计
+      links:
+        - title: Stitch
+          url: https://stitch.withgoogle.com/
+          description: Google 官方 AI 界面设计工具，自然语言生成 UI 与代码
+          logo: stitch.withgoogle.com.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: 即时AI
+          url: https://js.design/ai
+          description: 即时 AI 生成设计工具，需要排队
+          logo: js.design.svg
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://js.design/ai/report
+        - title: getdesign.md
+          url: https://getdesign.md/
+          description: 知名网站设计系统文档合集，供 AI 编码 Agent 复用
+          logo: getdesign.md.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/VoltAgent/awesome-design-md
+        - title: Impeccable
+          url: https://impeccable.style/
+          description: 提升 AI 编程 Agent 前端设计质量的开源技能
+          logo: impeccable.style.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/pbakaus/impeccable
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://impeccable.style/docs/
+        - title: dashiAI-ppt-skill
+          url: https://github.com/chuspeeism/dashiAI-ppt-skill
+          description: AI Agent 生成可编辑网页 PPT 的开源技能
+          logo: github-chuspeeism-dashiai-ppt-skill.jpg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
             info:
 
     - name: CodingPlan
