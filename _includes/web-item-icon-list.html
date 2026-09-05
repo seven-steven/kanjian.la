@@ -1,5 +1,5 @@
 <ul class="web-item-icon-list">
-  {% for icon in icon_list %}
+  {% for icon in icon_list limit: 4 %}
   <li>
     <a {% if icon.url %} href="{{ icon.url }}" {% endif%} target="_blank"
       {% if icon.title %} title="{{ icon.title }}"{% elsif icon.url %} title="{{ icon.url }}" {% endif%}>
