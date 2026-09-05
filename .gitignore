@@ -7,7 +7,8 @@ Gemfile.lock
 
 .vscode
 .claude/worktrees/
-.claude/
+.claude/*
+!.claude/skills/
 .playwright-mcp/
 
 # Actions cache snapshot for sub-threshold URL failure counts (see url-check workflow)
