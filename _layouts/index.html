@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="{{ site.description }}">
   <meta name="twitter:image" content="{{ site.url }}/{{ site.logo }}">
 
-  <link rel="shortcut icon" href="./assets/image/favicon.png">
+  <link rel="icon" href="./assets/image/favicon.png">
   <link rel="stylesheet" href="./assets/remixicon/partly/remixicon.css">
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/mobile-max-600.css">
@@ -38,47 +38,25 @@
     {{ content }}
     {% include footer.html %}
   </div>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>
+  <script>
+    // Google 统计
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '{{ site.analystic.google.gtag }}');
+  </script>
+
+  <script>
+    // logo 加载失败时隐藏破图，保留容器底色
+    document.addEventListener("error", function (e) {
+      if (e.target.tagName === "IMG" && e.target.closest(".web-item-logo")) {
+        e.target.style.visibility = "hidden";
+      }
+    }, true);
+  </script>
 </body>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>
-<script>
-  // Google 统计
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', '{{ site.analystic.google.gtag }}');
-</script>
-
-<script>
-  // 图片懒加载
-  document.addEventListener("DOMContentLoaded", function () {
-      const images = document.querySelectorAll("img[data-src]");
-      function lazyLoad() {
-          images.forEach((img) => {
-              if (isElementInViewport(img) && img.getAttribute("data-src")) {
-                  img.src = img.getAttribute("data-src");
-                  img.removeAttribute("data-src");
-              }
-          });
-      }
-
-      function isElementInViewport(el) {
-          const rect = el.getBoundingClientRect();
-          return (
-              rect.top >= 0 &&
-              rect.left >= 0 &&
-              rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-          );
-      }
-
-      // Initial lazy load on page load
-      lazyLoad();
-
-      // Lazy load images when the user scrolls
-      window.addEventListener("scroll", lazyLoad);
-  });
-</script>
 
 </html>

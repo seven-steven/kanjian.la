@@ -206,6 +206,7 @@ div.web-item-logo>a>img {
   height: 100%;
   vertical-align: middle;
   border-radius: 50%;
+  background-color: var(--color-background, #f0f0f0);
 }
 
 div.web-item-logo>a>img:hover {
