@@ -328,347 +328,6 @@
         #         description: 虚拟信用卡
         #         logo: nobepay.com.svg
 
-    - name: 人工智能
-      links:
-        - title: Hugging Face
-          url: https://huggingface.co/
-          description: 构建未来的 AI 社区
-          logo: huggingface.co.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-money-cny-circle-line
-                title: 服务收费
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://huggingface.co/docs
-        - title: Papers With Code
-          url: https://paperswithcode.com/
-          description: 最新的机器学习论文，包含代码
-          logo: paperswithcode.com.svg
-        - title: OpenAI API 最佳实践
-          url: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api
-          description: OpenAI 官方 Prompt 工程指南
-          logo: help.openai.com.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-        - title: Artificial Analysis
-          url: https://artificialanalysis.ai/
-          description: AI 大模型质量、速度与价格评测
-          logo: artificialanalysis.ai.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-        - title: ChatGPT
-          url: https://chat.openai.com/
-          description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
-          logo: chat.openai.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-exchange-line
-                title: 镜像站点
-                url: https://chat18.aichatos.xyz/
-              - icon: ri-exchange-line
-                title: 镜像站点集合
-                url: https://github.com/xx025/carrot
-              - icon: ri-exchange-line
-                title: 镜像站点集合
-                url: https://github.com/LiLittleCat/awesome-free-chatgpt
-        - title: Claude
-          url: https://claude.ai/
-          description: 由 Anthropic 开发的大型语言模型
-          logo: claude.ai.svg
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-        - title: Gemini
-          url: https://gemini.google.com/
-          description: DeepResearch 很不错
-          logo: gemini.google.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-            info:
-        - title: Kimi
-          url: https://kimi.moonshot.cn/
-          description: 国产大语言模型
-          logo: kimi.moonshot.cn.ico
-          icons:
-            status:
-            info:
-              - icon: ri-exchange-line
-                title: 智谱清言
-                logo: chatglm.cn.png
-                url: https://chatglm.cn
-              - icon: ri-exchange-line
-                title: 通义千问
-                url: https://tongyi.aliyun.com/
-                logo: tongyi.aliyun.com.svg
-              - icon: ri-exchange-line
-                title: 文心一言
-                url: https://yiyan.baidu.com/
-                logo: yiyan.baidu.com.ico
-        - title: Dify
-          url: https://dify.ai/
-          description: 提示词编排，打造你的个性化 AI 助理
-          logo: dify.ai.ico
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 免费试用
-            info:
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://docs.dify.ai/zh/quick-start
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/langgenius/dify
-        - title: Copilot
-          url: https://github.com/features/copilot
-          description: AI 帮你写代码
-          logo: github.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-money-cny-circle-line
-                title: 收费
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://docs.github.com/en/copilot
-              - icon: ri-exchange-line
-                title: 通义灵码
-                url: https://tongyi.aliyun.com/lingma/
-              - icon: ri-exchange-line
-                title: AWS CodeWhisperer
-                url: https://aws.amazon.com/codewhisperer/
-        - title: Stable Diffusion 3
-          url: https://stablediffusion3.net/
-          description: 免费试用 Stable Diffusion 3 在线
-          logo: stablediffusion3.net.png
-          icons:
-            status:
-            info:
-        - title: Midjourney
-          url: https://www.midjourney.com/
-          description: 高质量 AI 绘图
-          logo: midjourney.com.svg
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: Document
-        - title: DreamStudio
-          url: https://beta.dreamstudio.ai/
-          description: 高质量 AI 绘图
-          logo: beta.dreamstudio.ai.svg
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: FAQ
-                url: https://beta.dreamstudio.ai/faq
-        - title: D-ID
-          url: https://studio.d-id.com/
-          description: 利用文字转视频，创建你的专属数字人
-          logo: studio.d-id.com.svg
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-            info:
-        - title: Cursor
-          url: https://www.cursor.so/
-          description: AI 协同代码编辑器
-          logo: cursor.so.svg
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-money-cny-circle-line
-                title: 免费方案
-            info:
-              - icon: ri-book-2-line
-                title: Cursor Directory
-                url: https://cursor.directory/
-        - title: Perplexity
-          url: https://www.perplexity.ai/
-          description: AI 搜索引擎
-          logo: perplexity.ai.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-        - title: Vectorizer.AI
-          url: https://vectorizer.ai/
-          description: 使用 AI 把位图转换为 SVG 矢量图片
-          logo: vectorizer.ai.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-money-cny-circle-line
-                title: 收费
-            info:
-              - icon: ri-book-2-line
-                title: API
-                url: https://vectorizer.ai/api
-        - title: Lexica
-          url: https://lexica.art/
-          description: AI 图像搜索引擎
-          logo: lexica.art.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: ChatPDF
-          url: https://www.chatpdf.com/
-          description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
-          logo: chatpdf.com.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-        - title: 即时AI
-          url: https://js.design/ai
-          description: 即时 AI 生成设计工具，需要排队
-          logo: js.design.svg
-          icons:
-            info:
-              - icon: ri-book-2-line
-                title: 文档
-                url: https://js.design/ai/report
-        - title: Scribble Diffusion
-          url: https://scribblediffusion.com/
-          description: 根据草图绘制图片
-          logo: scribblediffusion.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/replicate/scribble-diffusion
-        - title: Astria
-          url: https://www.astria.ai/
-          description: 识别和再生成特定对象的图片
-          logo: astria.ai.png
-          icons:
-            status:
-              - icon: ri-money-cny-circle-line
-                title: 收费
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: How-To
-                url: https://www.astria.ai/tips
-        - title: Luma AI
-          url: https://lumalabs.ai/
-          description: Capture the world in lifelike 3D
-          logo: lumalabs.ai.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: SOUNDRAW
-          url: https://soundraw.io/
-          description: AI 生成音乐
-          logo: soundraw.io.ico
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Sonic Pi
-          url: https://sonic-pi.net/
-          description: 基于代码的音乐创作工具
-          logo: sonic-pi.net.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-book-2-line
-                title: Document
-                url: https://sonic-pi.net/tutorial.html
-        - title: GPTsHunter
-          url: https://www.gptshunter.com/
-          description: GPTs 导航
-          logo: gptshunter.com.png
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-            info:
-              - icon: ri-exchange-line
-                title: GPTStore
-                url: https://gptstore.ai/
-              - icon: ri-exchange-line
-                title: AllGPTs
-                url: https://allgpts.co/
-        - title: 周报通
-          url: https://zhoubaotong.com/zh
-          description: 简单描述工作内容，帮你生成完整周报
-          logo: zhoubaotong.com.ico
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-            info:
-              - icon: ri-github-fill
-                title: Github
-                url: https://github.com/guaguaguaxia/weekly_report
-        - title: All Things Ai
-          url: https://allthingsai.com/
-          description: AI 工具和服务集合
-          logo: allthingsai.com.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: FuturePedia
-          url: https://www.futurepedia.io/
-          description: AI 工具库
-          logo: futurepedia.io.svg
-          icons:
-            status:
-              - icon: ri-english-input
-                title: 英文
-        - title: Ai 导航
-          url: https://www.ainavpro.com/
-          description: 一个专注于人工智能产品的导航站
-          logo: ainavpro.com.svg
-
     - name: 在线文档
       links:
         - title: 石墨文档
@@ -3199,11 +2858,20 @@
                 title: 免费方案
             info:
 
-- name: AI 编程
+- name: 人工智能
   icon: ri-sparkling-2-line
   sub:
-    - name: 编程工具
+    - name: 代码开发
       links:
+        - title: Codex
+          url: https://openai.com/codex
+          description: OpenAI 官方编程 Agent，CLI 与云端写代码
+          logo: openai.com.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
         - title: Claude Code
           url: https://claude.com/product/claude-code
           description: Anthropic 官方终端 AI 编程 Agent
@@ -3216,15 +2884,6 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://code.claude.com/docs
-        - title: Codex
-          url: https://openai.com/codex
-          description: OpenAI 官方编程 Agent，CLI 与云端写代码
-          logo: openai.com.png
-          icons:
-            status:
-              - icon: ri-send-plane-fill
-                title: 国际互联网
-            info:
         - title: pi
           url: https://pi.dev
           description: 极简可扩展的开源 AI 编程 agent
@@ -3237,7 +2896,44 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/earendil-works/pi
-    - name: skills
+        - title: Copilot
+          url: https://github.com/features/copilot
+          description: AI 帮你写代码
+          logo: github.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://docs.github.com/en/copilot
+              - icon: ri-exchange-line
+                title: 通义灵码
+                url: https://tongyi.aliyun.com/lingma/
+              - icon: ri-exchange-line
+                title: AWS CodeWhisperer
+                url: https://aws.amazon.com/codewhisperer/
+        - title: Cursor
+          url: https://www.cursor.so/
+          description: AI 协同代码编辑器
+          logo: cursor.so.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 免费方案
+            info:
+              - icon: ri-book-2-line
+                title: Cursor Directory
+                url: https://cursor.directory/
+
+    - name: Skills&Plugins
       links:
         - title: Matt Pocock Skills
           url: https://github.com/mattpocock/skills
@@ -3260,6 +2956,366 @@
               - icon: ri-book-2-line
                 title: 文档
                 url: https://docs.bmad-method.org
+        - title: RTK
+          url: https://www.rtk-ai.app/
+          description: 过滤压缩终端输出的 CLI 代理，降低 AI 编程 Agent 的 token 消耗
+          logo: github-rtk-ai-rtk.jpg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/rtk-ai/rtk
+        - title: Ponytail
+          url: https://ponytail.dev/
+          description: 约束 AI 编程助手输出极简代码的开源规则集
+          logo: github-dietrichgeburt-ponytail.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/DietrichGebert/ponytail
+        - title: Sepia
+          url: https://github.com/Nanako0129/sepia
+          description: 去除 AI 写作痕迹的开源 Agent Skill 插件
+          logo: github-nanako0129-sepia.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: Eli5
+          url: https://github.com/anthropics/claude-plugins-community/tree/main/eli5
+          description: Claude Code 社区插件，把复杂概念讲成零基础也能懂的图解
+          logo: github-anthropics-eli5.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+
+    - name: AI 产品
+      links:
+        - title: ChatGPT
+          url: https://chat.openai.com/
+          description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
+          logo: chat.openai.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-exchange-line
+                title: 镜像站点
+                url: https://chat18.aichatos.xyz/
+              - icon: ri-exchange-line
+                title: 镜像站点集合
+                url: https://github.com/xx025/carrot
+              - icon: ri-exchange-line
+                title: 镜像站点集合
+                url: https://github.com/LiLittleCat/awesome-free-chatgpt
+        - title: Claude
+          url: https://claude.ai/
+          description: 由 Anthropic 开发的大型语言模型
+          logo: claude.ai.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+        - title: Gemini
+          url: https://gemini.google.com/
+          description: DeepResearch 很不错
+          logo: gemini.google.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+        - title: Kimi
+          url: https://kimi.moonshot.cn/
+          description: 国产大语言模型
+          logo: kimi.moonshot.cn.ico
+          icons:
+            status:
+            info:
+              - icon: ri-exchange-line
+                title: 智谱清言
+                logo: chatglm.cn.png
+                url: https://chatglm.cn
+              - icon: ri-exchange-line
+                title: 通义千问
+                url: https://tongyi.aliyun.com/
+                logo: tongyi.aliyun.com.svg
+              - icon: ri-exchange-line
+                title: 文心一言
+                url: https://yiyan.baidu.com/
+                logo: yiyan.baidu.com.ico
+        - title: Perplexity
+          url: https://www.perplexity.ai/
+          description: AI 搜索引擎
+          logo: perplexity.ai.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+        - title: Lexica
+          url: https://lexica.art/
+          description: AI 图像搜索引擎
+          logo: lexica.art.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: Stable Diffusion 3
+          url: https://stablediffusion3.net/
+          description: 免费试用 Stable Diffusion 3 在线
+          logo: stablediffusion3.net.png
+          icons:
+            status:
+            info:
+        - title: Midjourney
+          url: https://www.midjourney.com/
+          description: 高质量 AI 绘图
+          logo: midjourney.com.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+        - title: DreamStudio
+          url: https://beta.dreamstudio.ai/
+          description: 高质量 AI 绘图
+          logo: beta.dreamstudio.ai.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: FAQ
+                url: https://beta.dreamstudio.ai/faq
+        - title: Scribble Diffusion
+          url: https://scribblediffusion.com/
+          description: 根据草图绘制图片
+          logo: scribblediffusion.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/replicate/scribble-diffusion
+        - title: Astria
+          url: https://www.astria.ai/
+          description: 识别和再生成特定对象的图片
+          logo: astria.ai.png
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: How-To
+                url: https://www.astria.ai/tips
+        - title: Vectorizer.AI
+          url: https://vectorizer.ai/
+          description: 使用 AI 把位图转换为 SVG 矢量图片
+          logo: vectorizer.ai.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
+              - icon: ri-book-2-line
+                title: API
+                url: https://vectorizer.ai/api
+        - title: Luma AI
+          url: https://lumalabs.ai/
+          description: Capture the world in lifelike 3D
+          logo: lumalabs.ai.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: D-ID
+          url: https://studio.d-id.com/
+          description: 利用文字转视频，创建你的专属数字人
+          logo: studio.d-id.com.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 收费
+            info:
+        - title: SOUNDRAW
+          url: https://soundraw.io/
+          description: AI 生成音乐
+          logo: soundraw.io.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: Sonic Pi
+          url: https://sonic-pi.net/
+          description: 基于代码的音乐创作工具
+          logo: sonic-pi.net.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://sonic-pi.net/tutorial.html
+        - title: ChatPDF
+          url: https://www.chatpdf.com/
+          description: 帮你总结 PDF 信息，并且通过聊天问答的方式告诉你 PDF 的内容
+          logo: chatpdf.com.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+        - title: 周报通
+          url: https://zhoubaotong.com/zh
+          description: 简单描述工作内容，帮你生成完整周报
+          logo: zhoubaotong.com.ico
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/guaguaguaxia/weekly_report
+        - title: 即时AI
+          url: https://js.design/ai
+          description: 即时 AI 生成设计工具，需要排队
+          logo: js.design.svg
+          icons:
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://js.design/ai/report
+        - title: Hugging Face
+          url: https://huggingface.co/
+          description: 构建未来的 AI 社区
+          logo: huggingface.co.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+              - icon: ri-money-cny-circle-line
+                title: 服务收费
+            info:
+              - icon: ri-book-2-line
+                title: Document
+                url: https://huggingface.co/docs
+        - title: Papers With Code
+          url: https://paperswithcode.com/
+          description: 最新的机器学习论文，包含代码
+          logo: paperswithcode.com.svg
+        - title: Artificial Analysis
+          url: https://artificialanalysis.ai/
+          description: AI 大模型质量、速度与价格评测
+          logo: artificialanalysis.ai.ico
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: Dify
+          url: https://dify.ai/
+          description: 提示词编排，打造你的个性化 AI 助理
+          logo: dify.ai.ico
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费试用
+            info:
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://docs.dify.ai/zh/quick-start
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/langgenius/dify
+        - title: GPTsHunter
+          url: https://www.gptshunter.com/
+          description: GPTs 导航
+          logo: gptshunter.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-exchange-line
+                title: GPTStore
+                url: https://gptstore.ai/
+              - icon: ri-exchange-line
+                title: AllGPTs
+                url: https://allgpts.co/
+        - title: All Things Ai
+          url: https://allthingsai.com/
+          description: AI 工具和服务集合
+          logo: allthingsai.com.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: FuturePedia
+          url: https://www.futurepedia.io/
+          description: AI 工具库
+          logo: futurepedia.io.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+        - title: Ai 导航
+          url: https://www.ainavpro.com/
+          description: 一个专注于人工智能产品的导航站
+          logo: ainavpro.com.svg
+        - title: OpenAI API 最佳实践
+          url: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api
+          description: OpenAI 官方 Prompt 工程指南
+          logo: help.openai.com.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+
     - name: CodingPlan
       links:
         - title: ChatGPT
@@ -3380,6 +3436,9 @@
               - icon: ri-exchange-line
                 title: 网址发布页
                 url: https://ddys.site/
+              - icon: ri-exchange-line
+                title: 追剧资源指南
+                url: https://github.com/laoma2053/awesome-zhuiju-free
         - title: RARGB
           url: https://rargb.to/
           description: 高质量影音下载网站
