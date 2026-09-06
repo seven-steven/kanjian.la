@@ -2336,10 +2336,6 @@
           url: https://neumorphism.io/
           description: 简单轻松地实现 CSS 新拟态效果
           logo: neumorphism.io.png
-        - title: Clippy
-          url: https://bennettfeely.com/clippy/
-          description: CSS clip-path maker
-          logo: benettfeely.com.svg
         - title: Get Waves
           url: https://getwaves.io/
           description: 波浪生成器
