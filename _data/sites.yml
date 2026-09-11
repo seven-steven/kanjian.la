@@ -2624,6 +2624,18 @@
               - icon: ri-english-input
                 title: 英文
             info:
+        - title: NodeQuality
+          url: https://nodequality.com/
+          description: VPS 与 IP 质量一键测试脚本，覆盖基础信息、风险评分、流媒体解锁、邮件可达性
+          logo: nodequality.png
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/xykt/IPQuality
         - title: ZeroSSL
           url: https://zerossl.com/
           description: 给你的 IP 签发 SSL 证书
