@@ -922,6 +922,18 @@
           url: https://f-droid.org/
           description: 下载你想要的安卓应用
           logo: f-droid.org.svg
+        - title: Aurora Store
+          url: https://auroraoss.com/
+          description: 开源第三方 Google Play 客户端，无需账号即可匿名下载与更新应用
+          logo: aurora-store.svg
+          icons:
+            status:
+              - icon: ri-english-input
+                title: 英文
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/whyorean/AuroraStore
         - title: 钱迹
           url: https://qianjiapp.com/
           description: 发现记账的乐趣
