@@ -480,6 +480,16 @@
           url: https://mathewsachin.github.io/Captura/
           description: 录制屏幕、声音、光标和按键
           logo: mathewsachin.github.io.svg
+        - title: Recordly
+          url: https://recordly.dev/
+          description: 开源跨平台屏幕录制工具，内置自动缩放、光标平滑、摄像头气泡叠加与时间线编辑器
+          logo: recordly.dev.png
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/webadderallorg/Recordly
         - title: keyviz
           url: https://mularahul.github.io/keyviz/
           description: 在屏幕上显示你正在操作的按键
