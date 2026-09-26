@@ -27,7 +27,6 @@
 
 ## TODO LIST
 
-- [ ] 移动端菜单优化 / 考虑添加返回顶部按钮
 - [ ] 优化动画
 - [ ] 关于我
 - [ ] pc 菜单优化
@@ -37,6 +36,8 @@
 - [ ] 发布 jekyll 主题
 - [ ] 自动获取 item 图标和简介
 - [ ] 定期巡检，移除失效站点
+- [x] SEO 基础设施：canonical、OG/Twitter Card 修正、sitemap.xml、robots.txt、JSON-LD 结构化数据、`zh-CN` 语言标记、视觉隐藏 h1、404 页面
+- [x] 移动端菜单优化（可访问 `button` + `aria-expanded`）与返回顶部按钮
 - [x] 感谢设计师 [@Huazi](https://huazi.space/) 的建议，给 PC 导航栏加上了磨砂效果
 - [x] 借助 `content-visibility: auto;` 优化页面加载速度
 - [x] 渐变背景 & 固定背景

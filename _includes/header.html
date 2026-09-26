@@ -1,8 +1,11 @@
 <header>
   <div class="header">
-    <span class="ri-menu-fill" onclick="document.querySelector('nav').classList.toggle('display-block')"></span>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="打开导航菜单"
+      aria-expanded="false" aria-controls="site-nav">
+      <span class="ri-menu-fill" aria-hidden="true"></span>
+    </button>
   </div>
-  <nav class="blur">
+  <nav id="site-nav" class="blur">
     <ul class="nav">
       {% for category in site.data.sites %}
       {% if category.sub %}
@@ -10,7 +13,7 @@
         <a href="javascript:void(0)">
           {% else %}
       <li>
-        <a href="#{{ category.name }}">
+        <a href="#{{ category.name | remove: ' ' }}">
           {% endif %}
           <span class="nav-icon {{ category.icon }}"></span>
           {{ category.name }}
@@ -22,7 +25,7 @@
         <ul class="nav blur">
           {% for sub_category in category.sub %}
           <li>
-            <a href="#{{category.name}}-{{sub_category.name}}">{{ sub_category.name }}</a>
+            <a href="#{{ category.name | remove: ' ' }}-{{ sub_category.name | remove: ' ' }}">{{ sub_category.name }}</a>
           </li>
           {% endfor %}
         </ul>

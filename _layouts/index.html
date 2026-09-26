@@ -1,43 +1,81 @@
+{% assign page_canonical = site.url | append: '/' %}
+{% if page.url and page.url != '/index.html' %}
+{% assign page_canonical = site.url | append: page.url %}
+{% endif %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'zh-CN' }}">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Seven">
-  <title>{{ site.title }}</title>
+  <meta name="theme-color" media="(max-width: 599px)" content="#FCAD3F">
+  <meta name="theme-color" media="(min-width: 600px)" content="#f1f3f5">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }} - {{ site.tagline }}</title>
 
   <meta name="keywords" content="{{ site.keywords }}">
   <meta name="description" content="{{ site.description }}">
+  <link rel="canonical" href="{{ page_canonical }}">
   <!-- FB Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="{{ site.url }}">
-  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page_canonical }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
   <meta property="og:description" content="{{ site.description }}">
   <meta property="og:image" content="{{ site.url }}/{{ site.logo }}">
   <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:locale" content="zh_CN">
   <!-- / Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ site.title }}">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
   <meta name="twitter:description" content="{{ site.description }}">
   <meta name="twitter:image" content="{{ site.url }}/{{ site.logo }}">
 
   <link rel="icon" href="./assets/image/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/image/favicon.png">
+  <link rel="sitemap" type="application/xml" href="./sitemap.xml">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="stylesheet" href="./assets/remixicon/partly/remixicon.css">
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/mobile-max-600.css">
   <link rel="stylesheet" media="only screen and (min-width: 600px)" href="./assets/css/tablet-min-600.css">
   <link rel="stylesheet" media="only screen and (min-width: 768px)" href="./assets/css/pc-min-768.css">
   <link rel="stylesheet" media="only screen and (min-width: 1281px)" href="./assets/css/large-min-1200.css">
+  {% if page.url == '/index.html' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "alternateName": "kanjian.la",
+    "url": {{ site.url | append: '/' | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "inLanguage": {{ site.lang | default: 'zh-CN' | jsonify }}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": {{ site.title | jsonify }},
+    "itemListElement": [{% assign ld_pos = 0 %}{% for category in site.data.sites %}{% if category.sub %}{% for sub_category in category.sub %}{% assign ld_pos = ld_pos | plus: 1 %}{% if ld_pos > 1 %},{% endif %}{"@type": "ListItem", "position": {{ ld_pos }}, "name": {{ sub_category.name | jsonify }}, "url": {{ site.url | append: '/#' | append: category.name | append: '-' | append: sub_category.name | remove: ' ' | jsonify }}}{% endfor %}{% else %}{% assign ld_pos = ld_pos | plus: 1 %}{% if ld_pos > 1 %},{% endif %}{"@type": "ListItem", "position": {{ ld_pos }}, "name": {{ category.name | jsonify }}, "url": {{ site.url | append: '/#' | append: category.name | remove: ' ' | jsonify }}}{% endif %}{% endfor %}]
+  }
+  </script>
+  {% endif %}
 </head>
 
 <body>
   <div class="container">
+    <h1 class="visually-hidden">{{ site.description }}</h1>
     {% include header.html %}
     {{ content }}
     {% include footer.html %}
   </div>
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="返回顶部" title="返回顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 4 L19 11 L17.6 12.4 L13 7.8 L13 20 L11 20 L11 7.8 L6.4 12.4 L5 11 Z" fill="currentColor" />
+    </svg>
+  </button>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analystic.google.gtag }}"></script>
   <script>
@@ -50,12 +88,44 @@
   </script>
 
   <script>
-    // logo 加载失败时隐藏破图，保留容器底色
-    document.addEventListener("error", function (e) {
-      if (e.target.tagName === "IMG" && e.target.closest(".web-item-logo")) {
-        e.target.style.visibility = "hidden";
+    (function () {
+      // 移动端导航菜单：可键盘访问，并同步 aria-expanded
+      var menuToggle = document.getElementById('menu-toggle');
+      var siteNav = document.getElementById('site-nav');
+      if (menuToggle && siteNav) {
+        menuToggle.addEventListener('click', function () {
+          var open = siteNav.classList.toggle('display-block');
+          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        // 点击锚点跳转后收起菜单
+        siteNav.addEventListener('click', function (e) {
+          var link = e.target.closest('a[href^="#"]');
+          if (!link) return;
+          siteNav.classList.remove('display-block');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
       }
-    }, true);
+
+      // 返回顶部
+      var backToTop = document.getElementById('back-to-top');
+      if (backToTop) {
+        var onScroll = function () {
+          backToTop.classList.toggle('visible', window.scrollY > 600);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // logo 加载失败时隐藏破图，保留容器底色
+      document.addEventListener("error", function (e) {
+        if (e.target.tagName === "IMG" && e.target.closest(".web-item-logo")) {
+          e.target.style.visibility = "hidden";
+        }
+      }, true);
+    })();
   </script>
 </body>
 

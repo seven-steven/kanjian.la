@@ -3,7 +3,7 @@
     {% assign icon_list = web_item.icons.status %}
     {% include web-item-icon-list.html icon_list = icon_list %}
     <div class="web-item-logo">
-      <a href="{{ web_item.url }}" target="_blank" title="{{ web_item.url }}">
+      <a href="{{ web_item.url }}" target="_blank" rel="noopener" title="{{ web_item.url }}">
         <img src="{{ site.web-item.logo.path }}{{ web_item.logo }}" loading="lazy" decoding="async" width="64" height="64" alt="{{ web_item.title }} logo" />
       </a>
     </div>
@@ -11,7 +11,7 @@
     {% include web-item-icon-list.html icon_list = icon_list %}
   </div>
   <div class="web-item-text">
-    <a href="{{ web_item.url }}" target="_blank" title="{{ web_item.title }}">
+    <a href="{{ web_item.url }}" target="_blank" rel="noopener" title="{{ web_item.title }}">
       <h3>{{ web_item.title }}</h3>
       <p class="web-item-description" title="{{ web_item.description }}">{{ web_item.description }}</p>
     </a>

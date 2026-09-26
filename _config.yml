@@ -1,6 +1,9 @@
 title: 看见导航
 description: 看见导航 | 美好的事物，值得被更多人看见
+tagline: 美好的事物，值得被更多人看见
 keywords: 导航, 看见导航, 精品网站
+url: https://kanjian.la
+lang: zh-CN
 logo: assets/image/favicon.png
 assets:
   image:
@@ -20,5 +23,8 @@ exclude:
   - LICENSE.txt
   - Gemfile
   - Gemfile.lock
+  - CLOUDFLARE_DEPLOYMENT.md
+  - scripts
+  - test
   - assets/remixicon/full
   - assets/remixicon/partly/remixicon-collecton.remixicon

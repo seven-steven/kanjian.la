@@ -34,8 +34,15 @@ header {
   padding: var(--padding-common);
 }
 
-.header>span {
+.menu-toggle {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
   font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: .2rem;
 }
 
 nav {

@@ -2,11 +2,11 @@
   {% for category in site.data.sites %}
   {% if category.sub %}
   {% for sub_category in category.sub %}
-  {% assign sub_category_id = category.name | append: '-' | append: sub_category.name %}
+  {% assign sub_category_id = category.name | append: '-' | append: sub_category.name | remove: ' ' %}
   {% include sub_category.html %}
   {% endfor %}
   {% else %}
-  {% assign sub_category_id = category.name %}
+  {% assign sub_category_id = category.name | remove: ' ' %}
   {% assign sub_category = category %}
   {% include sub_category.html %}
   {% endif %}
