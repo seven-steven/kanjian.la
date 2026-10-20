@@ -1,10 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#2563eb"/>
-  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round">
-    <path d="M32 32 L46 18"/>
-    <path d="M20 44 A17 17 0 0 0 32 49" opacity="0.5"/>
-    <path d="M15 39 A22 22 0 0 0 32 54" opacity="0.3"/>
-    <path d="M10 34 A27 27 0 0 0 32 59" opacity="0.15"/>
-  </g>
-  <circle cx="32" cy="32" r="3.5" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- WordRadar logo — 纯矢量重绘 (2026-08-31) -->
+  <!-- 几何/颜色均逆向自原 1024px 位图:圆角矩形 rx=229, W 五锚点手绘三次贝塞尔, -->
+  <!-- 5-stop 水平渐变 #FF501E→#FCB736, 笔画 72px 圆头。原图噪点/交叉处压暗为位图伪影,未复刻。 -->
+  <defs>
+    <linearGradient id="w-fill" gradientUnits="userSpaceOnUse" x1="285" y1="0" x2="738" y2="0">
+      <stop offset="0" stop-color="#FF501E"/>
+      <stop offset="0.254" stop-color="#F67028"/>
+      <stop offset="0.501" stop-color="#FC8E32"/>
+      <stop offset="0.746" stop-color="#FCAD47"/>
+      <stop offset="1" stop-color="#FCB736"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="229" fill="#20272F"/>
+  <path d="M285 360 C334 540 353 665 400 665 C444 665 497 444 512 444 C527 444 579 665 623 665 C669 665 689 540 738 360"
+        fill="none" stroke="url(#w-fill)" stroke-width="72" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
