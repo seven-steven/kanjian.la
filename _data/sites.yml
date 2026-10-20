@@ -706,8 +706,8 @@
                 url: https://www.trancy.org/
         - title: 单词雷达
           url: https://chromewebstore.google.com/detail/wordradar/klbhhofbdklddefpnkbfdgecoheelpip
-          description: 单词雷达
-          logo: wordradar.png
+          description: 把网页里的英文生词一键提取出来，自动加到「不背单词」生词本
+          logo: wordradar.svg
           icons:
             status:
               - icon: ri-send-plane-fill
@@ -716,6 +716,9 @@
               - icon: ri-edge-fill
                 title: Microsoft Edge Addons
                 url: https://microsoftedge.microsoft.com/addons/detail/%E5%8D%95%E8%AF%8D%E9%9B%B7%E8%BE%BE/bpgidbkjoehbpgkkkmobefiajgbgmmdo
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/seven-steven/word-radar
         - title: 不背单词查词
           url: https://chrome.google.com/webstore/detail/%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8D%E6%9F%A5%E8%AF%8D/cklfipcjofdnmdolnfngpmokdaejidim
           description: 不背单词查词
