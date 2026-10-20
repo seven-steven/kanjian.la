@@ -1,6 +1,14 @@
 - name: 学习资源
   icon: ri-book-3-line
   links:
+    - title: X
+      url: https://x.com/
+      description: "全球优质信息源"
+      logo: x.com.svg
+      icons:
+        status:
+          - icon: ri-send-plane-fill
+            title: 国际互联网
     - title: 16 Personalities
       url: https://www.16personalities.com/ch/
       description: "准确到“令你毛骨悚然”的人格测试"
@@ -2146,6 +2154,18 @@
               - icon: ri-book-2-line
                 title: 接口文档
                 url: https://mouday.github.io/domain-admin/#/
+        - title: Vaultwarden
+          url: https://github.com/dani-garcia/vaultwarden
+          description: 轻量级 Bitwarden 兼容密码管理服务器，使用 Rust 编写
+          logo: github.com.svg
+          icons:
+            info:
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/dani-garcia/vaultwarden
+              - icon: ri-book-2-line
+                title: 文档
+                url: https://github.com/dani-garcia/vaultwarden/wiki
     - name: 前端开发
       links:
         - title: MDN Web Docs
