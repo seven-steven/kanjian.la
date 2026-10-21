@@ -3073,6 +3073,16 @@
 
     - name: AI 产品
       links:
+        - title: ego (lite)
+          url: https://lite.ego.app/zh-cn
+          description: 为 AI agent 与用户并行协作设计的浏览器，agent 在隔离 Space 中执行任务
+          logo: lite.ego.app.ico
+          icons:
+            status:
+            info:
+              - icon: ri-github-fill
+                title: GitHub 仓库
+                url: https://github.com/citrolabs/ego-lite
         - title: ChatGPT
           url: https://chat.openai.com/
           description: 基于大型语言模型 GPT-3.5 的最智能的聊天机器人
