@@ -694,6 +694,14 @@
             status:
               - icon: ri-send-plane-fill
                 title: 国际互联网
+        - title: BiliBili 字幕提取器
+          url: https://chromewebstore.google.com/detail/bilibili-%E5%AD%97%E5%B9%95%E6%8F%90%E5%8F%96%E5%99%A8/mmekbkdnolpcbgbedcibicjhigkfdojg
+          description: 提取 BiliBili 视频字幕
+          logo: chrome-extension-bilibili-srt.png
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
         - title: 沉浸式翻译
           url: https://chrome.google.com/webstore/detail/immersive-translate/bpoadfkcbjbfhfodiogcnhhhpibjhbnh
           description: 沉浸式双语网页翻译扩展
