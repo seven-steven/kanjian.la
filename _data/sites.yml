@@ -2972,6 +2972,21 @@
               - icon: ri-github-fill
                 title: Github
                 url: https://github.com/earendil-works/pi
+        - title: Paseo
+          url: https://paseo.sh
+          description: 开源自托管 AI 编程代理开发环境，统一管理 Claude Code、Codex、Copilot 等多个 agent
+          logo: paseo.sh.svg
+          icons:
+            status:
+              - icon: ri-send-plane-fill
+                title: 国际互联网
+            info:
+              - icon: ri-book-2-line
+                title: 官网
+                url: https://paseo.sh
+              - icon: ri-github-fill
+                title: Github
+                url: https://github.com/getpaseo/paseo
         - title: Copilot
           url: https://github.com/features/copilot
           description: AI 帮你写代码
