@@ -1613,6 +1613,14 @@
             info:
               - icon: ri-english-input
                 url: https://leetcode.com/
+        - title: Algo Lab
+          url: https://byte-sized-algorithms.vercel.app/
+          description: 通过交互动画和伪代码，逐步学习数据结构与算法
+          logo: byte-sized-algorithms.vercel.app.svg
+          icons:
+            status:
+              - icon: ri-money-cny-circle-line
+                title: 免费
         - title: CS 自学指南
           url: https://csdiy.wiki/
           description: 计算机自学指南
